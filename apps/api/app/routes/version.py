@@ -24,13 +24,22 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
             available_endpoints=["GET /version"],
         ),
         ModuleStatus(
+            module="auth",
+            status="foundation_only",
+            purpose="Supabase Auth-compatible configuration status and protected current-user route foundation.",
+            future_phase="Phase 12 dashboard integration and later production token validation",
+            available_endpoints=[f"GET {api_prefix}/auth/status", f"GET {api_prefix}/me"],
+            future_capabilities=["Supabase JWT validation", "current user profile loading", "organization membership authorization"],
+            disabled_capabilities=["login/signup endpoints", "dashboard sessions", "database writes from auth flows"],
+        ),
+        ModuleStatus(
             module="projects",
             status="placeholder_only",
             purpose="Future project/workspace organization.",
-            future_phase="Phase 11 authentication and future persistence integration",
+            future_phase="Phase 12 dashboard and future persistence integration",
             available_endpoints=[f"GET {api_prefix}/projects"],
             future_capabilities=["project records", "team ownership", "dashboard project selection"],
-            disabled_capabilities=["active API persistence", "authentication", "authorization"],
+            disabled_capabilities=["active API persistence", "project authorization", "dashboard project selection"],
         ),
         ModuleStatus(
             module="targets",
@@ -95,6 +104,8 @@ def version_status() -> ApiResponse:
             "security_boundaries": {
                 "database_enabled": settings.database_enabled,
                 "authentication_enabled": settings.authentication_enabled,
+                "auth_provider": "supabase",
+                "auth_token_validation_active": False,
                 "billing_enabled": settings.billing_enabled,
                 "worker_enabled": settings.worker_enabled,
                 "public_scanning_enabled": settings.public_scanning_enabled,

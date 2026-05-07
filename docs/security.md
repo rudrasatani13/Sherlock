@@ -37,6 +37,19 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Phase 8 audit evidence, completed client templates, authorization notes, report drafts, screenshots, and retest records may contain sensitive data and should stay outside Git.
 - Phase 9 API responses are static foundation responses and placeholders. They should not include customer data, target secrets, raw scan evidence, generated reports, or evaluator output.
 - Phase 10 database migrations and seeds must not contain real secrets, real target credentials, real customer data, raw evidence, scan outputs, evaluator outputs, or report drafts.
+- Phase 11 auth placeholders must not contain real Supabase keys. Keep real auth values only in ignored local or managed deployment environments.
+- The Supabase service-role key is server-only and must never be exposed to browser/frontend code.
+
+## Authentication and Accounts
+
+- Phase 11 selects Supabase Auth as the intended auth provider and adds a backend auth foundation only.
+- Supabase Auth stores identity users in the Supabase-managed `auth` schema.
+- Sherlock app-level user metadata belongs in `public.user_profiles` and tenant access belongs in `public.organization_members`.
+- `GET /api/v0/auth/status` is public and returns configuration state only.
+- `GET /api/v0/me` is a protected route foundation and must not return fake users when auth is disabled or incomplete.
+- Backend routes must validate Supabase-issued JWTs before trusting user identity in future production phases.
+- Never trust user IDs supplied in request bodies for authentication or tenant authorization.
+- Do not add production OAuth provider setup, login/signup UI, sessions, or broad RLS policies until a reviewed future phase.
 
 ## Database Security
 
@@ -44,6 +57,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Do not store target API keys, bearer tokens, cookies, passwords, private keys, raw headers, or session material in plain text.
 - Future target credentials must use managed secret storage or encrypted storage.
 - RLS is enabled in the initial migration, but production user policies are not implemented yet.
+- Phase 11 keeps RLS deny-by-default and documents future policies based on `auth.uid()` and organization membership.
 - Do not expose the database publicly without authentication, authorization, tenant-scoped RLS, and server-side access checks.
 - Raw scan evidence should not be stored by default because prompts, responses, retrieval traces, tool traces, and screenshots may contain sensitive data.
 - Store only report-safe redacted evidence summaries unless a future phase explicitly designs protected raw-evidence storage with retention and deletion controls.
@@ -87,5 +101,5 @@ Future tool-using-agent tests must avoid invoking destructive or high-risk actio
 ## Backend API Boundary
 
 - Phase 9 adds a FastAPI foundation under `apps/api` with health, version/status, config, logging, CORS placeholder, structured errors, response schemas, and placeholder route groups.
-- Phase 10 adds a database schema and migration foundation under `db/`, but the API still does not implement active database persistence, authentication, authorization, billing, dashboard integration, queue workers, target verification, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
-- Future scanner integration must run outside public request handlers and only after auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and worker queues are in place.
+- Phase 10 adds a database schema and migration foundation under `db/`, and Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, but the API still does not implement active database persistence, production JWT verification, dashboard integration, billing, queue workers, target verification, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
+- Future scanner integration must run outside public request handlers and only after production auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and worker queues are in place.

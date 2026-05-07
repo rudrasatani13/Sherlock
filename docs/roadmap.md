@@ -170,11 +170,32 @@ Implemented as foundation only:
 
 Phase 10 does not implement authentication, authorization, login/signup, sessions, dashboard integration, billing, queue workers, public scan execution, scanner-to-database production integration, target ownership verification logic, real report generation, PDF export, admin panels, real customer data storage, or active API persistence.
 
-## Phase 11+: Product Platform
+## Phase 11: Authentication and User Accounts
+
+Status: completed
+
+Created the authentication and user account foundation for future Sherlock product usage using Supabase Auth as the intended auth provider.
+
+Implemented as foundation only:
+
+- Supabase Auth-compatible architecture documentation in `docs/auth.md`
+- safe auth placeholders in `.env.example`
+- backend config fields for Supabase URL, anon key, server-only service-role key, JWKS URL, and auth enable flag
+- FastAPI auth helper/dependency foundation under `apps/api`
+- strict bearer-token extraction helper that does not trust arbitrary user IDs
+- current-user, profile, and organization membership response schemas
+- public `GET /api/v0/auth/status` route for auth configuration state
+- protected `GET /api/v0/me` route foundation that returns auth unavailable until real auth is configured
+- shared-envelope auth errors for unavailable or missing authentication
+- documentation for user profiles, organizations, memberships, roles, backend token validation, and future RLS strategy
+- lightweight auth helper tests
+
+Phase 11 does not implement production login/signup UI, production JWT verification, sessions, authenticated dashboard, billing, queue workers, public scan execution, target verification, active API database persistence, scanner execution exposure, report generation, PDF export, admin panels, broad RLS policies, or real secrets.
+
+## Phase 12+: Product Platform
 
 Future platform work may include:
 
-- Phase 11 authentication and authorization
 - Phase 12 dashboard API consumption
 - Phase 14 target ownership verification
 - Phase 15 async workers and queues

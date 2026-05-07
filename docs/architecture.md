@@ -2,7 +2,7 @@
 
 Sherlock is planned as a modular AI launch security audit and scanner platform. The architecture should keep customer-facing workflows, scan execution, prompt libraries, evaluators, reports, and billing separated so each area can evolve without becoming tightly coupled.
 
-This document describes the future direction and the current Phase 10 database foundation. Phase 10 adds schema and migration groundwork only; it does not implement authentication, active API database persistence, billing, queue workers, report generation, PDF export, admin panels, target verification, or public scan execution.
+This document describes the future direction and the current Phase 11 authentication and user accounts foundation. Phase 11 adds Supabase Auth-compatible backend and documentation groundwork only; it does not implement a dashboard, active API database persistence, billing, queue workers, report generation, PDF export, admin panels, target verification, or public scan execution.
 
 ## Planned Components
 
@@ -10,7 +10,7 @@ This document describes the future direction and the current Phase 10 database f
 
 The future web app will cover the public website, authenticated dashboard, scan setup flows, report viewing, team/account settings, and billing surfaces.
 
-Phase 2 implements the public website as a static site under `apps/web`. Authenticated dashboard work, scan setup flows, report viewing, team/account settings, and billing surfaces remain future phases.
+Phase 2 implements the public website as a static site under `apps/web`. Authenticated dashboard work, scan setup flows, report viewing, team/account settings, login/signup UI, and billing surfaces remain future phases.
 
 Phase 4 expands the static public sample report page. It is a demo-only artifact, not a real report viewer and not generated from a scan.
 
@@ -28,10 +28,12 @@ Phase 9 adds `apps/api`, a small FastAPI foundation with:
 
 - `GET /health` for runtime health
 - `GET /version` for phase/module status
+- `GET /api/v0/auth/status` for Phase 11 auth configuration status
+- `GET /api/v0/me` as a protected current-user route foundation
 - placeholder `501 not_implemented` route groups for projects, targets, scans, findings, reports, and verification
 - shared response envelope, config loading, logging, CORS placeholder, and structured error handling
 
-The API does not persist data through routes, authenticate users, create scans, call the scanner engine, generate reports, verify targets, handle billing, or start workers. Scanner execution must remain isolated until future phases add authentication, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
+The API does not persist data through routes, run production JWT verification, create scans, call the scanner engine, generate reports, verify targets, handle billing, or start workers. Scanner execution must remain isolated until future phases add production authentication, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
 
 ### Scanner Engine
 
@@ -69,7 +71,11 @@ The database will eventually store accounts, users, scan configurations, ownersh
 
 Phase 10 adds a root-level `db/` foundation using plain PostgreSQL/Supabase-compatible SQL migrations and documentation. The initial schema covers organizations, user profiles, organization members, projects, targets, target verifications, scans, scan events, findings, reports, manual audits, retests, usage records, and audit logs.
 
-The Phase 10 migration enables RLS on application tables but does not add permissive user policies because auth is not implemented yet. Authentication and authorization should be added before any customer data or scan target data is stored through production app flows.
+Phase 11 selects Supabase Auth as the intended identity provider and adds the backend auth foundation under `apps/api`. Supabase Auth stores users in the managed `auth` schema; Sherlock app-level metadata should live in `public.user_profiles`, `public.organizations`, and `public.organization_members`.
+
+The Phase 10 migration enables RLS on application tables but does not add permissive user policies. Phase 11 keeps that deny-by-default posture. Future RLS policies should use `auth.uid()` and organization membership rows to enforce tenant boundaries after production JWT validation and dashboard flows are reviewed.
+
+The service-role key is server-only and must never be exposed to browser/frontend code.
 
 ### Report System
 

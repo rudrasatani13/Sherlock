@@ -1,6 +1,6 @@
 # Scope Boundaries
 
-Sherlock has completed Phase 9 Backend API Foundation.
+Sherlock has completed Phase 11 Authentication and User Accounts foundation.
 
 ## In Scope for Phase 1
 
@@ -137,9 +137,26 @@ Sherlock has completed Phase 9 Backend API Foundation.
 - safe backend database config placeholder only
 - documentation updates explaining future database integration boundaries
 
-## Out of Scope Through Phase 10
+## In Scope for Phase 11
 
-- authentication
+- Supabase Auth-compatible architecture documentation
+- safe auth environment placeholders
+- backend auth helper/dependency foundation
+- strict bearer-token extraction helper
+- current-user model/schema foundation
+- public auth configuration status route
+- protected current-user route placeholder
+- shared-envelope auth error style
+- user profile, organization, membership, and role model documentation
+- future JWT validation and RLS strategy documentation
+- local development behavior without real Supabase credentials
+- auth helper tests
+
+## Out of Scope Through Phase 11
+
+- production login/signup UI
+- production JWT verification
+- production sessions
 - dashboard UI
 - admin panel
 - billing
@@ -172,4 +189,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 10 establishes the database foundation required before future auth, dashboard, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `apps/api/README.md` as the API foundation reference, and `db/schema.md` as the database foundation reference.
+Phase 11 establishes the authentication and user account foundation required before future dashboard, active persistence, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, and `db/schema.md` as the database foundation reference.

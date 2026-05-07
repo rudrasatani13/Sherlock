@@ -6,9 +6,9 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 10: Database Setup**.
+Sherlock has completed **Phase 11: Authentication and User Accounts**.
 
-The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, and the Phase 10 database foundation:
+The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, and the Phase 11 authentication and user accounts foundation:
 
 - repository organization
 - product and architecture documentation
@@ -54,8 +54,14 @@ The repository now contains the Phase 1 foundation, the static Phase 2 public we
 - PostgreSQL/Supabase-compatible database schema documentation under `db/`
 - initial SQL migration for organizations, profiles, memberships, projects, targets, verifications, scans, events, findings, reports, manual audits, retests, usage records, and audit logs
 - local database setup notes, migration workflow, RLS planning, and privacy/security boundaries
+- Supabase Auth-compatible architecture and setup documentation
+- safe auth configuration placeholders without real keys
+- backend auth helper/dependency foundation
+- public auth status route and protected current-user route foundation
+- current-user/profile/membership response schemas
+- user profile, organization membership, role model, backend JWT validation, and future RLS strategy documentation
 
-No public self-serve scan execution, backend scan execution APIs, authenticated dashboard, auth, active API database persistence, billing, queue workers, PDF generation, admin panel, target verification implementation, production scanner exposure, or real report generation are implemented.
+No public self-serve scan execution, backend scan execution APIs, authenticated dashboard, production login/signup UI, production JWT verification, active API database persistence, billing, queue workers, PDF generation, admin panel, target verification implementation, production scanner exposure, or real report generation are implemented.
 
 ## Product Positioning
 
@@ -77,7 +83,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 ```text
 .
 |-- apps/
-|   |-- api/             # Phase 9 FastAPI backend foundation
+|   |-- api/             # Phase 9 FastAPI backend foundation with Phase 11 auth placeholders
 |   `-- web/             # Phase 2 static public website
 |-- config/              # Shared product metadata and future configuration
 |-- db/                  # Phase 10 PostgreSQL/Supabase-compatible database foundation
@@ -90,7 +96,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 `-- README.md
 ```
 
-The repository remains intentionally minimal. Phase 10 introduces a database schema and migration foundation only; full platform features remain future phases.
+The repository remains intentionally minimal. Phase 11 introduces an authentication and user account foundation only; full platform features remain future phases.
 
 ## Documentation
 
@@ -99,6 +105,7 @@ The repository remains intentionally minimal. Phase 10 introduces a database sch
 - [Development Setup](docs/development.md)
 - [Backend API Foundation](apps/api/README.md)
 - [Database Foundation](db/README.md)
+- [Authentication and User Accounts](docs/auth.md)
 - [Sherlock Methodology](docs/methodology.md)
 - [Scanner Engine](docs/scanner-engine.md)
 - [Prompt Library](docs/prompt-library.md)
@@ -136,7 +143,7 @@ createdb sherlock_local
 psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations/20260507100000_phase_10_initial_database_foundation.sql
 ```
 
-There is still no auth provider, billing provider, queue worker, dashboard, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, target verification flow, report generator, or active API persistence path configured.
+There is still no live Supabase connection requirement, billing provider, queue worker, dashboard, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, target verification flow, report generator, production JWT verification, production login/signup UI, or active API persistence path configured.
 
 Run the internal Phase 5 mock scanner dry-run with Python:
 

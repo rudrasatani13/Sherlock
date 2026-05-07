@@ -1,8 +1,8 @@
 # Sherlock Database Schema
 
-Status: Phase 10 Database Setup completed
+Status: Phase 11 Authentication and User Accounts foundation completed
 
-This document describes the Phase 10 PostgreSQL/Supabase-compatible database foundation for Sherlock.
+This document describes the Phase 10 PostgreSQL/Supabase-compatible database foundation for Sherlock and the Phase 11 auth alignment strategy.
 
 The schema is a foundation for future platform phases. It is not connected to production API persistence yet.
 
@@ -81,7 +81,7 @@ Allowed statuses: `active`, `trial`, `suspended`, `archived`.
 
 ### user_profiles
 
-Future app-level user metadata connected to an auth provider later.
+Future app-level user metadata connected to Supabase Auth.
 
 Key fields:
 
@@ -92,11 +92,13 @@ Key fields:
 - `created_at`
 - `updated_at`
 
-Phase 10 does not implement authentication. If Supabase Auth is used in Phase 11, `user_profiles.id` should map to `auth.users.id` through future auth-aware migrations and policies.
+Supabase Auth stores users in the managed `auth` schema. `user_profiles.id` should map to `auth.users.id` through future auth-aware migrations and policies.
+
+Optional app profile fields such as avatar URL and onboarding status can live in `metadata` until a later reviewed migration adds dedicated columns.
 
 ### organization_members
 
-Future organization membership and role records.
+Organization membership and role records for tenant access.
 
 Key fields:
 
@@ -107,6 +109,13 @@ Key fields:
 - `created_at`
 
 Allowed roles: `owner`, `admin`, `member`, `viewer`.
+
+Role intent:
+
+- `owner`: manage organization settings, members, projects, reports, and future billing
+- `admin`: manage projects, members, targets, scans, and reports, excluding owner-only actions
+- `member`: create or run future authorized scans depending on plan and target verification state
+- `viewer`: read future reports and project surfaces only
 
 ### projects
 
@@ -341,7 +350,7 @@ Future phases should write audit logs for sensitive actions such as membership c
 
 ## Security and Privacy Model
 
-Phase 10 security rules:
+Phase 10 and Phase 11 security rules:
 
 - Do not store real secrets in migrations or seeds.
 - Do not store plain-text API keys, tokens, cookies, passwords, private keys, or raw auth headers in `targets`.
@@ -350,25 +359,34 @@ Phase 10 security rules:
 - Raw evidence should not be stored by default.
 - Report-safe evidence must be redacted before storage or delivery.
 - Data retention and deletion workflows remain future work.
-- Authentication, authorization, and RLS policies must be added before production use.
+- Production JWT validation, authorization, and RLS policies must be added before production use.
 - The database must not be exposed publicly without auth and tenant-scoped RLS policies.
+- Supabase service-role access must stay in trusted backend/server contexts only.
 
 ## RLS and Access-Control Plan
 
 The Phase 10 migration enables RLS on application tables but adds no permissive user policies.
 
-This is intentional because Phase 10 has no authentication provider, no sessions, and no dashboard.
+This is intentional because production JWT validation, active persistence, and dashboard flows are not implemented yet.
 
-Future Phase 11+ work should:
+Future Phase 12+ work should:
 
-1. Connect `user_profiles.id` to the chosen auth provider.
+1. Connect `user_profiles.id` to Supabase Auth `auth.users.id`.
 2. Define organization membership lookup helpers.
 3. Add organization-scoped read/write policies.
 4. Use service-role access only in trusted server-side contexts.
 5. Keep scanner workers scoped by explicit backend authorization and target verification.
 6. Add audit logs for sensitive reads/writes where appropriate.
 
-If Supabase Auth is selected, future policies can use `auth.uid()` to match `organization_members.user_id`, but Phase 10 does not create those policies.
+Future policies can use `auth.uid()` to match `organization_members.user_id`, but Phase 11 does not create those policies.
+
+High-level access model:
+
+- users can only access organizations where they have a membership row
+- owners/admins can manage projects and members in their organizations
+- members may create or run scans later only after plan, authorization, target verification, and abuse controls exist
+- viewers can only read future reports and project surfaces
+- service-role access is backend-only and must not be exposed to browser code
 
 ## Local Setup Notes
 
@@ -383,4 +401,4 @@ Keep real database URLs in `.env.local`, not in Git.
 
 ## Future Phase Readiness
 
-Phase 10 prepares Phase 11 and later phases by creating stable table names, relationships, and constraints. Future work can add auth-aware policies, API persistence, dashboard reads/writes, target verification flows, workers, findings workflows, report access, billing, usage metering, and audit-log write paths in explicit scoped phases.
+Phase 10 prepares Phase 11 and later phases by creating stable table names, relationships, and constraints. Phase 11 documents the Supabase Auth alignment and backend auth foundation. Future work can add production JWT validation, auth-aware policies, API persistence, dashboard reads/writes, target verification flows, workers, findings workflows, report access, billing, usage metering, and audit-log write paths in explicit scoped phases.

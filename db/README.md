@@ -1,10 +1,10 @@
 # Sherlock Database Foundation
 
-Status: Phase 10 Database Setup completed
+Status: Phase 11 Authentication and User Accounts foundation completed
 
 This directory contains the database foundation for Sherlock, the AI Launch Security Audit + Scanner product under the PowerDetect brand.
 
-Phase 10 defines a PostgreSQL/Supabase-compatible schema, migration structure, schema documentation, local setup guidance, and security boundaries. It does not connect the Phase 9 API routes to production persistence.
+Phase 10 defines a PostgreSQL/Supabase-compatible schema, migration structure, schema documentation, local setup guidance, and security boundaries. Phase 11 documents how this schema will align with Supabase Auth and adds backend auth placeholders, but it does not connect API routes to production persistence.
 
 ## Selected Technology
 
@@ -60,6 +60,18 @@ db/
 - Real email/contact form storage
 - Production database credentials
 
+## Phase 11 Auth Alignment
+
+Supabase Auth is the intended auth provider. Supabase stores identity users in the managed `auth` schema.
+
+Sherlock app-level account data should remain in the application tables:
+
+- `public.user_profiles` for product profile metadata
+- `public.organizations` for tenant/workspace records
+- `public.organization_members` for membership and role records
+
+Future auth-aware migrations should align `public.user_profiles.id` with `auth.users.id`. No Phase 11 migration is added because the existing Phase 10 schema already has the required foundation and RLS remains deny-by-default.
+
 ## Migration Workflow
 
 Apply the initial migration to a local PostgreSQL database or Supabase local database only after creating a safe local database.
@@ -107,7 +119,7 @@ The schema is not production-ready by itself. Before any production use, future 
 - audit-log write paths and review procedures
 - rate limits, spend limits, queue isolation, and SSRF controls
 
-RLS is enabled in the initial migration with no user access policies. That is intentional: no customer-facing reads or writes should work until Phase 11 auth and later authorization phases define scoped policies.
+RLS is enabled in the initial migration with no user access policies. That is intentional: no customer-facing reads or writes should work until future reviewed auth-aware RLS policies define scoped access through `auth.uid()` and organization membership.
 
 ## Seeds
 
