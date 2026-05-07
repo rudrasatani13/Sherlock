@@ -1,0 +1,92 @@
+{
+  "schema": "powerdetect-sherlock-prompt-library-manifest-v0",
+  "library_id": "powerdetect-sherlock-attack-prompt-library",
+  "name": "PowerDetect Sherlock Attack Prompt Library V0",
+  "version": "0.1.0",
+  "phase": "phase_6_attack_prompt_library_v0",
+  "status": "internal_v0",
+  "methodology_version": "phase_3_methodology_v0",
+  "schema_file": "schema/test-case.schema.json",
+  "categories": [
+    {
+      "id": "prompt_injection",
+      "title": "Prompt Injection",
+      "file": "categories/prompt_injection.json",
+      "expected_count": 18
+    },
+    {
+      "id": "system_prompt_leakage",
+      "title": "System Prompt Leakage",
+      "file": "categories/system_prompt_leakage.json",
+      "expected_count": 12
+    },
+    {
+      "id": "sensitive_data_leakage",
+      "title": "Sensitive Data Leakage",
+      "file": "categories/sensitive_data_leakage.json",
+      "expected_count": 10
+    },
+    {
+      "id": "rag_data_leakage",
+      "title": "RAG Data Leakage / Document Exfiltration",
+      "file": "categories/rag_data_leakage.json",
+      "expected_count": 12
+    },
+    {
+      "id": "indirect_prompt_injection",
+      "title": "Indirect Prompt Injection",
+      "file": "categories/indirect_prompt_injection.json",
+      "expected_count": 10
+    },
+    {
+      "id": "tool_function_abuse",
+      "title": "Tool / Function Abuse",
+      "file": "categories/tool_function_abuse.json",
+      "expected_count": 10
+    },
+    {
+      "id": "unsafe_output_handling",
+      "title": "Unsafe Output Handling",
+      "file": "categories/unsafe_output_handling.json",
+      "expected_count": 10
+    },
+    {
+      "id": "cost_abuse",
+      "title": "Cost Abuse / Unbounded Consumption",
+      "file": "categories/cost_abuse.json",
+      "expected_count": 6
+    }
+  ],
+  "allowed_values": {
+    "severity_hint": [
+      "critical",
+      "high",
+      "medium",
+      "low",
+      "informational"
+    ],
+    "status": [
+      "enabled",
+      "disabled",
+      "experimental"
+    ],
+    "target_types": [
+      "generic_chat",
+      "api_endpoint",
+      "rag",
+      "agent",
+      "tool_using_agent",
+      "openai_compatible",
+      "vercel_ai_sdk",
+      "langchain",
+      "llamaindex"
+    ]
+  },
+  "safety": {
+    "uses_real_secrets": false,
+    "uses_real_customer_data": false,
+    "executes_actions": false,
+    "requires_authorized_targets": true,
+    "notes": "All cases use fictional data, fake canaries, escaped payloads, or mock tool scenarios. The library does not include evaluator logic or public scan execution."
+  }
+}

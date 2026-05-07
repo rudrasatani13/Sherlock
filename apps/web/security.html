@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Security and Trust | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="Security principles and planned safety controls for PowerDetect Sherlock scanning and audit workflows."
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand-lockup" href="index.html" aria-label="PowerDetect Sherlock home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav-menu" aria-label="Main navigation" data-nav-menu>
+          <div class="nav-links">
+            <a href="sample-report.html">Sample Report</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html" aria-current="page">Security</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <a class="button primary" href="contact.html">Request Audit</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="page-hero-inner">
+          <p class="eyebrow">Security and trust</p>
+          <h1>Sherlock should be careful before it scans anything real.</h1>
+          <p class="lead">
+            PowerDetect Sherlock is meant to test sensitive AI systems. Public scanning must
+            ship only after ownership verification, abuse prevention, data handling, and
+            reporting controls are designed and implemented.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="grid two">
+            <article class="card security-principle">
+              <h3>Ownership verification</h3>
+              <p>Sherlock will require proof that the requester owns or is authorized to test the target before public scanning is allowed.</p>
+            </article>
+            <article class="card security-principle">
+              <h3>Secret handling</h3>
+              <p>API keys, provider tokens, credentials, and private keys should not be stored in plain text. Managed secret storage should be used in deployed environments.</p>
+            </article>
+            <article class="card security-principle">
+              <h3>Protected scan logs</h3>
+              <p>Scan logs may contain sensitive data, prompts, responses, headers, files, or customer context. Logs need minimization, access control, retention policy, and redaction.</p>
+            </article>
+            <article class="card security-principle">
+              <h3>Redacted reports</h3>
+              <p>Reports should preserve remediation value while redacting secrets, personal data, customer identifiers, tokens, and sensitive evidence.</p>
+            </article>
+            <article class="card security-principle">
+              <h3>No complete-security claim</h3>
+              <p>Passing a future Sherlock scan does not guarantee complete security. Sherlock should describe observed behavior, tested categories, assumptions, and limitations.</p>
+            </article>
+            <article class="card security-principle">
+              <h3>Abuse prevention before scanning</h3>
+              <p>Rate limits, cancellation, timeouts, spend controls, target verification, and SSRF protection are required before public scan creation exists.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-inner split">
+          <div class="section-heading">
+            <p class="eyebrow">Network safety</p>
+            <h2>Public scanners can become attack infrastructure if controls are missing.</h2>
+          </div>
+          <ul class="check-list">
+            <li><span>Block private, internal, link-local, loopback, and metadata-service IP ranges before URL scanning.</span></li>
+            <li><span>Resolve and validate redirects, DNS rebinding behavior, and user-supplied hostnames.</span></li>
+            <li><span>Enforce timeouts, body limits, retry limits, concurrency limits, and spend limits.</span></li>
+            <li><span>Keep scan target verification auditable before any external test is allowed.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Reporting language</p>
+            <h2>Reports should help teams fix risk without overclaiming.</h2>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <h3>Say what was observed</h3>
+              <p>Findings should be grounded in behavior, evidence, affected surface, and impact.</p>
+            </article>
+            <article class="card">
+              <h3>Say what was not tested</h3>
+              <p>Limitations, assumptions, missing access, and out-of-scope systems should be explicit.</p>
+            </article>
+            <article class="card">
+              <h3>Avoid certification language</h3>
+              <p>Sherlock should not claim that a target is fully secure or protected against every attack.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="banner">
+        <div class="banner-inner">
+          <div>
+            <p class="eyebrow">Want the trust model?</p>
+            <h2>Read the methodology and sample report next.</h2>
+          </div>
+          <a class="button light" href="methodology.html">Read Methodology</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <a class="brand-lockup" href="index.html">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <p class="fine-print">Security principles for future scanning and audit workflows.</p>
+          <p class="fine-print">&copy; <span data-year></span> PowerDetect. All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <strong>Product</strong>
+            <a href="index.html">Home</a>
+            <a href="sample-report.html">Sample Report</a>
+            <a href="pricing.html">Pricing</a>
+          </div>
+          <div>
+            <strong>Trust</strong>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html">Security</a>
+          </div>
+          <div>
+            <strong>Actions</strong>
+            <a href="contact.html">Request Audit</a>
+            <a href="contact.html">Join Beta</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>
+            <strong>Scope</strong>
+            <a href="security.html">Limitations</a>
+            <a href="methodology.html">Testing Categories</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/site.js"></script>
+  </body>
+</html>

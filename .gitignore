@@ -1,0 +1,89 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.secret
+*.secrets
+secrets/
+
+# Dependencies
+node_modules/
+.pnpm-store/
+.yarn/
+vendor/
+.venv/
+venv/
+env/
+
+# Build outputs and framework artifacts
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+.turbo/
+.cache/
+.parcel-cache/
+.vercel/
+.netlify/
+.open-next/
+.wrangler/
+
+# Test and coverage output
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Generated scan/report artifacts
+reports/
+scan-output/
+scan-outputs/
+scan-results/
+scan-runs/
+evaluation-output/
+evaluation-outputs/
+evaluation-results/
+evaluator-output/
+evaluator-outputs/
+evaluator-results/
+artifacts/reports/
+artifacts/scans/
+generated-reports/
+*.har
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

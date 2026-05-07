@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PowerDetect Sherlock | AI Launch Security Audit + Scanner</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock helps SaaS teams test AI chatbots, RAG systems, and tool-using agents for launch security risks before customers find them."
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand-lockup" href="index.html" aria-label="PowerDetect Sherlock home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav-menu" aria-label="Main navigation" data-nav-menu>
+          <div class="nav-links">
+            <a href="sample-report.html">Sample Report</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html">Security</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <a class="button primary" href="contact.html">Request Audit</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">PowerDetect Sherlock</p>
+            <h1>AI launch security audits for SaaS teams.</h1>
+            <p class="hero-lede">
+              Sherlock helps teams test chatbots, RAG systems, and tool-using AI agents
+              for prompt injection, data leakage, unsafe actions, and launch-blocking
+              failure modes before real users find them.
+            </p>
+            <div class="cta-row">
+              <a class="button primary" href="contact.html">Request an audit</a>
+              <a class="button secondary" href="sample-report.html">View sample report</a>
+            </div>
+            <div class="hero-proof" aria-label="Sherlock public website scope">
+              <span>Public beta intake</span>
+              <span>Evidence-first findings</span>
+              <span>No complete-security claims</span>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="Sherlock launch readiness report preview">
+              <div class="audit-board">
+                <div class="audit-board-header">
+                  <strong>Launch Readiness Review</strong>
+                  <span class="audit-board-status">Not Launch-Ready</span>
+                </div>
+                <div class="audit-board-grid">
+                  <div class="score-panel">
+                    <p>Security score</p>
+                    <div class="score-value">64</div>
+                    <p>Sample score based on tested categories, evidence, and assumptions.</p>
+                    <div class="severity-bars">
+                    <div class="severity-bar"><span>Critical</span><span class="bar-track"><span class="bar-fill critical" style="width: 20%"></span></span><span>1</span></div>
+                    <div class="severity-bar"><span>High</span><span class="bar-track"><span class="bar-fill high" style="width: 40%"></span></span><span>2</span></div>
+                    <div class="severity-bar"><span>Medium</span><span class="bar-track"><span class="bar-fill medium" style="width: 60%"></span></span><span>3</span></div>
+                    <div class="severity-bar"><span>Low</span><span class="bar-track"><span class="bar-fill low" style="width: 40%"></span></span><span>2</span></div>
+                  </div>
+                </div>
+                <div class="finding-panel">
+                  <p>Example findings</p>
+                  <div class="finding-row">
+                    <span class="tag red">Critical</span>
+                    <strong>RAG response returned restricted account context.</strong>
+                    <p>Demo evidence redacted. Access filtering must happen before retrieval.</p>
+                  </div>
+                  <div class="finding-row">
+                    <span class="tag copper">Medium</span>
+                    <strong>Tool action prepared without a clear permission boundary.</strong>
+                    <p>Requires server-side authorization and explicit confirmation.</p>
+                  </div>
+                  <div class="finding-row">
+                    <span class="tag yellow">Medium</span>
+                    <strong>Generated answer used unsafe link treatment.</strong>
+                    <p>AI-generated links should not look like trusted product actions.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-inner split">
+          <div class="section-heading">
+            <p class="eyebrow">The launch problem</p>
+            <h2>AI products fail in ways normal web QA does not cover.</h2>
+          </div>
+          <div class="split-copy">
+            <p class="lead">
+              A chatbot can be stable and still leak system instructions. A RAG app can pass
+              happy-path demos and still retrieve private customer data. An agent can work in
+              staging and still misuse tools when a user injects instructions through content.
+            </p>
+            <p>
+              Sherlock is designed for the gap between product demo and public launch: focused
+              testing, evidence, severity, reproduction steps, and practical fixes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">What Sherlock tests</p>
+            <h2>Launch-readiness checks for modern AI surfaces.</h2>
+            <p class="lead">
+              These categories describe the planned testing surface for future audits and
+              scanners. Phase 3 documents the methodology, but no scanner execution exists yet.
+            </p>
+          </div>
+          <div class="grid four">
+            <article class="card kpi">
+              <h3>Prompt Injection</h3>
+              <p>Attempts to override system intent, policy boundaries, and task constraints.</p>
+            </article>
+            <article class="card warning">
+              <h3>RAG Data Leakage</h3>
+              <p>Checks whether retrieval can expose private, cross-tenant, or restricted data.</p>
+            </article>
+            <article class="card danger">
+              <h3>Agent Tool Abuse</h3>
+              <p>Reviews whether tools can be invoked with untrusted or out-of-policy instructions.</p>
+            </article>
+            <article class="card safe">
+              <h3>Unsafe Output Handling</h3>
+              <p>Looks for risky generated output, missing confirmation, and weak downstream controls.</p>
+            </article>
+            <article class="card">
+              <h3>System Prompt Leakage</h3>
+              <p>Tests whether hidden instructions or security policy details are exposed.</p>
+            </article>
+            <article class="card">
+              <h3>Sensitive Data Leakage</h3>
+              <p>Checks for exposure of secrets, PII, credentials, internal notes, or account context.</p>
+            </article>
+            <article class="card">
+              <h3>Indirect Injection</h3>
+              <p>Tests content-borne instructions from documents, tickets, pages, and knowledge bases.</p>
+            </article>
+            <article class="card">
+              <h3>Cost Abuse</h3>
+              <p>Looks for unbounded loops, excessive retries, and consumption paths that need limits.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-inner">
+          <div class="section-heading center">
+            <p class="eyebrow">Who it is for</p>
+            <h2>Built for teams shipping AI into real customer workflows.</h2>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <h3>SaaS founders</h3>
+              <p>Get a launch-focused view of what can block trust, sales, and production rollout.</p>
+            </article>
+            <article class="card">
+              <h3>Engineering teams</h3>
+              <p>Give developers reproducible findings, evidence, and fixes they can act on quickly.</p>
+            </article>
+            <article class="card">
+              <h3>Security and product teams</h3>
+              <p>Translate AI-specific failure modes into clear risk language and release decisions.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner split">
+          <div class="section-heading">
+            <p class="eyebrow">How it works</p>
+            <h2>From launch scope to retestable findings.</h2>
+            <p class="lead">
+              Sherlock's future workflow is designed to stay explicit about target ownership,
+              tested categories, assumptions, evidence, limitations, and remediation.
+            </p>
+            <a class="text-link" href="methodology.html">Read methodology</a>
+          </div>
+          <div class="steps">
+            <article class="step">
+              <div>
+                <h3>Define launch scope</h3>
+                <p>Identify the AI surface, users, data sources, tools, and launch-critical flows.</p>
+              </div>
+            </article>
+            <article class="step">
+              <div>
+                <h3>Verify ownership</h3>
+                <p>Before public scanning, Sherlock will require target authorization and abuse controls.</p>
+              </div>
+            </article>
+            <article class="step">
+              <div>
+                <h3>Run category tests</h3>
+                <p>Exercise planned checks for injection, leakage, tool abuse, unsafe output, and cost abuse.</p>
+              </div>
+            </article>
+            <article class="step">
+              <div>
+                <h3>Deliver evidence and fixes</h3>
+                <p>Provide severity, reproduction steps, redacted evidence, recommendations, and retest status.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Risk examples</p>
+            <h2>Example findings Sherlock is designed to make visible.</h2>
+          </div>
+          <div class="grid two">
+            <article class="card risk-example">
+              <span class="severity-label high-label">High</span>
+              <div>
+                <h3>Cross-customer RAG exposure</h3>
+                <p>A support assistant retrieves account details from the wrong tenant after a crafted query.</p>
+              </div>
+            </article>
+            <article class="card risk-example">
+              <span class="severity-label medium-label">Medium</span>
+              <div>
+                <h3>Tool call without confirmation</h3>
+                <p>An agent prepares or executes a sensitive action using instructions from untrusted content.</p>
+              </div>
+            </article>
+            <article class="card risk-example">
+              <span class="severity-label medium-label">Medium</span>
+              <div>
+                <h3>System instruction disclosure</h3>
+                <p>The assistant reveals operational policy details that make future bypass attempts easier.</p>
+              </div>
+            </article>
+            <article class="card risk-example">
+              <span class="severity-label low-label">Low</span>
+              <div>
+                <h3>Unbounded retry behavior</h3>
+                <p>A user can trigger repeated model calls or retrieval loops without meaningful limits.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner split">
+          <div class="section-heading">
+            <p class="eyebrow">Security principles</p>
+            <h2>Evidence over absolute claims.</h2>
+          </div>
+          <ul class="check-list">
+            <li><span>Sherlock should identify observed risks, not certify that an app is fully secure.</span></li>
+            <li><span>Reports should redact sensitive evidence and explain limitations clearly.</span></li>
+            <li><span>Ownership verification, SSRF protection, rate limits, and scan controls are required before public scanning.</span></li>
+            <li><span>API keys, logs, and customer data must be protected before any real scan execution exists.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Early access</p>
+            <h2>Public pricing is not live. Early launch audits are the first offer.</h2>
+            <p class="lead">
+              Future pricing may include a free quick scan, launch scan, builder plan, startup plan,
+              and manual audit. No billing or Stripe integration is implemented.
+            </p>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <span class="metric">01</span>
+              <h3>Join beta</h3>
+              <p>Share your AI surface and launch timeline for early access consideration.</p>
+              <a class="text-link" href="contact.html">Join beta</a>
+            </article>
+            <article class="card">
+              <span class="metric">02</span>
+              <h3>Request audit</h3>
+              <p>Use Sherlock for a focused launch review before opening a chatbot, RAG app, or agent to users.</p>
+              <a class="text-link" href="contact.html">Request audit</a>
+            </article>
+            <article class="card">
+              <span class="metric">03</span>
+              <h3>Talk through scope</h3>
+              <p>Clarify whether your product needs chatbot, RAG, agent, data leakage, or tool abuse testing.</p>
+              <a class="text-link" href="contact.html">Contact</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-heading center">
+            <p class="eyebrow">FAQ</p>
+            <h2>Practical answers before launch.</h2>
+          </div>
+          <div class="faq">
+            <details>
+              <summary>Is Sherlock a scanner or a manual audit?</summary>
+              <p>PowerDetect Sherlock is positioned as an AI Launch Security Audit + Scanner. The repository currently contains a static public website, Phase 3 methodology documentation, and a Phase 4 static sample report. Future phases can add scanner logic, report systems, and manual audit workflows.</p>
+            </details>
+            <details>
+              <summary>Does passing Sherlock mean my AI app is secure?</summary>
+              <p>No. Passing a future scan should only mean that no blocking issues were found in the tested categories under the stated assumptions and limitations.</p>
+            </details>
+            <details>
+              <summary>What types of AI products are in scope?</summary>
+              <p>Chatbots, RAG systems, tool-using agents, customer-data-connected assistants, workflow copilots, and launch-critical AI features.</p>
+            </details>
+            <details>
+              <summary>Will Sherlock store prompts, responses, or logs?</summary>
+              <p>Real data handling is a later-phase product decision. The public security page states that scan logs may contain sensitive data and must be protected, minimized, and redacted in reports.</p>
+            </details>
+            <details>
+              <summary>Is billing available?</summary>
+              <p>No. The public website includes pricing and early-access positioning only. Billing, Stripe, and entitlement logic are not implemented.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="banner">
+        <div class="banner-inner">
+          <div>
+            <p class="eyebrow">Ready before launch</p>
+            <h2>Find the AI risks that can block a confident release.</h2>
+            <p>Request an early audit or join the beta list for PowerDetect Sherlock.</p>
+          </div>
+          <a class="button light" href="contact.html">Request Audit</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <a class="brand-lockup" href="index.html">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <p class="fine-print">AI Launch Security Audit + Scanner for SaaS teams shipping AI features.</p>
+          <p class="fine-print">&copy; <span data-year></span> PowerDetect. All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <strong>Product</strong>
+            <a href="index.html">Home</a>
+            <a href="sample-report.html">Sample Report</a>
+            <a href="pricing.html">Pricing</a>
+          </div>
+          <div>
+            <strong>Trust</strong>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html">Security</a>
+          </div>
+          <div>
+            <strong>Actions</strong>
+            <a href="contact.html">Request Audit</a>
+            <a href="contact.html">Join Beta</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>
+            <strong>Scope</strong>
+            <a href="security.html">Limitations</a>
+            <a href="methodology.html">Testing Categories</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/site.js"></script>
+  </body>
+</html>

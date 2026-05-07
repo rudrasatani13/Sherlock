@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Methodology | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="Public overview of the future PowerDetect Sherlock AI launch security testing methodology and its limitations."
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand-lockup" href="index.html" aria-label="PowerDetect Sherlock home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav-menu" aria-label="Main navigation" data-nav-menu>
+          <div class="nav-links">
+            <a href="sample-report.html">Sample Report</a>
+            <a href="methodology.html" aria-current="page">Methodology</a>
+            <a href="security.html">Security</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <a class="button primary" href="contact.html">Request Audit</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="page-hero-inner">
+          <p class="eyebrow">Public methodology</p>
+          <h1>How Sherlock evaluates AI launch risk.</h1>
+          <p class="lead">
+            This public overview summarizes the Phase 3 methodology behind PowerDetect Sherlock.
+            It explains the planned testing categories, evidence standards, severity model, and
+            report limits without exposing an attack prompt library.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Testing categories</p>
+            <h2>Launch checks for AI surfaces that touch users, data, tools, and cost.</h2>
+            <p class="lead">
+              Sherlock's future scanner and audit workflow should test selected categories under
+              a documented scope. Findings require evidence of observed behavior, not theoretical risk alone.
+            </p>
+          </div>
+          <div class="grid two">
+            <article class="card method-card">
+              <span class="method-icon">PI</span>
+              <div>
+                <h3>Prompt injection</h3>
+                <p>Tests whether untrusted user instructions can override intended role, task, policy, or safety boundaries.</p>
+              </div>
+            </article>
+            <article class="card method-card">
+              <span class="method-icon">SP</span>
+              <div>
+                <h3>System prompt leakage</h3>
+                <p>Checks whether hidden guidance, policy wording, internal tool descriptions, or operational instructions are exposed. Leakage is not automatically critical.</p>
+              </div>
+            </article>
+            <article class="card method-card">
+              <span class="method-icon">SD</span>
+              <div>
+                <h3>Sensitive data leakage</h3>
+                <p>Looks for exposure of customer data, API keys, tokens, credentials, private documents, internal notes, or privileged account context.</p>
+              </div>
+            </article>
+            <article class="card method-card">
+              <span class="method-icon">RG</span>
+              <div>
+                <h3>RAG document exfiltration</h3>
+                <p>Tests retrieval boundaries, tenant isolation, source access policy, and whether restricted documents can enter model context.</p>
+              </div>
+            </article>
+            <article class="card method-card">
+              <span class="method-icon">IP</span>
+              <div>
+                <h3>Indirect prompt injection</h3>
+                <p>Checks whether malicious instructions hidden in documents, webpages, tickets, emails, or files can steer the assistant.</p>
+              </div>
+            </article>
+            <article class="card method-card">
+              <span class="method-icon">TA</span>
+              <div>
+                <h3>Tool and function abuse</h3>
+                <p>Reviews whether agents can send email, delete data, make purchases, change settings, or call internal APIs without proper controls.</p>
+              </div>
+            </article>
+            <article class="card method-card">
+              <span class="method-icon">OH</span>
+              <div>
+                <h3>Unsafe output handling</h3>
+                <p>Looks for Markdown, HTML, script, unsafe link, file, or rendering risks in downstream product surfaces.</p>
+              </div>
+            </article>
+            <article class="card method-card">
+              <span class="method-icon">CA</span>
+              <div>
+                <h3>Cost abuse and unbounded consumption</h3>
+                <p>Checks whether users can trigger excessive model calls, token flooding, loops, retries, tool calls, or long-running work without limits.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-inner split">
+          <div class="section-heading">
+            <p class="eyebrow">Evidence standard</p>
+            <h2>Findings should be tied to reproducible evidence.</h2>
+            <p class="lead">
+              Sherlock should explain what was tested, what happened, why it matters, and what
+              assumptions limit the result.
+            </p>
+          </div>
+          <ul class="check-list">
+            <li><span>Each finding should name the affected surface, tested role, category, severity, confidence, impact, and assumptions.</span></li>
+            <li><span>Evidence should be specific enough to reproduce and remediate while redacting sensitive data, secrets, tokens, and customer identifiers.</span></li>
+            <li><span>Severity should reflect business impact. Critical requires strong evidence such as customer data exposure, credential leakage, unauthorized action, or major business risk.</span></li>
+            <li><span>Confidence should distinguish repeated evidence from signals that need manual review.</span></li>
+            <li><span>Retest status should be tracked separately from the original finding.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Severity and confidence</p>
+            <h2>Impact and evidence are judged separately.</h2>
+          </div>
+          <div class="grid three">
+            <article class="card danger">
+              <h3>Severity</h3>
+              <p>Critical and High findings are reserved for serious launch risk. Medium, Low, and Informational findings cover weaker control gaps, hardening items, and documented limitations.</p>
+            </article>
+            <article class="card warning">
+              <h3>Confidence</h3>
+              <p>High confidence means deterministic or repeatedly reproduced evidence. Medium confidence means multiple signals need review. Low confidence means possible risk requiring confirmation.</p>
+            </article>
+            <article class="card safe">
+              <h3>Status</h3>
+              <p>Findings should move through clear states: Open, Fixed, Accepted Risk, False Positive, Needs Manual Review, or Inconclusive.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-inner split">
+          <div class="section-heading">
+            <p class="eyebrow">Report language</p>
+            <h2>Reports should help teams fix risk without overclaiming.</h2>
+          </div>
+          <div class="grid two">
+            <article class="card">
+              <h3>Reports should say</h3>
+              <p>What was tested, what evidence was observed, business impact, recommended fixes, confidence, limitations, and whether manual review is recommended.</p>
+            </article>
+            <article class="card">
+              <h3>Reports should not say</h3>
+              <p>That an AI app is secure, 100% protected, certified safe, that all vulnerabilities were found, or that no risk exists.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Limitations</p>
+            <h2>A clean result is not a security guarantee.</h2>
+            <p class="lead">
+              AI behavior is probabilistic, product integrations change, and a test can only
+              cover the target, data, configuration, and categories that were actually exercised.
+            </p>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <h3>Scoped coverage</h3>
+              <p>Results should apply to the tested surfaces and stated assumptions, not every product workflow.</p>
+            </article>
+            <article class="card">
+              <h3>Time-bound evidence</h3>
+              <p>Findings reflect behavior observed at the time of testing. Model, prompt, data, and tool changes can alter risk.</p>
+            </article>
+            <article class="card">
+              <h3>No absolute certification</h3>
+              <p>Sherlock should support launch decisions with evidence and remediation, not certify that an AI app is fully secure or risk-free.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="banner">
+        <div class="banner-inner">
+          <div>
+            <p class="eyebrow">Methodology in practice</p>
+            <h2>See how these categories map to report content.</h2>
+          </div>
+          <a class="button light" href="sample-report.html">View Sample Report</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <a class="brand-lockup" href="index.html">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <p class="fine-print">Public methodology overview. The detailed internal taxonomy guides future scanner and audit work.</p>
+          <p class="fine-print">&copy; <span data-year></span> PowerDetect. All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <strong>Product</strong>
+            <a href="index.html">Home</a>
+            <a href="sample-report.html">Sample Report</a>
+            <a href="pricing.html">Pricing</a>
+          </div>
+          <div>
+            <strong>Trust</strong>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html">Security</a>
+          </div>
+          <div>
+            <strong>Actions</strong>
+            <a href="contact.html">Request Audit</a>
+            <a href="contact.html">Join Beta</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>
+            <strong>Scope</strong>
+            <a href="security.html">Limitations</a>
+            <a href="methodology.html">Testing Categories</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/site.js"></script>
+  </body>
+</html>

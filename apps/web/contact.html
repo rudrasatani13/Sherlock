@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Request Audit or Join Beta | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="Request an early PowerDetect Sherlock AI launch audit, join beta, or contact the team."
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand-lockup" href="index.html" aria-label="PowerDetect Sherlock home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav-menu" aria-label="Main navigation" data-nav-menu>
+          <div class="nav-links">
+            <a href="sample-report.html">Sample Report</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html">Security</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html" aria-current="page">Contact</a>
+          </div>
+          <a class="button primary" href="contact.html">Request Audit</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="page-hero-inner">
+          <p class="eyebrow">Request audit / Join beta / Contact</p>
+          <h1>Tell PowerDetect what you are launching.</h1>
+          <p class="lead">
+            Use this static contact flow for early audit requests, beta access, or general
+            Sherlock questions. No backend submission or storage is implemented yet.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner contact-layout">
+          <aside>
+            <div class="section-heading">
+              <p class="eyebrow">Good audit context</p>
+              <h2>Send the facts that affect scope.</h2>
+            </div>
+            <ul class="check-list">
+              <li><span>What type of AI surface you are launching: chatbot, RAG app, agent, or workflow copilot.</span></li>
+              <li><span>Whether it touches customer data, internal systems, tools, or third-party APIs.</span></li>
+              <li><span>Your launch timeline and the main risks you are worried about.</span></li>
+              <li><span>Whether you want a beta spot, a manual audit, or an early scanner discussion.</span></li>
+            </ul>
+          </aside>
+
+          <form class="contact-form" data-contact-form>
+            <div class="form-grid">
+              <div class="field">
+                <label for="request-type">Request type</label>
+                <select id="request-type" name="request-type">
+                  <option>Request an audit</option>
+                  <option>Join beta</option>
+                  <option>Contact</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="email">Work email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com">
+              </div>
+              <div class="field">
+                <label for="company">Company</label>
+                <input id="company" name="company" type="text" autocomplete="organization" placeholder="Company name">
+              </div>
+              <div class="field">
+                <label for="website">Website or product URL</label>
+                <input id="website" name="website" type="url" placeholder="https://example.com">
+              </div>
+              <div class="field full">
+                <label for="message">What are you launching?</label>
+                <textarea id="message" name="message" placeholder="Briefly describe the AI feature, connected data/tools, launch timeline, and what you want Sherlock to review."></textarea>
+              </div>
+            </div>
+            <button class="button primary" type="submit">Open Email Draft</button>
+            <p class="form-status" data-form-status>
+              This static form opens a prefilled email to hello@powerdetect.ai and does not store submissions.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="section-inner">
+          <div class="grid three">
+            <article class="card">
+              <h3>Request an audit</h3>
+              <p>For teams with a launch date, customer-facing AI surface, or investor/customer security pressure.</p>
+            </article>
+            <article class="card">
+              <h3>Join beta</h3>
+              <p>For builders who want early access as Sherlock moves beyond public positioning.</p>
+            </article>
+            <article class="card">
+              <h3>Contact</h3>
+              <p>For methodology, partnership, or product questions related to AI launch security.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <a class="brand-lockup" href="index.html">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <p class="fine-print">Frontend-only contact flow. No backend form handling exists.</p>
+          <p class="fine-print">&copy; <span data-year></span> PowerDetect. All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+          <div>
+            <strong>Product</strong>
+            <a href="index.html">Home</a>
+            <a href="sample-report.html">Sample Report</a>
+            <a href="pricing.html">Pricing</a>
+          </div>
+          <div>
+            <strong>Trust</strong>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html">Security</a>
+          </div>
+          <div>
+            <strong>Actions</strong>
+            <a href="contact.html">Request Audit</a>
+            <a href="contact.html">Join Beta</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div>
+            <strong>Scope</strong>
+            <a href="security.html">Limitations</a>
+            <a href="methodology.html">Testing Categories</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/site.js"></script>
+  </body>
+</html>

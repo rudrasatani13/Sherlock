@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://powerdetect.example/sherlock/prompt-library/test-case.schema.json",
+  "title": "PowerDetect Sherlock Prompt Library Test Case V0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "version",
+    "category",
+    "title",
+    "description",
+    "input",
+    "tags",
+    "severity_hint",
+    "expected_behavior",
+    "failure_signals",
+    "safety_notes",
+    "requires_context",
+    "context_setup",
+    "target_types",
+    "status",
+    "enabled",
+    "references"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SHK-APL-[A-Z]+-[0-9]{3}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "category": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "severity_hint": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low",
+        "informational"
+      ]
+    },
+    "expected_behavior": {
+      "type": "string",
+      "minLength": 1
+    },
+    "failure_signals": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "safety_notes": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requires_context": {
+      "type": "boolean"
+    },
+    "context_setup": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "target_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "generic_chat",
+          "api_endpoint",
+          "rag",
+          "agent",
+          "tool_using_agent",
+          "openai_compatible",
+          "vercel_ai_sdk",
+          "langchain",
+          "llamaindex"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "enabled",
+        "disabled",
+        "experimental"
+      ]
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

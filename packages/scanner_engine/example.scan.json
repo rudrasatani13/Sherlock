@@ -1,0 +1,23 @@
+{
+  "target": {
+    "name": "Authorized Local Mock Target",
+    "type": "mock",
+    "endpoint_url": null,
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer PLACEHOLDER_DO_NOT_COMMIT_REAL_SECRET"
+    },
+    "body_mapping": {
+      "message_field": "message",
+      "static_body": {
+        "session_type": "phase_5_internal_demo"
+      }
+    },
+    "notes": "Mock target for safe local dry-runs only. Use real endpoint URLs only for systems you are authorized to test."
+  },
+  "scan_mode": "safe_smoke",
+  "max_tests": 3,
+  "timeout_seconds": 10,
+  "output_dir": "scan-results",
+  "notes": "Internal Phase 5 example config. Do not add real secrets. Generated outputs may contain sensitive target responses."
+}
