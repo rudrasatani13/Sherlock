@@ -15,3 +15,5 @@ Expected future package areas:
 - integration helpers
 
 The scanner engine, prompt library, and evaluator system are internal only. They do not implement backend scan APIs, auth, database persistence, queue workers, billing, dashboard integration, PDF generation, report generation, or public scanning.
+
+Phase 9 adds a separate FastAPI backend foundation under `../apps/api`. It does not change package boundaries or expose these internal packages through public HTTP routes.

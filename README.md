@@ -6,9 +6,9 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 8: Manual Audit Workflow**.
+Sherlock has completed **Phase 9: Backend API Foundation**.
 
-The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, and the Phase 8 manual audit workflow:
+The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, and the Phase 9 backend API foundation:
 
 - repository organization
 - product and architecture documentation
@@ -47,8 +47,12 @@ The repository now contains the Phase 1 foundation, the static Phase 2 public we
 - manual audit workflow documentation
 - client intake, authorization, scope, checklist, playbook, evidence, finding review, delivery, retest, and closure procedures
 - lightweight markdown templates for manual audit preparation
+- backend API application skeleton under `apps/api`
+- FastAPI health and version/status endpoints
+- placeholder route modules for projects, targets, scans, findings, reports, and verification
+- shared API response envelope, config loading, logging, CORS placeholder, structured error handling, and API foundation tests
 
-No public self-serve scan execution, backend scan APIs, authenticated dashboard, auth, database migrations, billing, queue workers, PDF generation, admin panel, or real report generation are implemented.
+No public self-serve scan execution, backend scan execution APIs, authenticated dashboard, auth, database migrations, billing, queue workers, PDF generation, admin panel, target verification, production scanner exposure, or real report generation are implemented.
 
 ## Product Positioning
 
@@ -70,6 +74,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 ```text
 .
 |-- apps/
+|   |-- api/             # Phase 9 FastAPI backend foundation
 |   `-- web/             # Phase 2 static public website
 |-- config/              # Shared product metadata and future configuration
 |-- docs/                # Product, architecture, security, roadmap, and setup docs
@@ -81,13 +86,14 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 `-- README.md
 ```
 
-The repository is intentionally minimal until the frontend/backend stack is selected in later phases.
+The repository remains intentionally minimal. Phase 9 introduces a small FastAPI backend foundation only; full platform features remain future phases.
 
 ## Documentation
 
 - [Project Overview](docs/overview.md)
 - [Architecture Vision](docs/architecture.md)
 - [Development Setup](docs/development.md)
+- [Backend API Foundation](apps/api/README.md)
 - [Sherlock Methodology](docs/methodology.md)
 - [Scanner Engine](docs/scanner-engine.md)
 - [Prompt Library](docs/prompt-library.md)
@@ -109,7 +115,16 @@ python3 -m http.server 4173 --directory apps/web
 
 Then open `http://localhost:4173/`.
 
-There is still no package manager, backend runtime, database, auth provider, billing provider, queue worker, dashboard, admin panel, PDF tooling, public scan feature, or report generator configured.
+Install and run the Phase 9 backend API foundation:
+
+```bash
+python3 -m pip install -r apps/api/requirements.txt
+PYTHONPATH=apps/api python3 -m uvicorn app.main:app --reload --port 8000
+```
+
+Then check `http://localhost:8000/health`.
+
+There is still no database, auth provider, billing provider, queue worker, dashboard, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, target verification flow, or report generator configured.
 
 Run the internal Phase 5 mock scanner dry-run with Python:
 

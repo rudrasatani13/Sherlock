@@ -1,6 +1,6 @@
 # Attack Prompt Library V0
 
-Status: Phase 6 internal foundation. Phase 7 evaluator system and Phase 8 manual audit workflow are available separately.
+Status: Phase 6 internal foundation. Phase 7 evaluator system, Phase 8 manual audit workflow, and Phase 9 backend API foundation are available separately.
 
 This package contains the first internal PowerDetect Sherlock attack/test prompt library. It is a versioned, reviewable library of safe AI security test cases mapped to the Phase 3 methodology categories.
 
@@ -80,6 +80,8 @@ scanner_tests = library.to_scanner_tests(max_tests=5)
 The scanner conversion returns Phase 5 `ScannerTest` objects with prompt-library metadata attached. The Phase 5 scanner runner does not execute this library by default.
 
 Phase 8 manual audits can use selected prompt-library cases as reviewed scenario inputs, but final findings still require human review under `../../docs/audits`.
+
+Phase 9 API placeholders do not execute prompt-library cases or expose prompt selection publicly.
 
 ## Safety Rules
 

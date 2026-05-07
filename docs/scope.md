@@ -1,6 +1,6 @@
 # Scope Boundaries
 
-Sherlock has completed Phase 8 Manual Audit Workflow.
+Sherlock has completed Phase 9 Backend API Foundation.
 
 ## In Scope for Phase 1
 
@@ -109,9 +109,25 @@ Sherlock has completed Phase 8 Manual Audit Workflow.
 - audit closure workflow
 - lightweight markdown templates under `templates`
 
-## Out of Scope Through Phase 8
+## In Scope for Phase 9
 
-- API endpoints
+- backend API app skeleton under `apps/api`
+- FastAPI health endpoint
+- FastAPI version/status endpoint
+- placeholder route modules for projects, targets, scans, findings, reports, and verification
+- shared response envelope
+- request/response schema foundation
+- app config/loading
+- structured error handling
+- basic logging setup
+- CORS config placeholder
+- local development docs
+- API docs explaining future route groups
+- lightweight API foundation tests
+- safe integration notes for future scanner, prompt library, and evaluator use
+
+## Out of Scope Through Phase 9
+
 - database migrations
 - authentication
 - dashboard UI
@@ -123,6 +139,7 @@ Sherlock has completed Phase 8 Manual Audit Workflow.
 - backend report APIs
 - database persistence
 - target verification logic
+- public scanner execution API
 - public scan execution
 - production deployment configuration
 - real customer data handling
@@ -145,4 +162,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 8 establishes the manual audit workflow required before future report generation, backend, and worker phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, and `docs/audits/README.md` as the manual audit workflow reference.
+Phase 9 establishes the backend API foundation required before future database, auth, dashboard, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, and `apps/api/README.md` as the API foundation reference.

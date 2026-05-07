@@ -1,6 +1,6 @@
 # Evaluator System V0
 
-Status: Phase 7 internal foundation. Phase 8 manual audit workflow is available separately.
+Status: Phase 7 internal foundation. Phase 8 manual audit workflow and Phase 9 backend API foundation are available separately.
 
 This package contains the first deterministic evaluator system for PowerDetect Sherlock. It evaluates Phase 5 scanner results and Phase 6 prompt-library metadata locally, then produces structured verdicts, severities, confidence levels, evidence snippets, redacted evidence, and manual-review flags.
 
@@ -87,3 +87,5 @@ The evaluator is local and internal. It may process scanner responses that conta
 The evaluator is conservative and explainable. It should not be treated as proof that a system is secure, and high-impact or low-confidence findings should receive manual review before customer-facing reporting.
 
 Phase 8 documents that manual review process under `../../docs/audits`, including finding review, severity/confidence review, report delivery, retesting, and audit closure.
+
+Phase 9 API placeholders do not run evaluator code, persist evaluator output, generate findings, or generate reports.

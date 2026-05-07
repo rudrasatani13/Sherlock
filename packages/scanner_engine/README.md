@@ -1,6 +1,6 @@
 # Internal Scanner Engine V0
 
-Status: Phase 5 internal foundation. Phase 6 prompt library, Phase 7 evaluator system, and Phase 8 manual audit workflow are available separately.
+Status: Phase 5 internal foundation. Phase 6 prompt library, Phase 7 evaluator system, Phase 8 manual audit workflow, and Phase 9 backend API foundation are available separately.
 
 This package contains the first internal scanner engine foundation for PowerDetect Sherlock. It is not a public product feature and should only be run against targets you are authorized to test.
 
@@ -71,6 +71,8 @@ Phase 7 adds `../evaluator_system`, which can evaluate scanner output after exec
 Phase 8 adds the manual audit workflow under `../../docs/audits`, which explains how scanner observations should be authorized, reviewed, redacted, converted into findings, delivered, retested, and closed by a human auditor.
 
 Future backend, worker, report, and PDF phases should call the scanner engine through explicit contracts instead of coupling UI code to scanner internals.
+
+Phase 9 adds API placeholders only and does not expose scanner execution through HTTP routes.
 
 ## Safety Notes
 

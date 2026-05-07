@@ -1,6 +1,6 @@
 # Prompt Library
 
-Status: Phase 6 Attack Prompt Library V0 completed. Phase 7 evaluator system is available separately under `packages/evaluator_system`.
+Status: Phase 6 Attack Prompt Library V0 completed. Phase 7 evaluator system is available separately under `packages/evaluator_system`. Phase 9 backend API foundation does not expose prompt execution.
 
 Sherlock now includes the first internal attack/test prompt library under `packages/prompt_library`. The library is for controlled authorized testing and future scanner/evaluator integration. It is not exposed through the public website, backend APIs, dashboard, or customer-facing scan flows.
 
@@ -128,6 +128,8 @@ Phase 6 prompt test cases map cleanly into this shape:
 - schema fields such as `title`, `severity_hint`, `expected_behavior`, and `failure_signals` map into `metadata`
 
 A future scanner phase can add a new scan mode or selection policy that calls `packages.prompt_library.select_test_cases()` and then converts selected cases to scanner tests. That future work should add authorization, rate limits, spend controls, and target verification before any customer-facing use.
+
+Phase 9 API placeholder routes do not run prompt-library cases. Future API and worker integration should keep prompt selection behind authenticated, authorized, verified, and rate-limited workflows.
 
 ## Phase 7 Evaluator Usage
 

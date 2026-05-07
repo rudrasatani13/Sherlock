@@ -29,7 +29,7 @@ Sherlock will later test for:
 
 ## Current Phase
 
-Current phase: **Phase 8 Manual Audit Workflow completed**
+Current phase: **Phase 9 Backend API Foundation completed**
 
 Phase 1 established repository organization, documentation, environment templates, security notes, roadmap notes, and basic hygiene.
 
@@ -47,7 +47,9 @@ Phase 7 adds the internal evaluator system under `packages/evaluator_system` wit
 
 Phase 8 adds the manual and semi-automated audit workflow under `docs/audits` with intake, authorization, scoping, test setup, scanner execution guidance, evaluator review, manual playbooks, evidence handling, finding review, report delivery, retesting, audit closure, and lightweight templates under `templates`.
 
-Backend APIs, authenticated dashboard, auth, database, billing, queue workers, public scan execution, admin panel, PDF generation, and real report generation are still not implemented.
+Phase 9 adds a minimal backend API foundation under `apps/api` with FastAPI health and version/status endpoints, placeholder route modules, config loading, logging, CORS placeholder, response schemas, structured error handling, and lightweight tests.
+
+Authenticated dashboard, auth, database, billing, queue workers, public scan execution, target verification, admin panel, PDF generation, real report generation, and public scanner execution are still not implemented.
 
 ## Product Principle
 

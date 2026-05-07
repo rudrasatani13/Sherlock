@@ -16,6 +16,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Do not run external scans against unverified targets.
 - The Phase 5 internal scanner must only be used against targets the operator owns or is explicitly authorized to test.
 - Phase 8 manual audits require written authorization, approved scope, testing windows, rate limits, escalation contacts, and documented out-of-scope targets before testing.
+- The Phase 9 backend API includes placeholder target and verification route groups only. It does not implement target verification or unlock public scanning.
 
 ## Network Safety
 
@@ -23,6 +24,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Block private, internal, link-local, loopback, and metadata service IP ranges before allowing scan requests.
 - Resolve and validate redirects, DNS rebinding behavior, and user-supplied hostnames.
 - Add explicit timeouts, body limits, retry limits, and concurrency limits.
+- Do not expose scanner execution through API routes until ownership verification, SSRF protection, rate limits, spend controls, authorization, and queue workers exist.
 
 ## Data Handling
 
@@ -33,6 +35,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Generated scan outputs and reports should not be committed.
 - Phase 5 local scan outputs may contain sensitive target responses and should stay in ignored, protected folders such as `scan-results/`.
 - Phase 8 audit evidence, completed client templates, authorization notes, report drafts, screenshots, and retest records may contain sensitive data and should stay outside Git.
+- Phase 9 API responses are static foundation responses and placeholders. They should not include customer data, target secrets, raw scan evidence, generated reports, or evaluator output.
 
 ## Reporting Language
 
@@ -55,6 +58,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Add rate limits before public scan creation.
 - Add cancellation and timeout support before long-running scans.
 - Do not allow unbounded prompt loops, tool calls, or retries.
+- Keep Phase 9 scan routes as `501 not_implemented` placeholders until abuse controls and worker isolation are added.
 
 ## Tool and Function Abuse
 
@@ -67,3 +71,9 @@ Future tool-using-agent tests must avoid invoking destructive or high-risk actio
 - Use safe defensive playbooks only.
 - Do not test unauthorized third-party systems.
 - Do not commit raw evidence, generated scan outputs, evaluator outputs, completed client templates, authorization records, or report drafts containing client data.
+
+## Backend API Boundary
+
+- Phase 9 adds a FastAPI foundation under `apps/api` with health, version/status, config, logging, CORS placeholder, structured errors, response schemas, and placeholder route groups.
+- The Phase 9 API does not implement database persistence, authentication, authorization, billing, dashboard integration, queue workers, target verification, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
+- Future scanner integration must run outside public request handlers and only after auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and worker queues are in place.

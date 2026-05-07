@@ -130,23 +130,43 @@ Implemented as documentation and templates only:
 
 Phase 8 does not implement backend APIs, database persistence, auth, billing, dashboard integration, queue workers, PDF generation, report generation code, public scan execution, admin panel, destructive testing automation, unauthorized target scanning, or exploit automation.
 
-## Phase 9+: Product Platform
+## Phase 9: Backend API Foundation
+
+Status: completed
+
+Created the first backend API foundation under `apps/api` using a minimal FastAPI structure that matches Sherlock's existing Python package direction.
+
+Implemented as foundation only:
+
+- backend API app skeleton
+- health endpoint
+- version/status endpoint
+- placeholder route modules for projects, targets, scans, findings, reports, and verification
+- shared response envelope with `success`, `data`, `error`, and `metadata`
+- config loading for app name, brand, environment, API version, allowed origins placeholder, and debug flag
+- structured error handling for validation, not found, not implemented, and internal errors
+- basic logging setup
+- CORS placeholder for local origins
+- local API documentation in `apps/api/README.md`
+- lightweight API foundation tests
+- integration notes for future scanner, prompt library, evaluator, database, auth, dashboard, worker, findings, report, billing, and hardening phases
+
+Phase 9 does not implement database persistence, Supabase integration, authentication, authorization, billing, dashboard integration, queue workers, background scan execution, public scan execution, target ownership verification, SSRF protection implementation, real report generation, PDF export, admin panels, or public scanner exposure.
+
+## Phase 10+: Product Platform
 
 Future platform work may include:
 
-- backend API
-- database schema and migrations
-- authentication and authorization
-- dashboard
-- async workers and queues
-- report generation
-- PDF export
-- billing
+- Phase 10 database schema, migrations, and persistence contracts
+- Phase 11 authentication and authorization
+- Phase 12 dashboard API consumption
+- Phase 14 target ownership verification
+- Phase 15 async workers and queues
+- Phase 17 findings system
+- Phase 18 web report
+- Phase 21 billing callbacks
+- Phase 22 security hardening, SSRF protection, rate limits, observability, and audit logging
 - productized retest management
-- target ownership verification
-- SSRF protection and network controls
 - local runner
 - GitHub/CI integration
-- observability
-- security hardening
-- compliance and audit logging
+- compliance mapping

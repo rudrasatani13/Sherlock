@@ -1,6 +1,6 @@
 # Scanner Engine
 
-Status: Phase 5 Internal Scanner Engine V0 completed. Phase 6 prompt library, Phase 7 evaluator, and Phase 8 manual audit workflow integration notes added.
+Status: Phase 5 Internal Scanner Engine V0 completed. Phase 6 prompt library, Phase 7 evaluator, Phase 8 manual audit workflow, and Phase 9 backend API boundary notes added.
 
 Sherlock now includes the first internal scanner engine foundation under `packages/scanner_engine`. This is an internal execution layer for controlled local testing only. It is not exposed through the public website, backend APIs, dashboard, or any customer-facing scan flow.
 
@@ -134,4 +134,4 @@ Scanner outputs remain local observations under ignored `scan-results/`. They sh
 
 Future backend APIs and queue workers should treat the scanner engine as an isolated execution module. A backend can validate authorization and create scan jobs, while a worker can load a scan config, execute the runner, store outputs, and hand structured results to evaluator/report systems.
 
-Phase 5 does not implement backend APIs, queue workers, persistence, auth, dashboard integration, public scan creation, admin panels, or report/PDF generation. Phase 8 does not change that boundary.
+Phase 9 adds a backend API foundation under `apps/api`, but it does not expose scanner execution. The scanner must remain inaccessible from public request handlers until future phases add auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.

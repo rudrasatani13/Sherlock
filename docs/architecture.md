@@ -2,7 +2,7 @@
 
 Sherlock is planned as a modular AI launch security audit and scanner platform. The architecture should keep customer-facing workflows, scan execution, prompt libraries, evaluators, reports, and billing separated so each area can evolve without becoming tightly coupled.
 
-This document describes the future direction and the current Phase 8 manual audit workflow foundation. Phase 8 does not implement backend APIs, authentication, database storage, billing, queue workers, report generation, PDF export, admin panels, or public scan execution.
+This document describes the future direction and the current Phase 9 backend API foundation. Phase 9 adds a minimal API skeleton only; it does not implement authentication, database storage, billing, queue workers, report generation, PDF export, admin panels, target verification, or public scan execution.
 
 ## Planned Components
 
@@ -23,6 +23,15 @@ The methodology should remain separate from executable scanner logic, prompt tex
 ### Backend API
 
 The backend API will eventually handle scan configuration, account data, report access, billing webhooks, target verification, and integration endpoints. API boundaries should be designed around explicit contracts and should avoid leaking scanner internals into UI code.
+
+Phase 9 adds `apps/api`, a small FastAPI foundation with:
+
+- `GET /health` for runtime health
+- `GET /version` for phase/module status
+- placeholder `501 not_implemented` route groups for projects, targets, scans, findings, reports, and verification
+- shared response envelope, config loading, logging, CORS placeholder, and structured error handling
+
+The Phase 9 API does not persist data, authenticate users, create scans, call the scanner engine, generate reports, verify targets, handle billing, or start workers. Scanner execution must remain isolated until future phases add authentication, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
 
 ### Scanner Engine
 
@@ -89,6 +98,7 @@ Future GitHub/CI integration may allow teams to run approved checks before launc
 The current foundation uses:
 
 - `apps/` for future deployable applications
+- `apps/api` for the Phase 9 backend API foundation
 - `packages/` for future shared libraries and core domain modules
 - `config/` for shared product metadata and future configuration
 - `docs/` for product, architecture, setup, roadmap, security, and scope notes

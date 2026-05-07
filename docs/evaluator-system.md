@@ -1,6 +1,6 @@
 # Evaluator System
 
-Status: Phase 7 internal foundation completed
+Status: Phase 7 internal foundation completed. Phase 9 backend API foundation does not expose evaluator execution.
 
 The Phase 7 evaluator system is Sherlock's first local, deterministic layer for turning scanner observations into structured evaluation results. It consumes Phase 5 scanner result JSON and Phase 6 prompt-library metadata when present.
 
@@ -190,3 +190,5 @@ The tests cover canary detection, sensitive data redaction, unsafe output detect
 Phase 8 uses the `needs_manual_review` flag, evidence snippets, redacted snippets, matched signals, severity, and confidence fields as inputs for the human-led audit workflow under `docs/audits`.
 
 The evaluator output should be reviewed through `docs/audits/FINDING_REVIEW.md` and `docs/audits/SEVERITY_CONFIDENCE_REVIEW.md` before customer-facing reporting. Future report-generation phases should consume evaluator output through explicit contracts instead of coupling directly to detector internals.
+
+Phase 9 adds API placeholders for future findings and reports, but it does not run evaluator code through HTTP routes, persist evaluator output, create customer-facing findings, or generate reports.

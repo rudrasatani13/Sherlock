@@ -150,4 +150,6 @@ Reports may say:
 
 ## Phase 9 Readiness
 
-Phase 8 creates the human workflow that a future product platform can model. Phase 9+ can use these documents as source material for product requirements, but should still add backend APIs, database persistence, auth, billing, dashboard surfaces, queues, report generation, PDF export, target verification, SSRF protection, and public scan controls only in explicit future phases.
+Phase 8 creates the human workflow that the product platform can model. Phase 9 adds a backend API foundation under `apps/api`, but it does not change the manual audit safety boundary.
+
+The Phase 9 API does not implement database persistence, auth, billing, dashboard surfaces, queues, report generation, PDF export, target verification, SSRF protection, or public scan controls. Future phases should continue to use these documents as source material and add platform capabilities only in explicit scoped phases.
