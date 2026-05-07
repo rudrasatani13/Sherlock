@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from ..errors import NotImplementedApiError
-from ..schemas.common import ApiResponse
+from ..schemas.common import ApiResponse, serialize_model
 from ..schemas.targets import TargetsModuleStatus
 
 router = APIRouter(prefix="/targets", tags=["targets"])
@@ -14,10 +14,10 @@ def targets_placeholder() -> ApiResponse:
     details = TargetsModuleStatus(
         future_capabilities=["target metadata", "target scope state", "ownership verification status"],
         disabled_capabilities=[
-            "database persistence",
+            "active API persistence",
             "target ownership verification logic",
             "SSRF protection implementation",
             "public scanning",
         ],
     )
-    raise NotImplementedApiError("targets", details.dict())
+    raise NotImplementedApiError("targets", serialize_model(details))

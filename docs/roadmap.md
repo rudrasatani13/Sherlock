@@ -153,11 +153,27 @@ Implemented as foundation only:
 
 Phase 9 does not implement database persistence, Supabase integration, authentication, authorization, billing, dashboard integration, queue workers, background scan execution, public scan execution, target ownership verification, SSRF protection implementation, real report generation, PDF export, admin panels, or public scanner exposure.
 
-## Phase 10+: Product Platform
+## Phase 10: Database Setup
+
+Status: completed
+
+Created the database foundation for future Sherlock platform phases using plain PostgreSQL/Supabase-compatible SQL under `db/`.
+
+Implemented as foundation only:
+
+- root-level `db/` directory with README, schema documentation, migrations, and seed guidance
+- initial migration for organizations, user profiles, organization members, projects, targets, target verifications, scans, scan events, findings, reports, manual audits, retests, usage records, and audit logs
+- UUID primary keys, timestamps, foreign keys, indexes, and controlled check constraints
+- RLS enabled on application tables with no permissive user policies yet
+- documentation for entity relationships, local setup, migration workflow, RLS strategy, and privacy/security boundaries
+- backend config placeholder for `DATABASE_URL` while keeping runtime database use disabled
+
+Phase 10 does not implement authentication, authorization, login/signup, sessions, dashboard integration, billing, queue workers, public scan execution, scanner-to-database production integration, target ownership verification logic, real report generation, PDF export, admin panels, real customer data storage, or active API persistence.
+
+## Phase 11+: Product Platform
 
 Future platform work may include:
 
-- Phase 10 database schema, migrations, and persistence contracts
 - Phase 11 authentication and authorization
 - Phase 12 dashboard API consumption
 - Phase 14 target ownership verification

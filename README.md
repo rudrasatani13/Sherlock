@@ -6,9 +6,9 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 9: Backend API Foundation**.
+Sherlock has completed **Phase 10: Database Setup**.
 
-The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, and the Phase 9 backend API foundation:
+The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, and the Phase 10 database foundation:
 
 - repository organization
 - product and architecture documentation
@@ -51,8 +51,11 @@ The repository now contains the Phase 1 foundation, the static Phase 2 public we
 - FastAPI health and version/status endpoints
 - placeholder route modules for projects, targets, scans, findings, reports, and verification
 - shared API response envelope, config loading, logging, CORS placeholder, structured error handling, and API foundation tests
+- PostgreSQL/Supabase-compatible database schema documentation under `db/`
+- initial SQL migration for organizations, profiles, memberships, projects, targets, verifications, scans, events, findings, reports, manual audits, retests, usage records, and audit logs
+- local database setup notes, migration workflow, RLS planning, and privacy/security boundaries
 
-No public self-serve scan execution, backend scan execution APIs, authenticated dashboard, auth, database migrations, billing, queue workers, PDF generation, admin panel, target verification, production scanner exposure, or real report generation are implemented.
+No public self-serve scan execution, backend scan execution APIs, authenticated dashboard, auth, active API database persistence, billing, queue workers, PDF generation, admin panel, target verification implementation, production scanner exposure, or real report generation are implemented.
 
 ## Product Positioning
 
@@ -77,6 +80,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 |   |-- api/             # Phase 9 FastAPI backend foundation
 |   `-- web/             # Phase 2 static public website
 |-- config/              # Shared product metadata and future configuration
+|-- db/                  # Phase 10 PostgreSQL/Supabase-compatible database foundation
 |-- docs/                # Product, architecture, security, roadmap, and setup docs
 |-- packages/            # Internal scanner engine, prompt library, evaluator system, and future shared libraries
 |-- templates/           # Phase 8 lightweight manual audit templates
@@ -86,7 +90,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 `-- README.md
 ```
 
-The repository remains intentionally minimal. Phase 9 introduces a small FastAPI backend foundation only; full platform features remain future phases.
+The repository remains intentionally minimal. Phase 10 introduces a database schema and migration foundation only; full platform features remain future phases.
 
 ## Documentation
 
@@ -94,6 +98,7 @@ The repository remains intentionally minimal. Phase 9 introduces a small FastAPI
 - [Architecture Vision](docs/architecture.md)
 - [Development Setup](docs/development.md)
 - [Backend API Foundation](apps/api/README.md)
+- [Database Foundation](db/README.md)
 - [Sherlock Methodology](docs/methodology.md)
 - [Scanner Engine](docs/scanner-engine.md)
 - [Prompt Library](docs/prompt-library.md)
@@ -115,7 +120,7 @@ python3 -m http.server 4173 --directory apps/web
 
 Then open `http://localhost:4173/`.
 
-Install and run the Phase 9 backend API foundation:
+Install and run the backend API foundation:
 
 ```bash
 python3 -m pip install -r apps/api/requirements.txt
@@ -124,7 +129,14 @@ PYTHONPATH=apps/api python3 -m uvicorn app.main:app --reload --port 8000
 
 Then check `http://localhost:8000/health`.
 
-There is still no database, auth provider, billing provider, queue worker, dashboard, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, target verification flow, or report generator configured.
+The Phase 10 SQL migration can be applied to a local PostgreSQL/Supabase-compatible database:
+
+```bash
+createdb sherlock_local
+psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations/20260507100000_phase_10_initial_database_foundation.sql
+```
+
+There is still no auth provider, billing provider, queue worker, dashboard, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, target verification flow, report generator, or active API persistence path configured.
 
 Run the internal Phase 5 mock scanner dry-run with Python:
 

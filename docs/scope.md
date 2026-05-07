@@ -126,9 +126,19 @@ Sherlock has completed Phase 9 Backend API Foundation.
 - lightweight API foundation tests
 - safe integration notes for future scanner, prompt library, and evaluator use
 
-## Out of Scope Through Phase 9
+## In Scope for Phase 10
 
-- database migrations
+- root-level database foundation under `db/`
+- PostgreSQL/Supabase-compatible SQL migration structure
+- initial schema for organizations, user profiles, memberships, projects, targets, target verifications, scans, scan events, findings, reports, manual audits, retests, usage records, and audit logs
+- schema documentation and entity relationship notes
+- local database setup guidance
+- RLS and access-control planning
+- safe backend database config placeholder only
+- documentation updates explaining future database integration boundaries
+
+## Out of Scope Through Phase 10
+
 - authentication
 - dashboard UI
 - admin panel
@@ -137,12 +147,12 @@ Sherlock has completed Phase 9 Backend API Foundation.
 - report generation
 - PDF export
 - backend report APIs
-- database persistence
+- active API database persistence
 - target verification logic
 - public scanner execution API
 - public scan execution
 - production deployment configuration
-- real customer data handling
+- real customer data storage or handling
 - LLM-as-judge behavior
 - complex ML classifiers
 - browser automation scanner
@@ -162,4 +172,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 9 establishes the backend API foundation required before future database, auth, dashboard, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, and `apps/api/README.md` as the API foundation reference.
+Phase 10 establishes the database foundation required before future auth, dashboard, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `apps/api/README.md` as the API foundation reference, and `db/schema.md` as the database foundation reference.

@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from ..errors import NotImplementedApiError
-from ..schemas.common import ApiResponse
+from ..schemas.common import ApiResponse, serialize_model
 from ..schemas.findings import FindingsModuleStatus
 
 router = APIRouter(prefix="/findings", tags=["findings"])
@@ -13,6 +13,6 @@ router = APIRouter(prefix="/findings", tags=["findings"])
 def findings_placeholder() -> ApiResponse:
     details = FindingsModuleStatus(
         future_capabilities=["reviewed findings", "severity", "confidence", "status", "retest state"],
-        disabled_capabilities=["finding persistence", "automatic public findings", "report generation"],
+        disabled_capabilities=["active finding persistence", "automatic public findings", "report generation"],
     )
-    raise NotImplementedApiError("findings", details.dict())
+    raise NotImplementedApiError("findings", serialize_model(details))

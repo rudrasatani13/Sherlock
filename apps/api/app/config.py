@@ -26,8 +26,9 @@ class Settings:
     environment: str = field(default_factory=lambda: os.getenv("SHERLOCK_ENVIRONMENT", "local"))
     api_version: str = field(default_factory=lambda: os.getenv("SHERLOCK_API_VERSION", "v0"))
     current_phase: str = field(
-        default_factory=lambda: os.getenv("SHERLOCK_CURRENT_PHASE", "Phase 9 Backend API Foundation completed")
+        default_factory=lambda: os.getenv("SHERLOCK_CURRENT_PHASE", "Phase 10 Database Setup completed")
     )
+    database_url: str = field(default_factory=lambda: os.getenv("DATABASE_URL", ""))
     debug: bool = field(default_factory=lambda: _parse_bool(os.getenv("SHERLOCK_DEBUG"), default=False))
     allowed_origins: Tuple[str, ...] = field(
         default_factory=lambda: _parse_origins(os.getenv("SHERLOCK_ALLOWED_ORIGINS"))

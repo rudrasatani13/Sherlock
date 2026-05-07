@@ -32,3 +32,9 @@ class ModuleStatus(BaseModel):
     available_endpoints: List[str] = Field(default_factory=list)
     future_capabilities: List[str] = Field(default_factory=list)
     disabled_capabilities: List[str] = Field(default_factory=list)
+
+
+def serialize_model(model: BaseModel) -> Dict[str, Any]:
+    if hasattr(model, "model_dump"):
+        return model.model_dump()
+    return model.dict()

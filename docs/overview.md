@@ -29,7 +29,7 @@ Sherlock will later test for:
 
 ## Current Phase
 
-Current phase: **Phase 9 Backend API Foundation completed**
+Current phase: **Phase 10 Database Setup completed**
 
 Phase 1 established repository organization, documentation, environment templates, security notes, roadmap notes, and basic hygiene.
 
@@ -49,7 +49,9 @@ Phase 8 adds the manual and semi-automated audit workflow under `docs/audits` wi
 
 Phase 9 adds a minimal backend API foundation under `apps/api` with FastAPI health and version/status endpoints, placeholder route modules, config loading, logging, CORS placeholder, response schemas, structured error handling, and lightweight tests.
 
-Authenticated dashboard, auth, database, billing, queue workers, public scan execution, target verification, admin panel, PDF generation, real report generation, and public scanner execution are still not implemented.
+Phase 10 adds a PostgreSQL/Supabase-compatible database foundation under `db/` with schema documentation, an initial migration, local setup notes, RLS planning, and privacy/security boundaries.
+
+Authenticated dashboard, auth, active API database persistence, billing, queue workers, public scan execution, target verification implementation, admin panel, PDF generation, real report generation, and public scanner execution are still not implemented.
 
 ## Product Principle
 

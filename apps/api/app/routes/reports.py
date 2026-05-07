@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from ..errors import NotImplementedApiError
-from ..schemas.common import ApiResponse
+from ..schemas.common import ApiResponse, serialize_model
 from ..schemas.reports import ReportsModuleStatus
 
 router = APIRouter(prefix="/reports", tags=["reports"])
@@ -13,6 +13,6 @@ router = APIRouter(prefix="/reports", tags=["reports"])
 def reports_placeholder() -> ApiResponse:
     details = ReportsModuleStatus(
         future_capabilities=["web report metadata", "report access status", "finding summaries"],
-        disabled_capabilities=["real report generation", "PDF export", "report persistence", "admin panel"],
+        disabled_capabilities=["real report generation", "PDF export", "active report persistence", "admin panel"],
     )
-    raise NotImplementedApiError("reports", details.dict())
+    raise NotImplementedApiError("reports", serialize_model(details))

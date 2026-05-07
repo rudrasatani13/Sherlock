@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 
 from ..errors import NotImplementedApiError
-from ..schemas.common import ApiResponse
+from ..schemas.common import ApiResponse, serialize_model
 from ..schemas.projects import ProjectsModuleStatus
 
 router = APIRouter(prefix="/projects", tags=["projects"])
@@ -13,6 +13,6 @@ router = APIRouter(prefix="/projects", tags=["projects"])
 def projects_placeholder() -> ApiResponse:
     details = ProjectsModuleStatus(
         future_capabilities=["project records", "project targets", "team/account ownership"],
-        disabled_capabilities=["database persistence", "authentication", "authorization", "dashboard integration"],
+        disabled_capabilities=["active API persistence", "authentication", "authorization", "dashboard integration"],
     )
-    raise NotImplementedApiError("projects", details.dict())
+    raise NotImplementedApiError("projects", serialize_model(details))

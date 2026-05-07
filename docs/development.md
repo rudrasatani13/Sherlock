@@ -1,16 +1,17 @@
 # Development Setup
 
-Sherlock has completed Phase 9 Backend API Foundation. There is a static public website under `apps/web`, a minimal FastAPI backend foundation under `apps/api`, an internal Python scanner foundation under `packages/scanner_engine`, an internal prompt library under `packages/prompt_library`, an internal evaluator system under `packages/evaluator_system`, and manual audit workflow documentation under `docs/audits` with templates under `templates`.
+Sherlock has completed Phase 10 Database Setup. There is a static public website under `apps/web`, a minimal FastAPI backend foundation under `apps/api`, a PostgreSQL/Supabase-compatible database foundation under `db/`, an internal Python scanner foundation under `packages/scanner_engine`, an internal prompt library under `packages/prompt_library`, an internal evaluator system under `packages/evaluator_system`, and manual audit workflow documentation under `docs/audits` with templates under `templates`.
 
-There is still no database, report generator, PDF export, queue, billing, auth, dashboard, admin panel, public scan feature, target verification flow, or public scanner execution API configured.
+There is still no active API database persistence, report generator, PDF export, queue, billing, auth, dashboard, admin panel, public scan feature, target verification flow, or public scanner execution API configured.
 
 ## Current Requirements
 
 - Git
 - A local editor
-- Python 3 for simple local static preview, the Phase 9 API foundation, internal scanner dry-runs, prompt-library validation, local evaluator tests, and lightweight documentation checks
+- Python 3 for simple local static preview, the API foundation, internal scanner dry-runs, prompt-library validation, local evaluator tests, and lightweight documentation checks
+- Optional local PostgreSQL or Supabase CLI setup if you want to apply the Phase 10 SQL migration locally
 
-No Node.js package manager, database, Redis, auth provider, billing provider, report generator, PDF tooling, dashboard, admin panel, public scan feature, target verification provider, queue worker, or external AI provider is required for Phase 9.
+No Node.js package manager, Redis, auth provider, billing provider, report generator, PDF tooling, dashboard, admin panel, public scan feature, target verification provider, queue worker, or external AI provider is required for Phase 10.
 
 ## Local Environment
 
@@ -33,6 +34,8 @@ python3 -m pip install -r apps/api/requirements.txt
 PYTHONPATH=apps/api python3 -m uvicorn app.main:app --reload --port 8000
 curl http://localhost:8000/health
 PYTHONPATH=apps/api python3 -m unittest discover -s apps/api/tests
+createdb sherlock_local
+psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations/20260507100000_phase_10_initial_database_foundation.sql
 python3 -m packages.scanner_engine.cli --config packages/scanner_engine/example.scan.json
 python3 -m packages.prompt_library.validate
 python3 -m packages.evaluator_system.cli --input scan-results/<scan_id>/scan-result.json --stdout
@@ -51,7 +54,7 @@ Future phases may add:
 - web app runtime
 - production backend API runtime
 - shared TypeScript package setup
-- database and migrations
+- database client integration and auth-aware RLS policies
 - queue/worker runtime
 - report generation tooling
 - test framework

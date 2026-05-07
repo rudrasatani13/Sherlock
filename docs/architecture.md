@@ -2,7 +2,7 @@
 
 Sherlock is planned as a modular AI launch security audit and scanner platform. The architecture should keep customer-facing workflows, scan execution, prompt libraries, evaluators, reports, and billing separated so each area can evolve without becoming tightly coupled.
 
-This document describes the future direction and the current Phase 9 backend API foundation. Phase 9 adds a minimal API skeleton only; it does not implement authentication, database storage, billing, queue workers, report generation, PDF export, admin panels, target verification, or public scan execution.
+This document describes the future direction and the current Phase 10 database foundation. Phase 10 adds schema and migration groundwork only; it does not implement authentication, active API database persistence, billing, queue workers, report generation, PDF export, admin panels, target verification, or public scan execution.
 
 ## Planned Components
 
@@ -31,7 +31,7 @@ Phase 9 adds `apps/api`, a small FastAPI foundation with:
 - placeholder `501 not_implemented` route groups for projects, targets, scans, findings, reports, and verification
 - shared response envelope, config loading, logging, CORS placeholder, and structured error handling
 
-The Phase 9 API does not persist data, authenticate users, create scans, call the scanner engine, generate reports, verify targets, handle billing, or start workers. Scanner execution must remain isolated until future phases add authentication, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
+The API does not persist data through routes, authenticate users, create scans, call the scanner engine, generate reports, verify targets, handle billing, or start workers. Scanner execution must remain isolated until future phases add authentication, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
 
 ### Scanner Engine
 
@@ -67,7 +67,9 @@ Long-running scans should eventually run outside request/response paths through 
 
 The database will eventually store accounts, users, scan configurations, ownership verification state, scan runs, findings, report metadata, billing state, and audit logs.
 
-Authentication and authorization should be added before any customer data or scan target data is stored.
+Phase 10 adds a root-level `db/` foundation using plain PostgreSQL/Supabase-compatible SQL migrations and documentation. The initial schema covers organizations, user profiles, organization members, projects, targets, target verifications, scans, scan events, findings, reports, manual audits, retests, usage records, and audit logs.
+
+The Phase 10 migration enables RLS on application tables but does not add permissive user policies because auth is not implemented yet. Authentication and authorization should be added before any customer data or scan target data is stored through production app flows.
 
 ### Report System
 
@@ -99,8 +101,9 @@ The current foundation uses:
 
 - `apps/` for future deployable applications
 - `apps/api` for the Phase 9 backend API foundation
+- `db/` for the Phase 10 PostgreSQL/Supabase-compatible database foundation
 - `packages/` for future shared libraries and core domain modules
 - `config/` for shared product metadata and future configuration
 - `docs/` for product, architecture, setup, roadmap, security, and scope notes
 
-The project should stay minimal until a real implementation phase needs a framework, package manager, database, queue, or deployment target.
+The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, queue, or deployment target.

@@ -36,6 +36,18 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Phase 5 local scan outputs may contain sensitive target responses and should stay in ignored, protected folders such as `scan-results/`.
 - Phase 8 audit evidence, completed client templates, authorization notes, report drafts, screenshots, and retest records may contain sensitive data and should stay outside Git.
 - Phase 9 API responses are static foundation responses and placeholders. They should not include customer data, target secrets, raw scan evidence, generated reports, or evaluator output.
+- Phase 10 database migrations and seeds must not contain real secrets, real target credentials, real customer data, raw evidence, scan outputs, evaluator outputs, or report drafts.
+
+## Database Security
+
+- Phase 10 adds PostgreSQL/Supabase-compatible schema and migration files only.
+- Do not store target API keys, bearer tokens, cookies, passwords, private keys, raw headers, or session material in plain text.
+- Future target credentials must use managed secret storage or encrypted storage.
+- RLS is enabled in the initial migration, but production user policies are not implemented yet.
+- Do not expose the database publicly without authentication, authorization, tenant-scoped RLS, and server-side access checks.
+- Raw scan evidence should not be stored by default because prompts, responses, retrieval traces, tool traces, and screenshots may contain sensitive data.
+- Store only report-safe redacted evidence summaries unless a future phase explicitly designs protected raw-evidence storage with retention and deletion controls.
+- Data retention and deletion workflows remain future work.
 
 ## Reporting Language
 
@@ -75,5 +87,5 @@ Future tool-using-agent tests must avoid invoking destructive or high-risk actio
 ## Backend API Boundary
 
 - Phase 9 adds a FastAPI foundation under `apps/api` with health, version/status, config, logging, CORS placeholder, structured errors, response schemas, and placeholder route groups.
-- The Phase 9 API does not implement database persistence, authentication, authorization, billing, dashboard integration, queue workers, target verification, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
+- Phase 10 adds a database schema and migration foundation under `db/`, but the API still does not implement active database persistence, authentication, authorization, billing, dashboard integration, queue workers, target verification, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
 - Future scanner integration must run outside public request handlers and only after auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and worker queues are in place.

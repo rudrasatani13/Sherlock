@@ -20,6 +20,7 @@ class ApiFoundationTests(unittest.TestCase):
             "SHERLOCK_ENVIRONMENT": environ.get("SHERLOCK_ENVIRONMENT"),
             "SHERLOCK_API_VERSION": environ.get("SHERLOCK_API_VERSION"),
             "SHERLOCK_CURRENT_PHASE": environ.get("SHERLOCK_CURRENT_PHASE"),
+            "DATABASE_URL": environ.get("DATABASE_URL"),
             "SHERLOCK_DEBUG": environ.get("SHERLOCK_DEBUG"),
             "SHERLOCK_ALLOWED_ORIGINS": environ.get("SHERLOCK_ALLOWED_ORIGINS"),
         }
@@ -30,7 +31,8 @@ class ApiFoundationTests(unittest.TestCase):
                 "SHERLOCK_MARKETING_NAME": "PowerDetect Sherlock",
                 "SHERLOCK_ENVIRONMENT": "local",
                 "SHERLOCK_API_VERSION": "v0",
-                "SHERLOCK_CURRENT_PHASE": "Phase 9 Backend API Foundation completed",
+                "SHERLOCK_CURRENT_PHASE": "Phase 10 Database Setup completed",
+                "DATABASE_URL": "",
                 "SHERLOCK_DEBUG": "false",
                 "SHERLOCK_ALLOWED_ORIGINS": "http://localhost:3000,http://localhost:4173",
             }
@@ -51,6 +53,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(settings.brand_name, "PowerDetect")
         self.assertEqual(settings.marketing_name, "PowerDetect Sherlock")
         self.assertEqual(settings.api_version, "v0")
+        self.assertEqual(settings.database_url, "")
         self.assertFalse(settings.public_scanning_enabled)
         self.assertFalse(settings.database_enabled)
         self.assertFalse(settings.authentication_enabled)

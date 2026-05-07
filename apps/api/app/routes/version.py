@@ -4,7 +4,7 @@ from fastapi import APIRouter
 
 from ..config import get_settings
 from ..errors import build_metadata
-from ..schemas.common import ApiResponse, ModuleStatus
+from ..schemas.common import ApiResponse, ModuleStatus, serialize_model
 
 router = APIRouter(tags=["version"])
 
@@ -27,10 +27,10 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
             module="projects",
             status="placeholder_only",
             purpose="Future project/workspace organization.",
-            future_phase="Phase 10 database foundation and Phase 11 authentication",
+            future_phase="Phase 11 authentication and future persistence integration",
             available_endpoints=[f"GET {api_prefix}/projects"],
             future_capabilities=["project records", "team ownership", "dashboard project selection"],
-            disabled_capabilities=["database persistence", "authentication", "authorization"],
+            disabled_capabilities=["active API persistence", "authentication", "authorization"],
         ),
         ModuleStatus(
             module="targets",
@@ -39,7 +39,7 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
             future_phase="Phase 14 ownership verification",
             available_endpoints=[f"GET {api_prefix}/targets"],
             future_capabilities=["target metadata", "ownership state", "approved scope boundaries"],
-            disabled_capabilities=["target verification", "public scanning", "SSRF protection implementation"],
+            disabled_capabilities=["target verification", "active API persistence", "public scanning", "SSRF protection implementation"],
         ),
         ModuleStatus(
             module="scans",
@@ -48,7 +48,7 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
             future_phase="Phase 15 queue workers after required security controls",
             available_endpoints=[f"GET {api_prefix}/scans"],
             future_capabilities=["scan jobs", "scan status", "worker integration"],
-            disabled_capabilities=["scanner execution", "queue workers", "public scan creation"],
+            disabled_capabilities=["scanner execution", "queue workers", "active API persistence", "public scan creation"],
         ),
         ModuleStatus(
             module="findings",
@@ -57,7 +57,7 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
             future_phase="Phase 17 findings system",
             available_endpoints=[f"GET {api_prefix}/findings"],
             future_capabilities=["finding records", "severity", "confidence", "status", "manual review"],
-            disabled_capabilities=["finding persistence", "automatic customer-facing findings"],
+            disabled_capabilities=["active finding persistence", "automatic customer-facing findings"],
         ),
         ModuleStatus(
             module="reports",
@@ -66,7 +66,7 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
             future_phase="Phase 18 web report",
             available_endpoints=[f"GET {api_prefix}/reports"],
             future_capabilities=["web report metadata", "report access", "report status"],
-            disabled_capabilities=["real report generation", "PDF export"],
+            disabled_capabilities=["active report persistence", "real report generation", "PDF export"],
         ),
         ModuleStatus(
             module="verification",
@@ -75,7 +75,7 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
             future_phase="Phase 14 ownership verification",
             available_endpoints=[f"GET {api_prefix}/verification"],
             future_capabilities=["ownership verification records", "verification status"],
-            disabled_capabilities=["production target verification logic", "public scan unlocks"],
+            disabled_capabilities=["production target verification logic", "active API persistence", "public scan unlocks"],
         ),
     ]
 
@@ -91,7 +91,7 @@ def version_status() -> ApiResponse:
             "marketing_name": settings.marketing_name,
             "api_version": settings.api_version,
             "current_phase": settings.current_phase,
-            "modules": [module.dict() for module in _module_statuses(settings.api_prefix)],
+            "modules": [serialize_model(module) for module in _module_statuses(settings.api_prefix)],
             "security_boundaries": {
                 "database_enabled": settings.database_enabled,
                 "authentication_enabled": settings.authentication_enabled,
