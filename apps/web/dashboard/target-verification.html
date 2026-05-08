@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Target Verification | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Phase 14 target ownership verification page. Prove control of a target before scanning."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Phase 14</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>No live organization or session is loaded.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html" aria-current="page">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <span class="eyebrow">Phase 14</span>
+            <h1>Target Verification</h1>
+          </div>
+          <div class="topbar-actions">
+            <a class="button secondary" href="target-detail.html">Back to Target</a>
+          </div>
+        </header>
+
+        <main class="dashboard-main" id="main">
+
+          <!-- Phase 14 banner -->
+          <div class="dashboard-banner">
+            <div>
+              <span class="eyebrow">Ownership Verification</span>
+              <h2>Prove Control of This Target</h2>
+              <p>Target verification is required before scans can run. Verification proves control of this target method. Passing verification does not mean the app is secure.</p>
+            </div>
+          </div>
+
+          <!-- Verification status card -->
+          <div class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <span class="eyebrow">Verification Status</span>
+                <h2>Current Status</h2>
+              </div>
+              <span class="status-pill">Unverified</span>
+            </div>
+            <dl class="detail-list">
+              <div>
+                <dt>Target</dt>
+                <dd>Demo Target (static preview)</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Unverified &mdash; no verification attempt has been made.</dd>
+              </div>
+              <div>
+                <dt>Scanning</dt>
+                <dd>Scanning remains disabled until verification is complete and future scan controls are implemented.</dd>
+              </div>
+            </dl>
+            <div class="warning-panel">
+              <strong>Phase 15 scan execution remains disabled.</strong>
+              <p>Even after verification, scan execution requires queue workers, SSRF protections, rate limits, and spend controls that are not yet implemented.</p>
+            </div>
+          </div>
+
+          <!-- Setup progress -->
+          <div class="setup-progress">
+            <div class="progress-step">
+              <strong>1</strong>
+              <span>Create Project</span>
+              <small>Phase 13 complete</small>
+            </div>
+            <div class="progress-step">
+              <strong>2</strong>
+              <span>Add Target</span>
+              <small>Phase 13 complete</small>
+            </div>
+            <div class="progress-step current">
+              <strong>3</strong>
+              <span>Verify Ownership</span>
+              <small>Phase 14 &mdash; current</small>
+            </div>
+            <div class="progress-step future">
+              <strong>4</strong>
+              <span>Run Scan</span>
+              <small>Phase 15 later</small>
+            </div>
+            <div class="progress-step future">
+              <strong>5</strong>
+              <span>View Report</span>
+              <small>Future phase</small>
+            </div>
+          </div>
+
+          <!-- Verification method selector -->
+          <div class="setup-layout">
+            <div class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <span class="eyebrow">Step 1</span>
+                  <h2>Choose Verification Method</h2>
+                </div>
+              </div>
+              <p>Select how you want to prove control of the target. Each method generates a unique challenge token in the format <code>sherlock_&lt;token&gt;</code>.</p>
+
+              <div class="option-grid" style="margin-top:1rem;">
+                <!-- DNS TXT -->
+                <label class="choice-card">
+                  <input type="radio" name="verification_method" value="dns_txt" checked>
+                  <strong>DNS TXT Record</strong>
+                  <span>Add a TXT record to your domain to prove ownership.</span>
+                </label>
+                <!-- HTML Meta Tag -->
+                <label class="choice-card">
+                  <input type="radio" name="verification_method" value="html_meta_tag">
+                  <strong>HTML Meta Tag</strong>
+                  <span>Place a meta tag on the target homepage.</span>
+                </label>
+                <!-- Well-Known File -->
+                <label class="choice-card">
+                  <input type="radio" name="verification_method" value="well_known_file">
+                  <strong>Well-Known File</strong>
+                  <span>Upload a verification file at <code>/.well-known/</code>.</span>
+                </label>
+                <!-- Manual Authorization -->
+                <label class="choice-card">
+                  <input type="radio" name="verification_method" value="manual_authorization">
+                  <strong>Manual Authorization</strong>
+                  <span>Submit authorization documents for manual review.</span>
+                </label>
+                <!-- Chatbot/API Challenge -->
+                <label class="choice-card">
+                  <input type="radio" name="verification_method" value="chatbot_api_challenge">
+                  <strong>Chatbot/API Challenge</strong>
+                  <span>Return a challenge code from your API or chatbot.</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Sidebar: method instructions -->
+            <div>
+              <div class="dashboard-card" id="method-instructions">
+                <div class="card-heading">
+                  <div>
+                    <span class="eyebrow">Step 2</span>
+                    <h2>Verification Instructions</h2>
+                  </div>
+                </div>
+
+                <!-- DNS TXT instructions (shown by default) -->
+                <div class="method-detail" data-method="dns_txt">
+                  <h3>DNS TXT Record</h3>
+                  <p>Add a TXT record to the target domain:</p>
+                  <pre style="background:var(--surface-2);padding:0.75rem;border-radius:var(--radius);font-size:0.9rem;overflow-x:auto;">sherlock-verification=sherlock_aBcDeFgHiJkLmNoPqRsT</pre>
+                  <p class="field-help">Replace the token with the challenge generated by the API. DNS propagation may take minutes to hours.</p>
+                  <p class="field-help"><strong>Note:</strong> Real DNS checking is not implemented in this phase. Future backend will check DNS safely after SSRF protections exist.</p>
+                </div>
+
+                <!-- HTML Meta Tag instructions -->
+                <div class="method-detail" data-method="html_meta_tag" hidden>
+                  <h3>HTML Meta Tag</h3>
+                  <p>Add the following tag inside <code>&lt;head&gt;</code> on the target homepage:</p>
+                  <pre style="background:var(--surface-2);padding:0.75rem;border-radius:var(--radius);font-size:0.9rem;overflow-x:auto;">&lt;meta name="sherlock-verification" content="sherlock_aBcDeFgHiJkLmNoPqRsT"&gt;</pre>
+                  <p class="field-help">Replace the token with the challenge generated by the API.</p>
+                  <p class="field-help"><strong>Note:</strong> Real HTTP fetch verification is not implemented in this phase. Future backend will fetch and verify only after SSRF protections exist.</p>
+                </div>
+
+                <!-- Well-Known File instructions -->
+                <div class="method-detail" data-method="well_known_file" hidden>
+                  <h3>Well-Known Verification File</h3>
+                  <p>Create the file at:</p>
+                  <pre style="background:var(--surface-2);padding:0.75rem;border-radius:var(--radius);font-size:0.9rem;overflow-x:auto;">/.well-known/sherlock-verification.txt</pre>
+                  <p>With content:</p>
+                  <pre style="background:var(--surface-2);padding:0.75rem;border-radius:var(--radius);font-size:0.9rem;overflow-x:auto;">sherlock-verification=sherlock_aBcDeFgHiJkLmNoPqRsT</pre>
+                  <p class="field-help">Replace the token with the challenge generated by the API.</p>
+                  <p class="field-help"><strong>Note:</strong> Real HTTP fetch verification is not implemented in this phase. Future backend will verify only after SSRF protections exist.</p>
+                </div>
+
+                <!-- Manual Authorization instructions -->
+                <div class="method-detail" data-method="manual_authorization" hidden>
+                  <h3>Manual Authorization Review</h3>
+                  <p>Provide the following information for manual review:</p>
+                  <ul style="margin:0.5rem 0 0.5rem 1.25rem;">
+                    <li>Authorization document or letter</li>
+                    <li>Legal/scope confirmation</li>
+                    <li>Contact person for verification</li>
+                    <li>Allowed target(s) and scope</li>
+                    <li>Testing window and schedule</li>
+                    <li>Forbidden actions or exclusions</li>
+                  </ul>
+                  <p class="field-help"><strong>Note:</strong> File upload and admin review are not implemented in this phase. This is a placeholder for future manual authorization workflows.</p>
+                </div>
+
+                <!-- Chatbot/API Challenge instructions -->
+                <div class="method-detail" data-method="chatbot_api_challenge" hidden>
+                  <h3>Chatbot/API Challenge</h3>
+                  <p>Sherlock sends a safe challenge message to the target:</p>
+                  <pre style="background:var(--surface-2);padding:0.75rem;border-radius:var(--radius);font-size:0.9rem;overflow-x:auto;">Return verification code exactly: sherlock_aBcDeFgHiJkLmNoPqRsT</pre>
+                  <p>The target API or chatbot must respond with the exact challenge string.</p>
+                  <p class="field-help"><strong>Note:</strong> Real API/chatbot probing is not implemented in this phase. Challenge execution must wait for network safety controls.</p>
+                </div>
+
+                <!-- Challenge token info -->
+                <div style="margin-top:1rem;border-top:1px solid var(--line);padding-top:1rem;">
+                  <h3>Challenge Token Format</h3>
+                  <dl class="detail-list">
+                    <div>
+                      <dt>Format</dt>
+                      <dd><code>sherlock_&lt;random_urlsafe_token&gt;</code></dd>
+                    </div>
+                    <div>
+                      <dt>Example</dt>
+                      <dd><code>sherlock_aBcDeFgHiJkLmNoPqRsT</code></dd>
+                    </div>
+                    <div>
+                      <dt>Security</dt>
+                      <dd>Tokens are proof-of-control values, not secrets. They expire, are stored hashed if persisted, and do not grant access by themselves.</dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
+
+              <!-- Verification action -->
+              <div class="dashboard-card" style="margin-top:1rem;">
+                <div class="card-heading">
+                  <div>
+                    <span class="eyebrow">Step 3</span>
+                    <h2>Submit Verification</h2>
+                  </div>
+                </div>
+                <p>After placing the challenge at the verification location, submit for checking.</p>
+                <div class="setup-actions">
+                  <button class="button primary" type="button" disabled>Verify Target</button>
+                  <span class="field-help">Verification checking is not connected. This button is a Phase 14 UI preview.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verification history placeholder -->
+          <div class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <span class="eyebrow">History</span>
+                <h2>Verification Attempts</h2>
+              </div>
+            </div>
+            <div class="empty-state">
+              <div class="empty-icon" aria-hidden="true"></div>
+              <h2>No Verification Attempts</h2>
+              <p>No verification attempts have been recorded. This is a static UI preview. Verification history will be populated when the backend persistence and verification checking are connected in a future phase.</p>
+            </div>
+          </div>
+
+          <!-- Security boundaries -->
+          <div class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <span class="eyebrow">Security</span>
+                <h2>Verification Boundaries</h2>
+              </div>
+            </div>
+            <ul class="future-list">
+              <li>
+                <strong>No scan without verified target</strong>
+                <p>Scanning is blocked until the target passes ownership verification.</p>
+              </li>
+              <li>
+                <strong>No third-party target testing</strong>
+                <p>You can only verify and scan targets you own or are authorized to test.</p>
+              </li>
+              <li>
+                <strong>No automatic crawling</strong>
+                <p>No HTTP fetch, DNS lookup, or API probing occurs until SSRF-safe controls are implemented.</p>
+              </li>
+              <li>
+                <strong>Challenge tokens are not secrets</strong>
+                <p>Tokens prove control but do not grant access. They expire and are stored hashed if persisted.</p>
+              </li>
+              <li>
+                <strong>Rate limiting planned</strong>
+                <p>Verification attempts will be rate-limited in future phases to prevent abuse.</p>
+              </li>
+              <li>
+                <strong>Manual review for ambiguous targets</strong>
+                <p>Targets with unclear ownership may require manual authorization review.</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Phase disclaimer -->
+          <div class="warning-panel">
+            <strong>Phase 14 Static Preview</strong>
+            <p>This page is a static UI preview. No verification records are persisted, no challenge tokens are generated by a live API, and no network verification checks are performed. The backend API returns contract placeholders only. Scanning remains disabled.</p>
+          </div>
+
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+    <script>
+      // Phase 14: toggle method instructions based on selected radio
+      (function () {
+        var radios = document.querySelectorAll('input[name="verification_method"]');
+        var details = document.querySelectorAll('.method-detail');
+        function showMethod(method) {
+          details.forEach(function (el) {
+            el.hidden = el.getAttribute('data-method') !== method;
+          });
+        }
+        radios.forEach(function (radio) {
+          radio.addEventListener('change', function () {
+            showMethod(this.value);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

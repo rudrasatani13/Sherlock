@@ -17,6 +17,7 @@ from app.routes.auth import auth_status
 from app.routes.health import health_check
 from app.routes.projects import projects_placeholder
 from app.routes.targets import targets_placeholder
+from app.routes.verification import verification_placeholder
 from app.routes.version import version_status
 
 
@@ -46,7 +47,7 @@ class ApiFoundationTests(unittest.TestCase):
                 "SHERLOCK_MARKETING_NAME": "PowerDetect Sherlock",
                 "SHERLOCK_ENVIRONMENT": "local",
                 "SHERLOCK_API_VERSION": "v0",
-                "SHERLOCK_CURRENT_PHASE": "Phase 13 Project Target Setup completed",
+                "SHERLOCK_CURRENT_PHASE": "Phase 14 Target Ownership Verification completed",
                 "DATABASE_URL": "",
                 "AUTH_ENABLED": "false",
                 "SHERLOCK_AUTH_ENABLED": "false",
@@ -74,7 +75,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(settings.brand_name, "PowerDetect")
         self.assertEqual(settings.marketing_name, "PowerDetect Sherlock")
         self.assertEqual(settings.api_version, "v0")
-        self.assertEqual(settings.current_phase, "Phase 13 Project Target Setup completed")
+        self.assertEqual(settings.current_phase, "Phase 14 Target Ownership Verification completed")
         self.assertEqual(settings.database_url, "")
         self.assertEqual(settings.supabase_url, "")
         self.assertEqual(settings.supabase_anon_key, "")
@@ -166,6 +167,28 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("secret storage", context.exception.details["disabled_capabilities"])
         self.assertIn("tool_using_agent", context.exception.details["setup_contract"]["ui_target_types"])
         self.assertIn("plaintext_api_key", context.exception.details["setup_contract"]["forbidden_fields"])
+
+    def test_verification_placeholder_returns_phase14_contract(self) -> None:
+        with self.assertRaises(NotImplementedApiError) as context:
+            verification_placeholder()
+        self.assertEqual(context.exception.status_code, 501)
+        self.assertEqual(context.exception.code, "not_implemented")
+        details = context.exception.details
+        self.assertEqual(details["status"], "contract_placeholder")
+        self.assertIn("verification_contract", details)
+        contract = details["verification_contract"]
+        method_names = [m["method"] for m in contract["methods"]["methods"]]
+        self.assertIn("dns_txt", method_names)
+        self.assertIn("html_meta_tag", method_names)
+        self.assertIn("well_known_file", method_names)
+        self.assertIn("manual_authorization", method_names)
+        self.assertIn("chatbot_api_challenge", method_names)
+        status_names = [s["status"] for s in contract["statuses"]["statuses"]]
+        self.assertIn("unverified", status_names)
+        self.assertIn("pending", status_names)
+        self.assertIn("verified", status_names)
+        self.assertIn("manual_review_required", status_names)
+        self.assertTrue(contract["challenge_token_design"]["format"].startswith("sherlock_"))
 
     def test_app_factory_registers_routes(self) -> None:
         app = create_app(Settings(allowed_origins=()))

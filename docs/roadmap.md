@@ -237,16 +237,42 @@ Implemented as static UI and placeholder contract documentation only:
 
 Phase 13 does not implement real production project persistence, target persistence from the UI, active API database persistence, production auth/session flow, target ownership verification, DNS/meta/file verification logic, scanner execution, public scanning, queue workers, billing, findings persistence, generated reports, PDF export, admin panels, destructive testing, service-role usage in frontend, or real secret storage.
 
-## Phase 14+: Product Platform
+## Phase 14: Target Ownership Verification
+
+Status: completed
+
+Establish the target ownership verification foundation. Verification proves that a user controls or is authorized to test a target before any scan can run.
+
+Implemented:
+
+- verification method definitions: DNS TXT record, HTML meta tag, well-known file, manual authorization review, chatbot/API challenge
+- verification status lifecycle: unverified, pending, verified, failed, expired, manual_review_required
+- challenge token format design: `sherlock_<random_urlsafe_token>` with SHA-256 hashing, expiry, and scoping
+- API contract placeholders in `apps/api/app/schemas/verification.py` (method registry, status registry, challenge token design, request/response contracts)
+- safe validation helpers in `apps/api/app/verification.py` (token generation, hashing, format checks — no network requests)
+- `GET /api/v0/verification` route returns full Phase 14 contract as structured 501 details
+- `apps/web/dashboard/target-verification.html` — verification page with method selector, instructions per method, status card, history placeholder, and security boundaries
+- updated target detail, target setup, project detail, projects, and dashboard overview pages with Phase 14 verification links and status
+- unit tests for verification helpers and API contract
+- `docs/verification.md` — comprehensive verification documentation
+- docs updates to roadmap, architecture, development, security, web README, and API README
+
+Phase 14 does not implement production DNS/HTTP/chatbot verification checks, active API persistence of verification records, SSRF-safe network requests, rate-limited verification attempts, scan unlocking, scanner execution, queue workers, billing, findings, generated reports, PDF export, admin panels, destructive testing, service-role usage in frontend, or real secret storage.
+
+## Phase 15+: Product Platform
 
 Future platform work may include:
 
-- Phase 14 target ownership verification
+- Phase 15 scan execution (requires verified targets, queue workers, SSRF protections, rate limits, spend controls)
 - Phase 15 async workers and queues
 - Phase 17 findings system
 - Phase 18 web report
 - Phase 21 billing callbacks
 - Phase 22 security hardening, SSRF protection, rate limits, observability, and audit logging
+- production DNS/HTTP/chatbot verification backend checks
+- active API persistence of verification records
+- challenge token TTL enforcement
+- manual authorization file upload and admin review
 - productized retest management
 - local runner
 - GitHub/CI integration

@@ -1,8 +1,8 @@
 # Development Setup
 
-Sherlock has completed Phase 13 Project Target Setup. There is a static public website and static dashboard/auth/project-target setup UI shell under `apps/web`, a minimal FastAPI backend foundation under `apps/api`, a PostgreSQL/Supabase-compatible database foundation under `db/`, a Supabase Auth-compatible auth foundation documented in `docs/auth.md`, an internal Python scanner foundation under `packages/scanner_engine`, an internal prompt library under `packages/prompt_library`, an internal evaluator system under `packages/evaluator_system`, and manual audit workflow documentation under `docs/audits` with templates under `templates`.
+Sherlock has completed Phase 14 Target Ownership Verification. There is a static public website and static dashboard/auth/project-target setup/verification UI shell under `apps/web`, a minimal FastAPI backend foundation under `apps/api`, a PostgreSQL/Supabase-compatible database foundation under `db/`, a Supabase Auth-compatible auth foundation documented in `docs/auth.md`, an internal Python scanner foundation under `packages/scanner_engine`, an internal prompt library under `packages/prompt_library`, an internal evaluator system under `packages/evaluator_system`, and manual audit workflow documentation under `docs/audits` with templates under `templates`.
 
-There is still no active API database persistence, real production project persistence, target persistence from the UI, production JWT verification, production login/signup/session flow, live Supabase browser integration, report generator, PDF export, queue, billing, admin panel, public scan feature, target verification flow, or public scanner execution API configured.
+Phase 14 adds target ownership verification UI, API contract placeholders, safe validation helpers, and documentation. There is still no active API database persistence, real production project persistence, target persistence from the UI, production DNS/HTTP/chatbot verification checks, production JWT verification, production login/signup/session flow, live Supabase browser integration, report generator, PDF export, queue, billing, admin panel, public scan feature, or public scanner execution API configured.
 
 ## Current Requirements
 
@@ -12,7 +12,7 @@ There is still no active API database persistence, real production project persi
 - Optional local PostgreSQL or Supabase CLI setup if you want to apply the Phase 10 SQL migration locally
 - Optional future Supabase project credentials for auth experiments, kept only in ignored local environment files
 
-No Node.js package manager, Redis, live Supabase project, real auth keys, billing provider, report generator, PDF tooling, admin panel, public scan feature, target verification provider, queue worker, or external AI provider is required for Phase 13.
+No Node.js package manager, Redis, live Supabase project, real auth keys, billing provider, report generator, PDF tooling, admin panel, public scan feature, DNS/HTTP verification provider, queue worker, or external AI provider is required for Phase 14.
 
 ## Local Environment
 
@@ -37,6 +37,7 @@ curl -I http://localhost:4173/login.html
 curl -I http://localhost:4173/dashboard/
 curl -I http://localhost:4173/dashboard/project-setup.html
 curl -I http://localhost:4173/dashboard/target-setup.html
+curl -I http://localhost:4173/dashboard/target-verification.html
 python3 -m pip install -r apps/api/requirements.txt
 PYTHONPATH=apps/api python3 -m uvicorn app.main:app --reload --port 8000
 curl http://localhost:8000/health

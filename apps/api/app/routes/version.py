@@ -91,12 +91,25 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
         ),
         ModuleStatus(
             module="verification",
-            status="placeholder_only",
-            purpose="Future target ownership verification before any public scanning.",
-            future_phase="Phase 14 ownership verification",
+            status="contract_placeholder",
+            purpose="Phase 14 target ownership verification contracts, method definitions, and challenge token design.",
+            future_phase="Phase 15 scan execution after verification",
             available_endpoints=[f"GET {api_prefix}/verification"],
-            future_capabilities=["ownership verification records", "verification status"],
-            disabled_capabilities=["production target verification logic", "active API persistence", "public scan unlocks"],
+            future_capabilities=[
+                "DNS TXT verification",
+                "HTML meta tag verification",
+                "well-known file verification",
+                "manual authorization review",
+                "chatbot/API challenge verification",
+                "challenge token generation",
+                "verification status tracking",
+            ],
+            disabled_capabilities=[
+                "production DNS/HTTP/chatbot verification checks",
+                "active API persistence",
+                "SSRF-safe network requests",
+                "public scan unlocks",
+            ],
         ),
     ]
 

@@ -6,7 +6,7 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 13: Project Target Setup**.
+Sherlock has completed **Phase 14: Target Ownership Verification**.
 
 The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, the Phase 12 dashboard/auth UI shell, and the Phase 13 project/target setup foundation:
 
@@ -70,9 +70,14 @@ The repository now contains the Phase 1 foundation, the static Phase 2 public we
 - Phase 13 target setup page for safe target metadata
 - static project detail and target detail placeholders
 - target type selector for API endpoint, OpenAI-compatible endpoint, Vercel AI SDK endpoint, RAG application, tool-using agent, chatbot URL, and manual audit target
-- setup readiness progress showing project details, target metadata, authorization/scope, Phase 14 verification later, and Phase 15 scanning later
-- disabled verify-target and run-scan actions with future-phase labels
-- placeholder project/target API contract metadata documenting safe fields and forbidden secret fields
+- setup readiness progress showing project details, target metadata, authorization/scope, verification, and scanning
+- Phase 14 target ownership verification UI with method selector (DNS TXT, HTML meta tag, well-known file, manual authorization, chatbot/API challenge)
+- verification status lifecycle (unverified, pending, verified, failed, expired, manual_review_required)
+- challenge token format design and safe validation helpers
+- API contract placeholders for verification method registry, status registry, and challenge token design
+- unit tests for non-network verification helpers
+- disabled run-scan actions with future-phase labels
+- placeholder project/target/verification API contract metadata documenting safe fields and security boundaries
 
 No public self-serve scan execution, backend scan execution APIs, production auth/session flow, production JWT verification, active API database persistence, real project persistence from the UI, real production project persistence, real target persistence from the UI, real scan creation, billing, queue workers, PDF generation, admin panel, target verification implementation, production scanner exposure, generated web reports, or real report generation are implemented.
 
@@ -96,8 +101,8 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 ```text
 .
 |-- apps/
-|   |-- api/             # Phase 9 FastAPI backend foundation with Phase 11 auth and Phase 13 contract placeholders
-|   `-- web/             # Static public website plus dashboard/auth and Phase 13 setup UI shell
+|   |-- api/             # Phase 9 FastAPI backend foundation with Phase 11 auth, Phase 13 contract, and Phase 14 verification placeholders
+|   `-- web/             # Static public website plus dashboard/auth, Phase 13 setup, and Phase 14 verification UI shell
 |-- config/              # Shared product metadata and future configuration
 |-- db/                  # Phase 10 PostgreSQL/Supabase-compatible database foundation
 |-- docs/                # Product, architecture, security, roadmap, and setup docs
@@ -109,7 +114,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 `-- README.md
 ```
 
-The repository remains intentionally minimal. Phase 13 extends the static dashboard with project and target setup screens only; full platform behavior remains future phases.
+The repository remains intentionally minimal. Phase 14 extends the static dashboard with target ownership verification UI and API contract placeholders; full platform behavior remains future phases.
 
 ## Documentation
 

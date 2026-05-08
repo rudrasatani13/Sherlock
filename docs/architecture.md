@@ -10,9 +10,9 @@ This document describes the future direction and the current Phase 13 project/ta
 
 The future web app will cover the public website, authenticated dashboard, scan setup flows, report viewing, team/account settings, and billing surfaces.
 
-Phase 2 implements the public website as a static site under `apps/web`. Phase 12 keeps that static approach and adds login, signup, forgot-password, dashboard overview, projects, scans, findings, reports, and settings pages as a Dashboard V0 shell. Phase 13 extends the same static approach with project setup, target setup, project detail placeholder, and target detail placeholder pages.
+Phase 2 implements the public website as a static site under `apps/web`. Phase 12 keeps that static approach and adds login, signup, forgot-password, dashboard overview, projects, scans, findings, reports, and settings pages as a Dashboard V0 shell. Phase 13 extends the same static approach with project setup, target setup, project detail placeholder, and target detail placeholder pages. Phase 14 adds a target ownership verification page with method selection, challenge instructions, verification status, and security boundaries.
 
-The Phase 13 dashboard setup flow is UI only. It uses static/demo data, browser-only validation, disabled future-action controls, and optional display of the public auth-status endpoint. It does not create sessions, trust fake users, persist projects or targets, store secrets, run scans, verify targets, generate findings, generate reports, or handle billing.
+The Phase 14 dashboard verification flow is UI only. It uses static/demo data, browser-only method switching, disabled verification submission, and links to the verification page from target and project detail pages. It does not create sessions, trust fake users, persist verification records, issue real challenges, perform DNS/HTTP/chatbot checks, store secrets, run scans, generate findings, generate reports, or handle billing.
 
 Phase 4 expands the static public sample report page. It is a demo-only artifact, not a real report viewer and not generated from a scan.
 
@@ -34,11 +34,13 @@ Phase 9 adds `apps/api`, a small FastAPI foundation with:
 - `GET /api/v0/me` as a protected current-user route foundation
 - placeholder `501 not_implemented` route groups for projects, targets, scans, findings, reports, and verification
 - Phase 13 project/target setup contract metadata on the placeholder projects and targets routes
+- Phase 14 verification contract with method registry, status definitions, challenge token design, and request/response schemas on the verification route
+- safe verification helpers (token generation, hashing, format checks — no network requests)
 - shared response envelope, config loading, logging, CORS placeholder, and structured error handling
 
-The API does not persist data through routes, run production JWT verification, create projects or targets, create scans, call the scanner engine, generate reports, verify targets, handle billing, or start workers. Scanner execution must remain isolated until future phases add production authentication, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
+The API does not persist data through routes, run production JWT verification, create projects or targets, create verification challenges, perform DNS/HTTP/chatbot verification checks, create scans, call the scanner engine, generate reports, handle billing, or start workers. Scanner execution must remain isolated until future phases add production authentication, authorization, production verification checks, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
 
-Phase 12 and Phase 13 web pages may read `GET /api/v0/auth/status` when the local API is running, but no browser token, service-role key, protected API route, project persistence route, target persistence route, or scanner route is used by the dashboard shell.
+Phase 12, Phase 13, and Phase 14 web pages may read `GET /api/v0/auth/status` when the local API is running, but no browser token, service-role key, protected API route, project persistence route, target persistence route, verification persistence route, or scanner route is used by the dashboard shell.
 
 ### Scanner Engine
 
@@ -113,8 +115,8 @@ Future GitHub/CI integration may allow teams to run approved checks before launc
 The current foundation uses:
 
 - `apps/` for future deployable applications
-- `apps/api` for the Phase 9 backend API foundation with Phase 13 placeholder setup contracts
-- `apps/web` for the static public website and dashboard/auth/project-target setup UI shell
+- `apps/api` for the Phase 9 backend API foundation with Phase 13 setup contracts and Phase 14 verification contracts
+- `apps/web` for the static public website and dashboard/auth/project-target setup/verification UI shell
 - `db/` for the Phase 10 PostgreSQL/Supabase-compatible database foundation
 - `packages/` for future shared libraries and core domain modules
 - `config/` for shared product metadata and future configuration

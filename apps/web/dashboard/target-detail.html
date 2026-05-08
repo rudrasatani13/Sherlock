@@ -19,7 +19,7 @@
             <span class="brand-mark" aria-hidden="true"></span>
             <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
           </a>
-          <span class="status-pill info">Phase 13</span>
+          <span class="status-pill info">Phase 14</span>
         </div>
         <div class="workspace-switcher" aria-label="Workspace placeholder">
           <span>Workspace</span>
@@ -61,16 +61,15 @@
         <main id="main" class="dashboard-main">
           <section class="dashboard-banner">
             <div>
-              <span class="status-pill review">Verification pending later</span>
-              <h2>Target details are setup metadata only.</h2>
+              <span class="status-pill review">Unverified</span>
+              <h2>Target verification is required before scans can run.</h2>
               <p>
-                Phase 13 does not fetch this URL, validate ownership, store credentials, execute
-                prompts, call tools, create scans, create findings, or generate reports.
+                Verification proves control of this target method. Scanning remains disabled until verification is complete and future scan controls are implemented.
               </p>
             </div>
             <div class="action-row">
-              <button class="button secondary" type="button" disabled>Verify Target - Phase 14</button>
-              <button class="button primary" type="button" disabled>Run Scan - Phase 15</button>
+              <a class="button secondary" href="target-verification.html">Verify Target</a>
+              <button class="button primary" type="button" disabled>Run Scan &mdash; Phase 15</button>
             </div>
           </section>
 
@@ -90,10 +89,10 @@
               <span>Authorization/scope</span>
               <small>Acknowledgement placeholder.</small>
             </article>
-            <article class="progress-step future">
+            <article class="progress-step current">
               <strong>4</strong>
-              <span>Verification later</span>
-              <small>No DNS/meta/file challenge yet.</small>
+              <span>Verify Ownership</span>
+              <small>Phase 14 &mdash; <a href="target-verification.html">start verification</a></small>
             </article>
             <article class="progress-step future">
               <strong>5</strong>
@@ -130,7 +129,7 @@
               </div>
               <ul class="future-list">
                 <li><strong>Credential handling</strong><p>Temporary test credentials require future secure storage. This page stores none.</p></li>
-                <li><strong>Ownership verification</strong><p>Phase 14 must prove the target belongs to the workspace before scan creation.</p></li>
+                <li><strong>Ownership verification</strong><p>Phase 14 verification UI is available. <a href="target-verification.html">Start target verification</a> to prove control of this target.</p></li>
                 <li><strong>Network safety</strong><p>SSRF protection, redirect validation, timeouts, and rate limits are future controls.</p></li>
               </ul>
             </article>
