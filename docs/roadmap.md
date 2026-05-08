@@ -1,6 +1,6 @@
 # Roadmap
 
-This roadmap is directional. It should guide sequencing without forcing premature architecture decisions.
+This roadmap is directional. It should guide sequencing without forcing premature architecture decisions. `SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term product reference and phase source of truth. The current implementation represents **foundation versions** through Phase 16, not full production-complete versions of every expected output. See [Master Plan Alignment](master-plan-alignment.md) for details.
 
 ## Phase 1: Foundation
 
@@ -172,7 +172,7 @@ Phase 10 does not implement authentication, authorization, login/signup, session
 
 ## Phase 11: Authentication and User Accounts
 
-Status: completed
+Status: completed foundation
 
 Created the authentication and user account foundation for future Sherlock product usage using Supabase Auth as the intended auth provider.
 
@@ -194,7 +194,7 @@ Phase 11 does not implement production login/signup UI, production JWT verificat
 
 ## Phase 12: Dashboard V0 + Auth UI Shell
 
-Status: completed
+Status: completed foundation
 
 Created the first product dashboard UI/UX foundation under the existing static `apps/web` implementation.
 
@@ -219,7 +219,7 @@ Phase 12 does not implement production auth/session flow, live Supabase browser 
 
 ## Phase 13: Project Target Setup
 
-Status: completed
+Status: completed foundation
 
 Created the first project and target setup UI/UX foundation under the existing static dashboard implementation.
 
@@ -239,7 +239,7 @@ Phase 13 does not implement real production project persistence, target persiste
 
 ## Phase 14: Target Ownership Verification
 
-Status: completed
+Status: completed foundation
 
 Establish the target ownership verification foundation. Verification proves that a user controls or is authorized to test a target before any scan can run.
 
@@ -261,7 +261,7 @@ Phase 14 does not implement production DNS/HTTP/chatbot verification checks, act
 
 ## Phase 15: Queue + Worker System
 
-Status: completed
+Status: completed foundation
 
 Created the queue and worker system foundation under `packages/worker_system`. This phase prepares Sherlock to run future scans asynchronously through background workers.
 
@@ -285,7 +285,7 @@ Phase 15 does not implement public scan execution, production queue deployment, 
 
 ## Phase 16: Scan Types + Limits
 
-Status: completed
+Status: completed foundation
 
 Created Sherlock's scan type and limit system foundation under `packages/scan_limits`. This phase defines safe scan modes, plan-aware limits, category inclusion rules, worker job constraints, and validation helpers.
 

@@ -1,6 +1,8 @@
 # Scope Boundaries
 
-Sherlock has completed Phase 16 Scan Types + Limits.
+`SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term reference. The current implementation provides **foundation versions** through Phase 16. It does not provide full production-complete versions. See [Master Plan Alignment](master-plan-alignment.md) for more context.
+
+Sherlock has completed Phase 16 Scan Types + Limits foundation.
 
 ## In Scope for Phase 1
 

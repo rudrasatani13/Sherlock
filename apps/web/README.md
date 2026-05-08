@@ -1,6 +1,6 @@
 # Sherlock Web
 
-Status: Phase 16 Scan Types + Limits dashboard updates completed.
+Status: Phase 16 Scan Types + Limits dashboard updates foundation completed.
 
 This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, Phase 14 Target Verification UI, and Phase 16 Scan Types + Limits UI for PowerDetect Sherlock.
 

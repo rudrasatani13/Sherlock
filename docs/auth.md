@@ -1,6 +1,6 @@
 # Authentication and User Accounts
 
-Status: Phase 11 Authentication and User Accounts foundation completed; Phase 12 Dashboard V0 + Auth UI Shell completed; Phase 13 Project Target Setup completed
+Status: Phase 11 Authentication and User Accounts foundation completed; Phase 12 Dashboard V0 + Auth UI Shell foundation completed; Phase 13 Project Target Setup foundation completed
 
 This document defines Sherlock's authentication and account foundation for future authenticated product usage. Sherlock will use Supabase Auth as the intended authentication provider, while keeping the current repository safe to run without a live Supabase project or real secrets.
 

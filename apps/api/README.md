@@ -1,6 +1,6 @@
 # Sherlock Backend API
 
-Status: Phase 16 Scan Types + Limits completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, Phase 15 queue/worker contracts, and Phase 16 scan type/limit static metadata.
+Status: Phase 16 Scan Types + Limits foundation completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, Phase 15 queue/worker contracts, and Phase 16 scan type/limit static metadata.
 
 It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. Phase 16 adds safe static endpoints for scan types and limits. The API still does not implement the full platform or active persistence.
 
@@ -165,7 +165,7 @@ Responses use a shared shape for future consistency:
   "error": null,
   "metadata": {
     "api_version": "v0",
-    "phase": "Phase 16 Scan Types + Limits completed",
+    "phase": "Phase 16 Scan Types + Limits foundation completed",
     "environment": "local"
   }
 }
@@ -184,7 +184,7 @@ Safe environment variables:
 | `SHERLOCK_MARKETING_NAME` | `PowerDetect Sherlock` | Full marketing name. |
 | `SHERLOCK_ENVIRONMENT` | `local` | Runtime environment label. |
 | `SHERLOCK_API_VERSION` | `v0` | API route/version label. |
-| `SHERLOCK_CURRENT_PHASE` | `Phase 16 Scan Types + Limits completed` | Product phase label. |
+| `SHERLOCK_CURRENT_PHASE` | `Phase 16 Scan Types + Limits foundation completed` | Product phase label. |
 | `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by active routes yet. |
 | `AUTH_ENABLED` | `false` | Enables future auth enforcement only after real Supabase/JWKS configuration exists. |
 | `SUPABASE_URL` | empty string | Future Supabase project URL placeholder. |

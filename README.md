@@ -6,7 +6,9 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 16: Scan Types + Limits**.
+Sherlock has completed **Phase 16: Scan Types + Limits** as a foundation.
+
+For a detailed comparison against the long-term master plan, see [Master Plan Alignment](docs/master-plan-alignment.md).
 
 The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, the Phase 12 dashboard/auth UI shell, the Phase 13 project/target setup foundation, the Phase 14 target ownership verification foundation, the Phase 15 queue and worker system foundation, and the Phase 16 scan types and limits foundation:
 
@@ -140,6 +142,7 @@ The repository remains intentionally minimal. Phase 15 adds the queue and worker
 
 - [Project Overview](docs/overview.md)
 - [Architecture Vision](docs/architecture.md)
+- [Master Plan Alignment](docs/master-plan-alignment.md)
 - [Development Setup](docs/development.md)
 - [Backend API Foundation](apps/api/README.md)
 - [Database Foundation](db/README.md)
