@@ -1,6 +1,6 @@
 # Scope Boundaries
 
-Sherlock has completed Phase 12 Dashboard V0 + Auth UI Shell.
+Sherlock has completed Phase 13 Project Target Setup.
 
 ## In Scope for Phase 1
 
@@ -164,13 +164,29 @@ Sherlock has completed Phase 12 Dashboard V0 + Auth UI Shell.
 - optional frontend display of the safe `GET /api/v0/auth/status` endpoint when the local API is running
 - documentation updates for dashboard/auth UI boundaries
 
-## Out of Scope Through Phase 12
+## In Scope for Phase 13
+
+- projects page empty state and setup CTA
+- static project setup page for project name, description, environment, app type, data sensitivity, framework/stack, and notes
+- static project detail placeholder with target section
+- static target setup page for target name, target type, URL, HTTP method, auth placeholder type, request/response notes, rate limit notes, test account notes, RAG/private-docs involvement, tools/actions involvement, production-impact acknowledgement, and authorization/scope acknowledgement
+- static target detail placeholder
+- target type selector for API endpoint, OpenAI-compatible endpoint, Vercel AI SDK endpoint, RAG application, tool-using agent, chatbot URL, and manual audit target
+- browser-only form validation and local setup preview
+- setup progress indicator covering project details, target metadata, authorization/scope, Phase 14 verification later, and Phase 15 scanning later
+- disabled verify-target and run-scan actions with future-phase labels
+- project and target placeholder API contract metadata documenting safe fields and forbidden secret fields
+- documentation updates for project/target setup boundaries
+
+## Out of Scope Through Phase 13
 
 - production login/signup/session flow
 - production JWT verification
 - live Supabase browser integration
 - real authenticated dashboard API consumption
 - dashboard database reads/writes
+- real production project persistence
+- target persistence from the UI
 - admin panel
 - billing
 - queue workers
@@ -179,6 +195,8 @@ Sherlock has completed Phase 12 Dashboard V0 + Auth UI Shell.
 - backend report APIs
 - active API database persistence
 - target verification logic
+- DNS/meta/file verification logic
+- real target secret storage
 - public scanner execution API
 - public scan execution
 - production deployment configuration
@@ -202,4 +220,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 12 establishes the dashboard/auth UI foundation required before future project setup, active persistence, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, and `db/schema.md` as the database foundation reference.
+Phase 13 establishes the project/target setup UI and contract foundation required before ownership verification, active persistence, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, and `db/schema.md` as the database foundation reference.

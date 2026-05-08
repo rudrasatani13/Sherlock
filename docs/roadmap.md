@@ -217,11 +217,30 @@ Implemented as static UI only:
 
 Phase 12 does not implement production auth/session flow, live Supabase browser integration, production JWT verification, active database persistence from the UI, real project creation, real scan creation, scanner execution, target ownership verification, queue workers, billing, generated web reports, PDF export, admin panels, or destructive testing.
 
-## Phase 13+: Product Platform
+## Phase 13: Project Target Setup
+
+Status: completed
+
+Created the first project and target setup UI/UX foundation under the existing static dashboard implementation.
+
+Implemented as static UI and placeholder contract documentation only:
+
+- projects page setup CTA and empty-state language
+- project setup page for project name, description, environment, app type, data sensitivity, framework/stack, and notes
+- project detail placeholder with target section
+- target setup page for safe target metadata, target type, URL, HTTP method, auth placeholder type, format notes, rate limit notes, test account notes, RAG/private-docs involvement, tools/actions involvement, and acknowledgement placeholders
+- target detail placeholder
+- setup progress indicator for project details, target metadata, authorization/scope, Phase 14 verification later, and Phase 15 scanning later
+- disabled verify-target and run-scan actions with future-phase labels
+- project/target placeholder API contract metadata documenting safe fields and forbidden secret fields
+- docs updates clarifying that persistence, verification, scanning, billing, queues, findings, reports, PDF generation, and admin surfaces remain future work
+
+Phase 13 does not implement real production project persistence, target persistence from the UI, active API database persistence, production auth/session flow, target ownership verification, DNS/meta/file verification logic, scanner execution, public scanning, queue workers, billing, findings persistence, generated reports, PDF export, admin panels, destructive testing, service-role usage in frontend, or real secret storage.
+
+## Phase 14+: Product Platform
 
 Future platform work may include:
 
-- Phase 13 project setup and safe dashboard API consumption
 - Phase 14 target ownership verification
 - Phase 15 async workers and queues
 - Phase 17 findings system

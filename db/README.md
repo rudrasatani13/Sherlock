@@ -1,10 +1,10 @@
 # Sherlock Database Foundation
 
-Status: Phase 10 Database Setup completed; Phase 11 auth alignment documented; Phase 12 dashboard UI shell does not use active persistence
+Status: Phase 10 Database Setup completed; Phase 11 auth alignment documented; Phase 13 setup UI does not use active persistence
 
 This directory contains the database foundation for Sherlock, the AI Launch Security Audit + Scanner product under the PowerDetect brand.
 
-Phase 10 defines a PostgreSQL/Supabase-compatible schema, migration structure, schema documentation, local setup guidance, and security boundaries. Phase 11 documents how this schema will align with Supabase Auth and adds backend auth placeholders. Phase 12 adds static dashboard/auth UI pages, but it does not connect API routes or browser UI to production persistence.
+Phase 10 defines a PostgreSQL/Supabase-compatible schema, migration structure, schema documentation, local setup guidance, and security boundaries. Phase 11 documents how this schema will align with Supabase Auth and adds backend auth placeholders. Phase 12 adds static dashboard/auth UI pages, and Phase 13 adds static project/target setup pages, but neither connects API routes or browser UI to production persistence.
 
 ## Selected Technology
 
@@ -49,6 +49,7 @@ db/
 - Sessions
 - Authorization policies for real users
 - Dashboard integration
+- Project/target persistence from the UI
 - Billing or Stripe integration
 - Queue workers
 - Public scan execution
@@ -120,6 +121,12 @@ The schema is not production-ready by itself. Before any production use, future 
 - rate limits, spend limits, queue isolation, and SSRF controls
 
 RLS is enabled in the initial migration with no user access policies. That is intentional: no customer-facing reads or writes should work until future reviewed auth-aware RLS policies define scoped access through `auth.uid()` and organization membership.
+
+## Phase 13 Setup Notes
+
+The existing `projects` and `targets` tables are sufficient as a foundation for Phase 13 static setup UI, so no database migration is added. The dashboard forms preview project and target metadata locally only.
+
+Before enabling active persistence, reconcile the Phase 13 UI target labels with the Phase 10 `target_type` enum. The UI uses generic labels such as RAG application, tool-using agent, and manual audit target, while the Phase 10 enum currently includes `api_endpoint`, `openai_compatible`, `vercel_ai_sdk`, `langchain`, `llamaindex`, `chatbot_url`, and `manual`.
 
 ## Seeds
 

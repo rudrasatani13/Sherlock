@@ -2,7 +2,7 @@
 
 Sherlock is planned as a modular AI launch security audit and scanner platform. The architecture should keep customer-facing workflows, scan execution, prompt libraries, evaluators, reports, and billing separated so each area can evolve without becoming tightly coupled.
 
-This document describes the future direction and the current Phase 12 dashboard/auth UI shell. Phase 12 adds static product dashboard and auth UI surfaces on top of the Phase 11 Supabase Auth-compatible backend groundwork. It does not implement production auth/session flow, active API database persistence, billing, queue workers, report generation, PDF export, admin panels, target verification, or public scan execution.
+This document describes the future direction and the current Phase 13 project/target setup foundation. Phase 13 extends the static Phase 12 dashboard/auth UI shell with project setup, target setup, and detail-placeholder screens on top of the Phase 11 Supabase Auth-compatible backend groundwork and Phase 10 schema. It does not implement production auth/session flow, active API database persistence, real production project persistence, target ownership verification, billing, queue workers, report generation, PDF export, admin panels, or public scan execution.
 
 ## Planned Components
 
@@ -10,9 +10,9 @@ This document describes the future direction and the current Phase 12 dashboard/
 
 The future web app will cover the public website, authenticated dashboard, scan setup flows, report viewing, team/account settings, and billing surfaces.
 
-Phase 2 implements the public website as a static site under `apps/web`. Phase 12 keeps that static approach and adds login, signup, forgot-password, dashboard overview, projects, scans, findings, reports, and settings pages as a Dashboard V0 shell.
+Phase 2 implements the public website as a static site under `apps/web`. Phase 12 keeps that static approach and adds login, signup, forgot-password, dashboard overview, projects, scans, findings, reports, and settings pages as a Dashboard V0 shell. Phase 13 extends the same static approach with project setup, target setup, project detail placeholder, and target detail placeholder pages.
 
-The Phase 12 dashboard is UI only. It uses static/demo data, disabled future-action controls, and optional display of the public auth-status endpoint. It does not create sessions, trust fake users, persist projects, run scans, verify targets, generate reports, or handle billing.
+The Phase 13 dashboard setup flow is UI only. It uses static/demo data, browser-only validation, disabled future-action controls, and optional display of the public auth-status endpoint. It does not create sessions, trust fake users, persist projects or targets, store secrets, run scans, verify targets, generate findings, generate reports, or handle billing.
 
 Phase 4 expands the static public sample report page. It is a demo-only artifact, not a real report viewer and not generated from a scan.
 
@@ -33,11 +33,12 @@ Phase 9 adds `apps/api`, a small FastAPI foundation with:
 - `GET /api/v0/auth/status` for Phase 11 auth configuration status
 - `GET /api/v0/me` as a protected current-user route foundation
 - placeholder `501 not_implemented` route groups for projects, targets, scans, findings, reports, and verification
+- Phase 13 project/target setup contract metadata on the placeholder projects and targets routes
 - shared response envelope, config loading, logging, CORS placeholder, and structured error handling
 
-The API does not persist data through routes, run production JWT verification, create scans, call the scanner engine, generate reports, verify targets, handle billing, or start workers. Scanner execution must remain isolated until future phases add production authentication, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
+The API does not persist data through routes, run production JWT verification, create projects or targets, create scans, call the scanner engine, generate reports, verify targets, handle billing, or start workers. Scanner execution must remain isolated until future phases add production authentication, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
 
-Phase 12 web pages may read `GET /api/v0/auth/status` when the local API is running, but no browser token, service-role key, or protected API route is used by the dashboard shell.
+Phase 12 and Phase 13 web pages may read `GET /api/v0/auth/status` when the local API is running, but no browser token, service-role key, protected API route, project persistence route, target persistence route, or scanner route is used by the dashboard shell.
 
 ### Scanner Engine
 
@@ -77,7 +78,9 @@ Phase 10 adds a root-level `db/` foundation using plain PostgreSQL/Supabase-comp
 
 Phase 11 selects Supabase Auth as the intended identity provider and adds the backend auth foundation under `apps/api`. Supabase Auth stores users in the managed `auth` schema; Sherlock app-level metadata should live in `public.user_profiles`, `public.organizations`, and `public.organization_members`.
 
-The Phase 10 migration enables RLS on application tables but does not add permissive user policies. Phase 11 keeps that deny-by-default posture, and Phase 12 does not change it. Future RLS policies should use `auth.uid()` and organization membership rows to enforce tenant boundaries after production JWT validation and real dashboard persistence flows are reviewed.
+The Phase 10 migration enables RLS on application tables but does not add permissive user policies. Phase 11 keeps that deny-by-default posture, and Phases 12 and 13 do not change it. Future RLS policies should use `auth.uid()` and organization membership rows to enforce tenant boundaries after production JWT validation and real dashboard persistence flows are reviewed.
+
+The Phase 13 target setup UI supports generic labels such as RAG application and tool-using agent. Before active persistence is enabled, the project/target API contract and Phase 10 `target_type` enum should be reconciled through a reviewed migration or explicit mapping.
 
 The service-role key is server-only and must never be exposed to browser/frontend code.
 
@@ -110,8 +113,8 @@ Future GitHub/CI integration may allow teams to run approved checks before launc
 The current foundation uses:
 
 - `apps/` for future deployable applications
-- `apps/api` for the Phase 9 backend API foundation
-- `apps/web` for the static public website and Phase 12 dashboard/auth UI shell
+- `apps/api` for the Phase 9 backend API foundation with Phase 13 placeholder setup contracts
+- `apps/web` for the static public website and dashboard/auth/project-target setup UI shell
 - `db/` for the Phase 10 PostgreSQL/Supabase-compatible database foundation
 - `packages/` for future shared libraries and core domain modules
 - `config/` for shared product metadata and future configuration

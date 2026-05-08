@@ -29,7 +29,7 @@ Sherlock will later test for:
 
 ## Current Phase
 
-Current phase: **Phase 12 Dashboard V0 + Auth UI Shell completed**
+Current phase: **Phase 13 Project Target Setup completed**
 
 Phase 1 established repository organization, documentation, environment templates, security notes, roadmap notes, and basic hygiene.
 
@@ -55,7 +55,9 @@ Phase 11 adds a Supabase Auth-compatible authentication and user account foundat
 
 Phase 12 adds static login, signup, forgot-password, and Dashboard V0 pages under `apps/web`, including overview, projects, scans, findings, reports, and settings shells with demo data, empty states, disabled future actions, and optional auth-status display.
 
-Production auth/session flow, production JWT verification, active API database persistence, real project persistence from the UI, billing, queue workers, public scan execution, target verification implementation, admin panel, PDF generation, real report generation, and public scanner execution are still not implemented.
+Phase 13 adds static project setup, target setup, project detail placeholder, and target detail placeholder pages under `apps/web/dashboard`, plus project/target placeholder API contract metadata. It supports safe setup metadata, target type selection, acknowledgement placeholders, and disabled future verify/scan actions.
+
+Production auth/session flow, production JWT verification, active API database persistence, real production project persistence, target persistence from the UI, billing, queue workers, public scan execution, target verification implementation, admin panel, PDF generation, real report generation, and public scanner execution are still not implemented.
 
 ## Product Principle
 

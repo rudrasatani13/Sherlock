@@ -1,8 +1,8 @@
 # Sherlock Database Schema
 
-Status: Phase 10 Database Setup completed; Phase 11 auth alignment documented; Phase 12 dashboard UI shell does not use active persistence
+Status: Phase 10 Database Setup completed; Phase 11 auth alignment documented; Phase 13 setup UI does not use active persistence
 
-This document describes the Phase 10 PostgreSQL/Supabase-compatible database foundation for Sherlock and the Phase 11 auth alignment strategy. Phase 12 adds static dashboard/auth UI shell pages only and does not add active database reads or writes.
+This document describes the Phase 10 PostgreSQL/Supabase-compatible database foundation for Sherlock and the Phase 11 auth alignment strategy. Phase 12 adds static dashboard/auth UI shell pages, and Phase 13 adds static project/target setup pages. They do not add active database reads or writes.
 
 The schema is a foundation for future platform phases. It is not connected to production API persistence yet.
 
@@ -167,6 +167,8 @@ Allowed target types:
 - `manual`
 
 Target rows must not contain real API keys, bearer tokens, cookies, passwords, private keys, or raw headers. Future credentials must use secret management or encrypted storage.
+
+Phase 13 setup UI uses safe target metadata only and does not write to this table. Its generic UI labels should be reconciled with this enum through a reviewed mapping or migration before active persistence is enabled.
 
 ### target_verifications
 
@@ -369,7 +371,7 @@ The Phase 10 migration enables RLS on application tables but adds no permissive 
 
 This is intentional because production JWT validation, active persistence, and dashboard flows are not implemented yet.
 
-Future Phase 12+ work should:
+Future persistence work should:
 
 1. Connect `user_profiles.id` to Supabase Auth `auth.users.id`.
 2. Define organization membership lookup helpers.
@@ -401,4 +403,4 @@ Keep real database URLs in `.env.local`, not in Git.
 
 ## Future Phase Readiness
 
-Phase 10 prepares Phase 11 and later phases by creating stable table names, relationships, and constraints. Phase 11 documents the Supabase Auth alignment and backend auth foundation. Future work can add production JWT validation, auth-aware policies, API persistence, dashboard reads/writes, target verification flows, workers, findings workflows, report access, billing, usage metering, and audit-log write paths in explicit scoped phases.
+Phase 10 prepares Phase 11 and later phases by creating stable table names, relationships, and constraints. Phase 11 documents the Supabase Auth alignment and backend auth foundation. Phase 13 adds static project/target setup UI but no migration. Future work can add production JWT validation, auth-aware policies, API persistence, dashboard reads/writes, target verification flows, workers, findings workflows, report access, billing, usage metering, and audit-log write paths in explicit scoped phases.

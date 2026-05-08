@@ -17,6 +17,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - The Phase 5 internal scanner must only be used against targets the operator owns or is explicitly authorized to test.
 - Phase 8 manual audits require written authorization, approved scope, testing windows, rate limits, escalation contacts, and documented out-of-scope targets before testing.
 - The Phase 9 backend API includes placeholder target and verification route groups only. It does not implement target verification or unlock public scanning.
+- Phase 13 target setup UI captures metadata and acknowledgement placeholders only. It does not verify ownership, prove authorization, unlock scans, or test targets.
 
 ## Network Safety
 
@@ -40,6 +41,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Phase 11 auth placeholders must not contain real Supabase keys. Keep real auth values only in ignored local or managed deployment environments.
 - The Supabase service-role key is server-only and must never be exposed to browser/frontend code.
 - Phase 12 auth UI pages are static shells only. They must not store passwords, tokens, real Supabase keys, service-role keys, or fake user IDs in browser code.
+- Phase 13 project/target setup pages are static shells only. They must not store real API keys, bearer tokens, cookies, passwords, private keys, raw headers, target credentials, or production secrets in frontend code or committed files.
 
 ## Authentication and Accounts
 
@@ -51,6 +53,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Backend routes must validate Supabase-issued JWTs before trusting user identity in future production phases.
 - Never trust user IDs supplied in request bodies for authentication or tenant authorization.
 - Phase 12 adds login, signup, forgot-password, and dashboard UI shells only; it does not add production auth/session flow.
+- Phase 13 adds project and target setup UI only; it does not add production auth/session flow or authenticated project persistence.
 - Do not add production OAuth provider setup, sessions, browser token handling, or broad RLS policies until a reviewed future phase.
 
 ## Database Security
@@ -103,5 +106,5 @@ Future tool-using-agent tests must avoid invoking destructive or high-risk actio
 ## Backend API Boundary
 
 - Phase 9 adds a FastAPI foundation under `apps/api` with health, version/status, config, logging, CORS placeholder, structured errors, response schemas, and placeholder route groups.
-- Phase 10 adds a database schema and migration foundation under `db/`, Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, and Phase 12 adds a static dashboard/auth UI shell under `apps/web`, but the API still does not implement active database persistence, production JWT verification, billing, queue workers, target verification, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
+- Phase 10 adds a database schema and migration foundation under `db/`, Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, Phase 12 adds a static dashboard/auth UI shell under `apps/web`, and Phase 13 adds static project/target setup pages plus placeholder API contract metadata. The API still does not implement active database persistence, real production project persistence, production JWT verification, billing, queue workers, target verification, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
 - Future scanner integration must run outside public request handlers and only after production auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and worker queues are in place.

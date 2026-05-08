@@ -1,14 +1,14 @@
 # Sherlock Backend API
 
-Status: Phase 12 Dashboard V0 + Auth UI Shell completed; API remains a Phase 11 auth/backend foundation
+Status: Phase 13 Project Target Setup completed; API remains a placeholder backend foundation
 
 This app is the minimal backend API foundation for Sherlock, the AI Launch Security Audit + Scanner product under the PowerDetect brand.
 
-It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. The API still does not implement the full platform or active persistence.
+It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. The API still does not implement the full platform or active persistence.
 
 ## Scope
 
-Phase 9 through Phase 11 include:
+Phase 9 through Phase 13 include:
 
 - FastAPI app skeleton under `apps/api`
 - health and version/status endpoints
@@ -23,10 +23,13 @@ Phase 9 through Phase 11 include:
 - lightweight unittest coverage for config, health, version, auth helpers, and placeholder behavior
 - Phase 10 database schema and migration documentation under `../../db`
 - Phase 11 auth architecture documentation under `../../docs/auth.md`
+- Phase 13 project/target setup contract metadata on placeholder responses
 
-Phase 12 adds static UI under `../web` only. The API still does not include:
+Phase 13 adds project/target setup contract metadata to placeholder responses only. The API still does not include:
 
 - active API database persistence
+- real production project persistence
+- target persistence from the UI
 - production login/signup endpoints
 - production JWT verification
 - sessions
@@ -36,7 +39,9 @@ Phase 12 adds static UI under `../web` only. The API still does not include:
 - queue workers or background jobs
 - public scan execution
 - target ownership verification logic
+- DNS/meta/file verification logic
 - SSRF protection implementation
+- secret storage
 - real report generation
 - PDF export
 - admin panel
@@ -139,7 +144,7 @@ These routes intentionally return `501 not_implemented` with a structured error 
 | GET | `/api/v0/reports` | Future web report metadata and access contracts. |
 | GET | `/api/v0/verification` | Future target ownership verification state. |
 
-No placeholder route persists data, triggers scanner execution, creates jobs, performs verification, generates reports, or integrates with billing.
+The project and target placeholder route details include Phase 13 setup-contract metadata for future safe fields, allowed values, and forbidden secret fields. No placeholder route persists data, triggers scanner execution, creates jobs, performs verification, generates reports, stores secrets, or integrates with billing.
 
 ## Response Envelope
 
@@ -152,7 +157,7 @@ Responses use a shared shape for future consistency:
   "error": null,
   "metadata": {
     "api_version": "v0",
-    "phase": "Phase 12 Dashboard V0 + Auth UI Shell completed",
+    "phase": "Phase 13 Project Target Setup completed",
     "environment": "local"
   }
 }
@@ -171,8 +176,8 @@ Safe environment variables:
 | `SHERLOCK_MARKETING_NAME` | `PowerDetect Sherlock` | Full marketing name. |
 | `SHERLOCK_ENVIRONMENT` | `local` | Runtime environment label. |
 | `SHERLOCK_API_VERSION` | `v0` | API route/version label. |
-| `SHERLOCK_CURRENT_PHASE` | `Phase 12 Dashboard V0 + Auth UI Shell completed` | Product phase label. |
-| `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by routes in Phase 12. |
+| `SHERLOCK_CURRENT_PHASE` | `Phase 13 Project Target Setup completed` | Product phase label. |
+| `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by routes in Phase 13. |
 | `AUTH_ENABLED` | `false` | Enables future auth enforcement only after real Supabase/JWKS configuration exists. |
 | `SUPABASE_URL` | empty string | Future Supabase project URL placeholder. |
 | `SUPABASE_ANON_KEY` | empty string | Future browser-safe Supabase anon key placeholder. |
@@ -181,7 +186,7 @@ Safe environment variables:
 | `SHERLOCK_DEBUG` | `false` | Local debug flag. |
 | `SHERLOCK_ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:4173` | Local CORS placeholder origins. |
 
-No real secrets are required for Phase 12. Do not commit real database credentials or real Supabase keys.
+No real secrets are required for Phase 13. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, or raw auth headers.
 
 ## Auth Foundation
 
@@ -213,7 +218,7 @@ The Phase 10 database migration enables RLS on application tables but does not a
 
 The service-role key is backend-only and must never be exposed to browser/frontend code. Future RLS policies should use `auth.uid()` and organization membership to enforce tenant boundaries.
 
-The Phase 12 static dashboard/auth UI must not use the service-role key, create fake sessions, or trust browser-supplied user IDs. It may call only the public auth-status endpoint for configuration display.
+The Phase 12 static dashboard/auth UI and Phase 13 project/target setup UI must not use the service-role key, create fake sessions, trust browser-supplied user IDs, persist projects, persist targets, store secrets, verify targets, or run scans. They may call only the public auth-status endpoint for configuration display.
 
 The existing internal packages remain isolated:
 
@@ -226,7 +231,7 @@ The existing internal packages remain isolated:
 - Phase 10: database foundation and persistence contracts completed under `../../db`.
 - Phase 11: authentication and user accounts foundation completed with Supabase Auth-compatible placeholders.
 - Phase 12: static Dashboard V0 + Auth UI Shell completed under `../web`; production dashboard API consumption remains future work.
-- Phase 13: project setup and safe authenticated dashboard API consumption.
+- Phase 13: static project/target setup UI and placeholder setup contracts completed. Active persistence and authenticated dashboard API consumption remain future work.
 - Phase 14: add ownership verification before public target scanning exists.
 - Phase 15: add queue workers for scan execution outside request/response paths.
 - Phase 17: add reviewed findings system using methodology, evaluator output, and manual review.

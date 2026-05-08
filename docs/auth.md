@@ -1,10 +1,10 @@
 # Authentication and User Accounts
 
-Status: Phase 11 Authentication and User Accounts foundation completed; Phase 12 Dashboard V0 + Auth UI Shell completed
+Status: Phase 11 Authentication and User Accounts foundation completed; Phase 12 Dashboard V0 + Auth UI Shell completed; Phase 13 Project Target Setup completed
 
 This document defines Sherlock's authentication and account foundation for future authenticated product usage. Sherlock will use Supabase Auth as the intended authentication provider, while keeping the current repository safe to run without a live Supabase project or real secrets.
 
-Phase 11 is a backend/auth foundation only. Phase 12 adds static login, signup, forgot-password, and dashboard UI shells under `apps/web`. It still does not add production auth/session flow, billing, queue workers, target verification, public scan execution, report generation, PDF export, an admin panel, or production RLS policies.
+Phase 11 is a backend/auth foundation only. Phase 12 adds static login, signup, forgot-password, and dashboard UI shells under `apps/web`. Phase 13 adds static project and target setup screens under the dashboard. It still does not add production auth/session flow, authenticated project persistence, billing, queue workers, target verification, public scan execution, report generation, PDF export, an admin panel, or production RLS policies.
 
 ## Provider Direction
 
@@ -38,6 +38,10 @@ The static web app now includes auth UI shell pages:
 - `apps/web/dashboard/settings.html`
 
 These pages do not create accounts, create sessions, send password reset emails, store tokens, or store credentials. The login and settings pages may display `GET /api/v0/auth/status` when the local API is running; this endpoint returns configuration state only.
+
+## Current Phase 13 UI Behavior
+
+The static dashboard now includes project and target setup pages. They do not create authenticated project records, write database rows, store target credentials, verify target ownership, or run scans. Future authenticated persistence should require production JWT validation, organization membership checks, tenant-scoped RLS policies, and server-side authorization before accepting project or target writes.
 
 ## Environment Configuration
 
@@ -129,6 +133,7 @@ Do not add broad public policies. Do not expose tables before policies are revie
 - The service-role key must never be exposed to browser/frontend code.
 - Real secrets must stay in ignored local or managed deployment environments.
 - Login/signup UI is implemented only as a Phase 12 static shell.
-- The static web app includes public marketing pages plus a Dashboard V0 shell, not a production authenticated dashboard.
+- Project/target setup UI is implemented only as a Phase 13 static shell.
+- The static web app includes public marketing pages plus a Dashboard V0 and setup shell, not a production authenticated dashboard.
 - Auth routes do not expose scanner, prompt-library, evaluator, target-verification, report-generation, billing, admin, or worker behavior.
 - Production JWT validation and production RLS policies remain future reviewed work.
