@@ -1,8 +1,8 @@
 # Sherlock Backend API
 
-Status: Phase 15 Queue + Worker System completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, and Phase 15 queue/worker contracts.
+Status: Phase 16 Scan Types + Limits completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, Phase 15 queue/worker contracts, and Phase 16 scan type/limit static metadata.
 
-It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. The API still does not implement the full platform or active persistence.
+It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. Phase 16 adds safe static endpoints for scan types and limits. The API still does not implement the full platform or active persistence.
 
 ## Scope
 
@@ -26,8 +26,9 @@ Phase 9 through Phase 15 include:
 - Phase 14 safe verification helpers (token generation, hashing, format checks — no network requests)
 - Phase 14 verification helper unit tests
 - Phase 15 queue/worker system foundation under `packages/worker_system`
+- Phase 16 scan type and limit system foundation under `packages/scan_limits`
 
-Phase 15 adds queue/worker contracts to placeholder responses. The API still does not include:
+Phase 16 adds static scan type and limit metadata to new safe endpoints. The API still does not include:
 
 - active API database persistence
 - real production project persistence
@@ -43,11 +44,12 @@ Phase 15 adds queue/worker contracts to placeholder responses. The API still doe
 - production DNS/HTTP/chatbot verification checks
 - verification record persistence
 - SSRF protection implementation
-- secret storage
+- secret storage or committed secrets
 - real report generation
 - PDF export
 - admin panel
 - scanner execution through HTTP routes
+- real external network scanning
 
 ## Structure
 
@@ -124,6 +126,8 @@ psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations
 | GET | `/health` | Confirms the API process is running and returns app name, status, version, and environment. |
 | GET | `/version` | Returns current product phase, available modules, future placeholders, and disabled security-sensitive capabilities. |
 | GET | `/api/v0/auth/status` | Returns Supabase Auth configuration state without requiring live credentials. |
+| GET | `/api/v0/scans/types` | Returns static Phase 16 definitions for the 5 scan modes and their limits. |
+| GET | `/api/v0/scans/limits` | Returns static Phase 16 plan tier placeholders and category inclusion matrices. |
 
 ## Protected Route Foundations
 
@@ -161,7 +165,7 @@ Responses use a shared shape for future consistency:
   "error": null,
   "metadata": {
     "api_version": "v0",
-    "phase": "Phase 15 Queue + Worker System completed",
+    "phase": "Phase 16 Scan Types + Limits completed",
     "environment": "local"
   }
 }
@@ -180,7 +184,7 @@ Safe environment variables:
 | `SHERLOCK_MARKETING_NAME` | `PowerDetect Sherlock` | Full marketing name. |
 | `SHERLOCK_ENVIRONMENT` | `local` | Runtime environment label. |
 | `SHERLOCK_API_VERSION` | `v0` | API route/version label. |
-| `SHERLOCK_CURRENT_PHASE` | `Phase 15 Queue + Worker System completed` | Product phase label. |
+| `SHERLOCK_CURRENT_PHASE` | `Phase 16 Scan Types + Limits completed` | Product phase label. |
 | `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by routes in Phase 15. |
 | `AUTH_ENABLED` | `false` | Enables future auth enforcement only after real Supabase/JWKS configuration exists. |
 | `SUPABASE_URL` | empty string | Future Supabase project URL placeholder. |

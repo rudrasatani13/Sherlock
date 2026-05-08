@@ -152,6 +152,7 @@ The repository remains intentionally minimal. Phase 15 adds the queue and worker
 - [Sample Report Reference](docs/sample-report.md)
 - [Security Notes](docs/security.md)
 - [Queue and Worker System](docs/workers.md)
+- [Scan Types and Limits](docs/scan-types-and-limits.md)
 - [Roadmap](docs/roadmap.md)
 - [Scope Boundaries](docs/scope.md)
 - [Phase 2 Public Website Notes](docs/phase-2-public-website.md)

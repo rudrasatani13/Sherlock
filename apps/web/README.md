@@ -1,6 +1,6 @@
 # Sherlock Web
 
-Status: Phase 15 Queue + Worker System dashboard updates completed.
+Status: Phase 16 Scan Types + Limits dashboard updates completed.
 
 This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, and Phase 14 Target Verification UI for PowerDetect Sherlock.
 
@@ -36,7 +36,8 @@ It is intentionally static:
 - `dashboard/target-setup.html` - Phase 13 static target setup form
 - `dashboard/target-detail.html` - Phase 13 static target detail placeholder
 - `dashboard/target-verification.html` - Phase 14 target ownership verification page with method selector, instructions, status, and security boundaries
-- `dashboard/scans.html` - static scans page with lifecycle status examples
+- `dashboard/scan-setup.html` - Phase 16 static scan setup page displaying scan types, limits, and plan tier tables with disabled execution controls
+- `dashboard/scans.html` - static scans page with lifecycle status examples and link to scan setup
 - `dashboard/findings.html` - static findings page with severity/filter placeholders
 - `dashboard/reports.html` - static reports page linking to the sample report
 - `dashboard/settings.html` - static account/settings page with auth-status placeholder
@@ -70,6 +71,6 @@ The Phase 14 target verification page displays verification method selection, ch
 
 Phase 3 refreshed `methodology.html` to align with the internal methodology in `../../docs/methodology.md`. The public page remains a readable overview, not the full internal taxonomy and not an attack prompt library.
 
-Phase 4 expands `sample-report.html` into a realistic static sample report with fictional findings, sanitized demo evidence, retest status, limitations, and final recommendations. Phase 6 adds an internal prompt library outside the web app under `../../packages/prompt_library`. Phase 8 adds manual audit workflow documentation under `../../docs/audits`. Phase 9 adds a separate backend API foundation under `../api`. Phase 11 adds backend auth placeholders. Phase 12 adds the dashboard/auth UI shell. Phase 13 adds project and target setup UI only. Phase 14 adds the target ownership verification page and updates existing project/target pages with verification links and status.
+Phase 4 expands `sample-report.html` into a realistic static sample report with fictional findings, sanitized demo evidence, retest status, limitations, and final recommendations. Phase 6 adds an internal prompt library outside the web app under `../../packages/prompt_library`. Phase 8 adds manual audit workflow documentation under `../../docs/audits`. Phase 9 adds a separate backend API foundation under `../api`. Phase 11 adds backend auth placeholders. Phase 12 adds the dashboard/auth UI shell. Phase 13 adds project and target setup UI only. Phase 14 adds the target ownership verification page and updates existing project/target pages with verification links and status. Phase 16 adds a static scan setup page that displays scan types and limits without running any scans.
 
-The web app is still not generated from a real scan and does not implement report generation, PDF export, protected API consumption, production auth, database storage, billing, queue workers, scanner logic, prompt execution, evaluator code, admin panels, production verification checks, project persistence, target persistence, scan creation, or public self-serve scanning.
+The web app is still not generated from a real scan and does not implement report generation, PDF export, protected API consumption, production auth, database storage, billing, Stripe, queue workers, scanner logic, prompt execution, evaluator code, admin panels, production verification checks, project persistence, target persistence, scan creation, or public self-serve scanning.
