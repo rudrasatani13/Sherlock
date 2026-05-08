@@ -192,11 +192,36 @@ Implemented as foundation only:
 
 Phase 11 does not implement production login/signup UI, production JWT verification, sessions, authenticated dashboard, billing, queue workers, public scan execution, target verification, active API database persistence, scanner execution exposure, report generation, PDF export, admin panels, broad RLS policies, or real secrets.
 
-## Phase 12+: Product Platform
+## Phase 12: Dashboard V0 + Auth UI Shell
+
+Status: completed
+
+Created the first product dashboard UI/UX foundation under the existing static `apps/web` implementation.
+
+Implemented as static UI only:
+
+- login page UI shell
+- signup page UI shell
+- forgot-password page UI shell
+- protected dashboard layout shell
+- dashboard overview page
+- projects page
+- scans page
+- findings page
+- reports page
+- settings/account page
+- consistent dashboard navigation, workspace/account placeholders, empty states, loading/error state patterns, status badges, and disabled future-action controls
+- clear "Dashboard V0", "demo shell", and "not connected yet" messaging
+- optional safe display of `GET /api/v0/auth/status` on auth/settings pages when the local API is running
+- public website links to login and Dashboard V0
+
+Phase 12 does not implement production auth/session flow, live Supabase browser integration, production JWT verification, active database persistence from the UI, real project creation, real scan creation, scanner execution, target ownership verification, queue workers, billing, generated web reports, PDF export, admin panels, or destructive testing.
+
+## Phase 13+: Product Platform
 
 Future platform work may include:
 
-- Phase 12 dashboard API consumption
+- Phase 13 project setup and safe dashboard API consumption
 - Phase 14 target ownership verification
 - Phase 15 async workers and queues
 - Phase 17 findings system

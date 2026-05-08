@@ -6,9 +6,9 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 11: Authentication and User Accounts**.
+Sherlock has completed **Phase 12: Dashboard V0 + Auth UI Shell**.
 
-The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, and the Phase 11 authentication and user accounts foundation:
+The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, and the Phase 12 dashboard/auth UI shell:
 
 - repository organization
 - product and architecture documentation
@@ -60,8 +60,14 @@ The repository now contains the Phase 1 foundation, the static Phase 2 public we
 - public auth status route and protected current-user route foundation
 - current-user/profile/membership response schemas
 - user profile, organization membership, role model, backend JWT validation, and future RLS strategy documentation
+- static login, signup, and forgot-password UI shells
+- protected-dashboard layout shell under `apps/web/dashboard/`
+- dashboard overview, projects, scans, findings, reports, and settings pages
+- dashboard navigation, workspace/account placeholders, empty states, status badges, loading/error state patterns, and disabled future-action controls
+- optional browser-side display of the safe `GET /api/v0/auth/status` endpoint when the local API is running
+- public website links to the Dashboard V0 and Login UI shell
 
-No public self-serve scan execution, backend scan execution APIs, authenticated dashboard, production login/signup UI, production JWT verification, active API database persistence, billing, queue workers, PDF generation, admin panel, target verification implementation, production scanner exposure, or real report generation are implemented.
+No public self-serve scan execution, backend scan execution APIs, production auth/session flow, production JWT verification, active API database persistence, real project persistence from the UI, real scan creation, billing, queue workers, PDF generation, admin panel, target verification implementation, production scanner exposure, generated web reports, or real report generation are implemented.
 
 ## Product Positioning
 
@@ -84,7 +90,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 .
 |-- apps/
 |   |-- api/             # Phase 9 FastAPI backend foundation with Phase 11 auth placeholders
-|   `-- web/             # Phase 2 static public website
+|   `-- web/             # Static public website plus Phase 12 dashboard/auth UI shell
 |-- config/              # Shared product metadata and future configuration
 |-- db/                  # Phase 10 PostgreSQL/Supabase-compatible database foundation
 |-- docs/                # Product, architecture, security, roadmap, and setup docs
@@ -96,7 +102,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 `-- README.md
 ```
 
-The repository remains intentionally minimal. Phase 11 introduces an authentication and user account foundation only; full platform features remain future phases.
+The repository remains intentionally minimal. Phase 12 introduces static dashboard and auth UI shell surfaces only; full platform behavior remains future phases.
 
 ## Documentation
 
@@ -127,6 +133,15 @@ python3 -m http.server 4173 --directory apps/web
 
 Then open `http://localhost:4173/`.
 
+Phase 12 dashboard/auth shell pages are available at:
+
+```text
+http://localhost:4173/login.html
+http://localhost:4173/signup.html
+http://localhost:4173/forgot-password.html
+http://localhost:4173/dashboard/
+```
+
 Install and run the backend API foundation:
 
 ```bash
@@ -143,7 +158,7 @@ createdb sherlock_local
 psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations/20260507100000_phase_10_initial_database_foundation.sql
 ```
 
-There is still no live Supabase connection requirement, billing provider, queue worker, dashboard, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, target verification flow, report generator, production JWT verification, production login/signup UI, or active API persistence path configured.
+There is still no live Supabase connection requirement, billing provider, queue worker, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, target verification flow, report generator, production JWT verification, production login/signup/session flow, or active API persistence path configured.
 
 Run the internal Phase 5 mock scanner dry-run with Python:
 

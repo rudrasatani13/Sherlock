@@ -1,10 +1,10 @@
 # Sherlock Database Foundation
 
-Status: Phase 11 Authentication and User Accounts foundation completed
+Status: Phase 10 Database Setup completed; Phase 11 auth alignment documented; Phase 12 dashboard UI shell does not use active persistence
 
 This directory contains the database foundation for Sherlock, the AI Launch Security Audit + Scanner product under the PowerDetect brand.
 
-Phase 10 defines a PostgreSQL/Supabase-compatible schema, migration structure, schema documentation, local setup guidance, and security boundaries. Phase 11 documents how this schema will align with Supabase Auth and adds backend auth placeholders, but it does not connect API routes to production persistence.
+Phase 10 defines a PostgreSQL/Supabase-compatible schema, migration structure, schema documentation, local setup guidance, and security boundaries. Phase 11 documents how this schema will align with Supabase Auth and adds backend auth placeholders. Phase 12 adds static dashboard/auth UI pages, but it does not connect API routes or browser UI to production persistence.
 
 ## Selected Technology
 

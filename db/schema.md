@@ -1,8 +1,8 @@
 # Sherlock Database Schema
 
-Status: Phase 11 Authentication and User Accounts foundation completed
+Status: Phase 10 Database Setup completed; Phase 11 auth alignment documented; Phase 12 dashboard UI shell does not use active persistence
 
-This document describes the Phase 10 PostgreSQL/Supabase-compatible database foundation for Sherlock and the Phase 11 auth alignment strategy.
+This document describes the Phase 10 PostgreSQL/Supabase-compatible database foundation for Sherlock and the Phase 11 auth alignment strategy. Phase 12 adds static dashboard/auth UI shell pages only and does not add active database reads or writes.
 
 The schema is a foundation for future platform phases. It is not connected to production API persistence yet.
 

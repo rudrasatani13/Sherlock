@@ -1,6 +1,6 @@
 # Scope Boundaries
 
-Sherlock has completed Phase 11 Authentication and User Accounts foundation.
+Sherlock has completed Phase 12 Dashboard V0 + Auth UI Shell.
 
 ## In Scope for Phase 1
 
@@ -152,12 +152,25 @@ Sherlock has completed Phase 11 Authentication and User Accounts foundation.
 - local development behavior without real Supabase credentials
 - auth helper tests
 
-## Out of Scope Through Phase 11
+## In Scope for Phase 12
 
-- production login/signup UI
+- static login UI shell
+- static signup UI shell
+- static forgot-password UI shell
+- protected dashboard layout shell
+- dashboard overview, projects, scans, findings, reports, and settings pages
+- consistent dashboard navigation, workspace/account placeholders, empty states, loading/error patterns, status badges, and disabled future actions
+- static/demo dashboard data clearly labeled as demo-only
+- optional frontend display of the safe `GET /api/v0/auth/status` endpoint when the local API is running
+- documentation updates for dashboard/auth UI boundaries
+
+## Out of Scope Through Phase 12
+
+- production login/signup/session flow
 - production JWT verification
-- production sessions
-- dashboard UI
+- live Supabase browser integration
+- real authenticated dashboard API consumption
+- dashboard database reads/writes
 - admin panel
 - billing
 - queue workers
@@ -189,4 +202,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 11 establishes the authentication and user account foundation required before future dashboard, active persistence, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, and `db/schema.md` as the database foundation reference.
+Phase 12 establishes the dashboard/auth UI foundation required before future project setup, active persistence, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, and `db/schema.md` as the database foundation reference.

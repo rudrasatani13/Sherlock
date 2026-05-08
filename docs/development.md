@@ -1,8 +1,8 @@
 # Development Setup
 
-Sherlock has completed Phase 11 Authentication and User Accounts foundation. There is a static public website under `apps/web`, a minimal FastAPI backend foundation under `apps/api`, a PostgreSQL/Supabase-compatible database foundation under `db/`, a Supabase Auth-compatible auth foundation documented in `docs/auth.md`, an internal Python scanner foundation under `packages/scanner_engine`, an internal prompt library under `packages/prompt_library`, an internal evaluator system under `packages/evaluator_system`, and manual audit workflow documentation under `docs/audits` with templates under `templates`.
+Sherlock has completed Phase 12 Dashboard V0 + Auth UI Shell. There is a static public website and static dashboard/auth UI shell under `apps/web`, a minimal FastAPI backend foundation under `apps/api`, a PostgreSQL/Supabase-compatible database foundation under `db/`, a Supabase Auth-compatible auth foundation documented in `docs/auth.md`, an internal Python scanner foundation under `packages/scanner_engine`, an internal prompt library under `packages/prompt_library`, an internal evaluator system under `packages/evaluator_system`, and manual audit workflow documentation under `docs/audits` with templates under `templates`.
 
-There is still no active API database persistence, production JWT verification, production login/signup UI, report generator, PDF export, queue, billing, dashboard, admin panel, public scan feature, target verification flow, or public scanner execution API configured.
+There is still no active API database persistence, production JWT verification, production login/signup/session flow, live Supabase browser integration, report generator, PDF export, queue, billing, admin panel, public scan feature, target verification flow, or public scanner execution API configured.
 
 ## Current Requirements
 
@@ -12,7 +12,7 @@ There is still no active API database persistence, production JWT verification, 
 - Optional local PostgreSQL or Supabase CLI setup if you want to apply the Phase 10 SQL migration locally
 - Optional future Supabase project credentials for auth experiments, kept only in ignored local environment files
 
-No Node.js package manager, Redis, live Supabase project, real auth keys, billing provider, report generator, PDF tooling, dashboard, admin panel, public scan feature, target verification provider, queue worker, or external AI provider is required for Phase 11.
+No Node.js package manager, Redis, live Supabase project, real auth keys, billing provider, report generator, PDF tooling, admin panel, public scan feature, target verification provider, queue worker, or external AI provider is required for Phase 12.
 
 ## Local Environment
 
@@ -26,13 +26,15 @@ Only use placeholder values until a future phase actually needs an integration.
 
 Do not commit `.env.local` or any other real environment file.
 
-Phase 11 keeps `AUTH_ENABLED=false` by default. With placeholders or missing Supabase values, `GET /api/v0/auth/status` is safe to call locally and protected routes such as `GET /api/v0/me` return auth unavailable rather than fake user data.
+Phase 11 keeps `AUTH_ENABLED=false` by default, and Phase 12 does not change that. With placeholders or missing Supabase values, `GET /api/v0/auth/status` is safe to call locally and protected routes such as `GET /api/v0/me` return auth unavailable rather than fake user data. The Phase 12 static login/settings pages can display this status if the local API is running.
 
 ## Useful Checks
 
 ```bash
 python3 -m http.server 4173 --directory apps/web
 curl -I http://localhost:4173/
+curl -I http://localhost:4173/login.html
+curl -I http://localhost:4173/dashboard/
 python3 -m pip install -r apps/api/requirements.txt
 PYTHONPATH=apps/api python3 -m uvicorn app.main:app --reload --port 8000
 curl http://localhost:8000/health

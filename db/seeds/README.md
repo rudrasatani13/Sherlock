@@ -1,6 +1,6 @@
 # Sherlock Database Seeds
 
-Status: Phase 11 Authentication and User Accounts foundation completed
+Status: Phase 10 Database Setup completed; no Phase 12 seed data added
 
 No seed data is included in Phase 10.
 
