@@ -105,6 +105,16 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Add cancellation and timeout support before long-running scans.
 - Do not allow unbounded prompt loops, tool calls, or retries.
 - Keep Phase 9 scan routes as `501 not_implemented` placeholders until abuse controls and worker isolation are added.
+- Phase 16 adds scan type limit definitions, category inclusion rules, plan tier placeholders, and validation helpers under `packages/scan_limits`:
+  - every scan type has bounded max_tests, timeout_seconds, max_concurrency, and response char limits
+  - every scan type requires a verified target (manual_audit_assisted allows auditor authorization override)
+  - quick scans are limited to 10 tests and 120 seconds
+  - deep scans are disabled until paid plan gates exist
+  - manual_audit_assisted is not self-serve and requires manual review flag or authorization
+  - retest scans require targeted categories (max 3) and cannot request broad coverage
+  - job payloads are validated against scan type limits before worker execution
+  - plan tiers are placeholders — billing and Stripe are not implemented
+  - users cannot set raw max_tests, timeout, or concurrency beyond server-defined limits
 
 ## Tool and Function Abuse
 
@@ -121,5 +131,5 @@ Future tool-using-agent tests must avoid invoking destructive or high-risk actio
 ## Backend API Boundary
 
 - Phase 9 adds a FastAPI foundation under `apps/api` with health, version/status, config, logging, CORS placeholder, structured errors, response schemas, and placeholder route groups.
-- Phase 10 adds a database schema and migration foundation under `db/`, Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, Phase 12 adds a static dashboard/auth UI shell under `apps/web`, Phase 13 adds static project/target setup pages plus placeholder API contract metadata, and Phase 14 adds verification contracts, safe validation helpers, and verification UI. The API still does not implement active database persistence, real production project persistence, production JWT verification, production DNS/HTTP/chatbot verification checks, verification record persistence, billing, queue workers, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
+- Phase 10 adds a database schema and migration foundation under `db/`, Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, Phase 12 adds a static dashboard/auth UI shell under `apps/web`, Phase 13 adds static project/target setup pages plus placeholder API contract metadata, Phase 14 adds verification contracts, safe validation helpers, and verification UI, and Phase 16 adds scan type definitions, limit validation helpers, plan tier placeholders, GET /scans/types and GET /scans/limits endpoints, and a scan_type_limits worker safety gate. The API still does not implement active database persistence, real production project persistence, production JWT verification, production DNS/HTTP/chatbot verification checks, verification record persistence, billing, queue workers, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
 - Future scanner integration must run outside public request handlers and only after production auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and worker queues are in place.

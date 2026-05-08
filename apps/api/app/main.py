@@ -16,7 +16,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(
         title=f"{active_settings.marketing_name} API",
         version=active_settings.api_version,
-        description="Phase 15 product status for Sherlock. The API includes queue/worker system foundation contracts. Public scanning, active API persistence, billing, production verification checks, production dashboard API integration, and production queue deployment are not implemented.",
+        description="Phase 16 product status for Sherlock. The API includes scan type/limit definitions, plan tier placeholders, and queue/worker system foundation contracts. Public scanning, active API persistence, billing, production verification checks, production dashboard API integration, and production queue deployment are not implemented.",
         debug=active_settings.debug,
     )
 

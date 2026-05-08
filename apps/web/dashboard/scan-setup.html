@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scan Setup | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Dashboard scan type selection and limit overview. Phase 16 foundation — scan execution is not yet available."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Dashboard V0</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>Organization switching is not connected yet.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html">Projects</a>
+          <a href="scans.html" aria-current="page">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Phase 16 — Scan Types + Limits</p>
+            <h1>Scan Setup.</h1>
+          </div>
+          <div class="topbar-actions">
+            <a class="button secondary" href="scans.html">← Back to Scans</a>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Scan Execution Not Live</span>
+              <h2>Choose a scan type to understand coverage.</h2>
+              <p>
+                Scans require verified targets and future worker-backed execution.
+                Run Scan is disabled until production safety gates, authentication, and billing are in place.
+              </p>
+            </div>
+          </section>
+
+          <!-- Scan Type Cards -->
+          <section class="dashboard-card" id="scan-type-quick">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Preflight check</p>
+                <h2>Quick Scan</h2>
+              </div>
+              <span class="status-pill pass">Enabled</span>
+            </div>
+            <p>A small preflight check with limited categories. Low cost, fast turnaround. Useful for early demos and free-tier usage later.</p>
+            <div class="responsive-table">
+              <table>
+                <tbody>
+                  <tr><td><strong>Max Tests</strong></td><td>10</td></tr>
+                  <tr><td><strong>Estimated Duration</strong></td><td>Up to 2 minutes</td></tr>
+                  <tr><td><strong>Max Concurrency</strong></td><td>1</td></tr>
+                  <tr><td><strong>Response Limit</strong></td><td>4,000 chars/test</td></tr>
+                  <tr><td><strong>Categories</strong></td><td>Prompt Injection, System Prompt Leakage, Unsafe Output Handling</td></tr>
+                  <tr><td><strong>Verified Target</strong></td><td>Required</td></tr>
+                  <tr><td><strong>Report Level</strong></td><td>Summary</td></tr>
+                  <tr><td><strong>Plan Availability</strong></td><td>Free, Launch Scan, Builder, Startup, Manual Audit</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="button primary" type="button" disabled id="btn-run-quick">Run Quick Scan — Coming in Future Phase</button>
+          </section>
+
+          <section class="dashboard-card" id="scan-type-standard">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Launch readiness</p>
+                <h2>Standard Scan</h2>
+              </div>
+              <span class="status-pill pass">Enabled</span>
+            </div>
+            <p>A balanced launch-readiness scan covering core vulnerability categories. Moderate test count and timeout. Future web report eligible.</p>
+            <div class="responsive-table">
+              <table>
+                <tbody>
+                  <tr><td><strong>Max Tests</strong></td><td>50</td></tr>
+                  <tr><td><strong>Estimated Duration</strong></td><td>Up to 10 minutes</td></tr>
+                  <tr><td><strong>Max Concurrency</strong></td><td>2</td></tr>
+                  <tr><td><strong>Response Limit</strong></td><td>8,000 chars/test</td></tr>
+                  <tr><td><strong>Categories</strong></td><td>Prompt Injection, System Prompt Leakage, Sensitive Data Leakage, RAG Data Leakage, Unsafe Output Handling, Cost Abuse</td></tr>
+                  <tr><td><strong>Verified Target</strong></td><td>Required</td></tr>
+                  <tr><td><strong>Report Level</strong></td><td>Standard</td></tr>
+                  <tr><td><strong>Plan Availability</strong></td><td>Launch Scan, Builder, Startup, Manual Audit</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="button primary" type="button" disabled id="btn-run-standard">Run Standard Scan — Coming in Future Phase</button>
+          </section>
+
+          <section class="dashboard-card" id="scan-type-deep">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Thorough review</p>
+                <h2>Deep Scan</h2>
+              </div>
+              <span class="status-pill review">Disabled — Future Paid Plan</span>
+            </div>
+            <p>A thorough review for serious AI applications. Covers all vulnerability categories including RAG, tool abuse, and indirect injection. Stricter queue limits and longer timeouts.</p>
+            <div class="responsive-table">
+              <table>
+                <tbody>
+                  <tr><td><strong>Max Tests</strong></td><td>150</td></tr>
+                  <tr><td><strong>Estimated Duration</strong></td><td>Up to 30 minutes</td></tr>
+                  <tr><td><strong>Max Concurrency</strong></td><td>3</td></tr>
+                  <tr><td><strong>Response Limit</strong></td><td>12,000 chars/test</td></tr>
+                  <tr><td><strong>Categories</strong></td><td>All 8 categories (Prompt Injection, System Prompt Leakage, Sensitive Data Leakage, RAG Data Leakage, Indirect Prompt Injection, Tool / Function Abuse, Unsafe Output Handling, Cost Abuse)</td></tr>
+                  <tr><td><strong>Verified Target</strong></td><td>Required</td></tr>
+                  <tr><td><strong>Report Level</strong></td><td>Detailed</td></tr>
+                  <tr><td><strong>Plan Availability</strong></td><td>Builder, Startup, Manual Audit</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="button primary" type="button" disabled id="btn-run-deep">Deep Scan — Available with Paid Plan</button>
+          </section>
+
+          <section class="dashboard-card" id="scan-type-manual-audit">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Expert-led testing</p>
+                <h2>Manual Audit Assisted</h2>
+              </div>
+              <span class="status-pill review">Disabled — Not Self-Serve</span>
+            </div>
+            <p>Semi-automated support for the Phase 8 manual audit workflow. Not available as public self-serve. Requires manual review and auditor-controlled scope.</p>
+            <div class="responsive-table">
+              <table>
+                <tbody>
+                  <tr><td><strong>Max Tests</strong></td><td>250</td></tr>
+                  <tr><td><strong>Estimated Duration</strong></td><td>Up to 60 minutes</td></tr>
+                  <tr><td><strong>Max Concurrency</strong></td><td>2</td></tr>
+                  <tr><td><strong>Categories</strong></td><td>All 8 categories</td></tr>
+                  <tr><td><strong>Verified Target</strong></td><td>Required (or manual authorization override)</td></tr>
+                  <tr><td><strong>Manual Review</strong></td><td>Required</td></tr>
+                  <tr><td><strong>Report Level</strong></td><td>Manual Review</td></tr>
+                  <tr><td><strong>Plan Availability</strong></td><td>Manual Audit tier only</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="button primary" type="button" disabled id="btn-run-manual-audit">Contact for Manual Audit</button>
+          </section>
+
+          <section class="dashboard-card" id="scan-type-retest">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Focused retest</p>
+                <h2>Retest Scan</h2>
+              </div>
+              <span class="status-pill pass">Enabled</span>
+            </div>
+            <p>A focused retest for a specific finding or category after fixes. Small targeted test set tied to a previous scan or finding. Cheaper and faster.</p>
+            <div class="responsive-table">
+              <table>
+                <tbody>
+                  <tr><td><strong>Max Tests</strong></td><td>20</td></tr>
+                  <tr><td><strong>Estimated Duration</strong></td><td>Up to 5 minutes</td></tr>
+                  <tr><td><strong>Max Concurrency</strong></td><td>1</td></tr>
+                  <tr><td><strong>Response Limit</strong></td><td>4,000 chars/test</td></tr>
+                  <tr><td><strong>Categories</strong></td><td>Targeted only (max 3 categories per retest)</td></tr>
+                  <tr><td><strong>Verified Target</strong></td><td>Required</td></tr>
+                  <tr><td><strong>Report Level</strong></td><td>Retest</td></tr>
+                  <tr><td><strong>Plan Availability</strong></td><td>Launch Scan, Builder, Startup, Manual Audit</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <button class="button primary" type="button" disabled id="btn-run-retest">Run Retest — Coming in Future Phase</button>
+          </section>
+
+          <!-- Why Limits Exist -->
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Security and cost controls</p>
+                <h2>Why limits exist.</h2>
+              </div>
+            </div>
+            <ul class="check-list">
+              <li><strong>Protect against cost abuse.</strong> Unbounded prompt execution, tool calls, and retries are forbidden. Every scan mode has a max test count and timeout.</li>
+              <li><strong>Protect targets.</strong> Every scan requires a verified target. Unverified or unauthorized targets cannot be scanned.</li>
+              <li><strong>Prevent unbounded consumption.</strong> Concurrency, response size, and monthly scan counts are capped per scan type and plan tier.</li>
+              <li><strong>Keep reports manageable.</strong> Report levels are matched to scan depth. Deep scans produce detailed reports; quick scans produce summaries.</li>
+              <li><strong>Rate limit and deny-of-wallet controls.</strong> Future phases will add rate limits, spend controls, and abuse detection.</li>
+            </ul>
+          </section>
+
+          <!-- Plan Tier Placeholders -->
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Future plan tiers — not yet live</p>
+                <h2>Access tiers.</h2>
+              </div>
+            </div>
+            <p>Plan tiers are placeholders. Billing and Stripe integration are not implemented. No paid plans are live.</p>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Tier</th>
+                    <th scope="col">Scan Types</th>
+                    <th scope="col">Monthly Scans</th>
+                    <th scope="col">Max Projects</th>
+                    <th scope="col">Retests</th>
+                    <th scope="col">Web Report</th>
+                    <th scope="col">PDF Export</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Free</strong></td>
+                    <td>Quick</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>—</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Launch Scan</strong></td>
+                    <td>Quick, Standard, Retest</td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>✓</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Builder</strong></td>
+                    <td>Quick, Standard, Deep, Retest</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>10</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Startup</strong></td>
+                    <td>Quick, Standard, Deep, Retest</td>
+                    <td>50</td>
+                    <td>15</td>
+                    <td>25</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Manual Audit</strong></td>
+                    <td>All (including Manual Audit Assisted)</td>
+                    <td>100</td>
+                    <td>25</td>
+                    <td>50</td>
+                    <td>✓</td>
+                    <td>✓</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Warning Banner -->
+          <section class="dashboard-card" style="border-top: 4px solid var(--copper);">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Important</p>
+                <h2>What is not live yet.</h2>
+              </div>
+            </div>
+            <ul class="plain-list">
+              <li>Public scan execution is not available. The Run Scan buttons are disabled.</li>
+              <li>Billing, Stripe, and paid plan enforcement are not implemented. Plan tiers are placeholders.</li>
+              <li>PDF and web report generation are not implemented.</li>
+              <li>Scan findings persistence and web reports are future phases.</li>
+              <li>Scans require verified targets. Complete <a href="target-verification.html">target verification</a> first.</li>
+              <li>Worker-backed execution requires production auth, SSRF protection, rate limits, and spend controls.</li>
+            </ul>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

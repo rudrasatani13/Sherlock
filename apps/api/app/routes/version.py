@@ -64,16 +64,21 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
         ),
         ModuleStatus(
             module="scans",
-            status="queue_foundation",
-            purpose="Phase 15 queue and worker system foundation with job lifecycle, safety gates, and local mock execution.",
-            future_phase="Future production queue deployment after auth, verification, SSRF protection, and rate limits",
-            available_endpoints=[f"GET {api_prefix}/scans"],
+            status="scan_types_and_limits_foundation",
+            purpose="Phase 16 scan types, limits, plan tiers, and category matrix foundation. Builds on Phase 15 queue/worker with bounded scan modes.",
+            future_phase="Future production scan execution after auth, verification, SSRF protection, rate limits, and billing",
+            available_endpoints=[
+                f"GET {api_prefix}/scans",
+                f"GET {api_prefix}/scans/types",
+                f"GET {api_prefix}/scans/limits",
+            ],
             future_capabilities=[
                 "scan job creation (authenticated + verified)",
                 "scan job status queries",
                 "scan job cancellation",
                 "queue worker handoff",
                 "worker result ingestion",
+                "scan type selection and limit enforcement",
             ],
             disabled_capabilities=[
                 "public scan creation",
@@ -81,6 +86,7 @@ def _module_statuses(api_prefix: str) -> list[ModuleStatus]:
                 "scanner execution from API routes",
                 "real network scanning",
                 "active scan persistence",
+                "billing enforcement",
             ],
         ),
         ModuleStatus(

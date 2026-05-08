@@ -164,6 +164,13 @@ def check_safety_gates(
     results.append(_check_no_secrets_in_payload(payload))
     results.append(_check_limits(payload))
 
+    # Phase 16: scan type limit validation (optional integration)
+    try:
+        from packages.scan_limits.worker_integration import check_scan_type_limits
+        results.append(check_scan_type_limits(payload.to_dict()))
+    except ImportError:
+        pass  # scan_limits package not available — skip gate
+
     failed = [r for r in results if not r["passed"]]
     if failed:
         first_failure = failed[0]

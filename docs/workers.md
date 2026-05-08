@@ -183,6 +183,7 @@ Before any job executes, the worker checks these gates in order:
 4. **target_url_safe** — blocks private/internal/localhost/metadata-service URLs
 5. **no_secrets_in_payload** — rejects fields that look like API keys, tokens, passwords
 6. **limits** — `max_tests` and `timeout_seconds` must not exceed configured maximums
+7. **scan_type_limits** (Phase 16) — checks scan type limits, category mapping, and verification rules
 
 If any gate fails, the job is blocked with `blocked_unverified` or `blocked_unsafe` status and an error message explaining which gate failed.
 

@@ -6,9 +6,9 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 15: Queue + Worker System**.
+Sherlock has completed **Phase 16: Scan Types + Limits**.
 
-The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, the Phase 12 dashboard/auth UI shell, the Phase 13 project/target setup foundation, the Phase 14 target ownership verification foundation, and the Phase 15 queue and worker system foundation:
+The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, the Phase 12 dashboard/auth UI shell, the Phase 13 project/target setup foundation, the Phase 14 target ownership verification foundation, the Phase 15 queue and worker system foundation, and the Phase 16 scan types and limits foundation:
 
 - repository organization
 - product and architecture documentation
@@ -87,8 +87,19 @@ The repository now contains the Phase 1 foundation, the static Phase 2 public we
 - queue/worker contract metadata on the scans API placeholder route
 - dashboard queue status messaging and lifecycle reference
 - worker system unit tests
+- scan type definitions: quick_scan, standard_scan, deep_scan, manual_audit_assisted, retest_scan
+- bounded limits per scan type: max_tests, timeout_seconds, max_concurrency, response/prompt char limits, report levels
+- category registry mapped to Phase 6 prompt library with per-scan-type inclusion/exclusion matrix
+- plan tier placeholders: free, launch_scan, builder, startup, manual_audit
+- composable scan limit validation helpers for type, categories, tests, timeout, concurrency, verification, manual audit guards, retest restrictions, and payload secret rejection
+- worker system scan_type_limits safety gate integration
+- API GET /api/v0/scans/types and GET /api/v0/scans/limits endpoints with static metadata
+- dashboard scan setup page with scan type cards, limit details, plan tier table, and disabled run buttons
+- 82 unit tests for scan types, limits, categories, plans, and validators
+- environment placeholders for scan limit configuration
+- comprehensive documentation in docs/scan-types-and-limits.md
 
-No public self-serve scan execution, backend scan execution APIs, production auth/session flow, production JWT verification, active API database persistence, real project persistence from the UI, real production project persistence, real target persistence from the UI, real scan creation, billing, production queue deployment, PDF generation, admin panel, production target verification, production scanner exposure, generated web reports, or real report generation are implemented.
+No public self-serve scan execution, backend scan execution APIs, production auth/session flow, production JWT verification, active API database persistence, real project persistence from the UI, real production project persistence, real target persistence from the UI, real scan creation, billing, Stripe integration, production queue deployment, PDF generation, admin panel, production target verification, production scanner exposure, generated web reports, or real report generation are implemented.
 
 ## Product Positioning
 
@@ -115,7 +126,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 |-- config/              # Shared product metadata and future configuration
 |-- db/                  # Phase 10 PostgreSQL/Supabase-compatible database foundation
 |-- docs/                # Product, architecture, security, roadmap, and setup docs
-|-- packages/            # Internal scanner engine, prompt library, evaluator system, worker system, and future shared libraries
+|-- packages/            # Internal scanner engine, prompt library, evaluator system, worker system, scan limits, and future shared libraries
 |-- templates/           # Phase 8 lightweight manual audit templates
 |-- .env.example         # Safe local environment template
 |-- .gitignore           # Repository hygiene and generated artifact exclusions

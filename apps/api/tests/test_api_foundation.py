@@ -17,7 +17,7 @@ from app.routes.auth import auth_status
 from app.routes.health import health_check
 from app.routes.projects import projects_placeholder
 from app.routes.targets import targets_placeholder
-from app.routes.scans import scans_placeholder
+from app.routes.scans import scans_placeholder, scan_types_list, scan_limits_info
 from app.routes.verification import verification_placeholder
 from app.routes.version import version_status
 
@@ -48,7 +48,7 @@ class ApiFoundationTests(unittest.TestCase):
                 "SHERLOCK_MARKETING_NAME": "PowerDetect Sherlock",
                 "SHERLOCK_ENVIRONMENT": "local",
                 "SHERLOCK_API_VERSION": "v0",
-                "SHERLOCK_CURRENT_PHASE": "Phase 15 Queue + Worker System completed",
+                "SHERLOCK_CURRENT_PHASE": "Phase 16 Scan Types + Limits completed",
                 "DATABASE_URL": "",
                 "AUTH_ENABLED": "false",
                 "SHERLOCK_AUTH_ENABLED": "false",
@@ -76,7 +76,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(settings.brand_name, "PowerDetect")
         self.assertEqual(settings.marketing_name, "PowerDetect Sherlock")
         self.assertEqual(settings.api_version, "v0")
-        self.assertEqual(settings.current_phase, "Phase 15 Queue + Worker System completed")
+        self.assertEqual(settings.current_phase, "Phase 16 Scan Types + Limits completed")
         self.assertEqual(settings.database_url, "")
         self.assertEqual(settings.supabase_url, "")
         self.assertEqual(settings.supabase_anon_key, "")
@@ -197,7 +197,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(context.exception.status_code, 501)
         self.assertEqual(context.exception.code, "not_implemented")
         details = context.exception.details
-        self.assertEqual(details["status"], "queue_foundation")
+        self.assertEqual(details["status"], "scan_types_and_limits_foundation")
         self.assertIn("queue_contract", details)
         contract = details["queue_contract"]
         job_types = [jt["job_type"] for jt in contract["job_types"]]
@@ -207,7 +207,16 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("queued", states)
         self.assertIn("blocked_unverified", states)
         self.assertIn("target_verified", contract["safety_gates"])
+        self.assertIn("scan_type_limits", contract["safety_gates"])
         self.assertIn("api_key", contract["forbidden_payload_fields"])
+        # Phase 16 scan types
+        self.assertIn("scan_types", details)
+        self.assertIsInstance(details["scan_types"], list)
+        self.assertTrue(len(details["scan_types"]) >= 5)
+        # Phase 16 plan tiers
+        self.assertIn("plan_tiers", details)
+        self.assertIsInstance(details["plan_tiers"], list)
+        self.assertTrue(len(details["plan_tiers"]) >= 5)
 
     def test_app_factory_registers_routes(self) -> None:
         app = create_app(Settings(allowed_origins=()))
@@ -218,7 +227,34 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("/api/v0/me", paths)
         self.assertIn("/api/v0/projects", paths)
         self.assertIn("/api/v0/scans", paths)
+        self.assertIn("/api/v0/scans/types", paths)
+        self.assertIn("/api/v0/scans/limits", paths)
         self.assertIn("/api/v0/verification", paths)
+
+    def test_scan_types_list_returns_types(self) -> None:
+        response = scan_types_list()
+        self.assertTrue(response.success)
+        self.assertIn("scan_types", response.data)
+        self.assertTrue(len(response.data["scan_types"]) >= 5)
+        self.assertEqual(response.data["total"], len(response.data["scan_types"]))
+        type_names = [t["scan_type"] for t in response.data["scan_types"]]
+        self.assertIn("quick_scan", type_names)
+        self.assertIn("standard_scan", type_names)
+
+    def test_scan_limits_info_returns_metadata(self) -> None:
+        response = scan_limits_info()
+        self.assertTrue(response.success)
+        self.assertIn("scan_types", response.data)
+        self.assertIn("plan_tiers", response.data)
+        self.assertIn("categories", response.data)
+        self.assertTrue(len(response.data["categories"]) >= 8)
+        self.assertIn("security_notes", response.data)
+        notes = response.data["security_notes"]
+        self.assertTrue(notes["every_scan_bounded"])
+        self.assertTrue(notes["verified_target_required"])
+        self.assertTrue(notes["unbounded_execution_forbidden"])
+        self.assertFalse(notes["billing_enforcement_active"])
+        self.assertFalse(notes["public_scan_execution_active"])
 
 
 if __name__ == "__main__":

@@ -44,7 +44,7 @@ class Settings:
     environment: str = field(default_factory=lambda: os.getenv("SHERLOCK_ENVIRONMENT", "local"))
     api_version: str = field(default_factory=lambda: os.getenv("SHERLOCK_API_VERSION", "v0"))
     current_phase: str = field(
-        default_factory=lambda: os.getenv("SHERLOCK_CURRENT_PHASE", "Phase 15 Queue + Worker System completed")
+        default_factory=lambda: os.getenv("SHERLOCK_CURRENT_PHASE", "Phase 16 Scan Types + Limits completed")
     )
     database_url: str = field(default_factory=lambda: os.getenv("DATABASE_URL", ""))
     supabase_url: str = field(default_factory=lambda: os.getenv("SUPABASE_URL", ""))
@@ -65,6 +65,15 @@ class Settings:
         default_factory=lambda: _parse_bool(os.getenv("WORKER_ENABLED"), default=False)
     )
     queue_backend: str = field(default_factory=lambda: os.getenv("QUEUE_BACKEND", "local"))
+    scan_limits_enabled: bool = field(
+        default_factory=lambda: _parse_bool(os.getenv("SCAN_LIMITS_ENABLED"), default=True)
+    )
+    default_scan_type: str = field(
+        default_factory=lambda: os.getenv("DEFAULT_SCAN_TYPE", "quick_scan")
+    )
+    deep_scan_enabled: bool = field(
+        default_factory=lambda: _parse_bool(os.getenv("DEEP_SCAN_ENABLED"), default=False)
+    )
 
     @property
     def api_prefix(self) -> str:

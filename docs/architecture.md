@@ -2,7 +2,7 @@
 
 Sherlock is planned as a modular AI launch security audit and scanner platform. The architecture should keep customer-facing workflows, scan execution, prompt libraries, evaluators, reports, and billing separated so each area can evolve without becoming tightly coupled.
 
-This document describes the future direction and the current Phase 15 queue and worker system foundation. Phase 15 adds a queue abstraction, job schemas, safety gates, local worker engine, and mock scan execution under `packages/worker_system`. It builds on Phase 14 verification, Phase 13 setup, Phase 12 dashboard, Phase 11 auth, Phase 10 database, and Phase 9 API foundations. It does not implement production queue deployment, public scan execution, real network scanning, active API database persistence, billing, report generation, PDF export, or admin panels.
+This document describes the future direction and the current Phase 16 scan types and limits foundation. Phase 16 adds scan type definitions, bounded limits, category inclusion rules, plan tier placeholders, and validation helpers under `packages/scan_limits`. It builds on Phase 15 queue/worker, Phase 14 verification, Phase 13 setup, Phase 12 dashboard, Phase 11 auth, Phase 10 database, and Phase 9 API foundations. It does not implement public scan execution, billing, Stripe, PDF/report generation, admin panels, production queue deployment, or real network scanning.
 
 ## Planned Components
 
@@ -84,6 +84,23 @@ Phase 15 adds `packages/worker_system` with:
 
 The Phase 15 worker is local/mock only. Production queue deployment requires Redis/RQ or Celery backend, production auth, target verification, SSRF protection, and rate limits.
 
+### Scan Types and Limits
+
+The scan limits system ensures every scan mode has bounded test counts, timeouts, concurrency, category rules, and verification requirements.
+
+Phase 16 adds `packages/scan_limits` with:
+
+- Five scan type definitions: quick_scan, standard_scan, deep_scan, manual_audit_assisted, retest_scan
+- Bounded limits per scan type (max_tests, timeout, concurrency, response/prompt char limits)
+- Category inclusion/exclusion matrix mapped to Phase 6 prompt library
+- Five plan/tier placeholders: free, launch_scan, builder, startup, manual_audit
+- Composable validation helpers for all limit enforcement
+- Worker system safety gate integration (`scan_type_limits` gate)
+- API endpoints: `GET /api/v0/scans/types` and `GET /api/v0/scans/limits`
+- Dashboard scan setup page with type cards and disabled run buttons
+
+The Phase 16 scan limits are static configuration. Dynamic overrides from database, admin, or billing integration are future work.
+
 ### Database and Auth
 
 The database will eventually store accounts, users, scan configurations, ownership verification state, scan runs, findings, report metadata, billing state, and audit logs.
@@ -134,4 +151,4 @@ The current foundation uses:
 - `config/` for shared product metadata and future configuration
 - `docs/` for product, architecture, setup, roadmap, security, and scope notes
 
-Phase 15 adds a queue and worker foundation under `packages/worker_system` without adding external dependencies (Redis, RQ, Celery). The local in-memory queue backend can be swapped for a production backend when needed. The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, production queue, or deployment target.
+Phase 16 adds a scan type and limit system under `packages/scan_limits` with bounded scan modes, category inclusion rules, plan tier placeholders, and validation helpers. The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, production queue, or deployment target.

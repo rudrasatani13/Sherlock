@@ -283,11 +283,34 @@ Implemented as foundation only:
 
 Phase 15 does not implement public scan execution, production queue deployment, real network scanning, production DNS/HTTP/chatbot verification checks, billing, findings persistence, report generation, PDF export, admin panels, service-role usage in frontend, real secret storage, or broad RLS policies.
 
-## Phase 16+: Product Platform
+## Phase 16: Scan Types + Limits
+
+Status: completed
+
+Created Sherlock's scan type and limit system foundation under `packages/scan_limits`. This phase defines safe scan modes, plan-aware limits, category inclusion rules, worker job constraints, and validation helpers.
+
+Implemented:
+
+- five scan type definitions: quick_scan, standard_scan, deep_scan, manual_audit_assisted, retest_scan
+- scan type configuration with max_tests, timeout_seconds, max_concurrency, response/prompt char limits, and report levels
+- category registry mapped to Phase 6 prompt library categories
+- per-scan-type category inclusion/exclusion matrix
+- five plan/tier placeholder definitions: free, launch_scan, builder, startup, manual_audit
+- plan/tier availability matrix for scan types, monthly scans, projects, retests, and export features
+- composable validation helpers for scan type, categories, tests, timeout, concurrency, verification, manual audit guards, retest restrictions, and payload secret rejection
+- worker system safety gate integration with backward-compatible scan_type_limits gate
+- API GET /api/v0/scans/types and GET /api/v0/scans/limits endpoints with static scan type and limit metadata
+- dashboard scan setup page with scan type cards, limit details, plan tier table, and disabled run buttons
+- 82 unit tests covering all scan types, limits, categories, plans, and validators
+- environment placeholders for SCAN_LIMITS_ENABLED, DEFAULT_SCAN_TYPE, MAX_SCAN_TESTS_PER_JOB, MAX_SCAN_TIMEOUT_SECONDS, MAX_SCAN_CONCURRENCY, FREE_TIER_MONTHLY_SCANS, DEEP_SCAN_ENABLED
+- comprehensive documentation in docs/scan-types-and-limits.md
+
+Phase 16 does not implement public scan execution, billing, Stripe, PDF/report generation, admin panels, production queue deployment, findings persistence, real network scanning, service-role usage in frontend, real secret storage, or broad RLS policies.
+
+## Phase 17+: Product Platform
 
 Future platform work may include:
 
-- Phase 16 scan execution integration (requires verified targets, production auth, SSRF protections, rate limits, spend controls)
 - Phase 17 findings system
 - Phase 18 web report
 - Phase 21 billing callbacks
@@ -301,3 +324,4 @@ Future platform work may include:
 - local runner
 - GitHub/CI integration
 - compliance mapping
+
