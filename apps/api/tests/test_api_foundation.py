@@ -16,6 +16,7 @@ from app.main import create_app
 from app.routes.auth import auth_status
 from app.routes.health import health_check
 from app.routes.projects import projects_placeholder
+from app.routes.targets import targets_placeholder
 from app.routes.version import version_status
 
 
@@ -45,7 +46,7 @@ class ApiFoundationTests(unittest.TestCase):
                 "SHERLOCK_MARKETING_NAME": "PowerDetect Sherlock",
                 "SHERLOCK_ENVIRONMENT": "local",
                 "SHERLOCK_API_VERSION": "v0",
-                "SHERLOCK_CURRENT_PHASE": "Phase 12 Dashboard V0 + Auth UI Shell completed",
+                "SHERLOCK_CURRENT_PHASE": "Phase 13 Project Target Setup completed",
                 "DATABASE_URL": "",
                 "AUTH_ENABLED": "false",
                 "SHERLOCK_AUTH_ENABLED": "false",
@@ -73,7 +74,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(settings.brand_name, "PowerDetect")
         self.assertEqual(settings.marketing_name, "PowerDetect Sherlock")
         self.assertEqual(settings.api_version, "v0")
-        self.assertEqual(settings.current_phase, "Phase 12 Dashboard V0 + Auth UI Shell completed")
+        self.assertEqual(settings.current_phase, "Phase 13 Project Target Setup completed")
         self.assertEqual(settings.database_url, "")
         self.assertEqual(settings.supabase_url, "")
         self.assertEqual(settings.supabase_anon_key, "")
@@ -154,6 +155,17 @@ class ApiFoundationTests(unittest.TestCase):
             projects_placeholder()
         self.assertEqual(context.exception.status_code, 501)
         self.assertEqual(context.exception.code, "not_implemented")
+        self.assertEqual(context.exception.details["setup_contract"]["current_behavior"], "No route persists project records; dashboard setup UI remains static/mock.")
+        self.assertIn("api_keys", context.exception.details["setup_contract"]["forbidden_fields"])
+
+    def test_target_placeholder_documents_secret_and_scan_boundaries(self) -> None:
+        with self.assertRaises(NotImplementedApiError) as context:
+            targets_placeholder()
+        self.assertEqual(context.exception.status_code, 501)
+        self.assertEqual(context.exception.code, "not_implemented")
+        self.assertIn("secret storage", context.exception.details["disabled_capabilities"])
+        self.assertIn("tool_using_agent", context.exception.details["setup_contract"]["ui_target_types"])
+        self.assertIn("plaintext_api_key", context.exception.details["setup_contract"]["forbidden_fields"])
 
     def test_app_factory_registers_routes(self) -> None:
         app = create_app(Settings(allowed_origins=()))
