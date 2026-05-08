@@ -13,6 +13,6 @@ router = APIRouter(prefix="/projects", tags=["projects"])
 def projects_placeholder() -> ApiResponse:
     details = ProjectsModuleStatus(
         future_capabilities=["project records", "project targets", "team/account ownership"],
-        disabled_capabilities=["active API persistence", "authentication", "authorization", "dashboard integration"],
+        disabled_capabilities=["active API persistence", "authentication", "authorization", "authenticated dashboard API integration"],
     )
     raise NotImplementedApiError("projects", serialize_model(details))

@@ -16,7 +16,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(
         title=f"{active_settings.marketing_name} API",
         version=active_settings.api_version,
-        description="Phase 11 authentication and user accounts foundation for Sherlock. Public scanning, active API persistence, billing, dashboard, and workers are not implemented.",
+        description="Phase 12 product status for Sherlock. The API remains a foundation only: public scanning, active API persistence, billing, production dashboard API integration, and workers are not implemented.",
         debug=active_settings.debug,
     )
 
