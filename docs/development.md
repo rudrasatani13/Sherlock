@@ -1,8 +1,8 @@
 # Development Setup
 
-Sherlock has completed Phase 16 Scan Types + Limits foundation. There is a static public website and static dashboard/auth/project-target setup/verification UI shell under `apps/web`, a minimal FastAPI backend foundation under `apps/api`, a PostgreSQL/Supabase-compatible database foundation under `db/`, a Supabase Auth-compatible auth foundation documented in `docs/auth.md`, an internal Python scanner foundation under `packages/scanner_engine`, an internal prompt library under `packages/prompt_library`, an internal evaluator system under `packages/evaluator_system`, a queue and worker system foundation under `packages/worker_system`, a scan type and limit foundation under `packages/scan_limits` (documented in `docs/scan-types-and-limits.md`), and manual audit workflow documentation under `docs/audits` with templates under `templates`.
+Sherlock has completed Phase 17 Findings System foundation. There is a static public website and static dashboard/auth/project-target setup/verification/scan/findings UI shell under `apps/web`, a minimal FastAPI backend foundation under `apps/api`, a PostgreSQL/Supabase-compatible database foundation under `db/`, a Supabase Auth-compatible auth foundation documented in `docs/auth.md`, an internal Python scanner foundation under `packages/scanner_engine`, an internal prompt library under `packages/prompt_library`, an internal evaluator system under `packages/evaluator_system`, a queue and worker system foundation under `packages/worker_system`, a scan type and limit foundation under `packages/scan_limits` (documented in `docs/scan-types-and-limits.md`), a findings system foundation under `packages/findings_system` (documented in `docs/findings-system.md`), and manual audit workflow documentation under `docs/audits` with templates under `templates`.
 
-Phase 16 adds scan type definitions, bounded limits, category inclusion mapping, plan tier placeholders, validation helpers, static API metadata, dashboard scan setup shell, and worker safety-gate integration. There is still no active API database persistence, real production project persistence, target persistence from the UI, production DNS/HTTP/chatbot verification checks, production JWT verification, production login/signup/session flow, live Supabase browser integration, report generator, PDF export, production queue deployment, billing, admin panel, public scan feature, or public scanner execution API configured.
+Phase 17 adds finding candidates, finalized finding objects, status/severity/confidence/category normalization, evaluator adapters, duplicate grouping, merge/sort helpers, redacted evidence summaries, recommendation templates, static API schema metadata, and static dashboard findings copy. There is still no active API database persistence, active findings persistence, real production project persistence, target persistence from the UI, production DNS/HTTP/chatbot verification checks, production JWT verification, production login/signup/session flow, live Supabase browser integration, report generator, PDF export, production queue deployment, billing, admin panel, public scan feature, public scanner execution API, or real customer evidence storage configured.
 
 ## Current Requirements
 
@@ -12,7 +12,7 @@ Phase 16 adds scan type definitions, bounded limits, category inclusion mapping,
 - Optional local PostgreSQL or Supabase CLI setup if you want to apply the Phase 10 SQL migration locally
 - Optional future Supabase project credentials for auth experiments, kept only in ignored local environment files
 
-No Node.js package manager, Redis, live Supabase project, real auth keys, billing provider, report generator, PDF tooling, admin panel, public scan feature, DNS/HTTP verification provider, production queue worker, or external AI provider is required for Phase 16. The Phase 16 worker system uses a local in-memory queue only.
+No Node.js package manager, Redis, live Supabase project, real auth keys, billing provider, report generator, PDF tooling, admin panel, public scan feature, DNS/HTTP verification provider, production queue worker, or external AI provider is required for Phase 17. The Phase 15 worker system uses a local in-memory queue only.
 
 ## Local Environment
 
@@ -49,6 +49,7 @@ curl http://localhost:8000/health
 curl http://localhost:8000/api/v0/auth/status
 curl http://localhost:8000/api/v0/scans/types
 curl http://localhost:8000/api/v0/scans/limits
+curl http://localhost:8000/api/v0/findings/schema
 PYTHONPATH=apps/api python3 -m unittest discover -s apps/api/tests
 createdb sherlock_local
 psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations/20260507100000_phase_10_initial_database_foundation.sql
@@ -56,6 +57,7 @@ python3 -m packages.scanner_engine.cli --config packages/scanner_engine/example.
 python3 -m packages.prompt_library.validate
 python3 -m packages.evaluator_system.cli --input scan-results/<scan_id>/scan-result.json --stdout
 python3 -m unittest packages.evaluator_system.tests.test_evaluator
+python3 -m unittest discover -s packages/findings_system/tests
 find docs/audits templates -maxdepth 2 -type f | sort
 git status --short
 find . -maxdepth 3 -type f | sort

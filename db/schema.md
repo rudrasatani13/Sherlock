@@ -258,6 +258,8 @@ Allowed finding statuses: `open`, `fixed`, `accepted_risk`, `false_positive`, `n
 
 Raw evidence should not be stored by default. `evidence_summary` should contain report-safe, redacted summaries only.
 
+Phase 17 findings-system code normalizes the active in-memory review status to `needs_review`, while this Phase 10 database foundation still documents `needs_manual_review`. No migration is changed in Phase 17; a future persistence phase should reconcile the naming through an explicit reviewed migration or mapping layer before active database writes are enabled.
+
 ### reports
 
 Future generated report metadata.

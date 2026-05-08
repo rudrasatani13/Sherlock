@@ -1,12 +1,12 @@
 # Sherlock Backend API
 
-Status: Phase 16 Scan Types + Limits foundation completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, Phase 15 queue/worker contracts, and Phase 16 scan type/limit static metadata.
+Status: Phase 17 Findings System foundation completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, Phase 15 queue/worker contracts, Phase 16 scan type/limit static metadata, and Phase 17 findings schema metadata.
 
-It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. Phase 16 adds safe static endpoints for scan types and limits. The API still does not implement the full platform or active persistence.
+It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. Phase 16 adds safe static endpoints for scan types and limits. Phase 17 adds a safe static findings schema endpoint. The API still does not implement the full platform or active persistence.
 
 ## Scope
 
-Phase 9 through Phase 16 include:
+Phase 9 through Phase 17 include:
 
 - FastAPI app skeleton under `apps/api`
 - health and version/status endpoints
@@ -27,8 +27,10 @@ Phase 9 through Phase 16 include:
 - Phase 14 verification helper unit tests
 - Phase 15 queue/worker system foundation under `packages/worker_system`
 - Phase 16 scan type and limit system foundation under `packages/scan_limits`
+- Phase 17 findings system foundation under `packages/findings_system`
+- static findings contract metadata at `GET /api/v0/findings/schema`
 
-Phase 16 adds static scan type and limit metadata to new safe endpoints. The API still does not include:
+Phase 17 adds static findings metadata to a safe endpoint. The API still does not include:
 
 - active API database persistence
 - real production project persistence
@@ -47,6 +49,9 @@ Phase 16 adds static scan type and limit metadata to new safe endpoints. The API
 - secret storage or committed secrets
 - real report generation
 - PDF export
+- active findings persistence
+- customer finding retrieval
+- real customer evidence storage
 - admin panel
 - scanner execution through HTTP routes
 - real external network scanning
@@ -128,6 +133,7 @@ psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations
 | GET | `/api/v0/auth/status` | Returns Supabase Auth configuration state without requiring live credentials. |
 | GET | `/api/v0/scans/types` | Returns static Phase 16 definitions for the 5 scan modes and their limits. |
 | GET | `/api/v0/scans/limits` | Returns static Phase 16 plan tier placeholders and category inclusion matrices. |
+| GET | `/api/v0/findings/schema` | Returns static Phase 17 findings contract metadata. |
 
 ## Protected Route Foundations
 
@@ -148,7 +154,7 @@ These routes intentionally return `501 not_implemented` with a structured error 
 | GET | `/api/v0/projects` | Future project/workspace records after database integration and auth exist. |
 | GET | `/api/v0/targets` | Future target metadata and verified scope records. |
 | GET | `/api/v0/scans` | Future scan job contracts and worker handoff after security controls exist. Lists job types, lifecycle states, safety gates, future endpoints, and forbidden payload fields. Scanner execution is not exposed. |
-| GET | `/api/v0/findings` | Future reviewed findings system. |
+| GET | `/api/v0/findings` | Future reviewed findings retrieval after auth, persistence, and access controls. |
 | GET | `/api/v0/reports` | Future web report metadata and access contracts. |
 | GET | `/api/v0/verification` | Phase 14 verification contract with method registry, status definitions, challenge token design, and request/response schemas. |
 
@@ -165,7 +171,7 @@ Responses use a shared shape for future consistency:
   "error": null,
   "metadata": {
     "api_version": "v0",
-    "phase": "Phase 16 Scan Types + Limits foundation completed",
+    "phase": "Phase 17 Findings System foundation completed",
     "environment": "local"
   }
 }
@@ -184,7 +190,7 @@ Safe environment variables:
 | `SHERLOCK_MARKETING_NAME` | `PowerDetect Sherlock` | Full marketing name. |
 | `SHERLOCK_ENVIRONMENT` | `local` | Runtime environment label. |
 | `SHERLOCK_API_VERSION` | `v0` | API route/version label. |
-| `SHERLOCK_CURRENT_PHASE` | `Phase 16 Scan Types + Limits foundation completed` | Product phase label. |
+| `SHERLOCK_CURRENT_PHASE` | `Phase 17 Findings System foundation completed` | Product phase label. |
 | `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by active routes yet. |
 | `AUTH_ENABLED` | `false` | Enables future auth enforcement only after real Supabase/JWKS configuration exists. |
 | `SUPABASE_URL` | empty string | Future Supabase project URL placeholder. |
@@ -194,7 +200,7 @@ Safe environment variables:
 | `SHERLOCK_DEBUG` | `false` | Local debug flag. |
 | `SHERLOCK_ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:4173` | Local CORS placeholder origins. |
 
-No real secrets are required for Phase 16. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, or raw auth headers.
+No real secrets are required for Phase 17. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, raw auth headers, raw scan outputs, evaluator outputs, generated findings, reports, or customer evidence.
 
 ## Auth Foundation
 
@@ -232,7 +238,8 @@ The existing internal packages remain isolated:
 
 - `packages/scanner_engine` may later be called by authenticated, authorized workers, not public request handlers.
 - `packages/prompt_library` may later supply reviewed test cases after scope and target authorization exist.
-- `packages/evaluator_system` may later process stored scanner observations and feed the findings system.
+- `packages/evaluator_system` may later process stored scanner observations and feed `packages/findings_system`.
+- `packages/findings_system` can normalize safe evaluator output into finding candidates and finding objects, but the API does not persist or return real findings yet.
 
 ## Future Integration Notes
 
@@ -243,7 +250,7 @@ The existing internal packages remain isolated:
 - Phase 14: verification contracts, safe validation helpers, verification UI, and documentation completed. Production DNS/HTTP/chatbot verification checks, verification persistence, and scan unlocking remain future work.
 - Phase 15: queue and worker system foundation completed. Production queue deployment remains future work.
 - Phase 16: scan type and limit system foundation completed. Bounded execution enforcement via production queues remains future work.
-- Phase 17: add reviewed findings system using methodology, evaluator output, and manual review.
+- Phase 17: findings system foundation completed using methodology, evaluator output, grouping/merge/sort helpers, redacted evidence summaries, and static schema metadata.
 - Phase 18: add web report access after findings and access controls exist.
 - Phase 21: add billing callbacks server-side after product flows are ready.
 - Phase 22: add security hardening, abuse controls, audit logging, and production safeguards.

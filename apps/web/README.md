@@ -1,8 +1,8 @@
 # Sherlock Web
 
-Status: Phase 16 Scan Types + Limits dashboard updates foundation completed.
+Status: Phase 17 Findings System dashboard update foundation completed.
 
-This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, Phase 14 Target Verification UI, and Phase 16 Scan Types + Limits UI for PowerDetect Sherlock.
+This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, Phase 14 Target Verification UI, Phase 16 Scan Types + Limits UI, and Phase 17 static findings UI copy for PowerDetect Sherlock.
 
 It is intentionally static:
 
@@ -14,6 +14,7 @@ It is intentionally static:
 - no production target ownership verification checks
 - no billing
 - no production queue workers (local queue/worker foundation exists under `packages/worker_system`)
+- no active findings persistence or real findings API consumption
 - no report generation
 - no admin panel
 - no public self-serve scanning
@@ -38,7 +39,7 @@ It is intentionally static:
 - `dashboard/target-verification.html` - Phase 14 target ownership verification page with method selector, instructions, status, and security boundaries
 - `dashboard/scan-setup.html` - Phase 16 static scan setup page displaying scan types, limits, and plan tier tables with disabled execution controls
 - `dashboard/scans.html` - static scans page with lifecycle status examples and link to scan setup
-- `dashboard/findings.html` - static findings page with severity/filter placeholders
+- `dashboard/findings.html` - static Phase 17 findings page with demo-only structure, statuses, evidence boundaries, and disabled filters/actions
 - `dashboard/reports.html` - static reports page linking to the sample report
 - `dashboard/settings.html` - static account/settings page with auth-status placeholder
 
@@ -72,6 +73,6 @@ The Phase 14 target verification page displays verification method selection, ch
 
 Phase 3 refreshed `methodology.html` to align with the internal methodology in `../../docs/methodology.md`. The public page remains a readable overview, not the full internal taxonomy and not an attack prompt library.
 
-Phase 4 expands `sample-report.html` into a realistic static sample report with fictional findings, sanitized demo evidence, retest status, limitations, and final recommendations. Phase 6 adds an internal prompt library outside the web app under `../../packages/prompt_library`. Phase 8 adds manual audit workflow documentation under `../../docs/audits`. Phase 9 adds a separate backend API foundation under `../api`. Phase 11 adds backend auth placeholders. Phase 12 adds the dashboard/auth UI shell. Phase 13 adds project and target setup UI only. Phase 14 adds the target ownership verification page and updates existing project/target pages with verification links and status. Phase 16 adds a static scan setup page that displays scan types and limits without running any scans.
+Phase 4 expands `sample-report.html` into a realistic static sample report with fictional findings, sanitized demo evidence, retest status, limitations, and final recommendations. Phase 6 adds an internal prompt library outside the web app under `../../packages/prompt_library`. Phase 8 adds manual audit workflow documentation under `../../docs/audits`. Phase 9 adds a separate backend API foundation under `../api`. Phase 11 adds backend auth placeholders. Phase 12 adds the dashboard/auth UI shell. Phase 13 adds project and target setup UI only. Phase 14 adds the target ownership verification page and updates existing project/target pages with verification links and status. Phase 16 adds a static scan setup page that displays scan types and limits without running any scans. Phase 17 updates the static findings page to reflect the internal findings model, statuses, evidence boundaries, and future review workflow without connecting it to a backend.
 
-The web app is still not generated from a real scan and does not implement report generation, PDF export, protected API consumption, production auth, database storage, billing, Stripe, queue workers, scanner logic, prompt execution, evaluator code, admin panels, production verification checks, project persistence, target persistence, scan creation, or public self-serve scanning.
+The web app is still not generated from a real scan and does not implement report generation, PDF export, protected API consumption, production auth, database storage, findings persistence, real customer evidence storage, billing, Stripe, queue workers, scanner logic, prompt execution, evaluator code, admin panels, production verification checks, project persistence, target persistence, scan creation, or public self-serve scanning.

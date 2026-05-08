@@ -1,8 +1,8 @@
 # Scope Boundaries
 
-`SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term reference. The current implementation provides **foundation versions** through Phase 16. It does not provide full production-complete versions. See [Master Plan Alignment](master-plan-alignment.md) for more context.
+`SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term reference. The current implementation provides **foundation versions** through Phase 17. It does not provide full production-complete versions. See [Master Plan Alignment](master-plan-alignment.md) for more context.
 
-Sherlock has completed Phase 16 Scan Types + Limits foundation.
+Sherlock has completed Phase 17 Findings System foundation.
 
 ## In Scope for Phase 1
 
@@ -201,7 +201,24 @@ Sherlock has completed Phase 16 Scan Types + Limits foundation.
 
 - scan types, limits, category matrix, plan placeholders, validation helpers, static API metadata, dashboard scan setup shell, and worker safety-gate integration
 
-## Out of Scope Through Phase 16
+## In Scope for Phase 17
+
+- findings system package under `packages/findings_system`
+- finding candidate and finalized finding models
+- normalized finding statuses, severities, confidences, and category mapping
+- evaluator-output-to-finding-candidate adapter
+- duplicate grouping, similar merge, and severity/confidence sorting helpers
+- redacted evidence summary helpers
+- reproduction-step formatting helpers
+- category recommendation templates
+- manual review note placeholders
+- local CLI for safe/mock evaluator output conversion
+- unit tests for validation, grouping, sorting, merge behavior, recommendations, category mapping, evaluator adapter, and evidence redaction
+- static API findings schema metadata endpoint
+- static dashboard findings page copy aligned to Phase 17
+- documentation updates
+
+## Out of Scope Through Phase 17
 
 - production login/signup/session flow
 - production JWT verification
@@ -224,6 +241,9 @@ Sherlock has completed Phase 16 Scan Types + Limits foundation.
 - public scan execution
 - production deployment configuration
 - real customer data storage or handling
+- real customer evidence storage
+- active findings database reads or writes
+- production findings dashboard integration
 - LLM-as-judge behavior
 - complex ML classifiers
 - browser automation scanner
@@ -243,4 +263,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 16 establishes the scan types, limits, UI setup shell, and limit verification gate required before findings, reports, active queue execution, active persistence, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, `db/schema.md` as the database foundation reference, `docs/verification.md` for verification methods, `docs/workers.md` for the queue/worker design, and `docs/scan-types-and-limits.md` for execution bounds.
+Phase 17 establishes the findings system foundation required before web reports and production review workflows. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/findings-system.md` as the Phase 17 findings contract reference, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, `db/schema.md` as the database foundation reference, `docs/verification.md` for verification methods, `docs/workers.md` for the queue/worker design, and `docs/scan-types-and-limits.md` for execution bounds.

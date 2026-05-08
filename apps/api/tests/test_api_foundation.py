@@ -18,6 +18,7 @@ from app.routes.health import health_check
 from app.routes.projects import projects_placeholder
 from app.routes.targets import targets_placeholder
 from app.routes.scans import scans_placeholder, scan_types_list, scan_limits_info
+from app.routes.findings import findings_placeholder, findings_schema
 from app.routes.verification import verification_placeholder
 from app.routes.version import version_status
 
@@ -48,7 +49,7 @@ class ApiFoundationTests(unittest.TestCase):
                 "SHERLOCK_MARKETING_NAME": "PowerDetect Sherlock",
                 "SHERLOCK_ENVIRONMENT": "local",
                 "SHERLOCK_API_VERSION": "v0",
-                "SHERLOCK_CURRENT_PHASE": "Phase 16 Scan Types + Limits foundation completed",
+                "SHERLOCK_CURRENT_PHASE": "Phase 17 Findings System foundation completed",
                 "DATABASE_URL": "",
                 "AUTH_ENABLED": "false",
                 "SHERLOCK_AUTH_ENABLED": "false",
@@ -76,7 +77,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(settings.brand_name, "PowerDetect")
         self.assertEqual(settings.marketing_name, "PowerDetect Sherlock")
         self.assertEqual(settings.api_version, "v0")
-        self.assertEqual(settings.current_phase, "Phase 16 Scan Types + Limits foundation completed")
+        self.assertEqual(settings.current_phase, "Phase 17 Findings System foundation completed")
         self.assertEqual(settings.database_url, "")
         self.assertEqual(settings.supabase_url, "")
         self.assertEqual(settings.supabase_anon_key, "")
@@ -229,6 +230,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("/api/v0/scans", paths)
         self.assertIn("/api/v0/scans/types", paths)
         self.assertIn("/api/v0/scans/limits", paths)
+        self.assertIn("/api/v0/findings/schema", paths)
         self.assertIn("/api/v0/verification", paths)
 
     def test_scan_types_list_returns_types(self) -> None:
@@ -255,6 +257,27 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertTrue(notes["unbounded_execution_forbidden"])
         self.assertFalse(notes["billing_enforcement_active"])
         self.assertFalse(notes["public_scan_execution_active"])
+
+    def test_findings_placeholder_returns_phase17_contract(self) -> None:
+        with self.assertRaises(NotImplementedApiError) as context:
+            findings_placeholder()
+        self.assertEqual(context.exception.status_code, 501)
+        details = context.exception.details
+        self.assertEqual(details["status"], "findings_system_foundation")
+        self.assertIn("findings_contract", details)
+        contract = details["findings_contract"]
+        self.assertIn("needs_review", [item["status"] for item in contract["statuses"]])
+        self.assertIn("cost_abuse_unbounded_consumption", [item["category"] for item in contract["categories"]])
+        self.assertIn("active finding persistence", contract["disabled_capabilities"])
+
+    def test_findings_schema_returns_static_metadata(self) -> None:
+        response = findings_schema()
+        self.assertTrue(response.success)
+        contract = response.data["findings_contract"]
+        self.assertEqual(contract["current_behavior"], "Static contract metadata only. No route reads or writes finding records.")
+        self.assertIn("critical", contract["severities"])
+        self.assertIn("high", contract["confidences"])
+        self.assertIn("report generation", contract["disabled_capabilities"])
 
 
 if __name__ == "__main__":

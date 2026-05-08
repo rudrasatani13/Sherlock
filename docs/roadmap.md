@@ -1,6 +1,6 @@
 # Roadmap
 
-This roadmap is directional. It should guide sequencing without forcing premature architecture decisions. `SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term product reference and phase source of truth. The current implementation represents **foundation versions** through Phase 16, not full production-complete versions of every expected output. See [Master Plan Alignment](master-plan-alignment.md) for details.
+This roadmap is directional. It should guide sequencing without forcing premature architecture decisions. `SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term product reference and phase source of truth. The current implementation represents **foundation versions** through Phase 17, not full production-complete versions of every expected output. See [Master Plan Alignment](master-plan-alignment.md) for details.
 
 ## Phase 1: Foundation
 
@@ -307,11 +307,36 @@ Implemented:
 
 Phase 16 does not implement public scan execution, billing, Stripe, PDF/report generation, admin panels, production queue deployment, findings persistence, real network scanning, service-role usage in frontend, real secret storage, or broad RLS policies.
 
-## Phase 17+: Product Platform
+## Phase 17: Findings System
+
+Status: completed foundation
+
+Created Sherlock's findings system foundation under `packages/findings_system`. This phase converts safe/mock evaluator output into structured finding candidates and finalized finding objects that are clear enough for non-security developers and ready for future report consumption.
+
+Implemented:
+
+- finding candidate model for evaluator-derived observations
+- finalized finding model with title, category, severity, confidence, status, description, business impact, evidence, reproduction steps, fix recommendation, source IDs, evaluator signals, duplicate group key, manual review placeholders, timestamps, and metadata
+- normalized statuses: `open`, `fixed`, `accepted_risk`, `false_positive`, `needs_review`
+- severity and confidence validation aligned to the methodology
+- category mapping across methodology, prompt library, scan limits, and evaluator signal names
+- duplicate grouping and similar finding merge helpers
+- sorting by severity, confidence, category, and title
+- report-safe evidence redaction and summary helpers
+- fix recommendation templates by category
+- adapter from Phase 7 evaluator output to finding candidates
+- local CLI for safe/mock evaluator JSON conversion
+- API `GET /api/v0/findings/schema` static metadata endpoint
+- static dashboard findings page updated with Phase 17 structure and statuses
+- tests for validation, grouping, merging, sorting, category mapping, recommendations, evaluator adapter, and evidence redaction
+- documentation in `docs/findings-system.md`
+
+Phase 17 does not implement Phase 18 web reports, report generation, PDF export, public scan execution, production dashboard API integration, active findings persistence, real database writes, billing, Stripe, admin panels, real network scanning, LLM-as-judge, or real customer evidence storage.
+
+## Phase 18+: Product Platform
 
 Future platform work may include:
 
-- Phase 17 findings system
 - Phase 18 web report
 - Phase 21 billing callbacks
 - Phase 22 security hardening, SSRF protection, rate limits, observability, and audit logging
@@ -324,4 +349,3 @@ Future platform work may include:
 - local runner
 - GitHub/CI integration
 - compliance mapping
-

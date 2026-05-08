@@ -2,7 +2,7 @@
 
 Sherlock is planned as a modular AI launch security audit and scanner platform. The architecture should keep customer-facing workflows, scan execution, prompt libraries, evaluators, reports, and billing separated so each area can evolve without becoming tightly coupled.
 
-This document describes the future direction and the current Phase 16 scan types and limits foundation. Phase 16 adds scan type definitions, bounded limits, category inclusion rules, plan tier placeholders, and validation helpers under `packages/scan_limits`. It builds on Phase 15 queue/worker, Phase 14 verification, Phase 13 setup, Phase 12 dashboard, Phase 11 auth, Phase 10 database, and Phase 9 API foundations. It does not implement public scan execution, billing, Stripe, PDF/report generation, admin panels, production queue deployment, or real network scanning.
+This document describes the future direction and the current Phase 17 findings system foundation. Phase 17 adds structured finding candidates, finalized finding models, category/status/severity/confidence alignment, evaluator adapters, grouping, merging, sorting, redacted evidence summaries, and recommendation templates under `packages/findings_system`. It builds on Phase 16 scan limits, Phase 15 queue/worker, Phase 14 verification, Phase 13 setup, Phase 12 dashboard, Phase 11 auth, Phase 10 database, Phase 9 API, and Phase 7 evaluator foundations. It does not implement public scan execution, billing, Stripe, PDF/report generation, admin panels, production queue deployment, active findings persistence, or real network scanning.
 
 ## Planned Components
 
@@ -62,6 +62,26 @@ The evaluator system classifies captured model behavior into structured local ev
 
 Phase 7 adds `packages/evaluator_system`, a stdlib-only deterministic evaluator package with rule-based detectors, result schemas, evidence redaction helpers, a local CLI, and unittest coverage. It consumes Phase 5 scanner observations and Phase 6 prompt metadata when present.
 
+### Findings System
+
+The findings system converts evaluator/scanner observations into clean, actionable finding candidates and finalized finding objects. It sits between evaluator output and future reports so report rendering does not need to know detector internals.
+
+Phase 17 adds `packages/findings_system`, a stdlib-only internal package with:
+
+- normalized finding statuses: `open`, `fixed`, `accepted_risk`, `false_positive`, and `needs_review`
+- normalized severities and confidences from the methodology
+- category mapping across methodology, prompt library, scan limits, and evaluator signal names
+- finding candidate and finalized finding dataclasses
+- validator rules for evidence, fix guidance, critical severity, status, and vague language
+- evaluator-output-to-candidate adapter
+- duplicate grouping and similar finding merge helpers
+- severity/confidence/category/title sorting
+- report-safe evidence redaction and short summaries
+- category recommendation templates
+- local CLI for safe/mock evaluator JSON conversion
+
+Phase 17 is not a persistence layer. It does not write to the Phase 10 `findings` table, store raw evidence, generate reports, export PDFs, or connect the dashboard to production findings.
+
 ### Manual Audit Workflow
 
 The manual audit workflow turns intake, authorization, scanner observations, prompt-library scenarios, evaluator outputs, manual validation, evidence handling, finding review, delivery, retesting, and closure into a repeatable human-led process.
@@ -119,7 +139,7 @@ The service-role key is server-only and must never be exposed to browser/fronten
 
 Reports will eventually present evidence, severity, reproduction context, limitations, and remediation guidance. Reports must redact sensitive data and must avoid claiming that a target is fully secure.
 
-Future reports should follow the severity, confidence, finding status, evidence, and language standards in `docs/methodology.md`.
+Future reports should follow the severity, confidence, finding status, evidence, and language standards in `docs/methodology.md`, and should consume reviewed finding objects from `packages/findings_system` rather than raw evaluator detector output.
 
 The Phase 4 sample report reference in `docs/sample-report.md` documents a static content structure and fictional demo findings. It is not executable schema, report generation logic, a persistence model, or a PDF export system.
 
@@ -151,4 +171,4 @@ The current foundation uses:
 - `config/` for shared product metadata and future configuration
 - `docs/` for product, architecture, setup, roadmap, security, and scope notes
 
-Phase 16 adds a scan type and limit system under `packages/scan_limits` with bounded scan modes, category inclusion rules, plan tier placeholders, and validation helpers. The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, production queue, or deployment target.
+Phase 16 adds a scan type and limit system under `packages/scan_limits` with bounded scan modes, category inclusion rules, plan tier placeholders, and validation helpers. Phase 17 adds `packages/findings_system` for structured findings and safe metadata contracts. The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, production queue, or deployment target.

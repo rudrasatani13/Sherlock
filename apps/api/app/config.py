@@ -44,7 +44,7 @@ class Settings:
     environment: str = field(default_factory=lambda: os.getenv("SHERLOCK_ENVIRONMENT", "local"))
     api_version: str = field(default_factory=lambda: os.getenv("SHERLOCK_API_VERSION", "v0"))
     current_phase: str = field(
-        default_factory=lambda: os.getenv("SHERLOCK_CURRENT_PHASE", "Phase 16 Scan Types + Limits foundation completed")
+        default_factory=lambda: os.getenv("SHERLOCK_CURRENT_PHASE", "Phase 17 Findings System foundation completed")
     )
     database_url: str = field(default_factory=lambda: os.getenv("DATABASE_URL", ""))
     supabase_url: str = field(default_factory=lambda: os.getenv("SUPABASE_URL", ""))

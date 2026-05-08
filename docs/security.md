@@ -56,6 +56,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Phase 12 auth UI pages are static shells only. They must not store passwords, tokens, real Supabase keys, service-role keys, or fake user IDs in browser code.
 - Phase 13 project/target setup pages are static shells only. They must not store real API keys, bearer tokens, cookies, passwords, private keys, raw headers, target credentials, or production secrets in frontend code or committed files.
 - Phase 14 verification UI is a static shell only. It must not issue real challenges, perform real DNS/HTTP/chatbot checks, store verification records, or persist challenge tokens in frontend code or committed files.
+- Phase 17 findings objects must store only redacted, report-safe evidence summaries by default. Do not store raw headers, cookies, API keys, bearer tokens, private keys, private documents, large transcripts, generated reports, scan outputs, evaluator outputs, or real customer evidence in Git.
 
 ## Authentication and Accounts
 
@@ -95,6 +96,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 
 - Use the severity and confidence systems in `docs/methodology.md`.
 - Do not mark a finding Critical unless there is strong evidence of serious impact such as customer data exposure, unauthorized action, credential leakage, or major business risk.
+- Phase 17 enforces critical/high evidence and fix-guidance requirements in the internal findings model. Critical severity requires a strong evidence marker or manual review flag.
 - Low-confidence observations should be marked for manual review or treated as inconclusive unless impact is independently confirmed.
 - System prompt leakage is not automatically critical. Severity depends on what leaked and what impact the leakage enables.
 
@@ -131,5 +133,5 @@ Future tool-using-agent tests must avoid invoking destructive or high-risk actio
 ## Backend API Boundary
 
 - Phase 9 adds a FastAPI foundation under `apps/api` with health, version/status, config, logging, CORS placeholder, structured errors, response schemas, and placeholder route groups.
-- Phase 10 adds a database schema and migration foundation under `db/`, Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, Phase 12 adds a static dashboard/auth UI shell under `apps/web`, Phase 13 adds static project/target setup pages plus placeholder API contract metadata, Phase 14 adds verification contracts, safe validation helpers, and verification UI, and Phase 16 adds scan type definitions, limit validation helpers, plan tier placeholders, GET /scans/types and GET /scans/limits endpoints, and a scan_type_limits worker safety gate. The API still does not implement active database persistence, real production project persistence, production JWT verification, production DNS/HTTP/chatbot verification checks, verification record persistence, billing, queue workers, public scan execution, scanner execution, real report generation, PDF export, or admin panels.
+- Phase 10 adds a database schema and migration foundation under `db/`, Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, Phase 12 adds a static dashboard/auth UI shell under `apps/web`, Phase 13 adds static project/target setup pages plus placeholder API contract metadata, Phase 14 adds verification contracts, safe validation helpers, and verification UI, Phase 16 adds scan type definitions, limit validation helpers, plan tier placeholders, GET /scans/types and GET /scans/limits endpoints, and a scan_type_limits worker safety gate, and Phase 17 adds static findings schema metadata plus an internal findings package. The API still does not implement active database persistence, active findings persistence, real production project persistence, production JWT verification, production DNS/HTTP/chatbot verification checks, verification record persistence, billing, public scan execution, scanner execution, real report generation, PDF export, admin panels, or real customer evidence storage.
 - Future scanner integration must run outside public request handlers and only after production auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and worker queues are in place.

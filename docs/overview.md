@@ -29,7 +29,7 @@ Sherlock will later test for:
 
 ## Current Phase
 
-Current phase: **Phase 16 Scan Types + Limits foundation completed**
+Current phase: **Phase 17 Findings System foundation completed**
 
 Phase 1 established repository organization, documentation, environment templates, security notes, roadmap notes, and basic hygiene.
 
@@ -57,7 +57,15 @@ Phase 12 adds static login, signup, forgot-password, and Dashboard V0 pages unde
 
 Phase 13 adds static project setup, target setup, project detail placeholder, and target detail placeholder pages under `apps/web/dashboard`, plus project/target placeholder API contract metadata. It supports safe setup metadata, target type selection, acknowledgement placeholders, and disabled future verify/scan actions.
 
-Production auth/session flow, production JWT verification, active API database persistence, real production project persistence, target persistence from the UI, billing, queue workers, public scan execution, target verification implementation, admin panel, PDF generation, real report generation, and public scanner execution are still not implemented.
+Phase 14 adds target ownership verification contracts, safe challenge-token helpers, and a static target verification UI shell without production DNS/HTTP/chatbot checks or persistence.
+
+Phase 15 adds the local/mock queue and worker system foundation under `packages/worker_system`.
+
+Phase 16 adds scan types, bounded limits, plan tier placeholders, category rules, static API metadata, and scan setup UI.
+
+Phase 17 adds the findings system foundation under `packages/findings_system` with finding candidates, finalized finding objects, evaluator adapters, grouping, merging, sorting, redacted evidence summaries, recommendation templates, static API schema metadata, and static findings dashboard copy.
+
+Production auth/session flow, production JWT verification, active API database persistence, active findings persistence, real production project persistence, target persistence from the UI, billing, production queue workers, public scan execution, target verification implementation, admin panel, PDF generation, real report generation, real customer evidence storage, and public scanner execution are still not implemented.
 
 ## Product Principle
 

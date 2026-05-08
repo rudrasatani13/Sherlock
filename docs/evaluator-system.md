@@ -185,10 +185,24 @@ The tests cover canary detection, sensitive data redaction, unsafe output detect
 - The evaluator does not generate customer reports.
 - Manual review is still required for high-impact findings, ambiguous evidence, and customer-facing report language.
 
+## Phase 17 Findings Integration
+
+Phase 17 adds `packages/findings_system`, which consumes this evaluator output through an explicit adapter. The adapter turns non-safe evaluator results into finding candidates, preserving:
+
+- category
+- detector/signal name
+- severity and confidence hints
+- redacted evidence summary
+- source scan and test IDs
+- manual review flags and reasons
+- evaluator signals
+
+Safe evaluator results do not become findings. High-impact or ambiguous evaluator results remain marked for review. The findings system does not call external AI services, store raw evidence, write to the database, generate reports, export PDFs, or run scans.
+
 ## Future Integration
 
 Phase 8 uses the `needs_manual_review` flag, evidence snippets, redacted snippets, matched signals, severity, and confidence fields as inputs for the human-led audit workflow under `docs/audits`.
 
-The evaluator output should be reviewed through `docs/audits/FINDING_REVIEW.md` and `docs/audits/SEVERITY_CONFIDENCE_REVIEW.md` before customer-facing reporting. Future report-generation phases should consume evaluator output through explicit contracts instead of coupling directly to detector internals.
+The evaluator output should be reviewed through `docs/audits/FINDING_REVIEW.md`, `docs/audits/SEVERITY_CONFIDENCE_REVIEW.md`, and the Phase 17 findings system before customer-facing reporting. Future report-generation phases should consume reviewed finding objects instead of coupling directly to detector internals.
 
-Phase 9 adds API placeholders for future findings and reports, but it does not run evaluator code through HTTP routes, persist evaluator output, create customer-facing findings, or generate reports.
+Phase 9 adds API placeholders for future findings and reports, and Phase 17 adds static findings schema metadata. The API still does not run evaluator code through HTTP routes, persist evaluator output, create customer-facing findings, store customer evidence, or generate reports.

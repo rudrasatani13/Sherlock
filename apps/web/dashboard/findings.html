@@ -6,7 +6,7 @@
     <title>Findings | PowerDetect Sherlock</title>
     <meta
       name="description"
-      content="PowerDetect Sherlock Dashboard V0 findings page with static severity summaries, filters, and placeholder rows."
+      content="PowerDetect Sherlock Dashboard findings page with Phase 17 static demo finding structure, statuses, and evidence boundaries."
     >
     <link rel="stylesheet" href="../assets/styles.css">
   </head>
@@ -60,11 +60,11 @@
         <main id="main" class="dashboard-main">
           <section class="dashboard-banner">
             <div>
-              <span class="status-pill review">Coming in Phase 17</span>
-              <h2>Findings are static placeholders.</h2>
+              <span class="status-pill review">Phase 17 foundation</span>
+              <h2>Findings are structured, static demo placeholders.</h2>
               <p>
-                Phase 13 still does not persist evaluator output or create customer-facing findings.
-                Real findings need reviewed evidence, severity, confidence, status, and tenant access controls.
+                The findings system can normalize safe evaluator output into candidates and reviewed finding objects.
+                This page remains static demo UI only: no backend findings, no database reads, no scan execution, and no report generation.
               </p>
             </div>
             <a class="button secondary" href="../methodology.html">View Methodology</a>
@@ -96,10 +96,24 @@
           <section class="dashboard-card">
             <div class="card-heading">
               <div>
-                <p class="eyebrow">Filter placeholders</p>
-                <h2>Finding triage.</h2>
+                <p class="eyebrow">Finding contract</p>
+                <h2>Triage fields.</h2>
               </div>
             </div>
+            <dl class="detail-list">
+              <div>
+                <dt>Required fields</dt>
+                <dd>Title, category, severity, confidence, description, business impact, evidence, reproduction steps, fix recommendation, and status.</dd>
+              </div>
+              <div>
+                <dt>Normalized statuses</dt>
+                <dd>open, fixed, accepted_risk, false_positive, needs_review.</dd>
+              </div>
+              <div>
+                <dt>Safety boundary</dt>
+                <dd>Evidence summaries must be short, redacted, and report-safe. Raw headers, cookies, API keys, private documents, large transcripts, and customer data are not stored here.</dd>
+              </div>
+            </dl>
             <form class="filter-bar" aria-label="Finding filters">
               <label>
                 <span>Severity</span>
@@ -122,7 +136,7 @@
               <label>
                 <span>Status</span>
                 <select disabled>
-                  <option>All statuses</option>
+                  <option>open / fixed / accepted_risk / false_positive / needs_review</option>
                 </select>
               </label>
             </form>
@@ -138,33 +152,72 @@
                     <th scope="col">Severity</th>
                     <th scope="col">Confidence</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Evidence</th>
+                    <th scope="col">Fix direction</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Restricted RAG context entered model response</td>
+                    <td>Sample: Restricted RAG marker appeared in response</td>
                     <td>RAG data leakage</td>
                     <td><span class="status-pill high">High</span></td>
                     <td>High</td>
-                    <td><span class="status-pill open">Open</span></td>
+                    <td><span class="status-pill review">needs_review</span></td>
+                    <td>Redacted demo canary only; not customer evidence.</td>
+                    <td>Document-level authorization and retrieval filters.</td>
                   </tr>
                   <tr>
-                    <td>Tool action prepared without permission boundary</td>
+                    <td>Sample: Tool action prepared without permission boundary</td>
                     <td>Tool/function abuse</td>
                     <td><span class="status-pill high">High</span></td>
                     <td>Medium</td>
-                    <td><span class="status-pill review">Needs review</span></td>
+                    <td><span class="status-pill open">open</span></td>
+                    <td>Mock tool fixture summary only.</td>
+                    <td>Tool allowlists, permission checks, human confirmation.</td>
                   </tr>
                   <tr>
-                    <td>Generated answer used unsafe link treatment</td>
+                    <td>Sample: Unsafe rendered-output pattern was detected</td>
                     <td>Unsafe output handling</td>
                     <td><span class="status-pill medium">Medium</span></td>
                     <td>Medium</td>
-                    <td><span class="status-pill open">Open</span></td>
+                    <td><span class="status-pill fixed">fixed</span></td>
+                    <td>Sanitized snippet placeholder.</td>
+                    <td>Escape or sanitize model output before rendering.</td>
+                  </tr>
+                  <tr>
+                    <td>Sample: Owner accepted limited residual prompt behavior</td>
+                    <td>Prompt injection</td>
+                    <td><span class="status-pill low">Low</span></td>
+                    <td>Medium</td>
+                    <td><span class="status-pill info">accepted_risk</span></td>
+                    <td>Review note placeholder; reason required later.</td>
+                    <td>Track risk owner, reason, and retest plan.</td>
+                  </tr>
+                  <tr>
+                    <td>Sample: Synthetic fixture was reclassified after review</td>
+                    <td>Sensitive data leakage</td>
+                    <td><span class="status-pill info">Informational</span></td>
+                    <td>Low</td>
+                    <td><span class="status-pill pass">false_positive</span></td>
+                    <td>False-positive reason placeholder.</td>
+                    <td>Keep detector note; no customer-facing claim.</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+          </section>
+
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Not live yet</p>
+                <h2>Phase 18 remains future work.</h2>
+              </div>
+            </div>
+            <p>
+              This dashboard page is not a web report, does not fetch real findings, does not persist review decisions,
+              and does not expose scanner execution. Phase 18 will use reviewed findings after the report scope is explicitly implemented.
+            </p>
           </section>
         </main>
       </div>
