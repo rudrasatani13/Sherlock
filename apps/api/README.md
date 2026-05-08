@@ -6,7 +6,7 @@ It introduces a small FastAPI application that future phases can extend for proj
 
 ## Scope
 
-Phase 9 through Phase 15 include:
+Phase 9 through Phase 16 include:
 
 - FastAPI app skeleton under `apps/api`
 - health and version/status endpoints
@@ -185,7 +185,7 @@ Safe environment variables:
 | `SHERLOCK_ENVIRONMENT` | `local` | Runtime environment label. |
 | `SHERLOCK_API_VERSION` | `v0` | API route/version label. |
 | `SHERLOCK_CURRENT_PHASE` | `Phase 16 Scan Types + Limits completed` | Product phase label. |
-| `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by routes in Phase 15. |
+| `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by active routes yet. |
 | `AUTH_ENABLED` | `false` | Enables future auth enforcement only after real Supabase/JWKS configuration exists. |
 | `SUPABASE_URL` | empty string | Future Supabase project URL placeholder. |
 | `SUPABASE_ANON_KEY` | empty string | Future browser-safe Supabase anon key placeholder. |
@@ -194,7 +194,7 @@ Safe environment variables:
 | `SHERLOCK_DEBUG` | `false` | Local debug flag. |
 | `SHERLOCK_ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:4173` | Local CORS placeholder origins. |
 
-No real secrets are required for Phase 15. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, or raw auth headers.
+No real secrets are required for Phase 16. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, or raw auth headers.
 
 ## Auth Foundation
 
@@ -241,7 +241,8 @@ The existing internal packages remain isolated:
 - Phase 12: static Dashboard V0 + Auth UI Shell completed under `../web`; production dashboard API consumption remains future work.
 - Phase 13: static project/target setup UI and placeholder setup contracts completed. Active persistence and authenticated dashboard API consumption remain future work.
 - Phase 14: verification contracts, safe validation helpers, verification UI, and documentation completed. Production DNS/HTTP/chatbot verification checks, verification persistence, and scan unlocking remain future work.
-- Phase 15: add queue workers for scan execution outside request/response paths.
+- Phase 15: queue and worker system foundation completed. Production queue deployment remains future work.
+- Phase 16: scan type and limit system foundation completed. Bounded execution enforcement via production queues remains future work.
 - Phase 17: add reviewed findings system using methodology, evaluator output, and manual review.
 - Phase 18: add web report access after findings and access controls exist.
 - Phase 21: add billing callbacks server-side after product flows are ready.
