@@ -65,6 +65,64 @@ authForms.forEach((form) => {
   });
 });
 
+const setupForms = document.querySelectorAll("[data-setup-form]");
+
+setupForms.forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const status = form.querySelector("[data-form-status]");
+    const summaryId = form.dataset.summaryTarget;
+    const summary = summaryId ? document.getElementById(summaryId) : null;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      if (status) {
+        status.textContent = "Complete the required setup metadata before reviewing the local preview.";
+      }
+      return;
+    }
+
+    const fields = Array.from(form.querySelectorAll("[data-summary-label]"));
+    const items = fields.map((field) => {
+      const label = field.dataset.summaryLabel;
+      let value = "";
+
+      if (field.type === "checkbox") {
+        value = field.checked ? "Acknowledged" : "Not acknowledged";
+      } else {
+        value = field.value.trim();
+      }
+
+      if (!value) {
+        value = "Not provided";
+      }
+
+      return { label, value };
+    });
+
+    if (summary) {
+      summary.innerHTML = "";
+      items.forEach((item) => {
+        const row = document.createElement("div");
+        const term = document.createElement("dt");
+        const description = document.createElement("dd");
+
+        term.textContent = item.label;
+        description.textContent = item.value;
+        row.append(term, description);
+        summary.append(row);
+      });
+    }
+
+    if (status) {
+      status.textContent =
+        form.dataset.setupMessage ||
+        "Local setup preview updated. Nothing was submitted, persisted, verified, or scanned.";
+    }
+  });
+});
+
 const dashboardShell = document.querySelector("[data-dashboard-shell]");
 const dashboardNavToggle = document.querySelector("[data-dashboard-nav-toggle]");
 

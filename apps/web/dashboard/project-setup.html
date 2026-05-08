@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New Project Setup | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Phase 13 static project setup form for safe AI app metadata."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Phase 13</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>No live organization or session is loaded.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html" aria-current="page">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Project details</p>
+            <h1>New project setup.</h1>
+          </div>
+          <div class="topbar-actions">
+            <a class="button secondary" href="projects.html">Back to Projects</a>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Static setup preview</span>
+              <h2>Define the AI app metadata Sherlock will need later.</h2>
+              <p>
+                This form validates required fields in the browser and updates a local preview.
+                It does not submit to the API, create a database record, store credentials, or start testing.
+              </p>
+            </div>
+            <button class="button secondary" type="button" disabled>Create Project - Future Persistence</button>
+          </section>
+
+          <section class="setup-progress" aria-label="Project target setup progress">
+            <article class="progress-step current">
+              <strong>1</strong>
+              <span>Project details</span>
+              <small>Current static form.</small>
+            </article>
+            <article class="progress-step">
+              <strong>2</strong>
+              <span>Target metadata</span>
+              <small>Next setup screen.</small>
+            </article>
+            <article class="progress-step">
+              <strong>3</strong>
+              <span>Authorization/scope</span>
+              <small>Acknowledgement placeholder.</small>
+            </article>
+            <article class="progress-step future">
+              <strong>4</strong>
+              <span>Verification later</span>
+              <small>Phase 14.</small>
+            </article>
+            <article class="progress-step future">
+              <strong>5</strong>
+              <span>Scan later</span>
+              <small>Phase 15.</small>
+            </article>
+          </section>
+
+          <section class="setup-layout">
+            <form
+              class="dashboard-card setup-form"
+              data-setup-form
+              data-summary-target="project-setup-summary"
+              data-setup-message="Local project setup preview updated. No project record was created."
+            >
+              <div class="form-section">
+                <div>
+                  <p class="eyebrow">Workspace contract</p>
+                  <h2>Create or select a project.</h2>
+                  <p class="setup-note">
+                    Phase 13 only models the metadata. A future authenticated API can turn this into
+                    a project record after tenant membership and database persistence are reviewed.
+                  </p>
+                </div>
+                <label class="field">
+                  <span>Project action</span>
+                  <select name="project-action" data-summary-label="Project action">
+                    <option value="Create new project draft">Create new project draft</option>
+                    <option value="Select existing project placeholder">Select existing project placeholder</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-section">
+                <h2>Project metadata</h2>
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Project name</span>
+                    <input name="project-name" type="text" autocomplete="off" required data-summary-label="Project name" placeholder="Support Copilot Launch">
+                  </label>
+                  <label class="field">
+                    <span>Environment</span>
+                    <select name="environment" required data-summary-label="Environment">
+                      <option value="">Select environment</option>
+                      <option>Staging</option>
+                      <option>Production</option>
+                      <option>Development</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>App type</span>
+                    <select name="app-type" required data-summary-label="App type">
+                      <option value="">Select app type</option>
+                      <option>Chatbot</option>
+                      <option>RAG app</option>
+                      <option>Agent</option>
+                      <option>Support bot</option>
+                      <option>Internal assistant</option>
+                      <option>Other</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Data sensitivity</span>
+                    <select name="data-sensitivity" required data-summary-label="Data sensitivity">
+                      <option value="">Select sensitivity</option>
+                      <option>Public</option>
+                      <option>Internal</option>
+                      <option>Customer data</option>
+                      <option>Regulated/sensitive</option>
+                    </select>
+                  </label>
+                  <label class="field full">
+                    <span>Description</span>
+                    <textarea name="description" required data-summary-label="Description" placeholder="What does the AI app do, who uses it, and what should Sherlock treat as in scope?"></textarea>
+                  </label>
+                  <label class="field">
+                    <span>Framework or stack if known</span>
+                    <input name="framework" type="text" autocomplete="off" data-summary-label="Framework or stack" placeholder="Next.js, Vercel AI SDK, LangChain, custom API">
+                  </label>
+                  <label class="field">
+                    <span>Notes</span>
+                    <input name="notes" type="text" autocomplete="off" data-summary-label="Notes" placeholder="Launch date, risk concerns, manual audit context">
+                  </label>
+                </div>
+              </div>
+
+              <div class="setup-actions">
+                <button class="button primary" type="submit">Review Local Setup</button>
+                <a class="button secondary" href="target-setup.html">Continue to Target Metadata</a>
+                <p class="form-status" data-form-status aria-live="polite"></p>
+              </div>
+            </form>
+
+            <aside class="dashboard-card" aria-labelledby="project-preview-heading">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Local preview</p>
+                  <h2 id="project-preview-heading">Setup readiness.</h2>
+                </div>
+                <span class="status-pill not-retested">Not saved</span>
+              </div>
+              <dl class="setup-summary" id="project-setup-summary">
+                <div><dt>Project name</dt><dd>Not provided</dd></div>
+                <div><dt>Environment</dt><dd>Not selected</dd></div>
+                <div><dt>App type</dt><dd>Not selected</dd></div>
+                <div><dt>Data sensitivity</dt><dd>Not selected</dd></div>
+              </dl>
+              <div class="warning-panel">
+                <strong>Security boundary</strong>
+                <p>
+                  Do not paste real credentials into this static UI. Future test credentials must
+                  be handled through secure storage after backend auth and persistence are reviewed.
+                </p>
+              </div>
+            </aside>
+          </section>
+
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Future sequence</p>
+                <h2>What remains blocked.</h2>
+              </div>
+            </div>
+            <ul class="future-list">
+              <li><strong>Phase 14</strong><p>Target ownership verification before any public target can be scanned.</p></li>
+              <li><strong>Phase 15</strong><p>Scan execution through controlled workers after verification, SSRF protection, rate limits, and spend controls.</p></li>
+              <li><strong>Phase 17</strong><p>Reviewed findings with severity, confidence, evidence summaries, and manual review state.</p></li>
+              <li><strong>Phase 18</strong><p>Web reports after findings, access controls, and report-safe evidence handling exist.</p></li>
+            </ul>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

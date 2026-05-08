@@ -1960,6 +1960,204 @@ button:disabled {
   margin-top: auto;
 }
 
+.setup-progress {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.progress-step {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: grid;
+  gap: 0.35rem;
+  min-height: 118px;
+  padding: 0.95rem;
+}
+
+.progress-step strong {
+  align-items: center;
+  background: var(--ink);
+  color: var(--surface);
+  display: inline-flex;
+  font-size: 0.86rem;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.progress-step span {
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.progress-step small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.progress-step.current {
+  border-color: var(--teal);
+  border-top: 4px solid var(--teal);
+}
+
+.progress-step.future {
+  background: var(--surface-2);
+}
+
+.setup-layout {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.62fr);
+}
+
+.setup-form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.form-section {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.form-section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.form-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.field-help,
+.setup-note,
+.setup-summary dd,
+.future-list p {
+  color: var(--muted);
+}
+
+.field-help {
+  font-size: 0.9rem;
+}
+
+.setup-actions {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1rem;
+}
+
+.setup-summary {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.setup-summary div {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 0.75rem;
+}
+
+.setup-summary div:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.setup-summary dt {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.setup-summary dd {
+  margin: 0;
+}
+
+.option-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.target-type-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.choice-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: grid;
+  gap: 0.4rem;
+  min-height: 118px;
+  padding: 0.8rem;
+}
+
+.choice-card input {
+  min-height: auto;
+  width: auto;
+}
+
+.choice-card strong {
+  line-height: 1.25;
+}
+
+.choice-card span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.choice-card:has(input:checked) {
+  border-color: var(--teal);
+  box-shadow: inset 0 0 0 1px var(--teal);
+}
+
+.ack-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.warning-panel {
+  background: var(--yellow-soft);
+  border: 1px solid rgba(128, 97, 17, 0.26);
+  border-left: 5px solid var(--yellow);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.future-list {
+  display: grid;
+  gap: 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.future-list li {
+  border-top: 1px solid var(--line);
+  padding-top: 0.75rem;
+}
+
+.future-list li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.future-list strong {
+  display: block;
+}
+
 .site-footer {
   background: var(--surface);
   border-top: 1px solid var(--line);
@@ -2072,14 +2270,17 @@ button:disabled {
   .summary-columns,
   .auth-layout,
   .stat-grid,
-  .settings-grid {
+  .settings-grid,
+  .setup-progress,
+  .target-type-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .split,
   .contact-layout,
   .footer-inner,
-  .dashboard-grid {
+  .dashboard-grid,
+  .setup-layout {
     grid-template-columns: 1fr;
   }
 
@@ -2160,6 +2361,8 @@ button:disabled {
   .grid.four,
   .pricing-grid,
   .form-grid,
+  .option-grid,
+  .target-type-grid,
   .audit-board-grid,
   .report-header,
   .report-cover,
@@ -2179,6 +2382,7 @@ button:disabled {
 
   .auth-layout,
   .stat-grid,
+  .setup-progress,
   .settings-grid,
   .filter-bar {
     grid-template-columns: 1fr;
@@ -2198,6 +2402,7 @@ button:disabled {
   .topbar-actions,
   .topbar-actions .button,
   .dashboard-banner .button,
+  .setup-actions .button,
   .action-row .button {
     width: 100%;
   }

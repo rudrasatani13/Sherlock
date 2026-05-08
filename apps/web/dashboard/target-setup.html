@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Target Setup | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Phase 13 static target setup form for safe target metadata."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Phase 13</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>No live organization or session is loaded.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html" aria-current="page">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Target metadata</p>
+            <h1>Target setup.</h1>
+          </div>
+          <div class="topbar-actions">
+            <a class="button secondary" href="projects.html">Back to Projects</a>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">No verification yet</span>
+              <h2>Capture safe target metadata without enabling scans.</h2>
+              <p>
+                Phase 13 can describe a target, expected access pattern, and scope acknowledgement.
+                Ownership verification, scanner execution, workers, findings, and reports remain future phases.
+              </p>
+            </div>
+            <div class="action-row">
+              <button class="button secondary" type="button" disabled>Verify Target - Phase 14</button>
+              <button class="button primary" type="button" disabled>Run Scan - Phase 15</button>
+            </div>
+          </section>
+
+          <section class="setup-progress" aria-label="Project target setup progress">
+            <article class="progress-step">
+              <strong>1</strong>
+              <span>Project details</span>
+              <small>Project metadata form.</small>
+            </article>
+            <article class="progress-step current">
+              <strong>2</strong>
+              <span>Target metadata</span>
+              <small>Current static form.</small>
+            </article>
+            <article class="progress-step current">
+              <strong>3</strong>
+              <span>Authorization/scope</span>
+              <small>Required acknowledgement.</small>
+            </article>
+            <article class="progress-step future">
+              <strong>4</strong>
+              <span>Verification later</span>
+              <small>Phase 14.</small>
+            </article>
+            <article class="progress-step future">
+              <strong>5</strong>
+              <span>Scan later</span>
+              <small>Phase 15.</small>
+            </article>
+          </section>
+
+          <section class="setup-layout">
+            <form
+              class="dashboard-card setup-form"
+              data-setup-form
+              data-summary-target="target-setup-summary"
+              data-setup-message="Local target setup preview updated. Nothing was persisted, verified, or scanned."
+            >
+              <div class="form-section">
+                <div>
+                  <p class="eyebrow">Target identity</p>
+                  <h2>Describe the target safely.</h2>
+                  <p class="setup-note">
+                    Enter only metadata that is safe to keep in a setup draft. Do not paste API keys,
+                    bearer tokens, cookies, passwords, raw headers, or private keys.
+                  </p>
+                </div>
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Target name</span>
+                    <input name="target-name" type="text" autocomplete="off" required data-summary-label="Target name" placeholder="Support API endpoint">
+                  </label>
+                  <label class="field">
+                    <span>Target type</span>
+                    <select name="target-type" required data-summary-label="Target type">
+                      <option value="">Select target type</option>
+                      <option>API endpoint</option>
+                      <option>OpenAI-compatible endpoint</option>
+                      <option>Vercel AI SDK endpoint</option>
+                      <option>RAG application</option>
+                      <option>Tool-using agent</option>
+                      <option>Chatbot URL</option>
+                      <option>Manual audit target</option>
+                    </select>
+                  </label>
+                  <label class="field full">
+                    <span>Endpoint URL or app URL</span>
+                    <input name="target-url" type="url" inputmode="url" autocomplete="off" required data-summary-label="URL" placeholder="https://staging.example.com/api/chat">
+                    <span class="field-help">URLs are previewed only. Phase 13 does not fetch, verify, crawl, or scan them.</span>
+                  </label>
+                  <label class="field">
+                    <span>HTTP method if API endpoint</span>
+                    <select name="http-method" data-summary-label="HTTP method">
+                      <option>POST</option>
+                      <option>GET</option>
+                      <option>PUT</option>
+                      <option>PATCH</option>
+                      <option>DELETE</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Auth type</span>
+                    <select name="auth-type" data-summary-label="Auth type">
+                      <option>None</option>
+                      <option>Bearer token placeholder</option>
+                      <option>API key placeholder</option>
+                      <option>Test account/manual</option>
+                    </select>
+                    <span class="field-help">Temporary test credentials will be handled later through secure storage. Do not paste real secrets here.</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h2>Testing context</h2>
+                <div class="form-grid">
+                  <label class="field full">
+                    <span>Request/response format notes</span>
+                    <textarea name="format-notes" data-summary-label="Request/response notes" placeholder="Expected payload shape, streaming behavior, response format, or manual steps. No secrets."></textarea>
+                  </label>
+                  <label class="field">
+                    <span>Rate limit notes</span>
+                    <input name="rate-limit-notes" type="text" autocomplete="off" data-summary-label="Rate limit notes" placeholder="Example: 20 requests/minute during business hours">
+                  </label>
+                  <label class="field">
+                    <span>Test account notes</span>
+                    <input name="test-account-notes" type="text" autocomplete="off" data-summary-label="Test account notes" placeholder="Describe account class only, not passwords or tokens">
+                  </label>
+                  <label class="field">
+                    <span>RAG/private docs involved?</span>
+                    <select name="rag-private-docs" data-summary-label="RAG/private docs">
+                      <option>No</option>
+                      <option>Yes</option>
+                      <option>Unknown</option>
+                    </select>
+                  </label>
+                  <label class="field">
+                    <span>Tools/actions involved?</span>
+                    <select name="tools-actions" data-summary-label="Tools/actions">
+                      <option>No</option>
+                      <option>Yes</option>
+                      <option>Unknown</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h2>Authorization and impact placeholders</h2>
+                <div class="ack-list">
+                  <label class="checkbox-row">
+                    <input name="production-impact-ack" type="checkbox" required data-summary-label="Production-impact acknowledgement">
+                    <span>I understand this setup does not authorize production-impact testing or destructive actions.</span>
+                  </label>
+                  <label class="checkbox-row">
+                    <input name="authorization-scope-ack" type="checkbox" required data-summary-label="Authorization/scope acknowledgement">
+                    <span>I understand written authorization and target ownership verification are required before scanning.</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="setup-actions">
+                <button class="button primary" type="submit">Review Local Target Setup</button>
+                <a class="button secondary" href="project-detail.html">Open Project Placeholder</a>
+                <p class="form-status" data-form-status aria-live="polite"></p>
+              </div>
+            </form>
+
+            <aside class="dashboard-card" aria-labelledby="target-preview-heading">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Local preview</p>
+                  <h2 id="target-preview-heading">Target readiness.</h2>
+                </div>
+                <span class="status-pill not-retested">Not saved</span>
+              </div>
+              <dl class="setup-summary" id="target-setup-summary">
+                <div><dt>Target name</dt><dd>Not provided</dd></div>
+                <div><dt>Target type</dt><dd>Not selected</dd></div>
+                <div><dt>URL</dt><dd>Not provided</dd></div>
+                <div><dt>Auth type</dt><dd>None</dd></div>
+              </dl>
+              <div class="warning-panel">
+                <strong>Not a scanner</strong>
+                <p>
+                  The verify and run-scan controls are disabled. Phase 14 must add ownership
+                  verification, and Phase 15 must add worker-backed scan execution with network safety controls.
+                </p>
+              </div>
+            </aside>
+          </section>
+
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Supported target types</p>
+                <h2>Phase 13 UI taxonomy.</h2>
+              </div>
+            </div>
+            <div class="option-grid target-type-grid" aria-label="Supported target type descriptions">
+              <div class="choice-card"><strong>API endpoint</strong><span>HTTP API for chatbot or agent traffic.</span></div>
+              <div class="choice-card"><strong>OpenAI-compatible endpoint</strong><span>Chat-completions style compatible interface.</span></div>
+              <div class="choice-card"><strong>Vercel AI SDK endpoint</strong><span>Streaming or non-streaming app endpoint.</span></div>
+              <div class="choice-card"><strong>RAG application</strong><span>Retrieval-backed AI surface with document context.</span></div>
+              <div class="choice-card"><strong>Tool-using agent</strong><span>Agent with actions, tools, or workflow access.</span></div>
+              <div class="choice-card"><strong>Chatbot URL</strong><span>Browser-facing chatbot or support assistant URL.</span></div>
+              <div class="choice-card"><strong>Manual audit target</strong><span>Scoped target for human-led Phase 8 style review.</span></div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

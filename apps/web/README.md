@@ -1,6 +1,6 @@
 # Sherlock Web
 
-This directory contains the static public website and Phase 12 Dashboard V0 + Auth UI Shell for PowerDetect Sherlock.
+This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, and Phase 13 Project Target Setup UI for PowerDetect Sherlock.
 
 It is intentionally static:
 
@@ -8,7 +8,10 @@ It is intentionally static:
 - no scanner execution
 - no production authentication/session flow
 - no database
+- no real project or target persistence
+- no target ownership verification
 - no billing
+- no queue workers
 - no report generation
 - no admin panel
 - no public self-serve scanning
@@ -25,7 +28,11 @@ It is intentionally static:
 - `signup.html` - Phase 12 signup UI shell
 - `forgot-password.html` - Phase 12 password reset UI shell
 - `dashboard/index.html` - Phase 12 dashboard overview shell
-- `dashboard/projects.html` - static projects page with empty/demo states
+- `dashboard/projects.html` - Phase 13 projects page with setup CTA, empty state, demo project cards, and target metadata table
+- `dashboard/project-setup.html` - Phase 13 static project setup form
+- `dashboard/project-detail.html` - Phase 13 static project detail placeholder
+- `dashboard/target-setup.html` - Phase 13 static target setup form
+- `dashboard/target-detail.html` - Phase 13 static target detail placeholder
 - `dashboard/scans.html` - static scans page with lifecycle status examples
 - `dashboard/findings.html` - static findings page with severity/filter placeholders
 - `dashboard/reports.html` - static reports page linking to the sample report
@@ -45,14 +52,18 @@ Then open:
 http://localhost:4173/
 http://localhost:4173/login.html
 http://localhost:4173/dashboard/
+http://localhost:4173/dashboard/project-setup.html
+http://localhost:4173/dashboard/target-setup.html
 ```
 
 The contact form opens a prefilled email draft. It does not submit to a backend or store data.
 
 The auth UI forms are frontend-only and show "not connected yet" messages on submit. They do not create accounts, create sessions, send reset emails, store tokens, or store credentials. The login and settings pages can optionally fetch `http://localhost:8000/api/v0/auth/status` when the local API is running; this endpoint returns configuration state only.
 
+The Phase 13 setup forms validate required fields in the browser and update local previews only. They do not submit project or target data to the API, write database records, verify ownership, store secrets, or run scans. Auth fields are placeholders for future secure handling; do not paste real API keys, bearer tokens, cookies, passwords, private keys, raw headers, or production credentials into the static UI.
+
 Phase 3 refreshed `methodology.html` to align with the internal methodology in `../../docs/methodology.md`. The public page remains a readable overview, not the full internal taxonomy and not an attack prompt library.
 
-Phase 4 expands `sample-report.html` into a realistic static sample report with fictional findings, sanitized demo evidence, retest status, limitations, and final recommendations. Phase 6 adds an internal prompt library outside the web app under `../../packages/prompt_library`. Phase 8 adds manual audit workflow documentation under `../../docs/audits`. Phase 9 adds a separate backend API foundation under `../api`. Phase 11 adds backend auth placeholders. Phase 12 adds the dashboard/auth UI shell only.
+Phase 4 expands `sample-report.html` into a realistic static sample report with fictional findings, sanitized demo evidence, retest status, limitations, and final recommendations. Phase 6 adds an internal prompt library outside the web app under `../../packages/prompt_library`. Phase 8 adds manual audit workflow documentation under `../../docs/audits`. Phase 9 adds a separate backend API foundation under `../api`. Phase 11 adds backend auth placeholders. Phase 12 adds the dashboard/auth UI shell. Phase 13 adds project and target setup UI only.
 
-The web app is still not generated from a real scan and does not implement report generation, PDF export, protected API consumption, production auth, database storage, billing, scanner logic, prompt execution, evaluator code, admin panels, target verification, project persistence, scan creation, or public self-serve scanning.
+The web app is still not generated from a real scan and does not implement report generation, PDF export, protected API consumption, production auth, database storage, billing, queue workers, scanner logic, prompt execution, evaluator code, admin panels, target verification, project persistence, target persistence, scan creation, or public self-serve scanning.

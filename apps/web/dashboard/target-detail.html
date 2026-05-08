@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projects | PowerDetect Sherlock</title>
+    <title>Target Placeholder | PowerDetect Sherlock</title>
     <meta
       name="description"
-      content="PowerDetect Sherlock Phase 13 projects page with static project setup and target metadata placeholders."
+      content="PowerDetect Sherlock Phase 13 static target detail placeholder with verification and scan actions disabled."
     >
     <link rel="stylesheet" href="../assets/styles.css">
   </head>
@@ -24,7 +24,7 @@
         <div class="workspace-switcher" aria-label="Workspace placeholder">
           <span>Workspace</span>
           <strong>Demo Workspace</strong>
-          <small>Organization switching is not connected yet.</small>
+          <small>No live organization or session is loaded.</small>
         </div>
         <nav class="dashboard-nav" aria-label="Dashboard navigation">
           <a href="index.html">Overview</a>
@@ -49,133 +49,124 @@
             <span aria-hidden="true"></span>
           </button>
           <div>
-            <p class="eyebrow">Project target setup</p>
-            <h1>Projects.</h1>
+            <p class="eyebrow">Target detail placeholder</p>
+            <h1>Support API endpoint.</h1>
           </div>
           <div class="topbar-actions">
-            <a class="button primary" href="project-setup.html">New Project Setup</a>
+            <a class="button secondary" href="project-detail.html">Back to Project</a>
+            <a class="button secondary" href="target-setup.html">Edit Setup Draft</a>
           </div>
         </header>
 
         <main id="main" class="dashboard-main">
           <section class="dashboard-banner">
             <div>
-              <span class="status-pill review">Setup metadata only</span>
-              <h2>Phase 13 adds project and target setup UX without persistence.</h2>
+              <span class="status-pill review">Verification pending later</span>
+              <h2>Target details are setup metadata only.</h2>
               <p>
-                These screens help define the future project and target contract. They do not create
-                records, verify ownership, store secrets, run scans, generate findings, or produce reports.
+                Phase 13 does not fetch this URL, validate ownership, store credentials, execute
+                prompts, call tools, create scans, create findings, or generate reports.
               </p>
             </div>
-            <a class="button secondary" href="target-setup.html">Add Target Metadata</a>
+            <div class="action-row">
+              <button class="button secondary" type="button" disabled>Verify Target - Phase 14</button>
+              <button class="button primary" type="button" disabled>Run Scan - Phase 15</button>
+            </div>
           </section>
 
-          <section class="setup-progress" aria-label="Project setup progress">
+          <section class="setup-progress" aria-label="Target readiness progress">
             <article class="progress-step current">
               <strong>1</strong>
               <span>Project details</span>
-              <small>Available as a static setup form.</small>
+              <small>Static project placeholder.</small>
             </article>
             <article class="progress-step current">
               <strong>2</strong>
               <span>Target metadata</span>
-              <small>Available as safe metadata only.</small>
+              <small>Static target placeholder.</small>
             </article>
             <article class="progress-step current">
               <strong>3</strong>
               <span>Authorization/scope</span>
-              <small>Acknowledgement placeholder only.</small>
+              <small>Acknowledgement placeholder.</small>
             </article>
             <article class="progress-step future">
               <strong>4</strong>
               <span>Verification later</span>
-              <small>Phase 14 ownership verification.</small>
+              <small>No DNS/meta/file challenge yet.</small>
             </article>
             <article class="progress-step future">
               <strong>5</strong>
               <span>Scan later</span>
-              <small>Phase 15 scan execution.</small>
+              <small>No worker or scanner execution.</small>
             </article>
           </section>
 
-          <section class="empty-state" aria-label="No connected projects">
-            <span class="empty-icon" aria-hidden="true"></span>
-            <h2>No persisted projects yet.</h2>
-            <p>
-              Real projects will require production auth, tenant membership, database writes, RLS
-              policies, and reviewed authorization. Use the Phase 13 setup flow to preview the
-              intended metadata contract locally.
-            </p>
-            <a class="button primary" href="project-setup.html">Start Project Setup</a>
-          </section>
-
           <section class="dashboard-grid">
-            <article class="dashboard-card project-card">
+            <article class="dashboard-card">
               <div class="card-heading">
                 <div>
-                  <p class="eyebrow">Static draft</p>
-                  <h2>Support Copilot Launch</h2>
+                  <p class="eyebrow">Safe metadata</p>
+                  <h2>Target profile.</h2>
                 </div>
                 <span class="status-pill not-retested">Not persisted</span>
               </div>
               <dl class="detail-list">
-                <div><dt>AI surface</dt><dd>RAG support assistant</dd></div>
-                <div><dt>Environment</dt><dd>Staging</dd></div>
-                <div><dt>Data sensitivity</dt><dd>Customer data</dd></div>
+                <div><dt>Target type</dt><dd>Vercel AI SDK endpoint</dd></div>
+                <div><dt>URL</dt><dd>https://staging.example.com/api/chat</dd></div>
+                <div><dt>HTTP method</dt><dd>POST</dd></div>
+                <div><dt>Auth type</dt><dd>Bearer token placeholder; no token stored</dd></div>
+                <div><dt>RAG/private docs involved</dt><dd>Yes</dd></div>
+                <div><dt>Tools/actions involved</dt><dd>No direct tool actions declared</dd></div>
               </dl>
-              <a class="button secondary" href="project-detail.html">Open Project Placeholder</a>
             </article>
 
-            <article class="dashboard-card project-card">
+            <article class="dashboard-card">
               <div class="card-heading">
                 <div>
-                  <p class="eyebrow">Static draft</p>
-                  <h2>Workflow Agent Review</h2>
+                  <p class="eyebrow">Safety review</p>
+                  <h2>Before scanning.</h2>
                 </div>
-                <span class="status-pill review">Needs scope</span>
               </div>
-              <dl class="detail-list">
-                <div><dt>AI surface</dt><dd>Tool-using agent</dd></div>
-                <div><dt>Environment</dt><dd>Development</dd></div>
-                <div><dt>Data sensitivity</dt><dd>Internal</dd></div>
-              </dl>
-              <a class="button secondary" href="project-detail.html">Open Project Placeholder</a>
+              <ul class="future-list">
+                <li><strong>Credential handling</strong><p>Temporary test credentials require future secure storage. This page stores none.</p></li>
+                <li><strong>Ownership verification</strong><p>Phase 14 must prove the target belongs to the workspace before scan creation.</p></li>
+                <li><strong>Network safety</strong><p>SSRF protection, redirect validation, timeouts, and rate limits are future controls.</p></li>
+              </ul>
             </article>
           </section>
 
           <section class="dashboard-card">
             <div class="card-heading">
               <div>
-                <p class="eyebrow">Targets</p>
-                <h2>Target setup foundation.</h2>
+                <p class="eyebrow">Setup notes</p>
+                <h2>Contract placeholder.</h2>
               </div>
-              <a class="button secondary" href="target-setup.html">New Target Setup</a>
             </div>
             <div class="responsive-table">
               <table>
                 <thead>
                   <tr>
-                    <th scope="col">Target</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Auth handling</th>
-                    <th scope="col">Verification</th>
-                    <th scope="col">Scan</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Current value</th>
+                    <th scope="col">Future requirement</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><a href="target-detail.html">Support API endpoint</a></td>
-                    <td>API endpoint</td>
-                    <td>Placeholder only; no secret stored</td>
-                    <td><span class="status-pill review">Phase 14 later</span></td>
-                    <td><span class="status-pill not-retested">Disabled</span></td>
+                    <td>Request/response format</td>
+                    <td>JSON chat payload, streaming response possible</td>
+                    <td>Document exact schema before scanner integration</td>
                   </tr>
                   <tr>
-                    <td><a href="target-detail.html">Help center RAG app</a></td>
-                    <td>RAG application</td>
-                    <td>Test-account notes only</td>
-                    <td><span class="status-pill review">Phase 14 later</span></td>
-                    <td><span class="status-pill not-retested">Disabled</span></td>
+                    <td>Rate limits</td>
+                    <td>Manual note only</td>
+                    <td>Worker-level limits and spend controls in Phase 15+</td>
+                  </tr>
+                  <tr>
+                    <td>Authorization/scope</td>
+                    <td>Acknowledgement placeholder</td>
+                    <td>Auditable verification record and approved scope</td>
                   </tr>
                 </tbody>
               </table>

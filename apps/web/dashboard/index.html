@@ -19,7 +19,7 @@
             <span class="brand-mark" aria-hidden="true"></span>
             <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
           </a>
-          <span class="status-pill info">Dashboard V0</span>
+          <span class="status-pill info">Phase 13</span>
         </div>
 
         <div class="workspace-switcher" aria-label="Workspace placeholder">
@@ -64,44 +64,44 @@
           </div>
           <div class="topbar-actions">
             <a class="button secondary" href="../login.html">Login UI</a>
-            <button class="button primary" type="button" disabled>Add Project</button>
+            <a class="button primary" href="project-setup.html">New Project Setup</a>
           </div>
         </header>
 
         <main id="main" class="dashboard-main">
           <section class="dashboard-banner">
             <div>
-              <span class="status-pill review">Demo shell</span>
-              <h2>Dashboard UI is ready for product wiring.</h2>
+              <span class="status-pill review">Setup metadata only</span>
+              <h2>Project and target setup UX is in place.</h2>
               <p>
-                These screens use static demo data and placeholders only. No browser session,
-                database reads/writes, scan execution, target verification, report generation,
-                billing, or queue worker integration exists in Phase 12.
+                These screens use static setup forms, demo data, and placeholders only. No browser
+                session, database reads/writes, scan execution, target verification, report generation,
+                billing, or queue worker integration exists in Phase 13.
               </p>
             </div>
-            <a class="button secondary" href="../sample-report.html">View Sample Report</a>
+            <a class="button secondary" href="projects.html">Review Setup Flow</a>
           </section>
 
           <section class="stat-grid" aria-label="Demo dashboard metrics">
             <article class="stat-card">
-              <span>Total projects</span>
+              <span>Setup drafts</span>
               <strong>2</strong>
-              <small>Demo records only</small>
+              <small>No persisted records</small>
             </article>
             <article class="stat-card">
               <span>Scans run</span>
-              <strong>7</strong>
-              <small>Static lifecycle examples</small>
+              <strong>0</strong>
+              <small>Execution disabled</small>
             </article>
             <article class="stat-card">
               <span>Open findings</span>
               <strong>5</strong>
-              <small>Not persisted</small>
+              <small>Coming Phase 17</small>
             </article>
             <article class="stat-card high-risk">
               <span>High-risk findings</span>
               <strong>2</strong>
-              <small>Sample report style</small>
+              <small>Static examples only</small>
             </article>
           </section>
 
@@ -110,18 +110,18 @@
               <div class="card-heading">
                 <div>
                   <p class="eyebrow">Recommended next step</p>
-                  <h2>Connect real project setup in Phase 13.</h2>
+                  <h2>Review project and target setup metadata.</h2>
                 </div>
-                <span class="status-pill info">Next phase</span>
+                <span class="status-pill info">Phase 13</span>
               </div>
               <p>
-                The dashboard shell is now in place. The next product step is a safe project
-                setup flow that can create records only after production auth, tenant membership,
-                and persistence boundaries are reviewed.
+                The dashboard now models project setup, target metadata, authorization/scope
+                acknowledgements, and future verification/scan readiness without writing records
+                or starting security tests.
               </p>
               <div class="action-row">
-                <button class="button primary" type="button" disabled>Add Project - Coming Soon</button>
-                <a class="button secondary" href="projects.html">Review Projects Page</a>
+                <a class="button primary" href="project-setup.html">Start Project Setup</a>
+                <a class="button secondary" href="target-setup.html">Add Target Metadata</a>
               </div>
             </article>
 
@@ -150,8 +150,8 @@
                 <li>
                   <span class="activity-dot pending"></span>
                   <div>
-                    <strong>Project creation unavailable</strong>
-                    <p>Real persistence is intentionally deferred to Phase 13.</p>
+                    <strong>Verification unavailable</strong>
+                    <p>Ownership verification remains deferred to Phase 14.</p>
                   </div>
                 </li>
               </ol>
