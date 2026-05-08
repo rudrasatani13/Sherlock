@@ -44,7 +44,7 @@ class Settings:
     environment: str = field(default_factory=lambda: os.getenv("SHERLOCK_ENVIRONMENT", "local"))
     api_version: str = field(default_factory=lambda: os.getenv("SHERLOCK_API_VERSION", "v0"))
     current_phase: str = field(
-        default_factory=lambda: os.getenv("SHERLOCK_CURRENT_PHASE", "Phase 14 Target Ownership Verification completed")
+        default_factory=lambda: os.getenv("SHERLOCK_CURRENT_PHASE", "Phase 15 Queue + Worker System completed")
     )
     database_url: str = field(default_factory=lambda: os.getenv("DATABASE_URL", ""))
     supabase_url: str = field(default_factory=lambda: os.getenv("SUPABASE_URL", ""))
@@ -61,7 +61,10 @@ class Settings:
         default_factory=lambda: _parse_bool(_read_env("AUTH_ENABLED", "SHERLOCK_AUTH_ENABLED"), default=False)
     )
     billing_enabled: bool = False
-    worker_enabled: bool = False
+    worker_enabled: bool = field(
+        default_factory=lambda: _parse_bool(os.getenv("WORKER_ENABLED"), default=False)
+    )
+    queue_backend: str = field(default_factory=lambda: os.getenv("QUEUE_BACKEND", "local"))
 
     @property
     def api_prefix(self) -> str:

@@ -1,6 +1,8 @@
 # Sherlock Web
 
-This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, and Phase 14 Target Ownership Verification UI for PowerDetect Sherlock.
+Status: Phase 15 Queue + Worker System dashboard updates completed.
+
+This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, and Phase 14 Target Verification UI for PowerDetect Sherlock.
 
 It is intentionally static:
 
@@ -11,7 +13,7 @@ It is intentionally static:
 - no real project or target persistence
 - no production target ownership verification checks
 - no billing
-- no queue workers
+- no production queue workers (local queue/worker foundation exists under `packages/worker_system`)
 - no report generation
 - no admin panel
 - no public self-serve scanning

@@ -259,12 +259,35 @@ Implemented:
 
 Phase 14 does not implement production DNS/HTTP/chatbot verification checks, active API persistence of verification records, SSRF-safe network requests, rate-limited verification attempts, scan unlocking, scanner execution, queue workers, billing, findings, generated reports, PDF export, admin panels, destructive testing, service-role usage in frontend, or real secret storage.
 
-## Phase 15+: Product Platform
+## Phase 15: Queue + Worker System
+
+Status: completed
+
+Created the queue and worker system foundation under `packages/worker_system`. This phase prepares Sherlock to run future scans asynchronously through background workers.
+
+Implemented as foundation only:
+
+- queue abstraction with `QueueBackend` interface and `LocalMemoryQueue` in-memory dev backend
+- job payload and result schemas (JSON-serializable, no secrets)
+- four job types: `scan.run`, `scan.evaluate`, `scan.summarize`, `report.prepare_placeholder`
+- eight lifecycle states: `queued`, `running`, `completed`, `failed`, `cancelled`, `timed_out`, `blocked_unverified`, `blocked_unsafe`
+- safety gates: queue enabled, target verified, job type allowed, target URL safe, no secrets in payload, limits enforcement
+- worker engine with mock scan execution via Phase 5 `MockTargetAdapter` only
+- local worker CLI for safe dry-runs
+- queue/worker contract metadata on the scans API placeholder route
+- dashboard queue status messaging and lifecycle reference
+- worker system unit tests
+- documentation in `docs/workers.md`
+- `.env.example` placeholders for `QUEUE_BACKEND`, `WORKER_ENABLED`, `WORKER_MAX_CONCURRENT_JOBS`, `WORKER_JOB_TIMEOUT_SECONDS`, `SCAN_MAX_TESTS_PER_JOB`
+- `worker-output/` and `worker-results/` added to `.gitignore`
+
+Phase 15 does not implement public scan execution, production queue deployment, real network scanning, production DNS/HTTP/chatbot verification checks, billing, findings persistence, report generation, PDF export, admin panels, service-role usage in frontend, real secret storage, or broad RLS policies.
+
+## Phase 16+: Product Platform
 
 Future platform work may include:
 
-- Phase 15 scan execution (requires verified targets, queue workers, SSRF protections, rate limits, spend controls)
-- Phase 15 async workers and queues
+- Phase 16 scan execution integration (requires verified targets, production auth, SSRF protections, rate limits, spend controls)
 - Phase 17 findings system
 - Phase 18 web report
 - Phase 21 billing callbacks
@@ -273,6 +296,7 @@ Future platform work may include:
 - active API persistence of verification records
 - challenge token TTL enforcement
 - manual authorization file upload and admin review
+- production Redis/RQ queue backend
 - productized retest management
 - local runner
 - GitHub/CI integration

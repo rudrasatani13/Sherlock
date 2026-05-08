@@ -1,14 +1,12 @@
 # Sherlock Backend API
 
-Status: Phase 14 Target Ownership Verification completed; API remains a placeholder backend foundation
-
-This app is the minimal backend API foundation for Sherlock, the AI Launch Security Audit + Scanner product under the PowerDetect brand.
+Status: Phase 15 Queue + Worker System completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, and Phase 15 queue/worker contracts.
 
 It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. The API still does not implement the full platform or active persistence.
 
 ## Scope
 
-Phase 9 through Phase 14 include:
+Phase 9 through Phase 15 include:
 
 - FastAPI app skeleton under `apps/api`
 - health and version/status endpoints
@@ -27,8 +25,9 @@ Phase 9 through Phase 14 include:
 - Phase 14 verification method registry, status definitions, challenge token design, and request/response contract schemas
 - Phase 14 safe verification helpers (token generation, hashing, format checks — no network requests)
 - Phase 14 verification helper unit tests
+- Phase 15 queue/worker system foundation under `packages/worker_system`
 
-Phase 14 adds verification contracts and safe helpers to placeholder responses. The API still does not include:
+Phase 15 adds queue/worker contracts to placeholder responses. The API still does not include:
 
 - active API database persistence
 - real production project persistence
@@ -39,7 +38,7 @@ Phase 14 adds verification contracts and safe helpers to placeholder responses. 
 - project/report authorization enforcement
 - billing or Stripe callbacks
 - authenticated dashboard API integration
-- queue workers or background jobs
+- production queue workers or background job deployment (local queue/worker foundation exists under `packages/worker_system`)
 - public scan execution
 - production DNS/HTTP/chatbot verification checks
 - verification record persistence
@@ -144,7 +143,7 @@ These routes intentionally return `501 not_implemented` with a structured error 
 | --- | --- | --- |
 | GET | `/api/v0/projects` | Future project/workspace records after database integration and auth exist. |
 | GET | `/api/v0/targets` | Future target metadata and verified scope records. |
-| GET | `/api/v0/scans` | Future scan job contracts and worker handoff after security controls exist. |
+| GET | `/api/v0/scans` | Future scan job contracts and worker handoff after security controls exist. Lists job types, lifecycle states, safety gates, future endpoints, and forbidden payload fields. Scanner execution is not exposed. |
 | GET | `/api/v0/findings` | Future reviewed findings system. |
 | GET | `/api/v0/reports` | Future web report metadata and access contracts. |
 | GET | `/api/v0/verification` | Phase 14 verification contract with method registry, status definitions, challenge token design, and request/response schemas. |
@@ -162,7 +161,7 @@ Responses use a shared shape for future consistency:
   "error": null,
   "metadata": {
     "api_version": "v0",
-    "phase": "Phase 14 Target Ownership Verification completed",
+    "phase": "Phase 15 Queue + Worker System completed",
     "environment": "local"
   }
 }
@@ -181,8 +180,8 @@ Safe environment variables:
 | `SHERLOCK_MARKETING_NAME` | `PowerDetect Sherlock` | Full marketing name. |
 | `SHERLOCK_ENVIRONMENT` | `local` | Runtime environment label. |
 | `SHERLOCK_API_VERSION` | `v0` | API route/version label. |
-| `SHERLOCK_CURRENT_PHASE` | `Phase 14 Target Ownership Verification completed` | Product phase label. |
-| `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by routes in Phase 14. |
+| `SHERLOCK_CURRENT_PHASE` | `Phase 15 Queue + Worker System completed` | Product phase label. |
+| `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by routes in Phase 15. |
 | `AUTH_ENABLED` | `false` | Enables future auth enforcement only after real Supabase/JWKS configuration exists. |
 | `SUPABASE_URL` | empty string | Future Supabase project URL placeholder. |
 | `SUPABASE_ANON_KEY` | empty string | Future browser-safe Supabase anon key placeholder. |
@@ -191,7 +190,7 @@ Safe environment variables:
 | `SHERLOCK_DEBUG` | `false` | Local debug flag. |
 | `SHERLOCK_ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:4173` | Local CORS placeholder origins. |
 
-No real secrets are required for Phase 14. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, or raw auth headers.
+No real secrets are required for Phase 15. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, or raw auth headers.
 
 ## Auth Foundation
 

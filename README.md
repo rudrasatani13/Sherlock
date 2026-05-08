@@ -6,9 +6,9 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 14: Target Ownership Verification**.
+Sherlock has completed **Phase 15: Queue + Worker System**.
 
-The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, the Phase 12 dashboard/auth UI shell, and the Phase 13 project/target setup foundation:
+The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, the Phase 12 dashboard/auth UI shell, the Phase 13 project/target setup foundation, the Phase 14 target ownership verification foundation, and the Phase 15 queue and worker system foundation:
 
 - repository organization
 - product and architecture documentation
@@ -78,8 +78,17 @@ The repository now contains the Phase 1 foundation, the static Phase 2 public we
 - unit tests for non-network verification helpers
 - disabled run-scan actions with future-phase labels
 - placeholder project/target/verification API contract metadata documenting safe fields and security boundaries
+- queue and worker system foundation under `packages/worker_system`
+- job payload and result schemas with JSON-serializable contracts
+- scan job lifecycle states (queued, running, completed, failed, cancelled, timed_out, blocked_unverified, blocked_unsafe)
+- safety gates for target verification, URL safety, secret rejection, and limit enforcement
+- local in-memory queue backend with abstract `QueueBackend` interface for future Redis/RQ swap
+- local worker CLI for safe mock scan dry-runs using Phase 5 MockTargetAdapter only
+- queue/worker contract metadata on the scans API placeholder route
+- dashboard queue status messaging and lifecycle reference
+- worker system unit tests
 
-No public self-serve scan execution, backend scan execution APIs, production auth/session flow, production JWT verification, active API database persistence, real project persistence from the UI, real production project persistence, real target persistence from the UI, real scan creation, billing, queue workers, PDF generation, admin panel, target verification implementation, production scanner exposure, generated web reports, or real report generation are implemented.
+No public self-serve scan execution, backend scan execution APIs, production auth/session flow, production JWT verification, active API database persistence, real project persistence from the UI, real production project persistence, real target persistence from the UI, real scan creation, billing, production queue deployment, PDF generation, admin panel, production target verification, production scanner exposure, generated web reports, or real report generation are implemented.
 
 ## Product Positioning
 
@@ -106,7 +115,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 |-- config/              # Shared product metadata and future configuration
 |-- db/                  # Phase 10 PostgreSQL/Supabase-compatible database foundation
 |-- docs/                # Product, architecture, security, roadmap, and setup docs
-|-- packages/            # Internal scanner engine, prompt library, evaluator system, and future shared libraries
+|-- packages/            # Internal scanner engine, prompt library, evaluator system, worker system, and future shared libraries
 |-- templates/           # Phase 8 lightweight manual audit templates
 |-- .env.example         # Safe local environment template
 |-- .gitignore           # Repository hygiene and generated artifact exclusions
@@ -114,7 +123,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 `-- README.md
 ```
 
-The repository remains intentionally minimal. Phase 14 extends the static dashboard with target ownership verification UI and API contract placeholders; full platform behavior remains future phases.
+The repository remains intentionally minimal. Phase 15 adds the queue and worker system foundation under `packages/worker_system` with job schemas, safety gates, local queue backend, and mock worker execution. Full platform behavior remains future phases.
 
 ## Documentation
 
@@ -131,6 +140,7 @@ The repository remains intentionally minimal. Phase 14 extends the static dashbo
 - [Manual Audit Workflow](docs/audits/README.md)
 - [Sample Report Reference](docs/sample-report.md)
 - [Security Notes](docs/security.md)
+- [Queue and Worker System](docs/workers.md)
 - [Roadmap](docs/roadmap.md)
 - [Scope Boundaries](docs/scope.md)
 - [Phase 2 Public Website Notes](docs/phase-2-public-website.md)
@@ -175,7 +185,21 @@ createdb sherlock_local
 psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations/20260507100000_phase_10_initial_database_foundation.sql
 ```
 
-There is still no live Supabase connection requirement, billing provider, queue worker, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, target verification flow, report generator, production JWT verification, production login/signup/session flow, real project persistence, real target persistence, or active API persistence path configured.
+There is still no live Supabase connection requirement, billing provider, production queue deployment, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, production target verification flow, report generator, production JWT verification, production login/signup/session flow, real project persistence, real target persistence, or active API persistence path configured.
+
+Run the Phase 15 local worker dry-run:
+
+```bash
+python3 -m packages.worker_system.cli
+```
+
+This runs a safe mock scan job using the Phase 5 MockTargetAdapter only. Output goes to `worker-output/` which is ignored by Git.
+
+Run the Phase 15 worker system tests:
+
+```bash
+python3 -m unittest discover -s packages/worker_system/tests
+```
 
 Run the internal Phase 5 mock scanner dry-run with Python:
 
@@ -203,7 +227,7 @@ Review the Phase 8 manual audit workflow:
 find docs/audits templates -maxdepth 2 -type f | sort
 ```
 
-Keep `.env.local`, generated reports, scan outputs, logs, and build artifacts out of Git.
+Keep `.env.local`, generated reports, scan outputs, worker outputs, logs, and build artifacts out of Git.
 
 ## Product Metadata
 

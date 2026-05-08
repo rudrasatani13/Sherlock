@@ -4,21 +4,31 @@ from fastapi import APIRouter
 
 from ..errors import NotImplementedApiError
 from ..schemas.common import ApiResponse, serialize_model
-from ..schemas.scans import ScansModuleStatus
+from ..schemas.scans import ScanQueueContract, ScansModuleStatus
 
 router = APIRouter(prefix="/scans", tags=["scans"])
 
 
 @router.get("", response_model=ApiResponse)
 def scans_placeholder() -> ApiResponse:
-    details = ScansModuleStatus(
-        future_capabilities=["scan request contracts", "scan status", "queue handoff", "worker result ingestion"],
+    module_status = ScansModuleStatus(
+        future_capabilities=[
+            "scan job creation (authenticated + verified targets only)",
+            "scan job status queries",
+            "scan job cancellation",
+            "queue worker handoff",
+            "worker result ingestion",
+        ],
         disabled_capabilities=[
-            "scanner execution",
             "public scan creation",
-            "queue workers",
+            "production queue deployment",
             "active scan persistence",
             "ownership verification bypasses",
+            "scanner execution from API routes",
+            "real network scanning",
         ],
     )
-    raise NotImplementedApiError("scans", serialize_model(details))
+    queue_contract = ScanQueueContract()
+    details = serialize_model(module_status)
+    details["queue_contract"] = serialize_model(queue_contract)
+    raise NotImplementedApiError("scans", details)

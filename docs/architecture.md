@@ -2,7 +2,7 @@
 
 Sherlock is planned as a modular AI launch security audit and scanner platform. The architecture should keep customer-facing workflows, scan execution, prompt libraries, evaluators, reports, and billing separated so each area can evolve without becoming tightly coupled.
 
-This document describes the future direction and the current Phase 13 project/target setup foundation. Phase 13 extends the static Phase 12 dashboard/auth UI shell with project setup, target setup, and detail-placeholder screens on top of the Phase 11 Supabase Auth-compatible backend groundwork and Phase 10 schema. It does not implement production auth/session flow, active API database persistence, real production project persistence, target ownership verification, billing, queue workers, report generation, PDF export, admin panels, or public scan execution.
+This document describes the future direction and the current Phase 15 queue and worker system foundation. Phase 15 adds a queue abstraction, job schemas, safety gates, local worker engine, and mock scan execution under `packages/worker_system`. It builds on Phase 14 verification, Phase 13 setup, Phase 12 dashboard, Phase 11 auth, Phase 10 database, and Phase 9 API foundations. It does not implement production queue deployment, public scan execution, real network scanning, active API database persistence, billing, report generation, PDF export, or admin panels.
 
 ## Planned Components
 
@@ -70,7 +70,19 @@ Phase 8 adds documentation under `docs/audits` and lightweight templates under `
 
 ### Async Scan Workers
 
-Long-running scans should eventually run outside request/response paths through workers and queues. The worker layer should enforce timeouts, concurrency limits, retry policy, spend limits, and cancellation.
+Long-running scans run outside request/response paths through workers and queues. The worker layer enforces timeouts, concurrency limits, retry policy, spend limits, and cancellation.
+
+Phase 15 adds `packages/worker_system` with:
+
+- `QueueBackend` abstraction and `LocalMemoryQueue` in-memory dev backend
+- job payload and result schemas (JSON-serializable, no secrets)
+- job types: `scan.run`, `scan.evaluate`, `scan.summarize`, `report.prepare_placeholder`
+- lifecycle states: queued, running, completed, failed, cancelled, timed_out, blocked_unverified, blocked_unsafe
+- safety gates: target verified, URL safe, no secrets, limits enforcement
+- worker engine with Phase 5 MockTargetAdapter mock scan execution
+- local worker CLI for dry-runs
+
+The Phase 15 worker is local/mock only. Production queue deployment requires Redis/RQ or Celery backend, production auth, target verification, SSRF protection, and rate limits.
 
 ### Database and Auth
 
@@ -115,11 +127,11 @@ Future GitHub/CI integration may allow teams to run approved checks before launc
 The current foundation uses:
 
 - `apps/` for future deployable applications
-- `apps/api` for the Phase 9 backend API foundation with Phase 13 setup contracts and Phase 14 verification contracts
+- `apps/api` for the Phase 9 backend API foundation with Phase 13 setup contracts, Phase 14 verification contracts, and Phase 15 queue/worker contracts
 - `apps/web` for the static public website and dashboard/auth/project-target setup/verification UI shell
 - `db/` for the Phase 10 PostgreSQL/Supabase-compatible database foundation
 - `packages/` for future shared libraries and core domain modules
 - `config/` for shared product metadata and future configuration
 - `docs/` for product, architecture, setup, roadmap, security, and scope notes
 
-The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, queue, or deployment target.
+Phase 15 adds a queue and worker foundation under `packages/worker_system` without adding external dependencies (Redis, RQ, Celery). The local in-memory queue backend can be swapped for a production backend when needed. The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, production queue, or deployment target.

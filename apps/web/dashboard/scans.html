@@ -60,21 +60,121 @@
         <main id="main" class="dashboard-main">
           <section class="dashboard-banner">
             <div>
-              <span class="status-pill review">Coming in Phase 15</span>
-              <h2>Scan execution is not exposed in the dashboard.</h2>
+              <span class="status-pill info">Phase 15 — Queue Foundation</span>
+              <h2>Queue worker system is being prepared.</h2>
               <p>
-                The internal scanner remains local-only. Public scan creation needs production auth,
-                target verification, SSRF protection, rate limits, spend controls, and queue workers first.
+                Sherlock now has a queue and worker foundation for future async scan execution.
+                Public scan creation still requires production auth, verified targets, SSRF protection,
+                rate limits, and spend controls.
               </p>
             </div>
-            <button class="button secondary" type="button" disabled>Run Scan - Disabled</button>
+            <button class="button secondary" type="button" disabled>Run Scan — Queue Worker Coming Online</button>
           </section>
 
           <section class="dashboard-card">
             <div class="card-heading">
               <div>
-                <p class="eyebrow">Static scan list</p>
-                <h2>Lifecycle states.</h2>
+                <p class="eyebrow">Future scan flow</p>
+                <h2>How scanning will work.</h2>
+              </div>
+            </div>
+            <ol class="activity-list">
+              <li>
+                <span class="activity-dot completed"></span>
+                <div>
+                  <strong>1. Verified target</strong>
+                  <p>Target ownership is confirmed via DNS, meta tag, well-known file, or manual review.</p>
+                </div>
+              </li>
+              <li>
+                <span class="activity-dot pending"></span>
+                <div>
+                  <strong>2. Scan job queued</strong>
+                  <p>Authenticated user creates a scan job. Safety gates validate the request before queuing.</p>
+                </div>
+              </li>
+              <li>
+                <span class="activity-dot pending"></span>
+                <div>
+                  <strong>3. Worker runs scanner</strong>
+                  <p>Background worker picks up the job and executes the Phase 5 scanner engine.</p>
+                </div>
+              </li>
+              <li>
+                <span class="activity-dot pending"></span>
+                <div>
+                  <strong>4. Evaluator reviews</strong>
+                  <p>Phase 7 evaluator classifies scanner observations into structured findings.</p>
+                </div>
+              </li>
+              <li>
+                <span class="activity-dot pending"></span>
+                <div>
+                  <strong>5. Findings and report</strong>
+                  <p>Reviewed findings are presented in a web report with evidence and remediation.</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Job lifecycle states</p>
+                <h2>Queue status reference.</h2>
+              </div>
+            </div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Status</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="status-pill review">Queued</span></td>
+                    <td>Job is waiting in the queue for a worker</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill info">Running</span></td>
+                    <td>Worker has picked up the job and is executing</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill pass">Completed</span></td>
+                    <td>Job finished successfully</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill failed">Failed</span></td>
+                    <td>Job encountered an error during execution</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill review">Cancelled</span></td>
+                    <td>Job was cancelled before completion</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill failed">Timed Out</span></td>
+                    <td>Job exceeded its timeout limit</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill failed">Blocked — Unverified</span></td>
+                    <td>Target ownership is not verified</td>
+                  </tr>
+                  <tr>
+                    <td><span class="status-pill failed">Blocked — Unsafe</span></td>
+                    <td>Safety gate rejected the job</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Static demo scan list</p>
+                <h2>Example scan records.</h2>
               </div>
             </div>
             <div class="responsive-table">
@@ -107,15 +207,15 @@
                     <td>SHK-DEMO-0009</td>
                     <td>Support Copilot Launch</td>
                     <td>Deep</td>
-                    <td><span class="status-pill review">Pending</span></td>
+                    <td><span class="status-pill review">Queued</span></td>
                     <td>Not scheduled</td>
                   </tr>
                   <tr>
                     <td>SHK-DEMO-0010</td>
                     <td>Workflow Agent Review</td>
                     <td>Manual</td>
-                    <td><span class="status-pill failed">Failed</span></td>
-                    <td>Demo error state</td>
+                    <td><span class="status-pill failed">Blocked — Unverified</span></td>
+                    <td>Verification required</td>
                   </tr>
                 </tbody>
               </table>

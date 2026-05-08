@@ -130,8 +130,26 @@ Phase 8 adds the human-led workflow under `docs/audits`. In that workflow, the s
 
 Scanner outputs remain local observations under ignored `scan-results/`. They should be reviewed with the Phase 7 evaluator and manual playbooks before any customer-facing finding is drafted.
 
+## Phase 15 Worker Connection
+
+Phase 15 adds `packages/worker_system`, which treats the scanner engine as an isolated execution module. The worker:
+
+1. Validates a job payload against safety gates (verified target, URL safety, no secrets, limits)
+2. Constructs a `ScanConfig` with `TargetConfig(type="mock")` and `scan_mode="safe_smoke"`
+3. Creates a `ScannerEngine` with `MockTargetAdapter`
+4. Calls `engine.run()` to execute the scan
+5. Captures the `ScanRun` result and writes output to `worker-output/`
+
+Phase 15 is mock-only. The worker does not scan external targets, use real adapters, or require network access.
+
+Run the local worker dry-run:
+
+```bash
+python3 -m packages.worker_system.cli
+```
+
 ## Future Backend and Worker Connection
 
-Future backend APIs and queue workers should treat the scanner engine as an isolated execution module. A backend can validate authorization and create scan jobs, while a worker can load a scan config, execute the runner, store outputs, and hand structured results to evaluator/report systems.
+Future backend APIs and production queue workers should treat the scanner engine as an isolated execution module. A backend can validate authorization and create scan jobs, while a worker can load a scan config, execute the runner, store outputs, and hand structured results to evaluator/report systems.
 
-Phase 9 adds a backend API foundation under `apps/api`, but it does not expose scanner execution. The scanner must remain inaccessible from public request handlers until future phases add auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
+Phase 9 adds a backend API foundation under `apps/api`, but it does not expose scanner execution. Phase 15 adds queue/worker contracts to the scans API placeholder route. The scanner must remain inaccessible from public request handlers until future phases add production auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and production queue workers.

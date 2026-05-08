@@ -19,6 +19,14 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - The Phase 9 backend API includes placeholder target and verification route groups only. It does not implement production target verification or unlock public scanning.
 - Phase 13 target setup UI captures metadata and acknowledgement placeholders only. It does not verify ownership, prove authorization, unlock scans, or test targets.
 - Phase 14 defines verification method contracts (DNS TXT, HTML meta tag, well-known file, manual authorization, chatbot/API challenge), challenge token design, and safe validation helpers. It does not perform production DNS/HTTP/chatbot verification checks, persist verification records, or unlock scanning.
+- Phase 14 adds target ownership verification foundation (method definitions, validation helpers, challenge tokens, API contract, UI). No real verification checks are performed — production DNS, HTTP, and chatbot verification require future SSRF-safe network utilities.
+- Phase 15 adds queue/worker safety gates:
+  - target must be verified before scan jobs execute
+  - private/internal/localhost/metadata URLs are blocked
+  - secret-looking fields (API keys, tokens, passwords) rejected from payloads
+  - configurable max_tests and timeout_seconds limits
+  - WORKER_ENABLED must be true for production job dispatch
+  - full SSRF hardening (DNS rebinding, redirect following) deferred to Phase 22
 - Challenge tokens use the format `sherlock_<random_urlsafe_token>` and are proof-of-control values, not secrets. Tokens should expire, be stored hashed if persisted, be scoped to target and method, and not grant access by themselves.
 - Verification attempts should be rate-limited in future phases to prevent abuse.
 - Verification logs may contain sensitive target metadata and should be protected.
@@ -30,7 +38,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Block private, internal, link-local, loopback, and metadata service IP ranges before allowing scan requests.
 - Resolve and validate redirects, DNS rebinding behavior, and user-supplied hostnames.
 - Add explicit timeouts, body limits, retry limits, and concurrency limits.
-- Do not expose scanner execution through API routes until ownership verification, SSRF protection, rate limits, spend controls, authorization, and queue workers exist.
+- Do not expose scanner execution through API routes until ownership verification, SSRF protection, rate limits, spend controls, authorization, and production queue workers exist. Phase 15 provides a local queue/worker foundation with safety gates but does not unlock public scan execution.
 
 ## Data Handling
 

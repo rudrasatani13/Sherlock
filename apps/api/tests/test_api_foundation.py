@@ -17,6 +17,7 @@ from app.routes.auth import auth_status
 from app.routes.health import health_check
 from app.routes.projects import projects_placeholder
 from app.routes.targets import targets_placeholder
+from app.routes.scans import scans_placeholder
 from app.routes.verification import verification_placeholder
 from app.routes.version import version_status
 
@@ -47,7 +48,7 @@ class ApiFoundationTests(unittest.TestCase):
                 "SHERLOCK_MARKETING_NAME": "PowerDetect Sherlock",
                 "SHERLOCK_ENVIRONMENT": "local",
                 "SHERLOCK_API_VERSION": "v0",
-                "SHERLOCK_CURRENT_PHASE": "Phase 14 Target Ownership Verification completed",
+                "SHERLOCK_CURRENT_PHASE": "Phase 15 Queue + Worker System completed",
                 "DATABASE_URL": "",
                 "AUTH_ENABLED": "false",
                 "SHERLOCK_AUTH_ENABLED": "false",
@@ -75,7 +76,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(settings.brand_name, "PowerDetect")
         self.assertEqual(settings.marketing_name, "PowerDetect Sherlock")
         self.assertEqual(settings.api_version, "v0")
-        self.assertEqual(settings.current_phase, "Phase 14 Target Ownership Verification completed")
+        self.assertEqual(settings.current_phase, "Phase 15 Queue + Worker System completed")
         self.assertEqual(settings.database_url, "")
         self.assertEqual(settings.supabase_url, "")
         self.assertEqual(settings.supabase_anon_key, "")
@@ -189,6 +190,24 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("verified", status_names)
         self.assertIn("manual_review_required", status_names)
         self.assertTrue(contract["challenge_token_design"]["format"].startswith("sherlock_"))
+
+    def test_scans_placeholder_returns_queue_contract(self) -> None:
+        with self.assertRaises(NotImplementedApiError) as context:
+            scans_placeholder()
+        self.assertEqual(context.exception.status_code, 501)
+        self.assertEqual(context.exception.code, "not_implemented")
+        details = context.exception.details
+        self.assertEqual(details["status"], "queue_foundation")
+        self.assertIn("queue_contract", details)
+        contract = details["queue_contract"]
+        job_types = [jt["job_type"] for jt in contract["job_types"]]
+        self.assertIn("scan.run", job_types)
+        self.assertIn("scan.evaluate", job_types)
+        states = [s["status"] for s in contract["job_lifecycle_states"]]
+        self.assertIn("queued", states)
+        self.assertIn("blocked_unverified", states)
+        self.assertIn("target_verified", contract["safety_gates"])
+        self.assertIn("api_key", contract["forbidden_payload_fields"])
 
     def test_app_factory_registers_routes(self) -> None:
         app = create_app(Settings(allowed_origins=()))
