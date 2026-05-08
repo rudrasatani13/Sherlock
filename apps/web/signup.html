@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signup | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock signup UI shell for the Phase 12 Dashboard V0. Production account creation is not connected yet."
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body class="auth-page">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand-lockup" href="index.html" aria-label="PowerDetect Sherlock home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav-menu" aria-label="Main navigation" data-nav-menu>
+          <div class="nav-links">
+            <a href="sample-report.html">Sample Report</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html">Security</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="dashboard/index.html">Dashboard V0</a>
+            <a href="login.html">Login</a>
+          </div>
+          <a class="button primary" href="contact.html">Request Audit</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="auth-main">
+      <section class="auth-layout" aria-labelledby="signup-title">
+        <div class="auth-panel">
+          <p class="eyebrow">Early workspace shell</p>
+          <h1 id="signup-title">Create a Sherlock workspace.</h1>
+          <p class="lead">
+            Signup is a UI shell only. Real Supabase signup, profile creation, organization
+            membership, and onboarding persistence are future work.
+          </p>
+
+          <form class="auth-form" data-auth-form data-auth-message="Signup is not connected yet. No account, organization, or password record was created.">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="Riley Chen" required>
+              </div>
+              <div class="field">
+                <label for="email">Work email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+              </div>
+              <div class="field">
+                <label for="company">Company or workspace</label>
+                <input id="company" name="company" type="text" autocomplete="organization" placeholder="Company name" required>
+              </div>
+              <div class="field">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Password" required>
+              </div>
+            </div>
+            <button class="button primary" type="submit">Create Account Shell</button>
+            <p class="form-status" role="status" data-form-status>
+              No production account creation is available yet.
+            </p>
+          </form>
+
+          <div class="auth-actions">
+            <p>Already have access? <a href="login.html">Go to login</a></p>
+            <p><a href="dashboard/index.html">Preview Dashboard V0</a></p>
+          </div>
+        </div>
+
+        <aside class="auth-context" aria-label="Signup scope">
+          <span class="status-pill review">Not connected</span>
+          <h2>Future account setup will need reviewed backend work.</h2>
+          <ul class="check-list">
+            <li><span>Supabase Auth signup and session handling in the browser.</span></li>
+            <li><span>Trusted profile and organization creation after identity is validated.</span></li>
+            <li><span>Tenant membership checks before any project or report data is shown.</span></li>
+            <li><span>Audited RLS policies and server-side authorization before persistence is enabled.</span></li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+
+    <script src="assets/site.js"></script>
+  </body>
+</html>

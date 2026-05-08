@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settings | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Dashboard V0 settings page with profile, workspace, auth, API key, and billing placeholders."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Dashboard V0</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>Organization switching is not connected yet.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html" aria-current="page">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Account shell</p>
+            <h1>Settings.</h1>
+          </div>
+          <div class="topbar-actions">
+            <a class="button secondary" href="../login.html">Login UI</a>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Not connected</span>
+              <h2>Settings are placeholders until real auth and persistence exist.</h2>
+              <p>
+                The sections below show the future account surface without saving profile,
+                organization, API key, or billing data.
+              </p>
+            </div>
+            <div class="auth-status-card" data-auth-status data-auth-url="http://localhost:8000/api/v0/auth/status">
+              Checking local API auth status...
+            </div>
+          </section>
+
+          <section class="settings-grid">
+            <article class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Profile</p>
+                  <h2>Personal details.</h2>
+                </div>
+                <span class="status-pill not-retested">Read only</span>
+              </div>
+              <dl class="detail-list">
+                <div><dt>Name</dt><dd>Demo User</dd></div>
+                <div><dt>Email</dt><dd>Not authenticated</dd></div>
+                <div><dt>Role</dt><dd>Future workspace member</dd></div>
+              </dl>
+              <button class="button secondary" type="button" disabled>Save Profile - Coming Soon</button>
+            </article>
+
+            <article class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Organization</p>
+                  <h2>Workspace.</h2>
+                </div>
+                <span class="status-pill not-retested">Placeholder</span>
+              </div>
+              <dl class="detail-list">
+                <div><dt>Workspace</dt><dd>Demo Workspace</dd></div>
+                <div><dt>Plan</dt><dd>No billing plan</dd></div>
+                <div><dt>Members</dt><dd>Not loaded</dd></div>
+              </dl>
+              <button class="button secondary" type="button" disabled>Manage Members - Coming Soon</button>
+            </article>
+
+            <article class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Security and auth</p>
+                  <h2>Session status.</h2>
+                </div>
+                <span class="status-pill review">Auth foundation</span>
+              </div>
+              <p>
+                Backend auth status can be read safely when the local API is running, but browser
+                sessions and JWT validation are not production-active yet.
+              </p>
+              <button class="button secondary" type="button" disabled>Configure SSO - Future</button>
+            </article>
+
+            <article class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">API keys</p>
+                  <h2>Developer access.</h2>
+                </div>
+                <span class="status-pill failed">Disabled</span>
+              </div>
+              <p>
+                API keys are intentionally unavailable. Future keys need secret storage, audit logs,
+                rotation, scopes, rate limits, and tenant authorization.
+              </p>
+              <button class="button secondary" type="button" disabled>Create API Key - Disabled</button>
+            </article>
+
+            <article class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Billing</p>
+                  <h2>Plan and usage.</h2>
+                </div>
+                <span class="status-pill not-retested">Not implemented</span>
+              </div>
+              <p>
+                Billing, Stripe, subscriptions, invoices, usage metering, and entitlement logic
+                are not implemented in Phase 12.
+              </p>
+              <button class="button secondary" type="button" disabled>Manage Billing - Coming Soon</button>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

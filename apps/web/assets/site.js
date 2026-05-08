@@ -49,3 +49,72 @@ if (contactForm) {
     window.location.href = mailto.toString();
   });
 }
+
+const authForms = document.querySelectorAll("[data-auth-form]");
+
+authForms.forEach((form) => {
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const status = form.querySelector("[data-form-status]");
+    if (status) {
+      status.textContent =
+        form.dataset.authMessage ||
+        "This is a demo UI shell. No production auth action was performed.";
+    }
+  });
+});
+
+const dashboardShell = document.querySelector("[data-dashboard-shell]");
+const dashboardNavToggle = document.querySelector("[data-dashboard-nav-toggle]");
+
+if (dashboardShell && dashboardNavToggle) {
+  dashboardNavToggle.addEventListener("click", () => {
+    const isOpen = dashboardNavToggle.getAttribute("aria-expanded") === "true";
+    dashboardNavToggle.setAttribute("aria-expanded", String(!isOpen));
+    dashboardShell.classList.toggle("is-open", !isOpen);
+  });
+
+  const dashboardLinks = dashboardShell.querySelectorAll(".dashboard-nav a");
+  dashboardLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      dashboardNavToggle.setAttribute("aria-expanded", "false");
+      dashboardShell.classList.remove("is-open");
+    });
+  });
+}
+
+const authStatusNodes = document.querySelectorAll("[data-auth-status]");
+
+authStatusNodes.forEach(async (node) => {
+  const authUrl = node.dataset.authUrl || "http://localhost:8000/api/v0/auth/status";
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 2200);
+
+  try {
+    const response = await fetch(authUrl, {
+      headers: { Accept: "application/json" },
+      signal: controller.signal,
+    });
+    if (!response.ok) {
+      throw new Error(`Auth status returned HTTP ${response.status}`);
+    }
+    const payload = await response.json();
+    const data = payload.data || {};
+    const authEnabled = Boolean(data.authentication_enabled);
+    const jwtReady = Boolean(data.token_validation_active);
+    const productionReady = Boolean(data.production_ready);
+
+    node.classList.toggle("is-ready", authEnabled && jwtReady && productionReady);
+    node.classList.toggle("is-error", !authEnabled || !jwtReady || !productionReady);
+    node.textContent = authEnabled && jwtReady && productionReady
+      ? "Auth status: configured and production-ready according to the local API."
+      : "Auth status: not production-ready. Dashboard remains a demo UI shell with no browser session.";
+  } catch (error) {
+    node.classList.add("is-error");
+    node.textContent =
+      "Auth status unavailable. Start the local API on port 8000 to read /api/v0/auth/status.";
+  } finally {
+    window.clearTimeout(timeout);
+  }
+});

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock login UI shell for the Phase 12 Dashboard V0. Production authentication is not connected yet."
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body class="auth-page">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand-lockup" href="index.html" aria-label="PowerDetect Sherlock home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <span aria-hidden="true"></span>
+        </button>
+        <nav class="nav-menu" aria-label="Main navigation" data-nav-menu>
+          <div class="nav-links">
+            <a href="sample-report.html">Sample Report</a>
+            <a href="methodology.html">Methodology</a>
+            <a href="security.html">Security</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="dashboard/index.html">Dashboard V0</a>
+            <a href="login.html" aria-current="page">Login</a>
+          </div>
+          <a class="button primary" href="contact.html">Request Audit</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="auth-main">
+      <section class="auth-layout" aria-labelledby="login-title">
+        <div class="auth-panel">
+          <p class="eyebrow">Dashboard V0</p>
+          <h1 id="login-title">Log in to Sherlock.</h1>
+          <p class="lead">
+            This is the Phase 12 auth UI shell. Supabase Auth sessions, production JWT validation,
+            and database-backed accounts are not connected from the browser yet.
+          </p>
+
+          <div class="auth-status-card" data-auth-status data-auth-url="http://localhost:8000/api/v0/auth/status">
+            Checking local API auth status...
+          </div>
+
+          <form class="auth-form" data-auth-form data-auth-message="Login is not connected yet. No session was created and no credentials were stored.">
+            <div class="field">
+              <label for="email">Work email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+            </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Password" required>
+            </div>
+            <div class="form-row-between">
+              <label class="checkbox-row" for="remember-session">
+                <input id="remember-session" name="remember-session" type="checkbox">
+                <span>Remember this browser later</span>
+              </label>
+              <a class="text-link" href="forgot-password.html">Forgot password</a>
+            </div>
+            <button class="button primary" type="submit">Log In</button>
+            <p class="form-status" role="status" data-form-status>
+              Auth is not live yet. This form is safe UI only.
+            </p>
+          </form>
+
+          <div class="auth-actions">
+            <p>New to Sherlock? <a href="signup.html">Create a workspace shell</a></p>
+            <p><a href="dashboard/index.html">Open Dashboard V0 demo shell</a></p>
+          </div>
+        </div>
+
+        <aside class="auth-context" aria-label="Dashboard shell status">
+          <span class="status-pill info">Demo shell</span>
+          <h2>What this login does today.</h2>
+          <ul class="check-list">
+            <li><span>Shows the intended authentication surface for PowerDetect Sherlock.</span></li>
+            <li><span>Can display the safe backend auth-status endpoint when the API runs locally.</span></li>
+            <li><span>Does not issue tokens, create sessions, trust fake users, or call service-role keys.</span></li>
+            <li><span>Leaves real account creation, profile loading, and organization membership for later phases.</span></li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+
+    <script src="assets/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Findings | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Dashboard V0 findings page with static severity summaries, filters, and placeholder rows."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Dashboard V0</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>Organization switching is not connected yet.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html" aria-current="page">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Review queue</p>
+            <h1>Findings.</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="button primary" type="button" disabled>Create Finding</button>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Coming in Phase 17</span>
+              <h2>Findings are static placeholders.</h2>
+              <p>
+                Phase 12 does not persist evaluator output or create customer-facing findings.
+                Real findings need reviewed evidence, severity, confidence, status, and tenant access controls.
+              </p>
+            </div>
+            <a class="button secondary" href="../methodology.html">View Methodology</a>
+          </section>
+
+          <section class="severity-summary dashboard-severity" aria-label="Static severity summary">
+            <article class="severity-tile critical-tile">
+              <span>Critical</span>
+              <strong>0</strong>
+            </article>
+            <article class="severity-tile high-tile">
+              <span>High</span>
+              <strong>2</strong>
+            </article>
+            <article class="severity-tile medium-tile">
+              <span>Medium</span>
+              <strong>3</strong>
+            </article>
+            <article class="severity-tile low-tile">
+              <span>Low</span>
+              <strong>2</strong>
+            </article>
+            <article class="severity-tile info-tile">
+              <span>Info</span>
+              <strong>1</strong>
+            </article>
+          </section>
+
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Filter placeholders</p>
+                <h2>Finding triage.</h2>
+              </div>
+            </div>
+            <form class="filter-bar" aria-label="Finding filters">
+              <label>
+                <span>Severity</span>
+                <select disabled>
+                  <option>All severities</option>
+                </select>
+              </label>
+              <label>
+                <span>Confidence</span>
+                <select disabled>
+                  <option>All confidence levels</option>
+                </select>
+              </label>
+              <label>
+                <span>Category</span>
+                <select disabled>
+                  <option>All categories</option>
+                </select>
+              </label>
+              <label>
+                <span>Status</span>
+                <select disabled>
+                  <option>All statuses</option>
+                </select>
+              </label>
+            </form>
+          </section>
+
+          <section class="dashboard-card">
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Finding</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Severity</th>
+                    <th scope="col">Confidence</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Restricted RAG context entered model response</td>
+                    <td>RAG data leakage</td>
+                    <td><span class="status-pill high">High</span></td>
+                    <td>High</td>
+                    <td><span class="status-pill open">Open</span></td>
+                  </tr>
+                  <tr>
+                    <td>Tool action prepared without permission boundary</td>
+                    <td>Tool/function abuse</td>
+                    <td><span class="status-pill high">High</span></td>
+                    <td>Medium</td>
+                    <td><span class="status-pill review">Needs review</span></td>
+                  </tr>
+                  <tr>
+                    <td>Generated answer used unsafe link treatment</td>
+                    <td>Unsafe output handling</td>
+                    <td><span class="status-pill medium">Medium</span></td>
+                    <td>Medium</td>
+                    <td><span class="status-pill open">Open</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

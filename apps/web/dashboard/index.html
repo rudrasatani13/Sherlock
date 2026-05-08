@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard V0 | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Dashboard V0 static product shell with demo-only overview data."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Dashboard V0</span>
+        </div>
+
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>Organization switching is not connected yet.</small>
+        </div>
+
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html" aria-current="page">Overview</a>
+          <a href="projects.html">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button
+            class="dashboard-nav-toggle"
+            type="button"
+            aria-label="Toggle dashboard navigation"
+            aria-controls="dashboard-sidebar"
+            aria-expanded="false"
+            data-dashboard-nav-toggle
+          >
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">PowerDetect Sherlock</p>
+            <h1>Launch security dashboard.</h1>
+          </div>
+          <div class="topbar-actions">
+            <a class="button secondary" href="../login.html">Login UI</a>
+            <button class="button primary" type="button" disabled>Add Project</button>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Demo shell</span>
+              <h2>Dashboard UI is ready for product wiring.</h2>
+              <p>
+                These screens use static demo data and placeholders only. No browser session,
+                database reads/writes, scan execution, target verification, report generation,
+                billing, or queue worker integration exists in Phase 12.
+              </p>
+            </div>
+            <a class="button secondary" href="../sample-report.html">View Sample Report</a>
+          </section>
+
+          <section class="stat-grid" aria-label="Demo dashboard metrics">
+            <article class="stat-card">
+              <span>Total projects</span>
+              <strong>2</strong>
+              <small>Demo records only</small>
+            </article>
+            <article class="stat-card">
+              <span>Scans run</span>
+              <strong>7</strong>
+              <small>Static lifecycle examples</small>
+            </article>
+            <article class="stat-card">
+              <span>Open findings</span>
+              <strong>5</strong>
+              <small>Not persisted</small>
+            </article>
+            <article class="stat-card high-risk">
+              <span>High-risk findings</span>
+              <strong>2</strong>
+              <small>Sample report style</small>
+            </article>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="dashboard-card wide">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Recommended next step</p>
+                  <h2>Connect real project setup in Phase 13.</h2>
+                </div>
+                <span class="status-pill info">Next phase</span>
+              </div>
+              <p>
+                The dashboard shell is now in place. The next product step is a safe project
+                setup flow that can create records only after production auth, tenant membership,
+                and persistence boundaries are reviewed.
+              </p>
+              <div class="action-row">
+                <button class="button primary" type="button" disabled>Add Project - Coming Soon</button>
+                <a class="button secondary" href="projects.html">Review Projects Page</a>
+              </div>
+            </article>
+
+            <article class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Latest activity</p>
+                  <h2>Static timeline</h2>
+                </div>
+              </div>
+              <ol class="activity-list">
+                <li>
+                  <span class="activity-dot high"></span>
+                  <div>
+                    <strong>Demo finding marked high risk</strong>
+                    <p>RAG access boundary review queued for manual validation.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="activity-dot completed"></span>
+                  <div>
+                    <strong>Sample report reviewed</strong>
+                    <p>Static Phase 4 report is linked from the reports page.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="activity-dot pending"></span>
+                  <div>
+                    <strong>Project creation unavailable</strong>
+                    <p>Real persistence is intentionally deferred to Phase 13.</p>
+                  </div>
+                </li>
+              </ol>
+            </article>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Loading pattern</p>
+                  <h2>Use for future API reads.</h2>
+                </div>
+              </div>
+              <div class="state-card loading" role="status">
+                <span class="loading-bar"></span>
+                <strong>Loading workspace data...</strong>
+                <p>Future authenticated requests should show bounded loading states.</p>
+              </div>
+            </article>
+
+            <article class="dashboard-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Error pattern</p>
+                  <h2>Keep failure states explicit.</h2>
+                </div>
+              </div>
+              <div class="state-card error" role="status">
+                <strong>Data is not connected yet.</strong>
+                <p>When APIs are wired, errors should explain whether auth, network, or permissions blocked the request.</p>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Dashboard V0 projects page with empty states and demo project cards."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Dashboard V0</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>Organization switching is not connected yet.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html" aria-current="page">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Project setup</p>
+            <h1>Projects.</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="button primary" type="button" disabled>Add Project</button>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Coming in Phase 13</span>
+              <h2>No real project persistence exists yet.</h2>
+              <p>
+                This page shows the product surface for future AI app projects. It does not read
+                from or write to the Phase 10 database, and it does not trust a fake user.
+              </p>
+            </div>
+            <button class="button secondary" type="button" disabled>Add Project - Disabled</button>
+          </section>
+
+          <section class="empty-state" aria-label="No connected projects">
+            <span class="empty-icon" aria-hidden="true"></span>
+            <h2>No connected projects.</h2>
+            <p>
+              Real projects will be created after authenticated workspace setup, tenant membership,
+              and database persistence are implemented. The demo cards below show the intended layout only.
+            </p>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="dashboard-card project-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Demo project</p>
+                  <h2>Support Copilot Launch</h2>
+                </div>
+                <span class="status-pill not-retested">Draft</span>
+              </div>
+              <dl class="detail-list">
+                <div><dt>AI surface</dt><dd>RAG support assistant</dd></div>
+                <div><dt>Environment</dt><dd>Staging</dd></div>
+                <div><dt>Targets</dt><dd>Not connected</dd></div>
+              </dl>
+            </article>
+
+            <article class="dashboard-card project-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Demo project</p>
+                  <h2>Workflow Agent Review</h2>
+                </div>
+                <span class="status-pill review">Needs scope</span>
+              </div>
+              <dl class="detail-list">
+                <div><dt>AI surface</dt><dd>Tool-using agent</dd></div>
+                <div><dt>Environment</dt><dd>Demo</dd></div>
+                <div><dt>Targets</dt><dd>Not verified</dd></div>
+              </dl>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

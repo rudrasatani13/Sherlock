@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reports | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Dashboard V0 reports page with static report placeholders and sample report link."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Dashboard V0</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>Organization switching is not connected yet.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html" aria-current="page">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Report delivery</p>
+            <h1>Reports.</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="button primary" type="button" disabled>Generate Report</button>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Coming in Phase 18</span>
+              <h2>Generated web reports are not implemented yet.</h2>
+              <p>
+                Phase 12 only links to the existing static sample report. Real report metadata,
+                web report access, generation, storage, and PDF export remain future work.
+              </p>
+            </div>
+            <a class="button secondary" href="../sample-report.html">Open Static Sample Report</a>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="dashboard-card report-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Static sample</p>
+                  <h2>AI Launch Security Report</h2>
+                </div>
+                <span class="status-pill pass">Available</span>
+              </div>
+              <p>
+                Demo-only Phase 4 report with fictional findings, sanitized evidence, limitations,
+                severity, confidence, retest language, and launch-readiness guidance.
+              </p>
+              <a class="button secondary" href="../sample-report.html">View Sample</a>
+            </article>
+
+            <article class="dashboard-card report-card">
+              <div class="card-heading">
+                <div>
+                  <p class="eyebrow">Future report</p>
+                  <h2>Workspace Report</h2>
+                </div>
+                <span class="status-pill not-retested">Not connected</span>
+              </div>
+              <p>
+                Future customer reports will require real projects, scans, reviewed findings,
+                report-safe evidence, access controls, and retention policy.
+              </p>
+              <button class="button secondary" type="button" disabled>Generate - Coming Soon</button>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

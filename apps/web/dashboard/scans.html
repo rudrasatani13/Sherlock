@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scans | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Dashboard V0 scans page with static lifecycle examples and disabled scan creation."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Dashboard V0</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>Organization switching is not connected yet.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html">Projects</a>
+          <a href="scans.html" aria-current="page">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Scan lifecycle</p>
+            <h1>Scans.</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="button primary" type="button" disabled>Run Scan</button>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Coming in Phase 15</span>
+              <h2>Scan execution is not exposed in the dashboard.</h2>
+              <p>
+                The internal scanner remains local-only. Public scan creation needs production auth,
+                target verification, SSRF protection, rate limits, spend controls, and queue workers first.
+              </p>
+            </div>
+            <button class="button secondary" type="button" disabled>Run Scan - Disabled</button>
+          </section>
+
+          <section class="dashboard-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">Static scan list</p>
+                <h2>Lifecycle states.</h2>
+              </div>
+            </div>
+            <div class="responsive-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Scan</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Started</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>SHK-DEMO-0007</td>
+                    <td>Support Copilot Launch</td>
+                    <td>Standard</td>
+                    <td><span class="status-pill pass">Completed</span></td>
+                    <td>Demo timestamp</td>
+                  </tr>
+                  <tr>
+                    <td>SHK-DEMO-0008</td>
+                    <td>Workflow Agent Review</td>
+                    <td>Quick</td>
+                    <td><span class="status-pill info">Running</span></td>
+                    <td>Static example</td>
+                  </tr>
+                  <tr>
+                    <td>SHK-DEMO-0009</td>
+                    <td>Support Copilot Launch</td>
+                    <td>Deep</td>
+                    <td><span class="status-pill review">Pending</span></td>
+                    <td>Not scheduled</td>
+                  </tr>
+                  <tr>
+                    <td>SHK-DEMO-0010</td>
+                    <td>Workflow Agent Review</td>
+                    <td>Manual</td>
+                    <td><span class="status-pill failed">Failed</span></td>
+                    <td>Demo error state</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
