@@ -2,7 +2,7 @@
 
 Status: Phase 16 Scan Types + Limits dashboard updates completed.
 
-This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, and Phase 14 Target Verification UI for PowerDetect Sherlock.
+This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, Phase 14 Target Verification UI, and Phase 16 Scan Types + Limits UI for PowerDetect Sherlock.
 
 It is intentionally static:
 
@@ -59,6 +59,7 @@ http://localhost:4173/dashboard/
 http://localhost:4173/dashboard/project-setup.html
 http://localhost:4173/dashboard/target-setup.html
 http://localhost:4173/dashboard/target-verification.html
+http://localhost:4173/dashboard/scan-setup.html
 ```
 
 The contact form opens a prefilled email draft. It does not submit to a backend or store data.

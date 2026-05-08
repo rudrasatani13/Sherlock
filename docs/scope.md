@@ -1,6 +1,6 @@
 # Scope Boundaries
 
-Sherlock has completed Phase 13 Project Target Setup.
+Sherlock has completed Phase 16 Scan Types + Limits.
 
 ## In Scope for Phase 1
 
@@ -178,7 +178,28 @@ Sherlock has completed Phase 13 Project Target Setup.
 - project and target placeholder API contract metadata documenting safe fields and forbidden secret fields
 - documentation updates for project/target setup boundaries
 
-## Out of Scope Through Phase 13
+## In Scope for Phase 14
+
+- target ownership verification foundation
+- verification method definitions (DNS TXT, HTML meta tag, well-known file, manual authorization, chatbot/API challenge)
+- challenge token design
+- safe validation helpers
+- target ownership verification UI shell
+- Phase 14 verification contract placeholder on the API
+
+## In Scope for Phase 15
+
+- queue and worker system foundation
+- job schemas
+- safety gates
+- local worker engine with mock scan execution
+- worker CLI
+
+## In Scope for Phase 16
+
+- scan types, limits, category matrix, plan placeholders, validation helpers, static API metadata, dashboard scan setup shell, and worker safety-gate integration
+
+## Out of Scope Through Phase 16
 
 - production login/signup/session flow
 - production JWT verification
@@ -220,4 +241,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 13 establishes the project/target setup UI and contract foundation required before ownership verification, active persistence, worker, findings, report, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, and `db/schema.md` as the database foundation reference.
+Phase 16 establishes the scan types, limits, UI setup shell, and limit verification gate required before findings, reports, active queue execution, active persistence, billing, and hardening phases. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, `db/schema.md` as the database foundation reference, `docs/verification.md` for verification methods, `docs/workers.md` for the queue/worker design, and `docs/scan-types-and-limits.md` for execution bounds.

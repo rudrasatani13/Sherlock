@@ -121,8 +121,8 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 ```text
 .
 |-- apps/
-|   |-- api/             # Phase 9 FastAPI backend foundation with Phase 11 auth, Phase 13 contract, and Phase 14 verification placeholders
-|   `-- web/             # Static public website plus dashboard/auth, Phase 13 setup, and Phase 14 verification UI shell
+|   |-- api/             # Phase 9 FastAPI backend foundation with Phase 11 auth, Phase 13 contract, Phase 14 verification placeholders, and Phase 16 scan limit metadata
+|   `-- web/             # Static public website plus dashboard/auth, Phase 13 setup, Phase 14 verification UI shell, and Phase 16 scan setup shell
 |-- config/              # Shared product metadata and future configuration
 |-- db/                  # Phase 10 PostgreSQL/Supabase-compatible database foundation
 |-- docs/                # Product, architecture, security, roadmap, and setup docs
@@ -134,7 +134,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 `-- README.md
 ```
 
-The repository remains intentionally minimal. Phase 15 adds the queue and worker system foundation under `packages/worker_system` with job schemas, safety gates, local queue backend, and mock worker execution. Full platform behavior remains future phases.
+The repository remains intentionally minimal. Phase 15 adds the queue and worker system foundation under `packages/worker_system` with job schemas, safety gates, local queue backend, and mock worker execution. Phase 16 adds the scan types and limits foundation under `packages/scan_limits` with validation helpers and safe static UI limits. Full platform behavior remains future phases.
 
 ## Documentation
 
@@ -179,6 +179,8 @@ http://localhost:4173/dashboard/project-setup.html
 http://localhost:4173/dashboard/project-detail.html
 http://localhost:4173/dashboard/target-setup.html
 http://localhost:4173/dashboard/target-detail.html
+http://localhost:4173/dashboard/target-verification.html
+http://localhost:4173/dashboard/scan-setup.html
 ```
 
 Install and run the backend API foundation:
@@ -211,6 +213,12 @@ Run the Phase 15 worker system tests:
 
 ```bash
 python3 -m unittest discover -s packages/worker_system/tests
+```
+
+Run the Phase 16 scan limits tests:
+
+```bash
+python3 -m unittest discover -s packages/scan_limits/tests
 ```
 
 Run the internal Phase 5 mock scanner dry-run with Python:
