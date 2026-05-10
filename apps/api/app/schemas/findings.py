@@ -11,7 +11,7 @@ class FindingsModuleStatus(ModuleStatus):
     module: str = "findings"
     status: str = "findings_system_foundation"
     purpose: str = "Phase 17 findings system contract for structured candidates, reviewed findings, statuses, categories, severity, confidence, evidence, and fix guidance."
-    future_phase: str = "Phase 18 web report after findings review, access controls, and report contracts"
+    future_phase: str = "Future production findings retrieval after auth, persistence, and access controls"
 
 
 class FindingStatusEntry(BaseModel):
@@ -54,7 +54,7 @@ class FindingsContract(BaseModel):
         "critical/high findings require fix recommendation",
         "critical findings require strong evidence marker or manual review",
         "false_positive requires a reason",
-        "evidence must be redacted and report-safe by default",
+        "evidence must be redacted and appropriate for report display by default",
         "unknown categories normalize to other_unknown",
     ])
     disabled_capabilities: List[str] = Field(default_factory=lambda: [

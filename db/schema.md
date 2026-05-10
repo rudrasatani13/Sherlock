@@ -256,7 +256,7 @@ Allowed confidence values: `high`, `medium`, `low`.
 
 Allowed finding statuses: `open`, `fixed`, `accepted_risk`, `false_positive`, `needs_manual_review`, `inconclusive`.
 
-Raw evidence should not be stored by default. `evidence_summary` should contain report-safe, redacted summaries only.
+Raw evidence should not be stored by default. `evidence_summary` should contain redacted summaries appropriate for report display only.
 
 Phase 17 findings-system code normalizes the active in-memory review status to `needs_review`, while this Phase 10 database foundation still documents `needs_manual_review`. No migration is changed in Phase 17; a future persistence phase should reconcile the naming through an explicit reviewed migration or mapping layer before active database writes are enabled.
 
@@ -279,6 +279,8 @@ Key fields:
 Allowed statuses: `draft`, `ready`, `delivered`, `archived`, `failed`.
 
 Phase 10 does not implement report generation, PDF export, report storage, or report access routes.
+
+Phase 18 adds an in-memory report system model with normalized statuses `draft`, `ready`, `needs_review`, and `archived`. The Phase 10 database foundation still documents `delivered` and `failed` statuses for future storage workflows. A future persistence phase should reconcile the report-system status model with the database status constraint through an explicit reviewed migration or mapping layer before active report writes are enabled.
 
 ### manual_audits
 
@@ -361,7 +363,7 @@ Phase 10 and Phase 11 security rules:
 - Future target credentials must use managed secret storage or encrypted storage.
 - Scan outputs may contain sensitive prompts, responses, retrieval traces, tool traces, or customer data.
 - Raw evidence should not be stored by default.
-- Report-safe evidence must be redacted before storage or delivery.
+- Report evidence must be redacted before storage or delivery.
 - Data retention and deletion workflows remain future work.
 - Production JWT validation, authorization, and RLS policies must be added before production use.
 - The database must not be exposed publicly without auth and tenant-scoped RLS policies.

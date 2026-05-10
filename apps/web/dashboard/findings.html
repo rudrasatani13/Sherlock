@@ -111,7 +111,7 @@
               </div>
               <div>
                 <dt>Safety boundary</dt>
-                <dd>Evidence summaries must be short, redacted, and report-safe. Raw headers, cookies, API keys, private documents, large transcripts, and customer data are not stored here.</dd>
+                <dd>Evidence summaries must be short, redacted, and appropriate for report display. Raw headers, cookies, API keys, private documents, large transcripts, and customer data are not stored here.</dd>
               </div>
             </dl>
             <form class="filter-bar" aria-label="Finding filters">
@@ -210,14 +210,15 @@
           <section class="dashboard-card">
             <div class="card-heading">
               <div>
-                <p class="eyebrow">Not live yet</p>
-                <h2>Phase 18 remains future work.</h2>
+                <p class="eyebrow">Report connection</p>
+                <h2>Phase 18 consumes reviewed findings.</h2>
               </div>
             </div>
             <p>
               This dashboard page is not a web report, does not fetch real findings, does not persist review decisions,
-              and does not expose scanner execution. Phase 18 will use reviewed findings after the report scope is explicitly implemented.
+              and does not expose scanner execution. The Phase 18 report shell can consume explicit sanitized/static Phase 17 finding objects, but it still does not retrieve real customer findings.
             </p>
+            <a class="button secondary" href="report-detail.html">View Report Shell</a>
           </section>
         </main>
       </div>

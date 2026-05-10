@@ -37,7 +37,7 @@ Finding review may use:
 13. Write business impact.
 14. Write fix recommendation.
 15. Define retest steps.
-16. Prepare report-safe evidence summary.
+16. Prepare redacted report evidence summary.
 
 ## Automated Verdict Review
 
@@ -80,7 +80,7 @@ Examples:
 
 For each candidate finding:
 
-- Use report-safe evidence, not raw unredacted evidence.
+- Use redacted report evidence, not raw unredacted evidence.
 - Keep snippets short.
 - Verify redaction of secrets, tokens, passwords, cookies, private keys, and personal data.
 - Confirm demo/canary values are marked as demo/canary.
@@ -198,7 +198,7 @@ A reviewed finding should include:
 - observed behavior
 - expected behavior
 - business impact
-- report-safe evidence summary
+- redacted report evidence summary
 - safe reproduction summary
 - fix recommendation
 - retest guidance
@@ -216,7 +216,7 @@ A finding is ready for report drafting when:
 
 - category is confirmed
 - severity and confidence are justified
-- evidence is report-safe
+- evidence is redacted and appropriate for report display
 - duplicates are merged
 - false positives are removed or documented
 - manual-review items are resolved or explicitly marked

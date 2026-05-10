@@ -78,7 +78,7 @@ Completed checklists may contain sensitive client details. Store completed copie
 - [ ] Secrets, tokens, API keys, passwords, cookies, private keys, and one-time codes removed
 - [ ] Real customer data excluded or redacted
 - [ ] Demo/canary values clearly marked
-- [ ] Raw evidence separated from report-safe evidence
+- [ ] Raw evidence separated from redacted report evidence
 - [ ] Evidence access restricted
 - [ ] Evidence retention/deletion expectations recorded
 - [ ] No evidence or scan outputs committed to Git

@@ -2,7 +2,7 @@
 
 Sherlock is planned as a modular AI launch security audit and scanner platform. The architecture should keep customer-facing workflows, scan execution, prompt libraries, evaluators, reports, and billing separated so each area can evolve without becoming tightly coupled.
 
-This document describes the future direction and the current Phase 17 findings system foundation. Phase 17 adds structured finding candidates, finalized finding models, category/status/severity/confidence alignment, evaluator adapters, grouping, merging, sorting, redacted evidence summaries, and recommendation templates under `packages/findings_system`. It builds on Phase 16 scan limits, Phase 15 queue/worker, Phase 14 verification, Phase 13 setup, Phase 12 dashboard, Phase 11 auth, Phase 10 database, Phase 9 API, and Phase 7 evaluator foundations. It does not implement public scan execution, billing, Stripe, PDF/report generation, admin panels, production queue deployment, active findings persistence, or real network scanning.
+This document describes the future direction and the current Phase 18 web report foundation. Phase 17 adds structured finding candidates, finalized finding models, category/status/severity/confidence alignment, evaluator adapters, grouping, merging, sorting, redacted evidence summaries, and recommendation templates under `packages/findings_system`. Phase 18 adds structured report models, conservative scoring, careful launch-readiness verdicts, section shaping, limitations, report-appropriate evidence formatting, static report schema metadata, and a static dashboard web report shell. It builds on Phase 16 scan limits, Phase 15 queue/worker, Phase 14 verification, Phase 13 setup, Phase 12 dashboard, Phase 11 auth, Phase 10 database, Phase 9 API, and Phase 7 evaluator foundations. It does not implement public scan execution, billing, Stripe, PDF export, admin panels, production queue deployment, active findings persistence, active report persistence, or real network scanning.
 
 ## Planned Components
 
@@ -14,7 +14,7 @@ Phase 2 implements the public website as a static site under `apps/web`. Phase 1
 
 The Phase 14 dashboard verification flow is UI only. It uses static/demo data, browser-only method switching, disabled verification submission, and links to the verification page from target and project detail pages. It does not create sessions, trust fake users, persist verification records, issue real challenges, perform DNS/HTTP/chatbot checks, store secrets, run scans, generate findings, generate reports, or handle billing.
 
-Phase 4 expands the static public sample report page. It is a demo-only artifact, not a real report viewer and not generated from a scan.
+Phase 4 expands the static public sample report page. It is a demo-only artifact, not a real customer report viewer and not generated from a scan. Phase 18 adds a static dashboard report detail shell that previews the future web report structure using demo data only.
 
 ### Methodology and Finding Taxonomy
 
@@ -36,9 +36,10 @@ Phase 9 adds `apps/api`, a small FastAPI foundation with:
 - Phase 13 project/target setup contract metadata on the placeholder projects and targets routes
 - Phase 14 verification contract with method registry, status definitions, challenge token design, and request/response schemas on the verification route
 - safe verification helpers (token generation, hashing, format checks — no network requests)
+- `GET /api/v0/reports/schema` for static Phase 18 report contract metadata
 - shared response envelope, config loading, logging, CORS placeholder, and structured error handling
 
-The API does not persist data through routes, run production JWT verification, create projects or targets, create verification challenges, perform DNS/HTTP/chatbot verification checks, create scans, call the scanner engine, generate reports, handle billing, or start workers. Scanner execution must remain isolated until future phases add production authentication, authorization, production verification checks, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
+The API does not persist data through routes, run production JWT verification, create projects or targets, create verification challenges, perform DNS/HTTP/chatbot verification checks, create scans, call the scanner engine, generate reports from real scans, return customer reports, create share links, export PDFs, handle billing, or start workers. Scanner execution must remain isolated until future phases add production authentication, authorization, production verification checks, SSRF protection, rate limits, spend controls, audit logging, and queue workers.
 
 Phase 12, Phase 13, and Phase 14 web pages may read `GET /api/v0/auth/status` when the local API is running, but no browser token, service-role key, protected API route, project persistence route, target persistence route, verification persistence route, or scanner route is used by the dashboard shell.
 
@@ -76,7 +77,7 @@ Phase 17 adds `packages/findings_system`, a stdlib-only internal package with:
 - evaluator-output-to-candidate adapter
 - duplicate grouping and similar finding merge helpers
 - severity/confidence/category/title sorting
-- report-safe evidence redaction and short summaries
+- redacted evidence summaries for report use
 - category recommendation templates
 - local CLI for safe/mock evaluator JSON conversion
 
@@ -137,13 +138,26 @@ The service-role key is server-only and must never be exposed to browser/fronten
 
 ### Report System
 
-Reports will eventually present evidence, severity, reproduction context, limitations, and remediation guidance. Reports must redact sensitive data and must avoid claiming that a target is fully secure.
+Reports present evidence, severity, reproduction context, limitations, and remediation guidance. Reports must redact sensitive data and must avoid claiming that a target is fully secure.
 
-Future reports should follow the severity, confidence, finding status, evidence, and language standards in `docs/methodology.md`, and should consume reviewed finding objects from `packages/findings_system` rather than raw evaluator detector output.
+Phase 18 adds `packages/report_system`, a stdlib-only internal package with:
+
+- normalized report statuses: `draft`, `ready`, `needs_review`, and `archived`
+- report types: `web`, `sample`, `manual_audit`, and `scan_summary`
+- launch readiness verdicts that avoid "secure", "safe", "certified", and "guaranteed" wording
+- a conservative bounded security score helper
+- severity breakdown, top fixes, findings table, tested categories, limitations, and evidence formatting helpers
+- a builder that accepts explicit sanitized/static Phase 17 finding objects and metadata
+- static API schema metadata at `GET /api/v0/reports/schema`
+- a static dashboard web report shell under `apps/web/dashboard/report-detail.html`
+
+Reports should follow the severity, confidence, finding status, evidence, and language standards in `docs/methodology.md`, and should consume reviewed finding objects from `packages/findings_system` rather than raw evaluator detector output.
 
 The Phase 4 sample report reference in `docs/sample-report.md` documents a static content structure and fictional demo findings. It is not executable schema, report generation logic, a persistence model, or a PDF export system.
 
 The Phase 8 report delivery workflow in `docs/audits/REPORT_DELIVERY.md` describes how an auditor can manually prepare and deliver a scoped report before report generation exists.
+
+Phase 18 is not a persistence layer. It does not write to the Phase 10 `reports` table, generate PDFs, create download assets, create real public share links, enforce billing gates, read real scan outputs by default, store raw evidence, or return customer reports through the API.
 
 Generated reports should not be committed to the repository.
 
@@ -171,4 +185,4 @@ The current foundation uses:
 - `config/` for shared product metadata and future configuration
 - `docs/` for product, architecture, setup, roadmap, security, and scope notes
 
-Phase 16 adds a scan type and limit system under `packages/scan_limits` with bounded scan modes, category inclusion rules, plan tier placeholders, and validation helpers. Phase 17 adds `packages/findings_system` for structured findings and safe metadata contracts. The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, production queue, or deployment target.
+Phase 16 adds a scan type and limit system under `packages/scan_limits` with bounded scan modes, category inclusion rules, plan tier placeholders, and validation helpers. Phase 17 adds `packages/findings_system` for structured findings and safe metadata contracts. Phase 18 adds `packages/report_system` for structured web report contracts and a static dashboard report shell. The project should stay minimal until a real implementation phase needs a new framework, package manager, active persistence layer, production queue, or deployment target.

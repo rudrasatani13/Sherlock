@@ -173,4 +173,4 @@ impact. This report is not a compliance certification.
 
 ## Phase Boundary
 
-Phase 4 completed the static sample report design only. Phase 5 adds an internal scanner engine foundation, Phase 6 adds an internal prompt library, Phase 7 adds an internal evaluator system, and Phase 8 adds a manual report delivery workflow. Real report generation, storage, PDF export, APIs, auth, billing, dashboards, admin panels, public scan execution, and worker systems remain future phases.
+Phase 4 completed the static sample report design only. Phase 5 adds an internal scanner engine foundation, Phase 6 adds an internal prompt library, Phase 7 adds an internal evaluator system, Phase 8 adds a manual report delivery workflow, and Phase 18 adds a web report foundation package plus a static dashboard report shell. Real customer report generation from scans, report storage, PDF export, billing, admin panels, public scan execution, and production report sharing remain future phases.

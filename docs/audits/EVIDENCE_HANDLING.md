@@ -11,7 +11,7 @@ Evidence may contain sensitive prompts, model responses, retrieval traces, tool 
 - Preserve enough information to support reproducible findings.
 - Minimize sensitive data collection.
 - Redact secrets and customer data before report delivery.
-- Separate raw local evidence from report-safe evidence.
+- Separate raw local evidence from redacted report evidence.
 - Keep access limited to authorized audit participants.
 - Define retention and deletion expectations before delivery.
 
@@ -97,7 +97,7 @@ Rules:
 
 ### Report-Safe Evidence
 
-Report-safe evidence is what may appear in the final audit report.
+Redacted report evidence is what may appear in the final audit report.
 
 Examples:
 
@@ -119,14 +119,14 @@ Rules:
 ## Evidence Review Workflow
 
 1. Identify candidate evidence from scanner, evaluator, and manual testing.
-2. Classify it as raw evidence or report-safe evidence.
+2. Classify it as raw evidence or redacted report evidence.
 3. Remove unnecessary raw outputs.
 4. Redact secrets, credentials, tokens, personal data, and customer identifiers.
 5. Confirm demo/canary values are clearly labeled.
 6. Confirm the evidence supports category, severity, confidence, and business impact.
 7. Ask the client to confirm sensitivity or permissions when ambiguous.
 8. Store raw evidence in the protected location.
-9. Move only report-safe excerpts into the finding draft.
+9. Move only redacted excerpts into the finding draft.
 10. Re-check the final report for over-disclosure before delivery.
 
 ## Access Rules
@@ -145,7 +145,7 @@ Do not share evidence through public links, issue trackers, chat channels, or re
 Before testing, record:
 
 - raw evidence storage location
-- report-safe evidence storage location
+- redacted report evidence storage location
 - access list
 - retention period
 - deletion date or trigger

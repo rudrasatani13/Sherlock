@@ -28,7 +28,7 @@ Completed closure records may contain client details and should be stored outsid
 - [ ] Evidence storage reviewed
 - [ ] Sensitive data deletion/retention handled
 - [ ] Raw evidence access reviewed
-- [ ] Report-safe evidence archived according to agreement
+- [ ] Redacted report evidence archived according to agreement
 - [ ] Scanner outputs reviewed and deleted or retained according to agreement
 - [ ] Evaluator outputs reviewed and deleted or retained according to agreement
 - [ ] Test accounts disabled, returned, or confirmed inactive if applicable
@@ -45,7 +45,7 @@ Completed closure records may contain client details and should be stored outsid
 3. Hold or schedule findings review.
 4. Record client questions, accepted risks, and false-positive decisions.
 5. Agree retest plan, retest scope, and timing.
-6. Review raw and report-safe evidence storage.
+6. Review raw and redacted report evidence storage.
 7. Delete or retain evidence according to the agreed retention plan.
 8. Confirm generated scan and evaluator outputs are not committed to Git.
 9. Update internal audit notes.
@@ -58,7 +58,7 @@ Completed closure records may contain client details and should be stored outsid
 At closure, confirm:
 
 - raw evidence location
-- report-safe evidence location
+- redacted report evidence location
 - scan output location
 - evaluator output location
 - authorization notes location

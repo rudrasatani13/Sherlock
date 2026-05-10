@@ -37,7 +37,7 @@ Store completed retest records outside Git.
 
 - Expected fixed behavior:
 - Observed behavior:
-- Report-safe evidence summary:
+- Redacted report evidence summary:
 - Redaction notes:
 - Reproduction count:
 - Negative control:

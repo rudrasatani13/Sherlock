@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Report | PowerDetect Sherlock</title>
+    <meta
+      name="description"
+      content="PowerDetect Sherlock Phase 18 dashboard web report shell using static demo data, sanitized evidence, and explicit limitations."
+    >
+    <link rel="stylesheet" href="../assets/styles.css">
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="dashboard-shell" data-dashboard-shell>
+      <aside class="dashboard-sidebar" id="dashboard-sidebar">
+        <div class="dashboard-brand">
+          <a class="brand-lockup" href="../index.html" aria-label="PowerDetect Sherlock home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">Sherlock <small>by PowerDetect</small></span>
+          </a>
+          <span class="status-pill info">Dashboard V0</span>
+        </div>
+        <div class="workspace-switcher" aria-label="Workspace placeholder">
+          <span>Workspace</span>
+          <strong>Demo Workspace</strong>
+          <small>Organization switching is not connected yet.</small>
+        </div>
+        <nav class="dashboard-nav" aria-label="Dashboard navigation">
+          <a href="index.html">Overview</a>
+          <a href="projects.html">Projects</a>
+          <a href="scans.html">Scans</a>
+          <a href="findings.html">Findings</a>
+          <a href="reports.html" aria-current="page">Reports</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+        <div class="sidebar-account">
+          <div>
+            <strong>Demo User</strong>
+            <span>No live session</span>
+          </div>
+          <button class="button secondary" type="button" disabled>Log Out</button>
+        </div>
+      </aside>
+
+      <div class="dashboard-content">
+        <header class="dashboard-topbar">
+          <button class="dashboard-nav-toggle" type="button" aria-label="Toggle dashboard navigation" aria-controls="dashboard-sidebar" aria-expanded="false" data-dashboard-nav-toggle>
+            <span aria-hidden="true"></span>
+          </button>
+          <div>
+            <p class="eyebrow">Phase 18 web report</p>
+            <h1>Report detail.</h1>
+          </div>
+          <div class="topbar-actions">
+            <a class="button secondary" href="reports.html">Back to Reports</a>
+            <button class="button secondary" type="button" disabled>Share - Future</button>
+            <button class="button primary" type="button" disabled>Export PDF - Phase 19</button>
+          </div>
+        </header>
+
+        <main id="main" class="dashboard-main">
+          <section class="dashboard-banner">
+            <div>
+              <span class="status-pill review">Demo/static report shell</span>
+              <h2>No real scan data, PDF export, sharing, or persistence.</h2>
+              <p>
+                This page previews the Phase 18 web report foundation. It uses fictional demo
+                findings only and does not generate, fetch, store, share, or export customer reports.
+              </p>
+            </div>
+            <button class="button secondary" type="button" disabled>Live data disabled</button>
+          </section>
+
+          <article class="report-shell detailed-report" aria-label="PowerDetect Sherlock web report shell">
+            <header class="report-cover">
+              <div class="report-cover-copy">
+                <span class="report-label">Static demo web report</span>
+                <p class="eyebrow">PowerDetect Sherlock</p>
+                <h2>AI Launch Security Web Report</h2>
+                <p>
+                  Target app: <strong>NovaDesk AI Support Copilot</strong>, a fictional support
+                  RAG assistant with mock workflow tools and synthetic evidence.
+                </p>
+              </div>
+              <dl class="report-meta">
+                <div>
+                  <dt>Report ID</dt>
+                  <dd>SHK-DEMO-WEB-001</dd>
+                </div>
+                <div>
+                  <dt>Report type</dt>
+                  <dd>sample / web</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>draft</dd>
+                </div>
+                <div>
+                  <dt>Generated at</dt>
+                  <dd>2026-05-09 demo timestamp</dd>
+                </div>
+                <div>
+                  <dt>Data source</dt>
+                  <dd>Sanitized static demo findings only</dd>
+                </div>
+              </dl>
+            </header>
+
+            <div class="report-callout">
+              <strong>This is not a production report.</strong>
+              There is no real customer scan, no report persistence, no raw evidence storage, no
+              public report sharing, and no PDF export. Phase 19 will handle PDF export later.
+            </div>
+
+            <section class="report-section verdict-section" aria-labelledby="report-verdict">
+              <div class="report-summary-grid">
+                <div class="verdict-card">
+                  <span class="report-kicker">Launch readiness verdict</span>
+                  <h3 id="report-verdict">Needs fixes before launch</h3>
+                  <p>
+                    The demo report includes active High and Medium findings. Fix and retest the
+                    original scenarios before treating this target as ready for broad release.
+                  </p>
+                </div>
+                <div class="score-card" aria-label="Demo security score">
+                  <span class="report-kicker">Security score</span>
+                  <strong>68/100</strong>
+                  <p>Conservative score for tested demo scope only. No score is a certification.</p>
+                </div>
+                <div class="scope-card">
+                  <span class="report-kicker">Report status</span>
+                  <p>
+                    Draft web report foundation. Review, access control, persistence, sharing, and
+                    PDF export controls are intentionally not live.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="report-section" aria-labelledby="executive-summary">
+              <div class="report-section-heading">
+                <p class="eyebrow">Executive summary</p>
+                <h3 id="executive-summary">Security posture for the tested demo scope.</h3>
+              </div>
+              <div class="summary-columns">
+                <p>
+                  Sherlock tested selected AI launch security categories for a fictional RAG support
+                  copilot using sanitized demo findings. The report focuses on observed behavior,
+                  business impact, evidence quality, and practical fixes.
+                </p>
+                <p>
+                  The most important demo risks are restricted retrieval content entering answers,
+                  tool actions being prepared without a hard permission boundary, and generated
+                  content rendering in a way that could mislead users.
+                </p>
+                <p>
+                  This report does not claim the target is fully protected. It only communicates
+                  what was tested, what was observed, what was not tested, and what needs review.
+                </p>
+              </div>
+            </section>
+
+            <section class="report-section" aria-labelledby="severity-breakdown">
+              <div class="report-section-heading">
+                <p class="eyebrow">Security score</p>
+                <h3 id="severity-breakdown">Severity breakdown.</h3>
+              </div>
+              <div class="severity-summary">
+                <article class="severity-tile critical-tile">
+                  <span>Critical</span>
+                  <strong>0</strong>
+                </article>
+                <article class="severity-tile high-tile">
+                  <span>High</span>
+                  <strong>2</strong>
+                </article>
+                <article class="severity-tile medium-tile">
+                  <span>Medium</span>
+                  <strong>2</strong>
+                </article>
+                <article class="severity-tile low-tile">
+                  <span>Low</span>
+                  <strong>1</strong>
+                </article>
+                <article class="severity-tile info-tile">
+                  <span>Informational</span>
+                  <strong>1</strong>
+                </article>
+              </div>
+              <div class="disclaimer-box">
+                <p>
+                  Score limitations: Critical findings heavily reduce score, High and Medium
+                  findings reduce score, needs-review findings cap confidence, and no-finding
+                  results do not automatically become 100/100.
+                </p>
+              </div>
+            </section>
+
+            <section class="report-section" aria-labelledby="top-fixes">
+              <div class="report-section-heading">
+                <p class="eyebrow">Top fixes</p>
+                <h3 id="top-fixes">Recommended remediation order.</h3>
+              </div>
+              <ol class="priority-list">
+                <li>
+                  <div>
+                    <strong>Enforce document authorization before retrieval.</strong>
+                    <p>
+                      Filter by tenant, role, document permission, and source trust before content
+                      enters model context. Retest with synthetic canaries and negative controls.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Add server-side tool permission checks.</strong>
+                    <p>
+                      Separate draft and execute actions, validate tool arguments, and require
+                      explicit confirmation for risky workflows.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Sanitize generated output before rendering.</strong>
+                    <p>
+                      Escape HTML, allowlist Markdown, block active links, and visually separate
+                      AI-generated suggestions from trusted product actions.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </section>
+
+            <section class="report-section" aria-labelledby="findings-table">
+              <div class="report-section-heading">
+                <p class="eyebrow">Findings table</p>
+                <h3 id="findings-table">Actionable summary for founders and developers.</h3>
+              </div>
+              <div class="finding-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Finding</th>
+                      <th>Category</th>
+                      <th>Severity</th>
+                      <th>Confidence</th>
+                      <th>Status</th>
+                      <th>Business impact summary</th>
+                      <th>Fix recommendation summary</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Restricted RAG marker appeared in response</td>
+                      <td>RAG data leakage</td>
+                      <td><span class="status-pill high">High</span></td>
+                      <td>High</td>
+                      <td><span class="status-pill review">needs_review</span></td>
+                      <td>Restricted retrieved content may be exposed outside the intended authorization boundary.</td>
+                      <td>Add document-level authorization and retrieval filters before model context assembly.</td>
+                    </tr>
+                    <tr>
+                      <td>Tool action prepared without permission boundary</td>
+                      <td>Tool/function abuse</td>
+                      <td><span class="status-pill high">High</span></td>
+                      <td>Medium</td>
+                      <td><span class="status-pill open">open</span></td>
+                      <td>Support workflow state could be changed incorrectly if tool checks are weak.</td>
+                      <td>Add tool allowlists, server-side permission checks, argument validation, and confirmation.</td>
+                    </tr>
+                    <tr>
+                      <td>Unsafe rendered-output pattern was detected</td>
+                      <td>Unsafe output handling</td>
+                      <td><span class="status-pill medium">Medium</span></td>
+                      <td>High</td>
+                      <td><span class="status-pill open">open</span></td>
+                      <td>Users may confuse AI-generated links with trusted product controls.</td>
+                      <td>Escape and sanitize generated output before display or forwarding.</td>
+                    </tr>
+                    <tr>
+                      <td>Retry loop allowed excessive calls</td>
+                      <td>Cost abuse / unbounded consumption</td>
+                      <td><span class="status-pill medium">Medium</span></td>
+                      <td>Medium</td>
+                      <td><span class="status-pill partial">accepted_risk</span></td>
+                      <td>Repeated model and retrieval calls can create cost and availability risk.</td>
+                      <td>Add rate limits, timeouts, retry caps, cancellation, and monitoring.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="report-section" aria-labelledby="detailed-findings">
+              <div class="report-section-heading">
+                <p class="eyebrow">Detailed findings</p>
+                <h3 id="detailed-findings">Evidence, reproduction, and remediation.</h3>
+              </div>
+
+              <article class="finding-detail">
+                <div class="finding-detail-header">
+                  <div>
+                    <span class="finding-id">SHK-DEMO-WEB-001</span>
+                    <h4>Restricted RAG marker appeared in response</h4>
+                  </div>
+                  <div class="finding-badges">
+                    <span class="status-pill high">High</span>
+                    <span class="status-pill review">needs_review</span>
+                    <span class="status-pill pass">High confidence</span>
+                  </div>
+                </div>
+                <dl class="finding-meta">
+                  <div><dt>Category</dt><dd>RAG data leakage</dd></div>
+                  <div><dt>Retest status</dt><dd>Not retested</dd></div>
+                </dl>
+                <div class="finding-detail-grid">
+                  <div><h5>Description</h5><p>The demo assistant returned a redacted marker associated with a restricted fictional document.</p></div>
+                  <div><h5>Business impact</h5><p>In a real app, this could indicate weak document or tenant authorization before retrieval.</p></div>
+                  <div><h5>Evidence summary</h5><p>Redacted report evidence: <code>[REDACTED_CANARY]</code> appeared in the answer. No raw transcript or customer data is shown.</p></div>
+                  <div><h5>Reproduction steps</h5><p>Run the approved demo RAG leakage test case, compare response behavior with expected access policy, and confirm source permissions before reporting impact.</p></div>
+                  <div><h5>Fix recommendation</h5><p>Add retrieval-time authorization, isolate source namespaces where needed, and log source IDs for retest.</p></div>
+                  <div><h5>Manual review note</h5><p>Confirm whether the source would be inaccessible to the tested role in a real customer deployment.</p></div>
+                </div>
+              </article>
+
+              <article class="finding-detail">
+                <div class="finding-detail-header">
+                  <div>
+                    <span class="finding-id">SHK-DEMO-WEB-002</span>
+                    <h4>Tool action prepared without permission boundary</h4>
+                  </div>
+                  <div class="finding-badges">
+                    <span class="status-pill high">High</span>
+                    <span class="status-pill open">open</span>
+                    <span class="status-pill review">Medium confidence</span>
+                  </div>
+                </div>
+                <dl class="finding-meta">
+                  <div><dt>Category</dt><dd>Tool/function abuse</dd></div>
+                  <div><dt>Retest status</dt><dd>Not retested</dd></div>
+                </dl>
+                <div class="finding-detail-grid">
+                  <div><h5>Description</h5><p>The mock agent prepared a support workflow action before a hard permission and confirmation boundary appeared.</p></div>
+                  <div><h5>Business impact</h5><p>Weak tool checks can lead to unauthorized state changes, financial impact, or customer support mistakes.</p></div>
+                  <div><h5>Evidence summary</h5><p>Mock trace showed a prepared action for <code>DEMO-ACCOUNT-2048</code>. No real tool executed.</p></div>
+                  <div><h5>Reproduction steps</h5><p>Use the scoped support role, ask for a workflow action, and inspect whether the tool API enforces permission outside the model.</p></div>
+                  <div><h5>Fix recommendation</h5><p>Authorize at the tool API layer, validate arguments, and require user confirmation before execution.</p></div>
+                  <div><h5>Limitations</h5><p>The demo report does not test destructive tool execution or production integrations.</p></div>
+                </div>
+              </article>
+
+              <article class="finding-detail">
+                <div class="finding-detail-header">
+                  <div>
+                    <span class="finding-id">SHK-DEMO-WEB-003</span>
+                    <h4>Unsafe rendered-output pattern was detected</h4>
+                  </div>
+                  <div class="finding-badges">
+                    <span class="status-pill medium">Medium</span>
+                    <span class="status-pill open">open</span>
+                    <span class="status-pill pass">High confidence</span>
+                  </div>
+                </div>
+                <dl class="finding-meta">
+                  <div><dt>Category</dt><dd>Unsafe output handling</dd></div>
+                  <div><dt>Retest status</dt><dd>Not retested</dd></div>
+                </dl>
+                <div class="finding-detail-grid">
+                  <div><h5>Description</h5><p>Generated output was styled like a trusted product action in the static demo scenario.</p></div>
+                  <div><h5>Business impact</h5><p>Users may click misleading AI-generated links if renderer boundaries are unclear.</p></div>
+                  <div><h5>Evidence summary</h5><p>Sanitized fixture summary only. Raw links and attack prompt text are omitted.</p></div>
+                  <div><h5>Reproduction steps</h5><p>Generate a rich support answer and verify whether the UI renders AI output separately from first-party actions.</p></div>
+                  <div><h5>Fix recommendation</h5><p>Escape generated content, allowlist Markdown, strip active HTML, and label external links clearly.</p></div>
+                  <div><h5>Limitations</h5><p>Live DOM execution and browser exploitability are not tested by this static shell.</p></div>
+                </div>
+              </article>
+            </section>
+
+            <section class="report-section" aria-labelledby="scope-limitations">
+              <div class="report-section-heading">
+                <p class="eyebrow">Scope and limitations</p>
+                <h3 id="scope-limitations">What was tested and what remains outside this report.</h3>
+              </div>
+              <div class="grid two report-list-grid">
+                <div>
+                  <h4>Tested categories</h4>
+                  <ul class="plain-list compact-list">
+                    <li>Prompt injection</li>
+                    <li>System prompt leakage</li>
+                    <li>Sensitive data leakage</li>
+                    <li>RAG data leakage</li>
+                    <li>Indirect prompt injection</li>
+                    <li>Tool/function abuse</li>
+                    <li>Unsafe output handling</li>
+                    <li>Cost abuse / unbounded consumption</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Not tested</h4>
+                  <ul class="plain-list compact-list">
+                    <li>Real customer integrations</li>
+                    <li>Production tool execution</li>
+                    <li>Private customer documents</li>
+                    <li>Public report access controls</li>
+                    <li>PDF export and download flow</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="disclaimer-box">
+                <p>
+                  Limitations: this report is not a guarantee of security; only listed categories
+                  were tested; automated results need review; unavailable integrations may hide
+                  risks; no destructive testing is included unless explicitly authorized; this
+                  static/demo report is not generated from a real customer scan.
+                </p>
+              </div>
+            </section>
+
+            <section class="report-section" aria-labelledby="evidence-export-planning">
+              <div class="report-section-heading">
+                <p class="eyebrow">Evidence and export planning</p>
+                <h3 id="evidence-export-planning">Redacted report evidence only.</h3>
+              </div>
+              <div class="evidence-grid">
+                <article class="evidence-card">
+                  <h4>Evidence handling note</h4>
+                  <pre class="evidence-block">Evidence is short, redacted, and appropriate for report display. Raw headers, cookies, API keys, bearer tokens, private keys, full private documents, large transcripts, and real customer data are not stored or displayed in this Phase 18 shell.</pre>
+                </article>
+              </div>
+              <div class="note">
+                <strong>Export and sharing plan:</strong> Phase 18 prepares report structure for
+                future PDF export, billing gates, sharing controls, and persistence, but none of
+                those capabilities are implemented here.
+              </div>
+            </section>
+          </article>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>

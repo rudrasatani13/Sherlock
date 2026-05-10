@@ -23,7 +23,7 @@ def build_findings_payload(evaluator_payload: Dict[str, Any]) -> Dict[str, Any]:
         "findings": [finding.to_dict() for finding in findings],
         "notes": [
             "Local conversion only; no database writes are performed.",
-            "Evidence is redacted and summarized for report-safe review.",
+            "Evidence is redacted and summarized for report review.",
             "This does not generate a Phase 18 web report or PDF.",
         ],
     }

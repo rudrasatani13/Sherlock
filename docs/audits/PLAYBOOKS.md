@@ -4,7 +4,7 @@ Status: Phase 8 Manual Audit Workflow
 
 These playbooks guide safe, defensive manual testing for Sherlock's core categories. They are intended for authorized client audits only.
 
-Do not use these playbooks to test third-party systems without permission. Do not run destructive actions. Use synthetic data, fake canaries, mock tools, staging fixtures, and report-safe summaries whenever possible.
+Do not use these playbooks to test third-party systems without permission. Do not run destructive actions. Use synthetic data, fake canaries, mock tools, staging fixtures, and redacted report summaries whenever possible.
 
 ## General Playbook Rules
 
@@ -234,7 +234,7 @@ Run when the target connects to customer records, personal data, support data, t
 - Retest with the same role and scenario.
 - Verify lower-privileged users cannot access protected data.
 - Use synthetic canaries where possible.
-- Confirm logs and report-safe evidence remain redacted.
+- Confirm logs and report evidence remain redacted.
 
 ## RAG Data Leakage / Document Exfiltration
 

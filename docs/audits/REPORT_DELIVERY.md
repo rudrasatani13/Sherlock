@@ -10,7 +10,7 @@ The Phase 4 sample report in `docs/sample-report.md` and `apps/web/sample-report
 
 - Communicate tested scope, observed behavior, impact, and fixes clearly.
 - Avoid overclaiming.
-- Provide report-safe evidence and practical remediation guidance.
+- Provide redacted report evidence and practical remediation guidance.
 - Make limitations and not-tested areas explicit.
 - Define retest expectations.
 - Ensure sensitive evidence is redacted before delivery.
@@ -223,7 +223,7 @@ Before delivery:
 - Confirm client-approved delivery channel.
 - Confirm distribution list.
 - Confirm report version and date.
-- Confirm all evidence is report-safe.
+- Confirm all evidence is redacted and appropriate for report display.
 - Confirm raw evidence is not attached unless explicitly approved.
 - Confirm no overclaiming language exists.
 - Confirm retest plan is included.

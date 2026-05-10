@@ -56,7 +56,8 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Phase 12 auth UI pages are static shells only. They must not store passwords, tokens, real Supabase keys, service-role keys, or fake user IDs in browser code.
 - Phase 13 project/target setup pages are static shells only. They must not store real API keys, bearer tokens, cookies, passwords, private keys, raw headers, target credentials, or production secrets in frontend code or committed files.
 - Phase 14 verification UI is a static shell only. It must not issue real challenges, perform real DNS/HTTP/chatbot checks, store verification records, or persist challenge tokens in frontend code or committed files.
-- Phase 17 findings objects must store only redacted, report-safe evidence summaries by default. Do not store raw headers, cookies, API keys, bearer tokens, private keys, private documents, large transcripts, generated reports, scan outputs, evaluator outputs, or real customer evidence in Git.
+- Phase 17 findings objects must store only redacted evidence summaries by default. Do not store raw headers, cookies, API keys, bearer tokens, private keys, private documents, large transcripts, generated reports, scan outputs, evaluator outputs, or real customer evidence in Git.
+- Phase 18 report objects and dashboard report UI must use short, redacted evidence appropriate for report display only. Do not store or display raw headers, raw cookies, API keys, bearer tokens, private keys, full private documents, large transcripts, raw scan outputs, generated report artifacts, or real customer data.
 
 ## Authentication and Accounts
 
@@ -81,7 +82,7 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Phase 11 keeps RLS deny-by-default and documents future policies based on `auth.uid()` and organization membership.
 - Do not expose the database publicly without authentication, authorization, tenant-scoped RLS, and server-side access checks.
 - Raw scan evidence should not be stored by default because prompts, responses, retrieval traces, tool traces, and screenshots may contain sensitive data.
-- Store only report-safe redacted evidence summaries unless a future phase explicitly designs protected raw-evidence storage with retention and deletion controls.
+- Store only redacted evidence summaries unless a future phase explicitly designs protected raw-evidence storage with retention and deletion controls.
 - Data retention and deletion workflows remain future work.
 
 ## Reporting Language
@@ -91,6 +92,8 @@ Sherlock will eventually test AI systems that may connect to customer data, tool
 - Findings should describe observed behavior, evidence, impact, limitations, and recommended remediation.
 - Reports should use plain English, include tested scope, and avoid fearmongering or overclaiming.
 - Reports should not claim "100% protected", "certified safe", "all vulnerabilities found", or "no risk exists."
+- Phase 18 launch readiness verdicts are limited to careful labels such as `ready_with_low_risk`, `needs_fixes_before_launch`, `high_risk_do_not_launch`, `manual_review_required`, and `inconclusive`.
+- A security score is a communication aid for the documented tested scope, not a certification or guarantee.
 
 ## Severity and Confidence
 
@@ -133,5 +136,5 @@ Future tool-using-agent tests must avoid invoking destructive or high-risk actio
 ## Backend API Boundary
 
 - Phase 9 adds a FastAPI foundation under `apps/api` with health, version/status, config, logging, CORS placeholder, structured errors, response schemas, and placeholder route groups.
-- Phase 10 adds a database schema and migration foundation under `db/`, Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, Phase 12 adds a static dashboard/auth UI shell under `apps/web`, Phase 13 adds static project/target setup pages plus placeholder API contract metadata, Phase 14 adds verification contracts, safe validation helpers, and verification UI, Phase 16 adds scan type definitions, limit validation helpers, plan tier placeholders, GET /scans/types and GET /scans/limits endpoints, and a scan_type_limits worker safety gate, and Phase 17 adds static findings schema metadata plus an internal findings package. The API still does not implement active database persistence, active findings persistence, real production project persistence, production JWT verification, production DNS/HTTP/chatbot verification checks, verification record persistence, billing, public scan execution, scanner execution, real report generation, PDF export, admin panels, or real customer evidence storage.
+- Phase 10 adds a database schema and migration foundation under `db/`, Phase 11 adds Supabase Auth-compatible backend placeholders under `apps/api`, Phase 12 adds a static dashboard/auth UI shell under `apps/web`, Phase 13 adds static project/target setup pages plus placeholder API contract metadata, Phase 14 adds verification contracts, safe validation helpers, and verification UI, Phase 16 adds scan type definitions, limit validation helpers, plan tier placeholders, GET /scans/types and GET /scans/limits endpoints, and a scan_type_limits worker safety gate, Phase 17 adds static findings schema metadata plus an internal findings package, and Phase 18 adds static report schema metadata plus an internal report package. The API still does not implement active database persistence, active findings persistence, active report persistence, real production project persistence, production JWT verification, production DNS/HTTP/chatbot verification checks, verification record persistence, billing, public scan execution, scanner execution, real report generation from customer scans, PDF export, public report sharing, admin panels, or real customer evidence storage.
 - Future scanner integration must run outside public request handlers and only after production auth, authorization, ownership verification, SSRF protection, rate limits, spend controls, audit logging, and worker queues are in place.

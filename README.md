@@ -6,11 +6,11 @@ The full marketing name is **PowerDetect Sherlock**. Sherlock will help SaaS tea
 
 ## Current Status
 
-Sherlock has completed **Phase 17: Findings System** as a foundation.
+Sherlock has completed **Phase 18: Web Report** as a foundation.
 
 For a detailed comparison against the long-term master plan, see [Master Plan Alignment](docs/master-plan-alignment.md).
 
-The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, the Phase 12 dashboard/auth UI shell, the Phase 13 project/target setup foundation, the Phase 14 target ownership verification foundation, the Phase 15 queue and worker system foundation, the Phase 16 scan types and limits foundation, and the Phase 17 findings system foundation:
+The repository now contains the Phase 1 foundation, the static Phase 2 public website, the Phase 3 methodology documentation, the Phase 4 static sample report asset, the Phase 5 internal scanner engine foundation, the Phase 6 attack prompt library, the Phase 7 evaluator system, the Phase 8 manual audit workflow, the Phase 9 backend API foundation, the Phase 10 database foundation, the Phase 11 authentication and user accounts foundation, the Phase 12 dashboard/auth UI shell, the Phase 13 project/target setup foundation, the Phase 14 target ownership verification foundation, the Phase 15 queue and worker system foundation, the Phase 16 scan types and limits foundation, the Phase 17 findings system foundation, and the Phase 18 web report foundation:
 
 - repository organization
 - product and architecture documentation
@@ -111,8 +111,17 @@ The repository now contains the Phase 1 foundation, the static Phase 2 public we
 - dashboard findings page updated with static Phase 17 demo structure and status language
 - findings system unit tests
 - comprehensive documentation in docs/findings-system.md
+- report system package under `packages/report_system`
+- structured web report model with normalized status, type, verdict, score, section, limitation, and evidence contracts
+- conservative security score helper and launch readiness verdict helper
+- severity breakdown, top fixes, findings table shaping, tested categories, limitations, and report-appropriate evidence helpers
+- builder from explicit sanitized/static Phase 17 finding objects
+- API GET /api/v0/reports/schema endpoint with static Phase 18 contract metadata
+- dashboard reports page and report detail shell using static/demo report data only
+- report system unit tests
+- comprehensive documentation in docs/web-report.md
 
-No public self-serve scan execution, backend scan execution APIs, production auth/session flow, production JWT verification, active API database persistence, active findings persistence, real project persistence from the UI, real production project persistence, real target persistence from the UI, real scan creation, billing, Stripe integration, production queue deployment, PDF generation, admin panel, production target verification, production scanner exposure, generated web reports, real report generation, or real customer evidence storage are implemented.
+No public self-serve scan execution, backend scan execution APIs, production auth/session flow, production JWT verification, active API database persistence, active findings persistence, active report persistence, real project persistence from the UI, real production project persistence, real target persistence from the UI, real scan creation, billing, Stripe integration, production queue deployment, PDF generation, admin panel, production target verification, production scanner exposure, real report generation from customer scans, public report sharing, real report access control, or real customer evidence storage are implemented.
 
 ## Product Positioning
 
@@ -134,12 +143,12 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 ```text
 .
 |-- apps/
-|   |-- api/             # Phase 9 FastAPI backend foundation with Phase 17 findings schema metadata
-|   `-- web/             # Static public website plus dashboard/auth/setup/verification/scan/findings shells
+|   |-- api/             # Phase 9 FastAPI backend foundation with Phase 18 report schema metadata
+|   `-- web/             # Static public website plus dashboard/auth/setup/verification/scan/findings/report shells
 |-- config/              # Shared product metadata and future configuration
 |-- db/                  # Phase 10 PostgreSQL/Supabase-compatible database foundation
 |-- docs/                # Product, architecture, security, roadmap, and setup docs
-|-- packages/            # Internal scanner, prompt, evaluator, worker, scan limits, findings, and future shared libraries
+|-- packages/            # Internal scanner, prompt, evaluator, worker, scan limits, findings, report, and future shared libraries
 |-- templates/           # Phase 8 lightweight manual audit templates
 |-- .env.example         # Safe local environment template
 |-- .gitignore           # Repository hygiene and generated artifact exclusions
@@ -147,7 +156,7 @@ Passing a future Sherlock scan must never be treated as a complete guarantee of 
 `-- README.md
 ```
 
-The repository remains intentionally minimal. Phase 15 adds the queue and worker system foundation under `packages/worker_system` with job schemas, safety gates, local queue backend, and mock worker execution. Phase 16 adds the scan types and limits foundation under `packages/scan_limits` with validation helpers and safe static UI limits. Phase 17 adds the findings system foundation under `packages/findings_system` with schema, normalization, grouping, merging, sorting, redaction, and recommendation helpers. Full platform behavior remains future phases.
+The repository remains intentionally minimal. Phase 15 adds the queue and worker system foundation under `packages/worker_system` with job schemas, safety gates, local queue backend, and mock worker execution. Phase 16 adds the scan types and limits foundation under `packages/scan_limits` with validation helpers and safe static UI limits. Phase 17 adds the findings system foundation under `packages/findings_system` with schema, normalization, grouping, merging, sorting, redaction, and recommendation helpers. Phase 18 adds the report system foundation under `packages/report_system` with structured report models, scoring, verdicts, section shaping, limitations, and report-appropriate evidence formatting. Full platform behavior remains future phases.
 
 ## Documentation
 
@@ -163,6 +172,7 @@ The repository remains intentionally minimal. Phase 15 adds the queue and worker
 - [Prompt Library](docs/prompt-library.md)
 - [Evaluator System](docs/evaluator-system.md)
 - [Findings System](docs/findings-system.md)
+- [Web Report](docs/web-report.md)
 - [Manual Audit Workflow](docs/audits/README.md)
 - [Sample Report Reference](docs/sample-report.md)
 - [Security Notes](docs/security.md)
@@ -196,6 +206,7 @@ http://localhost:4173/dashboard/target-setup.html
 http://localhost:4173/dashboard/target-detail.html
 http://localhost:4173/dashboard/target-verification.html
 http://localhost:4173/dashboard/scan-setup.html
+http://localhost:4173/dashboard/report-detail.html
 ```
 
 Install and run the backend API foundation:
@@ -214,7 +225,7 @@ createdb sherlock_local
 psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations/20260507100000_phase_10_initial_database_foundation.sql
 ```
 
-There is still no live Supabase connection requirement, billing provider, production queue deployment, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, production target verification flow, report generator, production JWT verification, production login/signup/session flow, real project persistence, real target persistence, active findings persistence, real customer evidence storage, or active API persistence path configured.
+There is still no live Supabase connection requirement, billing provider, production queue deployment, admin panel, PDF tooling, public scan feature, backend scanner execution endpoint, production target verification flow, report generator from real scans, production JWT verification, production login/signup/session flow, real project persistence, real target persistence, active findings persistence, active report persistence, real customer evidence storage, public report sharing, or active API persistence path configured.
 
 Run the Phase 15 local worker dry-run:
 
@@ -240,6 +251,12 @@ Run the Phase 17 findings system tests:
 
 ```bash
 python3 -m unittest discover -s packages/findings_system/tests
+```
+
+Run the Phase 18 report system tests:
+
+```bash
+python3 -m unittest discover -s packages/report_system/tests
 ```
 
 Run the internal Phase 5 mock scanner dry-run with Python:

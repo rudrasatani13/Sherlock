@@ -34,7 +34,7 @@ This package contains the first deterministic evaluator system for PowerDetect S
 - browser automation
 - LLM-as-judge behavior
 - machine-learning classifiers
-- real report generation
+- real report generation from customer scans
 
 ## Local Usage
 

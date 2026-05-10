@@ -1,8 +1,8 @@
 # Sherlock Web
 
-Status: Phase 17 Findings System dashboard update foundation completed.
+Status: Phase 18 Web Report dashboard foundation completed.
 
-This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, Phase 14 Target Verification UI, Phase 16 Scan Types + Limits UI, and Phase 17 static findings UI copy for PowerDetect Sherlock.
+This directory contains the static public website, Phase 12 Dashboard V0 + Auth UI Shell, Phase 13 Project Target Setup UI, Phase 14 Target Verification UI, Phase 16 Scan Types + Limits UI, Phase 17 static findings UI copy, and Phase 18 static web report UI shell for PowerDetect Sherlock.
 
 It is intentionally static:
 
@@ -15,7 +15,10 @@ It is intentionally static:
 - no billing
 - no production queue workers (local queue/worker foundation exists under `packages/worker_system`)
 - no active findings persistence or real findings API consumption
-- no report generation
+- no report generation from real scans
+- no report persistence
+- no public report sharing
+- no PDF export
 - no admin panel
 - no public self-serve scanning
 
@@ -40,7 +43,8 @@ It is intentionally static:
 - `dashboard/scan-setup.html` - Phase 16 static scan setup page displaying scan types, limits, and plan tier tables with disabled execution controls
 - `dashboard/scans.html` - static scans page with lifecycle status examples and link to scan setup
 - `dashboard/findings.html` - static Phase 17 findings page with demo-only structure, statuses, evidence boundaries, and disabled filters/actions
-- `dashboard/reports.html` - static reports page linking to the sample report
+- `dashboard/reports.html` - Phase 18 static reports page linking to the dashboard web report shell and public sample report
+- `dashboard/report-detail.html` - Phase 18 static web report detail shell with verdict, score, severity breakdown, top fixes, findings table, detailed findings, tested categories, not-tested scope, limitations, evidence note, and disabled export/share actions
 - `dashboard/settings.html` - static account/settings page with auth-status placeholder
 
 ## Local Preview
@@ -61,6 +65,7 @@ http://localhost:4173/dashboard/project-setup.html
 http://localhost:4173/dashboard/target-setup.html
 http://localhost:4173/dashboard/target-verification.html
 http://localhost:4173/dashboard/scan-setup.html
+http://localhost:4173/dashboard/report-detail.html
 ```
 
 The contact form opens a prefilled email draft. It does not submit to a backend or store data.
@@ -73,6 +78,6 @@ The Phase 14 target verification page displays verification method selection, ch
 
 Phase 3 refreshed `methodology.html` to align with the internal methodology in `../../docs/methodology.md`. The public page remains a readable overview, not the full internal taxonomy and not an attack prompt library.
 
-Phase 4 expands `sample-report.html` into a realistic static sample report with fictional findings, sanitized demo evidence, retest status, limitations, and final recommendations. Phase 6 adds an internal prompt library outside the web app under `../../packages/prompt_library`. Phase 8 adds manual audit workflow documentation under `../../docs/audits`. Phase 9 adds a separate backend API foundation under `../api`. Phase 11 adds backend auth placeholders. Phase 12 adds the dashboard/auth UI shell. Phase 13 adds project and target setup UI only. Phase 14 adds the target ownership verification page and updates existing project/target pages with verification links and status. Phase 16 adds a static scan setup page that displays scan types and limits without running any scans. Phase 17 updates the static findings page to reflect the internal findings model, statuses, evidence boundaries, and future review workflow without connecting it to a backend.
+Phase 4 expands `sample-report.html` into a realistic static sample report with fictional findings, sanitized demo evidence, retest status, limitations, and final recommendations. Phase 6 adds an internal prompt library outside the web app under `../../packages/prompt_library`. Phase 8 adds manual audit workflow documentation under `../../docs/audits`. Phase 9 adds a separate backend API foundation under `../api`. Phase 11 adds backend auth placeholders. Phase 12 adds the dashboard/auth UI shell. Phase 13 adds project and target setup UI only. Phase 14 adds the target ownership verification page and updates existing project/target pages with verification links and status. Phase 16 adds a static scan setup page that displays scan types and limits without running any scans. Phase 17 updates the static findings page to reflect the internal findings model, statuses, evidence boundaries, and future review workflow without connecting it to a backend. Phase 18 adds the static dashboard report detail shell and report list updates using demo data only.
 
-The web app is still not generated from a real scan and does not implement report generation, PDF export, protected API consumption, production auth, database storage, findings persistence, real customer evidence storage, billing, Stripe, queue workers, scanner logic, prompt execution, evaluator code, admin panels, production verification checks, project persistence, target persistence, scan creation, or public self-serve scanning.
+The web app is still not generated from a real scan and does not implement report generation from real scans, PDF export, protected API consumption, production auth, database storage, findings persistence, report persistence, public report sharing, real customer evidence storage, billing, Stripe, queue workers, scanner logic, prompt execution, evaluator code, admin panels, production verification checks, project persistence, target persistence, scan creation, or public self-serve scanning.

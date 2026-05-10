@@ -37,7 +37,7 @@ Store completed finding reviews outside Git.
 
 - Expected safe behavior:
 - Observed behavior:
-- Report-safe evidence summary:
+- Redacted report evidence summary:
 - Redaction notes:
 - Reproduction count:
 - Negative control:

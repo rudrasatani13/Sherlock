@@ -41,7 +41,7 @@ Store completed audit closure records outside Git.
 ## Evidence Storage and Deletion
 
 - Raw evidence location:
-- Report-safe evidence location:
+- Redacted report evidence location:
 - Scanner output location:
 - Evaluator output location:
 - Retention period:

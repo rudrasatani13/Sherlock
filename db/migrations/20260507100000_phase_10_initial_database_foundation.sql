@@ -289,14 +289,14 @@ COMMENT ON TABLE public.targets IS 'Phase 10 target metadata only. Do not store 
 COMMENT ON TABLE public.target_verifications IS 'Phase 10 future ownership verification records. Verification logic is not implemented.';
 COMMENT ON TABLE public.scans IS 'Phase 10 scan job metadata. Public scan execution, queues, and scanner persistence are not implemented.';
 COMMENT ON TABLE public.scan_events IS 'Phase 10 scan lifecycle timeline foundation. Avoid raw sensitive evidence by default.';
-COMMENT ON TABLE public.findings IS 'Phase 10 reviewed finding metadata foundation. Evidence summaries should be report-safe and redacted.';
+COMMENT ON TABLE public.findings IS 'Phase 10 reviewed finding metadata foundation. Evidence summaries should be redacted for report use.';
 COMMENT ON TABLE public.reports IS 'Phase 10 report metadata placeholder. Report generation and PDF export are not implemented.';
 COMMENT ON TABLE public.manual_audits IS 'Phase 10 manual audit engagement records based on Phase 8 workflow. Store sensitive client records outside Git.';
 COMMENT ON TABLE public.retests IS 'Phase 10 retest tracking records for future finding and scan retests.';
 COMMENT ON TABLE public.usage_records IS 'Phase 10 future usage/billing foundation. Billing integration is not implemented.';
 COMMENT ON TABLE public.audit_logs IS 'Phase 10 future security audit log foundation. Write paths and review workflows are future work.';
 COMMENT ON COLUMN public.targets.safe_metadata IS 'Safe metadata only. Do not store plaintext credentials, API keys, tokens, cookies, passwords, private keys, or raw auth headers.';
-COMMENT ON COLUMN public.findings.evidence_summary IS 'Report-safe redacted evidence summary only. Raw evidence should not be stored by default.';
+COMMENT ON COLUMN public.findings.evidence_summary IS 'Redacted evidence summary for report use only. Raw evidence should not be stored by default.';
 COMMENT ON COLUMN public.reports.storage_path IS 'Placeholder for future report storage reference. No report generation or storage integration exists in Phase 10.';
 
 COMMIT;

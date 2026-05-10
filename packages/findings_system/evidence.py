@@ -1,4 +1,4 @@
-"""Report-safe evidence helpers for Phase 17 findings."""
+"""Redacted evidence helpers for Phase 17 findings."""
 from __future__ import annotations
 
 import re
@@ -23,7 +23,7 @@ MULTISPACE_RE = re.compile(r"\s+")
 
 @dataclass(frozen=True)
 class EvidenceItem:
-    """A short, redacted, report-safe evidence reference."""
+    """A short, redacted evidence reference for report use."""
 
     signal: str
     summary: str
@@ -53,7 +53,7 @@ def redact_evidence_text(text: str | None) -> str:
 
 
 def summarize_evidence(text: str | None, max_chars: int = MAX_EVIDENCE_CHARS) -> str:
-    """Return a compact report-safe evidence summary."""
+    """Return a compact redacted evidence summary."""
     redacted = redact_evidence_text(text)
     compact = MULTISPACE_RE.sub(" ", redacted).strip()
     if len(compact) <= max_chars:

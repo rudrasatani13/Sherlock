@@ -2,7 +2,7 @@
 
 Status: Phase 17 Findings System foundation completed.
 
-Phase 17 adds Sherlock's internal findings system under `packages/findings_system`. It converts safe Phase 7 evaluator output into structured finding candidates and finalized finding objects for review. It prepares the data contract needed for Phase 18 web reports, but it does not build the web report.
+Phase 17 adds Sherlock's internal findings system under `packages/findings_system`. It converts safe Phase 7 evaluator output into structured finding candidates and finalized finding objects for review. Phase 18 now consumes these objects through `packages/report_system`, but Phase 17 itself does not build reports.
 
 ## Scope
 
@@ -26,7 +26,6 @@ Implemented:
 
 Not implemented:
 
-- Phase 18 web report
 - report generation
 - PDF export
 - public scan execution
@@ -127,7 +126,7 @@ Existing internal names are mapped into this contract. For example, Phase 6 and 
 
 ## Evidence Rules
 
-Evidence summaries should be short, redacted, and report-safe. They should not include:
+Evidence summaries should be short, redacted, and appropriate for report display. They should not include:
 
 - raw headers
 - raw cookies
@@ -178,7 +177,9 @@ Recommendations are practical guidance, not proof that the issue will be fully r
 
 `GET /api/v0/findings/schema` returns static metadata for statuses, severities, confidences, categories, required fields, validation rules, and disabled capabilities. It does not return real customer findings or evidence.
 
-`apps/web/dashboard/findings.html` remains a static demo page. It shows the Phase 17 structure and statuses but is not connected to backend findings, a database, scan execution, reports, or PDF export.
+`apps/web/dashboard/findings.html` remains a static demo page. It shows the Phase 17 structure and statuses but is not connected to backend findings, a database, scan execution, production report data, or PDF export.
+
+Phase 18 adds `packages/report_system` and a static dashboard web report shell that can consume explicit sanitized/static Phase 17 finding objects. It does not add active findings persistence or real customer finding retrieval.
 
 ## Local CLI
 

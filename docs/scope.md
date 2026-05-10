@@ -1,8 +1,8 @@
 # Scope Boundaries
 
-`SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term reference. The current implementation provides **foundation versions** through Phase 17. It does not provide full production-complete versions. See [Master Plan Alignment](master-plan-alignment.md) for more context.
+`SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term reference. The current implementation provides **foundation versions** through Phase 18. It does not provide full production-complete versions. See [Master Plan Alignment](master-plan-alignment.md) for more context.
 
-Sherlock has completed Phase 17 Findings System foundation.
+Sherlock has completed Phase 18 Web Report foundation.
 
 ## In Scope for Phase 1
 
@@ -218,7 +218,29 @@ Sherlock has completed Phase 17 Findings System foundation.
 - static dashboard findings page copy aligned to Phase 17
 - documentation updates
 
-## Out of Scope Through Phase 17
+## In Scope for Phase 18
+
+- report system package under `packages/report_system`
+- structured report object model
+- normalized report statuses: `draft`, `ready`, `needs_review`, `archived`
+- normalized report types: `web`, `sample`, `manual_audit`, `scan_summary`
+- careful launch readiness verdict helpers without overclaiming language
+- conservative 0-100 score helper
+- severity breakdown helper
+- top fixes helper
+- findings table data shaping
+- detailed report finding shaping
+- tested categories formatting
+- limitations helper
+- report-appropriate evidence formatting using Phase 17 redaction helpers
+- builder from explicit sanitized/static Phase 17 finding objects
+- static dashboard report list update
+- static dashboard report detail shell
+- API `GET /api/v0/reports/schema` static metadata endpoint
+- report system unit tests
+- documentation updates
+
+## Out of Scope Through Phase 18
 
 - production login/signup/session flow
 - production JWT verification
@@ -229,10 +251,13 @@ Sherlock has completed Phase 17 Findings System foundation.
 - target persistence from the UI
 - admin panel
 - billing
-- queue workers
-- report generation
+- production queue workers
 - PDF export
-- backend report APIs
+- real customer report retrieval APIs
+- active report persistence
+- report database writes
+- real report sharing tokens
+- public report links with access control
 - active API database persistence
 - target verification logic
 - DNS/meta/file verification logic
@@ -244,6 +269,8 @@ Sherlock has completed Phase 17 Findings System foundation.
 - real customer evidence storage
 - active findings database reads or writes
 - production findings dashboard integration
+- production report dashboard integration
+- report generation from real customer scans
 - LLM-as-judge behavior
 - complex ML classifiers
 - browser automation scanner
@@ -263,4 +290,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 17 establishes the findings system foundation required before web reports and production review workflows. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/findings-system.md` as the Phase 17 findings contract reference, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, `db/schema.md` as the database foundation reference, `docs/verification.md` for verification methods, `docs/workers.md` for the queue/worker design, and `docs/scan-types-and-limits.md` for execution bounds.
+Phase 18 establishes the web report foundation required before PDF export and production report delivery workflows. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/findings-system.md` as the Phase 17 findings contract reference, `docs/web-report.md` as the Phase 18 web report contract reference, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, `db/schema.md` as the database foundation reference, `docs/verification.md` for verification methods, `docs/workers.md` for the queue/worker design, and `docs/scan-types-and-limits.md` for execution bounds.

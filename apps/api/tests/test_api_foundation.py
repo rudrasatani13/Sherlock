@@ -19,6 +19,7 @@ from app.routes.projects import projects_placeholder
 from app.routes.targets import targets_placeholder
 from app.routes.scans import scans_placeholder, scan_types_list, scan_limits_info
 from app.routes.findings import findings_placeholder, findings_schema
+from app.routes.reports import reports_placeholder, reports_schema
 from app.routes.verification import verification_placeholder
 from app.routes.version import version_status
 
@@ -49,7 +50,7 @@ class ApiFoundationTests(unittest.TestCase):
                 "SHERLOCK_MARKETING_NAME": "PowerDetect Sherlock",
                 "SHERLOCK_ENVIRONMENT": "local",
                 "SHERLOCK_API_VERSION": "v0",
-                "SHERLOCK_CURRENT_PHASE": "Phase 17 Findings System foundation completed",
+                "SHERLOCK_CURRENT_PHASE": "Phase 18 Web Report foundation completed",
                 "DATABASE_URL": "",
                 "AUTH_ENABLED": "false",
                 "SHERLOCK_AUTH_ENABLED": "false",
@@ -77,7 +78,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(settings.brand_name, "PowerDetect")
         self.assertEqual(settings.marketing_name, "PowerDetect Sherlock")
         self.assertEqual(settings.api_version, "v0")
-        self.assertEqual(settings.current_phase, "Phase 17 Findings System foundation completed")
+        self.assertEqual(settings.current_phase, "Phase 18 Web Report foundation completed")
         self.assertEqual(settings.database_url, "")
         self.assertEqual(settings.supabase_url, "")
         self.assertEqual(settings.supabase_anon_key, "")
@@ -231,6 +232,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("/api/v0/scans/types", paths)
         self.assertIn("/api/v0/scans/limits", paths)
         self.assertIn("/api/v0/findings/schema", paths)
+        self.assertIn("/api/v0/reports/schema", paths)
         self.assertIn("/api/v0/verification", paths)
 
     def test_scan_types_list_returns_types(self) -> None:
@@ -278,6 +280,29 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("critical", contract["severities"])
         self.assertIn("high", contract["confidences"])
         self.assertIn("report generation", contract["disabled_capabilities"])
+
+    def test_reports_placeholder_returns_phase18_contract(self) -> None:
+        with self.assertRaises(NotImplementedApiError) as context:
+            reports_placeholder()
+        self.assertEqual(context.exception.status_code, 501)
+        details = context.exception.details
+        self.assertEqual(details["status"], "web_report_foundation")
+        self.assertIn("reports_contract", details)
+        contract = details["reports_contract"]
+        self.assertIn("ready", contract["report_statuses"])
+        self.assertIn("web", contract["report_types"])
+        self.assertIn("manual_review_required", contract["launch_readiness_verdicts"])
+        self.assertIn("PDF export", contract["disabled_capabilities"])
+
+    def test_reports_schema_returns_static_metadata(self) -> None:
+        response = reports_schema()
+        self.assertTrue(response.success)
+        contract = response.data["reports_contract"]
+        self.assertEqual(contract["current_behavior"], "Static contract metadata only. No route reads or writes report records.")
+        self.assertIn("needs_review", contract["report_statuses"])
+        self.assertIn("sample", contract["report_types"])
+        self.assertIn("high_risk_do_not_launch", contract["launch_readiness_verdicts"])
+        self.assertIn("real customer evidence storage", contract["disabled_capabilities"])
 
 
 if __name__ == "__main__":

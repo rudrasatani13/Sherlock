@@ -1,6 +1,6 @@
 # Roadmap
 
-This roadmap is directional. It should guide sequencing without forcing premature architecture decisions. `SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term product reference and phase source of truth. The current implementation represents **foundation versions** through Phase 17, not full production-complete versions of every expected output. See [Master Plan Alignment](master-plan-alignment.md) for details.
+This roadmap is directional. It should guide sequencing without forcing premature architecture decisions. `SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term product reference and phase source of truth. The current implementation represents **foundation versions** through Phase 18, not full production-complete versions of every expected output. See [Master Plan Alignment](master-plan-alignment.md) for details.
 
 ## Phase 1: Foundation
 
@@ -322,7 +322,7 @@ Implemented:
 - category mapping across methodology, prompt library, scan limits, and evaluator signal names
 - duplicate grouping and similar finding merge helpers
 - sorting by severity, confidence, category, and title
-- report-safe evidence redaction and summary helpers
+- redacted evidence summary helpers
 - fix recommendation templates by category
 - adapter from Phase 7 evaluator output to finding candidates
 - local CLI for safe/mock evaluator JSON conversion
@@ -333,11 +333,33 @@ Implemented:
 
 Phase 17 does not implement Phase 18 web reports, report generation, PDF export, public scan execution, production dashboard API integration, active findings persistence, real database writes, billing, Stripe, admin panels, real network scanning, LLM-as-judge, or real customer evidence storage.
 
-## Phase 18+: Product Platform
+## Phase 18: Web Report
+
+Status: completed foundation
+
+Created Sherlock's web report foundation under `packages/report_system` and the static dashboard report shell under `apps/web/dashboard/report-detail.html`.
+
+Implemented:
+
+- structured report model with report status, report type, launch readiness verdict, score, summary, severity breakdown, top fixes, findings, tested categories, not-tested scope, limitations, evidence handling note, retest status, methodology version, findings system version, source scan ID, and metadata
+- normalized report statuses: `draft`, `ready`, `needs_review`, `archived`
+- normalized report types: `web`, `sample`, `manual_audit`, `scan_summary`
+- careful verdicts: `ready_with_low_risk`, `needs_fixes_before_launch`, `high_risk_do_not_launch`, `manual_review_required`, `inconclusive`
+- conservative bounded score helper
+- severity breakdown, top fixes, findings table shaping, tested category formatting, limitations, and redacted evidence helpers
+- builder from explicit Phase 17 finding objects and sanitized/static metadata
+- report system unit tests
+- API `GET /api/v0/reports/schema` static report contract metadata
+- dashboard reports page and report detail shell using demo/static data only
+- documentation in `docs/web-report.md`
+
+Phase 18 does not implement PDF export, downloadable reports, billing, paid gates, public scan execution, scanner execution from public UI/API, production queue deployment, active database persistence, report database writes, real report sharing tokens, public report links with access control, admin panels, real customer evidence storage, raw sensitive evidence storage, real network scanning, or report generation from real customer scans.
+
+## Phase 19+: Product Platform
 
 Future platform work may include:
 
-- Phase 18 web report
+- Phase 19 PDF export
 - Phase 21 billing callbacks
 - Phase 22 security hardening, SSRF protection, rate limits, observability, and audit logging
 - production DNS/HTTP/chatbot verification backend checks

@@ -241,7 +241,7 @@ Output files go to `worker-output/` which is ignored by Git.
 1. **scan.run** will load Phase 6 prompt library test cases via `packages.prompt_library.select_test_cases()`, convert them to `ScannerTest` objects, and execute them through a real target adapter
 2. **scan.evaluate** will invoke `packages.evaluator_system.evaluate_scan_result()` on the scan output
 3. **scan.summarize** can hand safe evaluator output to the Phase 17 `packages/findings_system` helpers to create finding candidates and reviewed finding objects
-4. **report.prepare_placeholder** remains future work and should not generate reports until Phase 18 is implemented
+4. **report.prepare_placeholder** can later hand reviewed findings to the Phase 18 report system, but the Phase 15 worker still does not generate, persist, or export customer reports
 
 ---
 

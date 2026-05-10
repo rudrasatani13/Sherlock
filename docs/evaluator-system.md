@@ -205,4 +205,4 @@ Phase 8 uses the `needs_manual_review` flag, evidence snippets, redacted snippet
 
 The evaluator output should be reviewed through `docs/audits/FINDING_REVIEW.md`, `docs/audits/SEVERITY_CONFIDENCE_REVIEW.md`, and the Phase 17 findings system before customer-facing reporting. Future report-generation phases should consume reviewed finding objects instead of coupling directly to detector internals.
 
-Phase 9 adds API placeholders for future findings and reports, and Phase 17 adds static findings schema metadata. The API still does not run evaluator code through HTTP routes, persist evaluator output, create customer-facing findings, store customer evidence, or generate reports.
+Phase 9 adds API placeholders for future findings and reports, Phase 17 adds static findings schema metadata, and Phase 18 adds static report schema metadata. The API still does not run evaluator code through HTTP routes, persist evaluator output, create customer-facing findings, store customer evidence, generate customer reports from scans, export PDFs, or create share links.

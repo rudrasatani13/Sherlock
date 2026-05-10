@@ -61,7 +61,7 @@ Out of scope:
 | 5 | Scanner execution | Local Phase 5 scanner output under ignored `scan-results/` when applicable |
 | 6 | Evaluator review | Phase 7 evaluation JSON and manual-review queue when applicable |
 | 7 | Manual testing | Category-specific human validation using safe playbooks |
-| 8 | Evidence handling | Raw evidence protected locally and report-safe evidence redacted |
+| 8 | Evidence handling | Raw evidence protected locally and redacted evidence prepared for reports |
 | 9 | Finding review | Deduplicated findings with category, severity, confidence, status, impact, and fix guidance |
 | 10 | Report preparation | Manual report draft aligned with `docs/sample-report.md` and `docs/methodology.md` |
 | 11 | Delivery | Client delivery, review meeting, limitations, and next-step agreement |
@@ -126,7 +126,7 @@ Completed client copies may contain sensitive information and should not be comm
 - Respect rate limits, testing windows, and customer operational constraints.
 - Pause testing if unexpected impact occurs.
 - Use fake/demo canaries and synthetic fixtures where possible.
-- Separate raw local evidence from report-safe evidence.
+- Separate raw local evidence from redacted report evidence.
 - Redact secrets, tokens, credentials, personal data, customer identifiers, and proprietary content.
 - Never commit evidence, scan outputs, report drafts containing customer data, or completed client templates.
 

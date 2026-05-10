@@ -68,7 +68,7 @@ Do not include credentials.
 ## Data Handling
 
 - Raw evidence location:
-- Report-safe evidence location:
+- Redacted report evidence location:
 - Redaction requirements:
 - Retention period:
 - Deletion owner:

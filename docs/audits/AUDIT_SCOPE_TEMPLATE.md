@@ -127,7 +127,7 @@ Additional client-specific forbidden actions:
 ## Data Handling Rules
 
 - Raw evidence storage location:
-- Report-safe evidence storage location:
+- Redacted report evidence storage location:
 - Redaction requirements:
 - Customer data restrictions:
 - Secret/token handling:
