@@ -29,7 +29,7 @@ Sherlock will later test for:
 
 ## Current Phase
 
-Current phase: **Phase 18 Web Report foundation completed**
+Current phase: **Phase 19 PDF Report Export foundation completed**
 
 Phase 1 established repository organization, documentation, environment templates, security notes, roadmap notes, and basic hygiene.
 
@@ -64,9 +64,9 @@ Phase 15 adds the local/mock queue and worker system foundation under `packages/
 Phase 16 adds scan types, bounded limits, plan tier placeholders, category rules, static API metadata, and scan setup UI.
 
 Phase 17 adds the findings system foundation under `packages/findings_system` with finding candidates, finalized finding objects, evaluator adapters, grouping, merging, sorting, redacted evidence summaries, recommendation templates, static API schema metadata, and static findings dashboard copy.
-Phase 18 adds the web report foundation under `packages/report_system` with structured report objects, launch readiness verdicts, conservative scoring, severity breakdown, top fixes, findings table shaping, tested categories, limitations, report-appropriate evidence formatting, static API schema metadata, and a static dashboard report detail shell.
+Phase 18 adds the web report foundation under `packages/report_system` with structured report objects, launch readiness verdicts, conservative scoring, severity breakdown, top fixes, findings table shaping, tested categories, limitations, report-appropriate evidence formatting, static API schema metadata, and a static dashboard report detail shell. Phase 19 adds the PDF export foundation under `packages/pdf_export` with export contracts, safety checks, print-ready HTML rendering, local/demo CLI support, and static PDF export schema metadata.
 
-Production auth/session flow, production JWT verification, active API database persistence, active findings persistence, active report persistence, real production project persistence, target persistence from the UI, billing, production queue workers, public scan execution, target verification implementation, admin panel, PDF generation, real report generation from customer scans, public report sharing, real customer evidence storage, and public scanner execution are still not implemented.
+Production auth/session flow, production JWT verification, active API database persistence, active findings persistence, active report persistence, real production project persistence, target persistence from the UI, billing, production queue workers, public scan execution, target verification implementation, admin panel, production PDF delivery, public PDF download links, real report generation from customer scans, public report sharing, real customer evidence storage, and public scanner execution are still not implemented.
 
 ## Product Principle
 

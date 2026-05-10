@@ -1,6 +1,6 @@
 # Report System
 
-Status: Phase 18 Web Report foundation completed.
+Status: Phase 18 Web Report foundation completed. Phase 19 PDF export foundation now consumes this package through `packages/pdf_export`.
 
 `packages/report_system` defines the internal data model and helper functions for PowerDetect Sherlock web reports. It consumes explicit, sanitized/static findings from `packages/findings_system` and produces a structured in-memory `Report` object for web UI and future API schema work.
 
@@ -20,10 +20,11 @@ Implemented:
 - builder that returns a structured `Report` object from explicit metadata and findings
 - stdout-only CLI for schema/demo inspection
 
-Not implemented:
+Not implemented by this package:
 
-- PDF export
-- downloadable report assets
+- production PDF delivery
+- public PDF download links
+- downloadable customer report assets
 - billing gates
 - paid plan enforcement
 - active database persistence
@@ -47,4 +48,4 @@ Inspect the static schema contract:
 python3 -m packages.report_system.cli
 ```
 
-The CLI writes nothing to disk. Generated report artifacts, if future phases add them, must stay out of Git.
+The CLI writes nothing to disk. Phase 19 PDF export artifacts, if explicitly generated through `packages.pdf_export.cli --write-html`, must stay in ignored directories and out of Git.

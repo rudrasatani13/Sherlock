@@ -129,7 +129,7 @@ Phase 6 prompt test cases map cleanly into this shape:
 
 A future scanner phase can add a new scan mode or selection policy that calls `packages.prompt_library.select_test_cases()` and then converts selected cases to scanner tests. That future work should add authorization, rate limits, spend controls, and target verification before any customer-facing use.
 
-Phase 9 API placeholder routes do not run prompt-library cases. Future API and worker integration should keep prompt selection behind authenticated, authorized, verified, and rate-limited workflows.
+Phase 9 API placeholder routes do not run prompt-library cases. Phase 19 PDF export does not execute prompt-library cases; it only consumes Phase 18 report objects after findings are reviewed and evidence is redacted. Future API and worker integration should keep prompt selection behind authenticated, authorized, verified, and rate-limited workflows.
 
 ## Phase 7 Evaluator Usage
 

@@ -1,8 +1,8 @@
 # Scope Boundaries
 
-`SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term reference. The current implementation provides **foundation versions** through Phase 18. It does not provide full production-complete versions. See [Master Plan Alignment](master-plan-alignment.md) for more context.
+`SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term reference. The current implementation provides **foundation versions** through Phase 19. It does not provide full production-complete versions. See [Master Plan Alignment](master-plan-alignment.md) for more context.
 
-Sherlock has completed Phase 18 Web Report foundation.
+Sherlock has completed Phase 19 PDF Report Export foundation.
 
 ## In Scope for Phase 1
 
@@ -240,7 +240,30 @@ Sherlock has completed Phase 18 Web Report foundation.
 - report system unit tests
 - documentation updates
 
-## Out of Scope Through Phase 18
+## In Scope for Phase 19
+
+- PDF export package under `packages/pdf_export`
+- PDF export data contract
+- normalized export statuses: `draft`, `ready`, `blocked_sensitive_evidence`, `failed`, `archived`
+- export types: `pdf`, `print_html`, `preview`
+- PDF template model
+- print-ready HTML renderer for local/demo browser print-to-PDF use
+- local/demo CLI that defaults to stdout
+- optional local ignored HTML artifact output
+- safe filename generation
+- path traversal rejection
+- output directory safety for `pdf-output/`, `pdf-exports/`, and `report-exports/`
+- PDF-safe evidence validation
+- section builder from Phase 18 `Report` objects
+- cover page structure
+- executive summary, verdict, score, severity breakdown, top fixes, findings table, detailed findings, tested categories, not-tested scope, limitations, evidence handling note, and retest status placeholder
+- future secure storage and paid-plan gating notes
+- disabled dashboard PDF export placeholder
+- static PDF export contract metadata on `GET /api/v0/reports/schema`
+- tests for model validation, statuses, filenames, path safety, evidence safety, overclaiming, limitations, template generation, report integration, CLI dry-run behavior, and output safety
+- documentation updates
+
+## Out of Scope Through Phase 19
 
 - production login/signup/session flow
 - production JWT verification
@@ -252,7 +275,7 @@ Sherlock has completed Phase 18 Web Report foundation.
 - admin panel
 - billing
 - production queue workers
-- PDF export
+- production PDF delivery and public PDF download links
 - real customer report retrieval APIs
 - active report persistence
 - report database writes
@@ -278,6 +301,14 @@ Sherlock has completed Phase 18 Web Report foundation.
 - destructive testing automation
 - unauthorized target scanning
 - public self-serve scan feature
+- production PDF export for real customer reports
+- public PDF download links
+- public report sharing
+- billing or Stripe
+- live paid-plan gates
+- production storage integration
+- email delivery
+- Phase 20 retest flow
 
 ## Naming Rules
 
@@ -290,4 +321,4 @@ Do not rename the repository or root folder.
 
 ## Phase Gate
 
-Phase 18 establishes the web report foundation required before PDF export and production report delivery workflows. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/findings-system.md` as the Phase 17 findings contract reference, `docs/web-report.md` as the Phase 18 web report contract reference, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, `db/schema.md` as the database foundation reference, `docs/verification.md` for verification methods, `docs/workers.md` for the queue/worker design, and `docs/scan-types-and-limits.md` for execution bounds.
+Phase 19 establishes the PDF export foundation required before production report delivery workflows. Future phases should use `docs/methodology.md` as the source of truth for category, evidence, severity, confidence, status, and reporting rules, `docs/findings-system.md` as the Phase 17 findings contract reference, `docs/web-report.md` as the Phase 18 web report contract reference, `docs/pdf-export.md` as the Phase 19 PDF export contract reference, `docs/sample-report.md` as a non-executable reference for report content structure, `docs/scanner-engine.md` as the scanner architecture reference, `docs/prompt-library.md` as the prompt library format reference, `docs/evaluator-system.md` as the evaluator contract reference, `docs/audits/README.md` as the manual audit workflow reference, `docs/auth.md` as the auth/account foundation reference, `apps/api/README.md` as the API foundation reference, `db/schema.md` as the database foundation reference, `docs/verification.md` for verification methods, `docs/workers.md` for the queue/worker design, and `docs/scan-types-and-limits.md` for execution bounds.

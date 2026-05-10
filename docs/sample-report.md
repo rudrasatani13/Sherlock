@@ -76,9 +76,10 @@ separate from the static sample:
 15. Limitations and disclaimer
 16. Final recommendation
 
-Future report generation, if implemented in a later phase, should reference the methodology in
-`docs/methodology.md` and should not treat this static document as executable schema. Phase 8 manual
-report preparation should also reference `docs/audits/REPORT_DELIVERY.md`.
+Future report generation should reference the methodology in `docs/methodology.md` and should not
+treat this static document as executable schema. Phase 8 manual report preparation should also
+reference `docs/audits/REPORT_DELIVERY.md`. Phase 19 PDF export uses Phase 18 `Report` objects and
+`docs/pdf-export.md` as the executable/export contract reference, not this sample report document.
 
 ## Finding Content Pattern
 
@@ -173,4 +174,4 @@ impact. This report is not a compliance certification.
 
 ## Phase Boundary
 
-Phase 4 completed the static sample report design only. Phase 5 adds an internal scanner engine foundation, Phase 6 adds an internal prompt library, Phase 7 adds an internal evaluator system, Phase 8 adds a manual report delivery workflow, and Phase 18 adds a web report foundation package plus a static dashboard report shell. Real customer report generation from scans, report storage, PDF export, billing, admin panels, public scan execution, and production report sharing remain future phases.
+Phase 4 completed the static sample report design only. Phase 5 adds an internal scanner engine foundation, Phase 6 adds an internal prompt library, Phase 7 adds an internal evaluator system, Phase 8 adds a manual report delivery workflow, Phase 18 adds a web report foundation package plus a static dashboard report shell, and Phase 19 adds a PDF export foundation package plus static/demo print-ready HTML support. Real customer report generation from scans, production report storage, public PDF downloads, billing, admin panels, public scan execution, and production report sharing remain future phases.

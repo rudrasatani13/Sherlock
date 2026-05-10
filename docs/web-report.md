@@ -4,7 +4,7 @@ Status: Phase 18 Web Report foundation completed.
 
 Phase 18 adds Sherlock's web report foundation for PowerDetect Sherlock. It creates a structured report model, report section helpers, static API schema metadata, and a dashboard report detail shell that can consume sanitized static demo findings now and reviewed real findings later.
 
-This phase prepares the product for future PDF export, billing gates, sharing controls, and report persistence, but does not implement those future phases.
+This phase prepares the product for Phase 19 PDF export, billing gates, sharing controls, and report persistence. Phase 19 now adds a separate PDF export foundation, but production customer PDF delivery is still not live.
 
 ## Scope
 
@@ -30,11 +30,11 @@ Implemented:
 - dashboard `apps/web/dashboard/reports.html` updates
 - dashboard `apps/web/dashboard/report-detail.html` static web report shell
 
-Not implemented:
+Not implemented by Phase 18:
 
-- Phase 19 PDF export
-- downloadable report assets
-- PDF generation libraries
+- production customer PDF delivery
+- public PDF download links
+- downloadable customer report assets
 - billing or Stripe
 - paid plan gates
 - public scan execution
@@ -192,7 +192,7 @@ The report detail shell includes:
 - retest status placeholders
 - disabled export and sharing actions
 
-The UI clearly states that it uses demo/static data only and does not include PDF export, public sharing, production persistence, or real scan data.
+The UI clearly states that it uses demo/static data only and does not include production PDF delivery, public sharing, production persistence, or real scan data.
 
 ## API Metadata
 
@@ -208,8 +208,8 @@ The UI clearly states that it uses demo/static data only and does not include PD
 
 `GET /api/v0/reports` remains a `501 not_implemented` placeholder for future customer report retrieval. It does not read or write database records.
 
-## Phase Boundary
+## Phase 19 Connection
 
-Phase 18 prepares report structure only. Phase 19 may add PDF export later, after evidence handling, access control, storage, and download behavior are reviewed.
+Phase 19 adds `packages/pdf_export`, static PDF export contract metadata, a local/demo print-ready HTML renderer, safety checks, and a disabled dashboard export placeholder. It consumes this Phase 18 `Report` object and keeps production delivery out of scope.
 
-Do not add PDF generation, billing, sharing links, active persistence, public scan execution, report database writes, raw evidence storage, or real customer report retrieval as part of Phase 18.
+Do not add billing, public sharing links, active persistence, public scan execution, report database writes, raw evidence storage, real customer report retrieval, production PDF storage, or public PDF download links as part of the report foundation.

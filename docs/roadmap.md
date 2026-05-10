@@ -1,6 +1,6 @@
 # Roadmap
 
-This roadmap is directional. It should guide sequencing without forcing premature architecture decisions. `SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term product reference and phase source of truth. The current implementation represents **foundation versions** through Phase 18, not full production-complete versions of every expected output. See [Master Plan Alignment](master-plan-alignment.md) for details.
+This roadmap is directional. It should guide sequencing without forcing premature architecture decisions. `SHERLOCK_DEVELOPMENT_MASTER_PLAN.md` is the long-term product reference and phase source of truth. The current implementation represents **foundation versions** through Phase 19, not full production-complete versions of every expected output. See [Master Plan Alignment](master-plan-alignment.md) for details.
 
 ## Phase 1: Foundation
 
@@ -355,11 +355,33 @@ Implemented:
 
 Phase 18 does not implement PDF export, downloadable reports, billing, paid gates, public scan execution, scanner execution from public UI/API, production queue deployment, active database persistence, report database writes, real report sharing tokens, public report links with access control, admin panels, real customer evidence storage, raw sensitive evidence storage, real network scanning, or report generation from real customer scans.
 
-## Phase 19+: Product Platform
+## Phase 19: PDF Report Export
+
+Status: completed foundation
+
+Created Sherlock's PDF report export foundation under `packages/pdf_export`, extending the Phase 18 report object with a PDF-ready export contract, safety checks, and a dependency-light print-ready HTML template.
+
+Implemented:
+
+- PDF export data model with cover page, executive summary, verdict, score, severity breakdown, top fixes, findings table, detailed findings, evidence snippets, reproduction steps, fix recommendations, tested categories, not-tested scope, limitations, evidence handling note, footer disclaimer, source report ID, and metadata
+- normalized export statuses: `draft`, `ready`, `blocked_sensitive_evidence`, `failed`, `archived`
+- export types: `pdf`, `print_html`, `preview`
+- builder from Phase 18 `Report` objects
+- print-ready HTML renderer for local/demo browser print-to-PDF use
+- local/demo CLI for schema/demo inspection and optional ignored HTML artifact generation
+- safe filename and output path validation for `pdf-output/`, `pdf-exports/`, and `report-exports/`
+- evidence redaction/safety validation and overclaiming verdict rejection
+- API `GET /api/v0/reports/schema` extended with static PDF export contract metadata
+- dashboard report detail placeholder button for the Phase 19 PDF export foundation
+- documentation in `docs/pdf-export.md`
+
+Phase 19 does not implement production PDF export for real customer reports, public PDF download links, public report sharing, billing, Stripe, live paid-plan gates, active report database persistence, report database writes, production storage integration, email delivery, admin panel, real customer evidence storage, public scan execution, scanner execution from public UI/API, real network scanning, or Phase 20 retest flow.
+
+## Phase 20+: Product Platform
 
 Future platform work may include:
 
-- Phase 19 PDF export
+- Phase 20 retest flow
 - Phase 21 billing callbacks
 - Phase 22 security hardening, SSRF protection, rate limits, observability, and audit logging
 - production DNS/HTTP/chatbot verification backend checks

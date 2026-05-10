@@ -231,6 +231,7 @@ Both endpoints return static Phase 16 metadata. They do not create scan jobs, tr
 
 - **Phase 17 (Findings)**: Completed foundation. Findings can retain source scan/test IDs and future scan type metadata while staying separate from active scan execution.
 - **Phase 18 (Web Report)**: Completed foundation. Report level from scan type config can inform future report detail level, but Phase 18 does not run scans or persist reports.
+- **Phase 19 (PDF Report Export)**: Completed foundation. PDF export can render local/demo report artifacts from Phase 18 report objects, but it does not enforce paid plans, persist reports, or create public downloads.
 - **Phase 21 (Billing)**: Plan tier enforcement connected to Stripe.
 - **Phase 22 (Hardening)**: SSRF protection, rate limits, spend controls, audit logging.
 - **Future**: Dynamic limit overrides from database or admin configuration.

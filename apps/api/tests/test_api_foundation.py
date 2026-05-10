@@ -50,7 +50,7 @@ class ApiFoundationTests(unittest.TestCase):
                 "SHERLOCK_MARKETING_NAME": "PowerDetect Sherlock",
                 "SHERLOCK_ENVIRONMENT": "local",
                 "SHERLOCK_API_VERSION": "v0",
-                "SHERLOCK_CURRENT_PHASE": "Phase 18 Web Report foundation completed",
+                "SHERLOCK_CURRENT_PHASE": "Phase 19 PDF Report Export foundation completed",
                 "DATABASE_URL": "",
                 "AUTH_ENABLED": "false",
                 "SHERLOCK_AUTH_ENABLED": "false",
@@ -78,7 +78,7 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertEqual(settings.brand_name, "PowerDetect")
         self.assertEqual(settings.marketing_name, "PowerDetect Sherlock")
         self.assertEqual(settings.api_version, "v0")
-        self.assertEqual(settings.current_phase, "Phase 18 Web Report foundation completed")
+        self.assertEqual(settings.current_phase, "Phase 19 PDF Report Export foundation completed")
         self.assertEqual(settings.database_url, "")
         self.assertEqual(settings.supabase_url, "")
         self.assertEqual(settings.supabase_anon_key, "")
@@ -281,18 +281,20 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("high", contract["confidences"])
         self.assertIn("report generation", contract["disabled_capabilities"])
 
-    def test_reports_placeholder_returns_phase18_contract(self) -> None:
+    def test_reports_placeholder_returns_phase19_contract(self) -> None:
         with self.assertRaises(NotImplementedApiError) as context:
             reports_placeholder()
         self.assertEqual(context.exception.status_code, 501)
         details = context.exception.details
-        self.assertEqual(details["status"], "web_report_foundation")
+        self.assertEqual(details["status"], "pdf_export_foundation")
         self.assertIn("reports_contract", details)
+        self.assertIn("pdf_export_contract", details)
         contract = details["reports_contract"]
         self.assertIn("ready", contract["report_statuses"])
         self.assertIn("web", contract["report_types"])
         self.assertIn("manual_review_required", contract["launch_readiness_verdicts"])
-        self.assertIn("PDF export", contract["disabled_capabilities"])
+        self.assertIn("production PDF export for real customer reports", contract["disabled_capabilities"])
+        self.assertIn("blocked_sensitive_evidence", details["pdf_export_contract"]["export_statuses"])
 
     def test_reports_schema_returns_static_metadata(self) -> None:
         response = reports_schema()
@@ -303,6 +305,8 @@ class ApiFoundationTests(unittest.TestCase):
         self.assertIn("sample", contract["report_types"])
         self.assertIn("high_risk_do_not_launch", contract["launch_readiness_verdicts"])
         self.assertIn("real customer evidence storage", contract["disabled_capabilities"])
+        self.assertIn("pdf_export_contract", response.data)
+        self.assertIn("blocked_sensitive_evidence", response.data["pdf_export_contract"]["export_statuses"])
 
 
 if __name__ == "__main__":

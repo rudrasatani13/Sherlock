@@ -1,6 +1,6 @@
 # Sherlock Methodology
 
-Status: Phase 3 completed. Phase 4 sample report design and Phase 8 manual audit workflow reference this methodology.
+Status: Phase 3 completed. Phase 4 sample report design, Phase 8 manual audit workflow, Phase 18 web report system, and Phase 19 PDF export foundation reference this methodology.
 
 This document is the internal methodology foundation for Sherlock, the AI Launch Security Audit + Scanner product under the PowerDetect brand.
 
@@ -21,6 +21,8 @@ This methodology defines:
 - how finding status is tracked
 - what reports should and should not claim
 - how future prompt, evaluator, scanner, report, and manual audit phases should use this foundation
+
+Phase 19 PDF exports must preserve these reporting rules: evidence-first findings, redacted evidence, tested/not-tested scope, limitations, careful launch-readiness language, and no guarantee or certification claims.
 
 ## Phase 3 Non-Goals
 

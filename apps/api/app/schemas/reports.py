@@ -9,9 +9,9 @@ from .common import ModuleStatus
 
 class ReportsModuleStatus(ModuleStatus):
     module: str = "reports"
-    status: str = "web_report_foundation"
-    purpose: str = "Phase 18 web report schema metadata and report access placeholder after findings are reviewed."
-    future_phase: str = "Phase 19 PDF export after web report foundation"
+    status: str = "pdf_export_foundation"
+    purpose: str = "Phase 19 report and PDF export schema metadata. Report access and customer PDF delivery remain placeholders."
+    future_phase: str = "Future production report access, secure storage, paid gates, and delivery after auth and persistence exist"
 
 
 class ReportsContract(BaseModel):
@@ -67,11 +67,76 @@ class ReportsContract(BaseModel):
         "active report persistence",
         "report database writes",
         "real customer report retrieval",
-        "PDF export",
-        "downloadable report assets",
+        "production PDF export for real customer reports",
+        "public PDF download links",
+        "downloadable customer report assets",
         "billing gates",
         "real report sharing tokens",
         "public report links with access control",
         "public scan execution",
         "real customer evidence storage",
+    ])
+
+
+class PdfExportContract(BaseModel):
+    """Static Phase 19 PDF export contract metadata.
+
+    This is not a production export endpoint and does not write customer files.
+    """
+
+    current_behavior: str = "Static contract metadata plus internal package support for local/demo print-ready HTML exports only."
+    package: str = "packages.pdf_export"
+    export_statuses: List[str] = Field(default_factory=list)
+    export_types: List[str] = Field(default_factory=list)
+    required_fields: List[str] = Field(default_factory=lambda: [
+        "export_id",
+        "report_id",
+        "export_status",
+        "export_type",
+        "title",
+        "filename",
+        "generated_at",
+        "cover_page",
+        "executive_summary",
+        "verdict",
+        "score",
+        "severity_breakdown",
+        "top_fixes",
+        "findings_table",
+        "detailed_findings",
+        "tested_categories",
+        "not_tested",
+        "limitations",
+        "evidence_handling_note",
+        "footer_disclaimer",
+        "source_report_id",
+        "metadata",
+    ])
+    output_artifact_rules: List[str] = Field(default_factory=lambda: [
+        "local generated HTML/PDF artifacts must stay in ignored directories",
+        "allowed local directories are pdf-output, pdf-exports, and report-exports",
+        "filenames use the powerdetect-sherlock-report prefix",
+        "path traversal and unsafe path characters are rejected",
+    ])
+    evidence_safety_rules: List[str] = Field(default_factory=lambda: [
+        "evidence must be redacted, short, and report-safe",
+        "raw Authorization headers are blocked",
+        "raw cookies are blocked",
+        "API keys, bearer tokens, private keys, full private documents, large transcripts, and real customer data are blocked",
+        "exports require limitations and careful non-overclaiming verdict language",
+    ])
+    disabled_capabilities: List[str] = Field(default_factory=lambda: [
+        "production PDF export for real customer reports",
+        "public PDF download links",
+        "public report sharing",
+        "billing or Stripe",
+        "live paid-plan gates",
+        "active report database persistence",
+        "report database writes",
+        "production storage integration",
+        "email delivery",
+        "admin panel",
+        "real customer evidence storage",
+        "public scan execution",
+        "Phase 20 retest flow",
     ])

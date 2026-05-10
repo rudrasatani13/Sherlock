@@ -1,8 +1,8 @@
 # Sherlock Database Schema
 
-Status: Phase 10 Database Setup completed; Phase 11 auth alignment documented; Phase 13 setup UI does not use active persistence
+Status: Phase 10 Database Setup completed; Phase 11 auth alignment documented; Phase 19 PDF export foundation does not use active persistence
 
-This document describes the Phase 10 PostgreSQL/Supabase-compatible database foundation for Sherlock and the Phase 11 auth alignment strategy. Phase 12 adds static dashboard/auth UI shell pages, and Phase 13 adds static project/target setup pages. They do not add active database reads or writes.
+This document describes the Phase 10 PostgreSQL/Supabase-compatible database foundation for Sherlock and the Phase 11 auth alignment strategy. Phase 12 adds static dashboard/auth UI shell pages, Phase 13 adds static project/target setup pages, Phase 18 adds in-memory report objects, and Phase 19 adds in-memory PDF export objects plus local/demo ignored HTML artifacts. They do not add active database reads or writes.
 
 The schema is a foundation for future platform phases. It is not connected to production API persistence yet.
 
@@ -281,6 +281,8 @@ Allowed statuses: `draft`, `ready`, `delivered`, `archived`, `failed`.
 Phase 10 does not implement report generation, PDF export, report storage, or report access routes.
 
 Phase 18 adds an in-memory report system model with normalized statuses `draft`, `ready`, `needs_review`, and `archived`. The Phase 10 database foundation still documents `delivered` and `failed` statuses for future storage workflows. A future persistence phase should reconcile the report-system status model with the database status constraint through an explicit reviewed migration or mapping layer before active report writes are enabled.
+
+Phase 19 adds an in-memory PDF export model with normalized statuses `draft`, `ready`, `blocked_sensitive_evidence`, `failed`, and `archived`. It does not modify this schema, write report/export records, create production storage paths, or store generated customer PDFs. A future persistence/storage phase should add explicit reviewed migrations and access-control policies before storing PDF export metadata.
 
 ### manual_audits
 

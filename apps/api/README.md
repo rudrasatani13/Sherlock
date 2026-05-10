@@ -1,12 +1,12 @@
 # Sherlock Backend API
 
-Status: Phase 18 Web Report foundation completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, Phase 15 queue/worker contracts, Phase 16 scan type/limit static metadata, Phase 17 findings schema metadata, and Phase 18 report schema metadata.
+Status: Phase 19 PDF Report Export foundation completed. The API remains a scoped Phase 9 backend foundation with Phase 11 auth, Phase 13 setup contracts, Phase 14 verification placeholders, Phase 15 queue/worker contracts, Phase 16 scan type/limit static metadata, Phase 17 findings schema metadata, Phase 18 report schema metadata, and Phase 19 PDF export schema metadata.
 
-It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. Phase 16 adds safe static endpoints for scan types and limits. Phase 17 adds a safe static findings schema endpoint. Phase 18 adds a safe static reports schema endpoint. The API still does not implement the full platform or active persistence.
+It introduces a small FastAPI application that future phases can extend for projects, targets, scans, findings, reports, verification, billing callbacks, and worker integration. Phase 10 adds a database schema foundation under `../../db`. Phase 11 adds Supabase Auth-compatible auth placeholders and current-user route foundations. Phase 12 adds a static dashboard/auth UI shell under `../web`, which may safely display `GET /api/v0/auth/status` when the local API is running. Phase 13 refines project and target placeholder route details with setup-contract metadata. Phase 16 adds safe static endpoints for scan types and limits. Phase 17 adds a safe static findings schema endpoint. Phase 18 adds a safe static reports schema endpoint. Phase 19 extends that reports schema endpoint with static PDF export contract metadata. The API still does not implement the full platform or active persistence.
 
 ## Scope
 
-Phase 9 through Phase 18 include:
+Phase 9 through Phase 19 include:
 
 - FastAPI app skeleton under `apps/api`
 - health and version/status endpoints
@@ -29,10 +29,11 @@ Phase 9 through Phase 18 include:
 - Phase 16 scan type and limit system foundation under `packages/scan_limits`
 - Phase 17 findings system foundation under `packages/findings_system`
 - Phase 18 report system foundation under `packages/report_system`
+- Phase 19 PDF export foundation under `packages/pdf_export`
 - static findings contract metadata at `GET /api/v0/findings/schema`
-- static report contract metadata at `GET /api/v0/reports/schema`
+- static report and PDF export contract metadata at `GET /api/v0/reports/schema`
 
-Phase 18 adds static report metadata to a safe endpoint. The API still does not include:
+Phase 19 adds static PDF export metadata to a safe endpoint. The API still does not include:
 
 - active API database persistence
 - real production project persistence
@@ -50,7 +51,8 @@ Phase 18 adds static report metadata to a safe endpoint. The API still does not 
 - SSRF protection implementation
 - secret storage or committed secrets
 - real report generation from customer scans
-- PDF export
+- production PDF export for real customer reports
+- public PDF download links
 - active report persistence
 - report database writes
 - real customer report retrieval
@@ -140,7 +142,7 @@ psql "postgresql://localhost/sherlock_local" -v ON_ERROR_STOP=1 -f db/migrations
 | GET | `/api/v0/scans/types` | Returns static Phase 16 definitions for the 5 scan modes and their limits. |
 | GET | `/api/v0/scans/limits` | Returns static Phase 16 plan tier placeholders and category inclusion matrices. |
 | GET | `/api/v0/findings/schema` | Returns static Phase 17 findings contract metadata. |
-| GET | `/api/v0/reports/schema` | Returns static Phase 18 web report contract metadata. |
+| GET | `/api/v0/reports/schema` | Returns static Phase 18 web report contract metadata and Phase 19 PDF export contract metadata. |
 
 ## Protected Route Foundations
 
@@ -162,7 +164,7 @@ These routes intentionally return `501 not_implemented` with a structured error 
 | GET | `/api/v0/targets` | Future target metadata and verified scope records. |
 | GET | `/api/v0/scans` | Future scan job contracts and worker handoff after security controls exist. Lists job types, lifecycle states, safety gates, future endpoints, and forbidden payload fields. Scanner execution is not exposed. |
 | GET | `/api/v0/findings` | Future reviewed findings retrieval after auth, persistence, and access controls. |
-| GET | `/api/v0/reports` | Future report retrieval and access contracts. Includes Phase 18 static report contract metadata in the placeholder response. |
+| GET | `/api/v0/reports` | Future report retrieval and access contracts. Includes Phase 18 static report contract metadata and Phase 19 static PDF export contract metadata in the placeholder response. |
 | GET | `/api/v0/verification` | Phase 14 verification contract with method registry, status definitions, challenge token design, and request/response schemas. |
 
 The project and target placeholder route details include Phase 13 setup-contract metadata. The verification placeholder route includes Phase 14 verification contracts with five supported methods (DNS TXT, HTML meta tag, well-known file, manual authorization, chatbot/API challenge), six statuses, challenge token design, and request/response schemas. No placeholder route persists data, triggers scanner execution, creates jobs, performs production verification checks, generates reports, stores secrets, or integrates with billing.
@@ -178,7 +180,7 @@ Responses use a shared shape for future consistency:
   "error": null,
   "metadata": {
     "api_version": "v0",
-    "phase": "Phase 18 Web Report foundation completed",
+    "phase": "Phase 19 PDF Report Export foundation completed",
     "environment": "local"
   }
 }
@@ -197,7 +199,7 @@ Safe environment variables:
 | `SHERLOCK_MARKETING_NAME` | `PowerDetect Sherlock` | Full marketing name. |
 | `SHERLOCK_ENVIRONMENT` | `local` | Runtime environment label. |
 | `SHERLOCK_API_VERSION` | `v0` | API route/version label. |
-| `SHERLOCK_CURRENT_PHASE` | `Phase 18 Web Report foundation completed` | Product phase label. |
+| `SHERLOCK_CURRENT_PHASE` | `Phase 19 PDF Report Export foundation completed` | Product phase label. |
 | `DATABASE_URL` | empty string | Local database URL placeholder for future persistence integration. Not used by active routes yet. |
 | `AUTH_ENABLED` | `false` | Enables future auth enforcement only after real Supabase/JWKS configuration exists. |
 | `SUPABASE_URL` | empty string | Future Supabase project URL placeholder. |
@@ -207,7 +209,7 @@ Safe environment variables:
 | `SHERLOCK_DEBUG` | `false` | Local debug flag. |
 | `SHERLOCK_ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:4173` | Local CORS placeholder origins. |
 
-No real secrets are required for Phase 18. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, raw auth headers, raw scan outputs, evaluator outputs, generated findings, generated reports, or customer evidence.
+No real secrets are required for Phase 19. Do not commit real database credentials, real Supabase keys, target credentials, API keys, bearer tokens, cookies, passwords, private keys, raw auth headers, raw scan outputs, evaluator outputs, generated findings, generated reports, generated PDF/HTML export artifacts, or customer evidence.
 
 ## Auth Foundation
 
@@ -247,7 +249,8 @@ The existing internal packages remain isolated:
 - `packages/prompt_library` may later supply reviewed test cases after scope and target authorization exist.
 - `packages/evaluator_system` may later process stored scanner observations and feed `packages/findings_system`.
 - `packages.findings_system` can normalize safe evaluator output into finding candidates and finding objects, but the API does not persist or return real findings yet.
-- `packages.report_system` can build structured report objects from explicit sanitized/static findings, but the API does not persist reports, return customer reports, create share links, or export PDFs.
+- `packages.report_system` can build structured report objects from explicit sanitized/static findings, but the API does not persist reports, return customer reports, create share links, or deliver production PDFs.
+- `packages.pdf_export` can build a PDF-ready export object and local/demo print-ready HTML from a Phase 18 report, but the API does not write files, return public download URLs, use production storage, enforce billing gates, or expose customer PDFs.
 
 ## Future Integration Notes
 
@@ -260,6 +263,6 @@ The existing internal packages remain isolated:
 - Phase 16: scan type and limit system foundation completed. Bounded execution enforcement via production queues remains future work.
 - Phase 17: findings system foundation completed using methodology, evaluator output, grouping/merge/sort helpers, redacted evidence summaries, and static schema metadata.
 - Phase 18: web report foundation completed using structured report models, conservative score/verdict helpers, static report schema metadata, and dashboard report shell.
-- Phase 19: add PDF export after report access, storage, and evidence controls are reviewed.
+- Phase 19: PDF export foundation completed using contract metadata, print-ready HTML rendering, local/demo CLI, evidence safety checks, and disabled dashboard export controls.
 - Phase 21: add billing callbacks server-side after product flows are ready.
 - Phase 22: add security hardening, abuse controls, audit logging, and production safeguards.

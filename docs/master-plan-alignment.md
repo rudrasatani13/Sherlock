@@ -2,7 +2,7 @@
 
 **Master plan file reference:** `SHERLOCK_DEVELOPMENT_MASTER_PLAN.md`
 
-**Current implementation status:** Foundation through Phase 18. No Phase 19 or later platform behavior has been implemented.
+**Current implementation status:** Foundation through Phase 19. No Phase 20 or later platform behavior has been implemented.
 
 The current repository provides a local development and foundational architecture for Sherlock. It does **not** provide full, production-complete versions of every expected output in the master plan. Many features are static, mock, or foundational only.
 
@@ -28,7 +28,8 @@ The current repository provides a local development and foundational architectur
 | 16 | Scan Types and Limits | partially implemented |
 | 17 | Findings System | completed foundation |
 | 18 | Web Report | completed foundation |
-| 19+ | PDF Export, Billing, Hardening, etc. | not implemented |
+| 19 | PDF Report Export | completed foundation |
+| 20+ | Retest Flow, Billing, Hardening, etc. | not implemented |
 
 ## Detailed Status
 
@@ -42,8 +43,9 @@ Many recent phases are foundational, meaning they provide UI shells, API contrac
 - **Phase 16 (Scan Types and Limits):** Static config and validation only. There is no usage-tracked paid scanning or live billing plan enforcement.
 - **Phase 17 (Findings System):** Internal package and static contracts only. It can convert sanitized/mock evaluator output into structured finding candidates and findings, but there is no active findings persistence, customer evidence storage, report generation, or production dashboard integration.
 - **Phase 18 (Web Report):** Internal report system package, static report schema metadata, and dashboard report shell only. It can build structured report objects from explicit sanitized/static findings, but there is no active report persistence, PDF export, public sharing, billing gate, real customer evidence storage, or production report retrieval.
+- **Phase 19 (PDF Report Export):** Internal PDF export package, static PDF export schema metadata, print-ready HTML template foundation, local/demo CLI, disabled dashboard export placeholder, and safety checks only. It can build a `PdfReportExport` object from a Phase 18 `Report`, but there is no production PDF delivery, public download URL, billing gate, production storage integration, active report persistence, or real customer evidence storage.
 
-## Remaining Gaps Before True Production Scan Flow (Phase 18+)
+## Remaining Gaps Before True Production Scan Flow (Phase 19+)
 
 The following must be built before Sherlock is a true production platform capable of executing scans:
 
@@ -56,7 +58,7 @@ The following must be built before Sherlock is a true production platform capabl
 - queue-backed scan creation
 - scan events
 - active report persistence and access control
-- PDF export
+- production PDF delivery
 - usage tracking
 - billing
 - SSRF/rate-limit/security hardening
@@ -66,7 +68,7 @@ The following must be built before Sherlock is a true production platform capabl
 - no public scan execution
 - no billing/Stripe
 - no production queue deployment
-- no PDF export
+- no production PDF delivery or public PDF download links
 - no report generation from real customer scans
 - no active findings database persistence
 - no active report database persistence
